@@ -67,7 +67,7 @@ export default function Login() {
                         <label className="label">
                             <span className="label-text">Email:</span>
                         </label>
-                        <input type="text" placeholder="Email" className="input input-bordered w-full" onChange={updateEmail}/>
+                        <input type="email" placeholder="Email" className="input input-bordered w-full" onChange={updateEmail}/>
                         <label className="label mt-2">
                             <span className="label-text">Password:</span>
                         </label>

@@ -20,7 +20,7 @@ export default function Login() {
                 </label>
                 <input type="password" placeholder="Password" className="input input-bordered w-full" />
                 <Link href="/forgotpassword" className="link text-blue-700 mt-4">Forgot password?</Link>
-                <p className="mt-2">Don't have an account? <Link href="/signup" className="link text-blue-700">Sign up</Link>!</p>
+                <p className="mt-2">Don&apos;t have an account? <Link href="/signup" className="link text-blue-700">Sign up</Link>!</p>
                 <input type="submit" value="Login" className="btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white"></input>
                 </form>
             </div>

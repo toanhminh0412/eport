@@ -37,20 +37,41 @@ export default function Login() {
     // Sign up user with email and password
     const signUp = e => {
         e.preventDefault();
-        console.log('Signing up');
-        fetch('/api/authenticate')
+        fetch('/api/authenticate/signup', {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            if (data.success) {
+                setSucessMsg(data.message);
+                setTimeout(() => {
+                    setSucessMsg('');
+                }, 5000);
+            } else {
+                setErrorMsg(data.message);
+                setTimeout(() => {
+                    setErrorMsg('');
+                }, 5000);
+            }
         })
         .catch(error => {
-            console.log('Failed to fetch /api/authenticate');
             console.log(error);
         })
     }
 
     return (
-        <div className="bg-slate-100 min-h-screen">
+        <div className="bg-slate-100 min-h-screen pb-20">
             <div className="flex flex-row flex-wrap">
                 <div className="w-full lg:w-1/2 pt-20 lg:pt-40 pl-12 h-fit">
                     <h1 className="font-semibold text-3xl lg:text-4xl">Welcome to Eport</h1>
@@ -58,6 +79,12 @@ export default function Login() {
                 </div>
                 <div className="w-full lg:w-1/2 pt-10 lg:pt-40 pl-12 lg:px-6">
                     <form className="card w-96 bg-white shadow-xl p-4" onSubmit={signUp}>
+                        {successMsg ? (
+                        <div className="alert alert-success bg-green-300 border-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <span>{successMsg}</span>
+                        </div>
+                        ) : null}
                         {errorMsg ? (
                         <div className="alert alert-error bg-red-300 border-none">
                             <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>

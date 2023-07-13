@@ -1,30 +1,35 @@
 "use client";
 
-import { useState } from "react";
-import UpperNav from "@/components/UpperNav"
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { checkLoggedIn } from "@/actions/client/user";
 
-export default function Login() {
+export default function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     
     const [successMsg, setSucessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        checkLoggedIn();
+    }, [])
 
     // Update email on type
     const updateEmail = e => {
-        setEmail(e.target.value);
+        setEmail(() => e.target.value);
     }
     
     // Update password on type
     const updatePassword = e => {
-        setPassword(e.target.value);
+        setPassword(() => e.target.value);
     }
 
     // Update confirm password on type
     const updateConfirmPassword = e => {
-        setConfirmPassword(e.target.value);
+        setConfirmPassword(() => e.target.value);
 
         // Flash an error if confirm password is different from password
         if (e.target.value !== password && !errorMsg) {
@@ -37,6 +42,7 @@ export default function Login() {
     // Sign up user with email and password
     const signUp = e => {
         e.preventDefault();
+        setLoading(true);
         fetch('/api/authenticate/signup', {
             method: "POST",
             mode: "cors",
@@ -54,11 +60,10 @@ export default function Login() {
         .then(data => {
             console.log(data);
             if (data.success) {
-                setSucessMsg(data.message);
-                setTimeout(() => {
-                    setSucessMsg('');
-                }, 5000);
+                const newEmail = data.newEmail;
+                window.location.href = '/confirm_email';
             } else {
+                setLoading(false);
                 setErrorMsg(data.message);
                 setTimeout(() => {
                     setErrorMsg('');
@@ -67,6 +72,7 @@ export default function Login() {
         })
         .catch(error => {
             console.log(error);
+            setLoading(false);
         })
     }
 
@@ -104,7 +110,7 @@ export default function Login() {
                         </label>
                         <input type="password" placeholder="Confirm password" className="input input-bordered w-full" onChange={updateConfirmPassword}/>
                         <p className="mt-4">Already have an account? <Link href="/login" className="link text-blue-700">Login</Link>!</p>
-                        <input type="submit" value="Signup" className="btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white" disabled={!(email && password && confirmPassword && (password === confirmPassword)) }></input>
+                        <input type="submit" value={loading ? "Signing up..." : "Signup"} className={`btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white`} disabled={(!(email && password && confirmPassword && (password === confirmPassword)))||loading }></input>
                     </form>
                 </div>
             </div>

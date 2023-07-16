@@ -77,7 +77,7 @@ export default function Signup() {
     }
 
     return (
-        <div className="bg-slate-100 min-h-screen pb-20">
+        <div className="bg-slate-100 min-h-screen pb-20 mt-[-4rem]">
             <div className="flex flex-row flex-wrap">
                 <div className="w-full lg:w-1/2 pt-20 lg:pt-40 pl-12 h-fit">
                     <h1 className="font-semibold text-3xl lg:text-4xl">Welcome to Eport</h1>

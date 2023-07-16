@@ -107,16 +107,16 @@ export default function Demo1() {
         {
             name: 'Louella Kim',
             job: 'Marketing manager',
-            content: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.'
+            content: 'Maecenas eleifend interdum vestibulum. Aliquam commodo mattis mauris in interdum. Nam ut arcu non augue tempus ultricies. Nam non lorem vitae nunc bibendum mollis. Donec velit arcu, euismod ultrices eros a, vestibulum fringilla dui. Nam quis nibh ante. Quisque lacus tellus, mattis in lectus quis, eleifend bibendum augue.'
         },
         {
-            name: 'Catherine Oliver',
-            job: 'Lawyer',
-            content: 'Integer sollicitudin fringilla tellus, id viverra urna dignissim suscipit. Praesent ut leo at lectus tincidunt aliquam. Curabitur non enim sed est lacinia congue. Nunc ante ex, convallis quis metus id, euismod consectetur mi. Aliquam erat volutpat. Aenean sit amet eros eu erat imperdiet ultricies. Mauris a blandit urna.'
+            name: 'Jane Doe',
+            job: 'Teacher',
+            content: 'Suspendisse in neque urna. Ut pulvinar interdum libero in consectetur. Phasellus facilisis nisl gravida mauris venenatis maximus. Pellentesque eu quam mattis nunc tempus congue tempor id quam. Ut sed nibh id eros varius cursus in vitae massa. Vestibulum euismod lorem quis interdum varius. Curabitur vitae lorem at erat pretium mattis.'
         },
         {
-            name: 'Louella Kim',
-            job: 'Marketing manager',
+            name: 'Luis Kim',
+            job: 'Plumber',
             content: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.'
         }
     ]

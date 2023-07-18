@@ -2,39 +2,180 @@
 
 import Image from "next/image"
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
+
+import { storage } from "../../../../public/libs/firebase";
 import UpperNav from "@/components/UpperNav"
+import ControlNav from "../ControlNav";
+import { ErrorToast, SuccessToast } from "../MessageToast";
 import ProjectShowcase from "./ProjectShowcase";
 import TestimonialShowcase from "./TestimonialShowcase";
 import Profile from "./sections/Profile";
+import FilesModal from "../FilesModal";
+
+import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import secureLocalStorage from "react-secure-storage";
+import AboutMe from "./sections/AboutMe";
+
 
 export default function Demo1({content}) {
     const [site, setSite] = useState(content);
+    const [uploadedFiles, setUploadedFiles] = useState([]);
+    const [selectedImageId, setSelectedImageId] = useState(null);
+    const [activeImages, setActiveImages] = useState([]);
+
+    // Keep track of new values for each section
+    const profileRef = useRef();
+    const aboutMeRef = useRef();
+
+    // Loading states
+    const [savingState, setSavingState] = useState(false);
+
+    // Messages
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+
+    useEffect(() => {
+        let curActiveImages = [site.sections[0].profilePic]
+        site.sections[5].projects.forEach(project => {
+            project.images.forEach(image => {
+                if (!curActiveImages.includes(image)) {
+                    curActiveImages.push(image);
+                }
+            })
+        })
+        setActiveImages(curActiveImages);
+
+        const getFileURLs = async () => {
+            // Get all file URLS that users have uploaded to the server
+            const userId = secureLocalStorage.getItem('eport-uid');
+            let serverFileURLs = [];
+            const filesRef = ref(storage, `users/${userId}/images`);
+
+            const files = await listAll(filesRef);
+            files.items.forEach(async (itemRef, index) => {
+                // All the items under listRef.
+                const itemURL = await getDownloadURL(itemRef);
+                serverFileURLs.push(itemURL);
+                if (serverFileURLs.length === files.items.length) {
+                    setUploadedFiles(serverFileURLs);
+                }
+            });   
+        }
+
+        getFileURLs();
+    }, [])
+
+    // Set currently selected image for editing
+    const selectImage = imageId => {
+        setSelectedImageId(imageId);
+    }
+
+    // Upload files to user's individual storage
+    const uploadFiles = async (newFiles, callBack) => {
+        const userId = secureLocalStorage.getItem('eport-uid');
+        let newFileURLs = [];
+        for (const file of newFiles) {
+            const storageRef = ref(storage, `users/${userId}/images/${file.name}-${new Date().getTime()}`); 
+            const fileSnapshot = await uploadBytes(storageRef, file);
+            const fileURL = await getDownloadURL(fileSnapshot.ref);
+            newFileURLs.push(fileURL);
+        }
+        setUploadedFiles(prevFiles => ([...prevFiles, ...newFileURLs]));
+        callBack();
+    }
+
+    // Delete files from user's individual storage
+    const deleteFiles = async (files, callBack) => {
+        const userId = secureLocalStorage.getItem('eport-uid');
+        for (const file of files) {
+            const storageRef = ref(storage, file);
+            await deleteObject(storageRef);
+        }
+        setUploadedFiles(prevFiles => {
+            let newFiles = [];
+            for (const prevFile of prevFiles) {
+                if (!files.includes(prevFile)) {
+                    newFiles.push(prevFile);
+                }
+            }
+            return newFiles;
+        })
+        callBack();
+    }
+
+    // Save site edited information
+    const saveSite = () => {
+        setSavingState(true);
+        // Flash "Site saved successfully" if no changes were made
+        if (!(profileRef.current || aboutMeRef.current)) {
+            setSuccessMsg("Site saved successfully");
+            setSavingState(false);
+            setTimeout(() => {
+                setSuccessMsg('');
+            }, 5000)
+        // Otherwise make a fetch request to update site on Firestore
+        } else {
+            const newSite = {
+                ...site,
+                sections: [
+                    profileRef.current ? profileRef.current : site.sections[0],
+                    aboutMeRef.current ? aboutMeRef.current : site.sections[1],
+                    ...site.sections.slice(2)
+                ]
+            }
+            const siteId = window.location.pathname.split('/').at(-1);
+            fetch(`/api/save_site/${siteId}`, {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    site: newSite
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Site saved successfully
+                if (data.status === 200) {
+                    setSuccessMsg(data.message);
+                    setTimeout(() => {
+                        setSuccessMsg('');
+                    }, 5000)
+                // Failed to save site
+                } else {
+                    setErrorMsg(`${data.status}: ${data.message}`);
+                    setTimeout(() => {
+                        setErrorMsg('');
+                    }, 5000);
+                }
+                setSavingState(false);
+            })
+            .catch(error => {
+                setErrorMsg(error);
+                setTimeout(() => {
+                    setErrorMsg('');
+                }, 5000)
+                setSavingState(false);
+            })
+        }
+    }
 
     return (
-        <main className="bg-slate-100 w-screen h-full pb-10">
+        <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
             <UpperNav/>
+            <ControlNav saveSite={saveSite} savingState={savingState}/>
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap">
-                <Profile content={site.sections[0]}/>
+                {successMsg ? <SuccessToast message={successMsg}/> : null}
+                {errorMsg ? <ErrorToast message={errorMsg}/> : null}
+                <FilesModal files={uploadedFiles} selectedImageId={selectedImageId} activeImages={activeImages} uploadFiles={(newFiles, callBack) => {uploadFiles(newFiles, callBack)}} deleteFiles={(files, callBack) => {deleteFiles(files, callBack)}}/>
+                <Profile content={site.sections[0]} profileRef={profileRef} selectImage={imageId => selectImage(imageId)}/>
                 <div className="card min-h-screen w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
                     <div className="p-8">
-                    {/* About me */}
-                    <section className="prose">
-                        <h1>About me</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam convallis sapien sit amet pulvinar. Morbi a elit in velit eleifend malesuada et eget libero. Nulla suscipit congue purus, quis tristique tortor euismod ut. Sed ullamcorper magna id tristique facilisis. Fusce consequat metus vitae augue sagittis ultricies. Nullam varius posuere dapibus. Nullam luctus, sapien nec fermentum cursus, elit dolor vestibulum leo, et elementum enim neque vitae ligula. In at elit pellentesque, laoreet nibh eu, sagittis elit. Donec sit amet ultrices tortor, ut pharetra leo. Donec pretium nisi a mi sollicitudin, vitae consectetur sem rutrum.</p>
-                        <div className="flex flex-row flex-wrap lg:flex-nowrap text-md">
-                            <div className="w-full lg:w-1/2">
-                                <div className="my-1"><strong className="mr-2 text-blue-500">Name:</strong>John Doe</div>
-                                <div className="my-1"><strong className="mr-2 text-blue-500">Age:</strong>24</div>
-                                <div className="my-1"><strong className="mr-2 text-blue-500">Email:</strong>jdoe@example.org</div>
-                            </div>
-                            <div className="w-full lg:w-1/2">
-                                <div className="my-1"><strong className="mr-2 text-blue-500">Degree:</strong>Master in Computer Science</div>
-                                <div className="my-1"><strong className="mr-2 text-blue-500">Experience:</strong>3 years</div>
-                                <div className="my-1"><strong className="mr-2 text-blue-500">Hobbies:</strong>Soccer, Video game</div>
-                            </div>
-                        </div>
-                    </section>
+                    <AboutMe content={site.sections[1]} aboutMeRef={aboutMeRef}/>
 
                     {/* Skills */}
                     <section className="prose mt-12">

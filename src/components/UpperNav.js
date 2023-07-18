@@ -50,7 +50,7 @@ export default function UpperNav() {
       </div>
       <div className="navbar-end">
         {/* <Link href="/" className="btn btn-primary">Button</Link> */}
-        <a className="btn">Button</a>
+        <a className="btn btn-primary">My account</a>
       </div>
     </div>
   )

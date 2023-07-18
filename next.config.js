@@ -11,6 +11,10 @@ const nextConfig = {
                 port: '',
                 pathname: '/v0/b/eport-4141e.appspot.com/o/**',
             },
+            {
+                protocol: 'http',
+                hostname: 'localhost:3000',
+            }
         ],
     }
 }

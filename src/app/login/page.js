@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { checkLoggedIn } from "@/actions/client/user";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -39,7 +40,7 @@ export default function Login() {
         .then(data => {
             console.log(data);
             if (data.success) {
-                console.log("Login successfully");
+                secureLocalStorage.setItem('eport-uid', data.uid);
                 window.location.href = "/";
             } else {
                 setLoading(false);

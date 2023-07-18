@@ -10,17 +10,15 @@ import { redirect } from "next/navigation";
 
 // Get site details
 export async function GET(request, { params }) {
-    // Get user id
+    // Unauthenticated users can't visit this route
     const cookieStore = cookies();
     const uid = cookieStore.get('eport-uid');
-
-    // Unauthenticated users can't visit this route
+    
     if (!uid) {
         redirect('/login');
     }
 
     const siteId = params.site;
-    console.log(siteId);
 
     // Fetch site defails from Firestore
     const siteSnap = await getDoc(doc(db, 'sites', siteId));

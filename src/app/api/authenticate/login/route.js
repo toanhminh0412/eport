@@ -36,6 +36,7 @@ export async function GET(request) {
     });
 
     return NextResponse.json({
+        uid: cookieStore.get('eport-uid').value,
         success: success,
         message: message
     })

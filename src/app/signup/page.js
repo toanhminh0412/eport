@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { checkLoggedIn } from "@/actions/client/user";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Signup() {
     const [email, setEmail] = useState('');
@@ -61,6 +62,7 @@ export default function Signup() {
             console.log(data);
             if (data.success) {
                 const newEmail = data.newEmail;
+                secureLocalStorage.setItem('eport-uid', data.uid);
                 window.location.href = '/confirm_email';
             } else {
                 setLoading(false);

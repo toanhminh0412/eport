@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { convertToURL } from "@/helpers/helpers";
 
-export default function Profile({content}) {
+export default function Profile({content, profileRef, selectImage}) {
     const [section, setSection] = useState(content);
     const [editMode, setEditMode] = useState(false);
 
     // Keep track of edited fields
+    const profilePicture = useRef();
     const nameInput = useRef();
     const jobInput = useRef();
     const link1TextInput = useRef();
@@ -18,15 +19,18 @@ export default function Profile({content}) {
 
     // Save edited fields
     const saveFields = () => {
-        console.log(nameInput.current.value);
-        setSection(prevSection => ({
-            ...prevSection,
-            id: 0,
-            fullName: nameInput.current.value,
-            job: jobInput.current.value,
-            link1: [link1TextInput.current.value, link1URLInput.current.value],
-            link2: [link2TextInput.current.value, link2URLInput.current.value],
-        }))
+        setSection(prevSection => {
+            const newSection = {
+                id: 0,
+                profilePic: profilePicture.current.src.startsWith('https') ? profilePicture.current.src : prevSection.profilePic,   // if start with https, means the picture is changed
+                fullName: nameInput.current.value,
+                job: jobInput.current.value,
+                link1: [link1TextInput.current.value, link1URLInput.current.value],
+                link2: [link2TextInput.current.value, link2URLInput.current.value],
+            }
+            profileRef.current = newSection;
+            return newSection;
+        })
         setEditMode(false);
     }
 
@@ -42,7 +46,18 @@ export default function Profile({content}) {
                     <button className="btn btn-sm btn-error ms-2 w-fit" onClick={() => {setEditMode(false);}}>Cancel</button>
                 </div>
                 <div className="card-body p-8 text-center mt-2">
-                    <figure className="relative w-10/12 max-w-sm aspect-square mx-auto mt-4 rounded"><Image src="https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fprofile-new.jpg?alt=media&token=47be1e13-26e6-4416-afa5-205f1d5635b7" alt="Profile picture" fill style={{objectFit: "contain"}}/></figure>
+                    <figure className="relative w-10/12 max-w-sm aspect-square mx-auto mt-4 rounded">
+                        {/* <div className="absolute top-0 left-0 h-full w-full z-10 bg-black opacity-0 transition-opacity hover:opacity-50 object-contain"></div> */}
+                        <Image 
+                        ref={profilePicture}
+                        id="profilePicture"
+                        src={section.profilePic} 
+                        alt="Profile picture" 
+                        fill 
+                        style={{objectFit: "contain"}} 
+                        className="hover:opacity-50 transition-opacity" 
+                        onClick={() => {selectImage('profilePicture'); window.filesModal.showModal();}}/>
+                    </figure>
                     <div>Click on the image to replace with a new image</div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
@@ -89,7 +104,9 @@ export default function Profile({content}) {
         <div className="card h-[90vh] w-full md:w-[40%] lg:w-1/3 bg-white mt-[2vh]">
             <i className="fa-solid fa-pen absolute top-4 right-4 text-slate-300 hover:text-slate-700 duration-300 text-xl" onClick={() => {setEditMode(true);}}></i>
             <div className="card-body p-8 text-center">
-                <figure className="relative w-10/12 max-w-sm aspect-square mx-auto mt-4 rounded"><Image src="https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fprofile-new.jpg?alt=media&token=47be1e13-26e6-4416-afa5-205f1d5635b7" alt="Profile picture" fill style={{objectFit: "contain"}}/></figure>
+                <figure className="relative w-10/12 max-w-sm aspect-square mx-auto mt-4 rounded">
+                    <Image src={section.profilePic} alt="Profile picture" fill style={{objectFit: "contain"}}/>
+                </figure>
                 <h1 className="font-bold text-4xl mt-4">{section.fullName}</h1>
                 <div className="text-2xl font-normal text-slate-500">{section.job}</div>
                 <div className="flex w-10/12 mx-auto mt-auto">

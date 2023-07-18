@@ -62,7 +62,7 @@ export default function FilesModal({files, selectedImageId, activeImages, upload
                 <form method="dialog" className="modal-box max-w-lg overflow-scroll">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     <h3 className="font-bold text-lg">Your files</h3>
-                    <p className="py-4">Select files and click "Delete files" to delete, click "Choose files" to upload new files, click "Back" to insert a file. <br/>You have <strong>100MB</strong> max for file uploads</p>
+                    <p className="py-4">Select files and click &quot;Delete files&quot; to delete, click &quot;Choose files&quot; to upload new files, click &quot;Back&quot; to insert a file. <br/>You have <strong>100MB</strong> max for file uploads</p>
                     <div className="flex flex-row flex-wrap gap-4">
                         {files.map((fileURL, index) => activeImages.includes(fileURL) ? null : (
                         <div key={index} className="relative w-40 h-40">

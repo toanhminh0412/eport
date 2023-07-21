@@ -7,7 +7,7 @@ import { storage } from "../../../public/libs/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import secureLocalStorage from "react-secure-storage";
 
-export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef}) {
+export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef}) {
     const [site, setSite] = useState(content);
     
     /*** Profile section ***/ 
@@ -22,6 +22,10 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
     /*** Skills section ***/
     const [skills, setSkills] = useState(content.sections[2]);
     const [skillsList, setSkillsList] = useState(content.sections[2].skills);
+
+    /***  Experience section ***/
+    const [experience, setExperience] = useState(content.sections[3]);
+    const [experienceList, setExperienceList] = useState(content.sections[3].experiences);
 
     // Preview profile picture
     useEffect(() => {
@@ -59,10 +63,17 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
         skillsRef.current['skills'].splice(2*index, 2);
     }
 
+    const removeExperience = index => {
+        setExperienceList(prevExperienceList => prevExperienceList.filter((_, prevIndex) => prevIndex !== index));
+        experienceRef.current['experiences'].splice(index, 1);
+    }
+
     return (
         <div className="min-h-screen">
             <div className="px-20 py-10 prose max-w-none">
                 <h1>Site editor</h1>
+                
+                {/* Basic profile */}
                 <div className="collapse collapse-arrow border border-slate-300">
                     <input type="radio" name="my-accordion-2" defaultChecked /> 
                     <div className="collapse-title text-xl font-medium bg-white shadow-lg">
@@ -139,6 +150,8 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         </div>
                     </div>
                 </div>
+
+                {/* About me */}
                 <div className="collapse collapse-arrow border border-slate-300">
                     <input type="radio" name="my-accordion-2" /> 
                     <div className="collapse-title text-xl font-medium bg-white shadow-lg">
@@ -177,12 +190,14 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                         </div>
                                     </div>
                                     ))}
-                                    <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default" onClick={() => {setExtraInfo([...extraInfo, {key: 'Info name', value: 'Info value'}])}}><i className="fa-solid fa-plus me-2"></i>Add info</div>
+                                    <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExtraInfo([...extraInfo, {key: 'Info name', value: 'Info value'}])}}><i className="fa-solid fa-plus me-2"></i>Add info</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Skills */}
                 <div className="collapse collapse-arrow border border-slate-300">
                     <input type="radio" name="my-accordion-2" /> 
                     <div className="collapse-title text-xl font-medium bg-white shadow-lg">
@@ -194,7 +209,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                 <label className="label">
                                     <span className="label-text">Section heading  (recommend 'Skills'):</span>
                                 </label>
-                                <input ref={el => (skillsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'About me')" className="input border-black w-full" defaultValue={skills.heading} />
+                                <input ref={el => (skillsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Skills')" className="input border-black w-full" defaultValue={skills.heading} />
                             </div>
                             <div className="form-control mt-2 max-w-lg">
                                 {skillsList.map((skill, index) => (
@@ -211,7 +226,72 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                     </div>
                                 </div>
                                 ))}
-                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default" onClick={() => {setSkillsList([...skillsList, {key: 'Blank skill', value: 50}])}}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
+                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setSkillsList([...skillsList, {key: 'Blank skill', value: 50}])}}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Experience */}
+                <div className="collapse collapse-arrow border border-slate-300">
+                    <input type="radio" name="my-accordion-2" /> 
+                    <div className="collapse-title text-xl font-medium bg-white shadow-lg">
+                        {experience.heading}
+                    </div>
+                    <div className="collapse-content bg-white">
+                        <div className="py-3">
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Section heading  (recommend 'Experiences'):</span>
+                                </label>
+                                <input ref={el => (experienceRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Experience')" className="input border-black w-full" defaultValue={experience.heading} />
+                            </div>
+                            <div className="font-semibold mt-8">Experience list:</div>
+                            <div className="form-control max-w-lg">
+                                {experienceList.map((exp, index) => (
+                                <div key={`${exp.jobTitle}-${exp.startYear}-${exp.endYear}-${index}`} className={`${index === 0 ? '' : 'mt-8'} w-full`}>
+                                    <label className="label">
+                                        <span className="label-text">Job title:</span>
+                                        <span className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeExperience(index)}><i className="fa-solid fa-trash me-2"></i>Remove experience</span>
+                                    </label>
+                                    <input 
+                                    ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['jobTitle'] = el}}
+                                    type="text" 
+                                    placeholder="Your job title" 
+                                    className="input border-black w-full" 
+                                    defaultValue={exp.jobTitle} />
+                                    <label className="label">
+                                        <span className="label-text">Company:</span>
+                                    </label>
+                                    <input 
+                                    ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['company'] = el}}
+                                    type="text" 
+                                    placeholder="Company name" 
+                                    className="input border-black w-full" 
+                                    defaultValue={exp.company} />
+                                    <label className="label">
+                                        <span className="label-text">Start year / End year:</span>
+                                    </label>
+                                    <div className="join max-w-xl w-full">
+                                        <input ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['startYear'] = el}} type="number" placeholder="Start year" className="input border-black w-full join-item" defaultValue={exp.startYear} />
+                                        <input ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['endYear'] = el}} type="number" placeholder="End year" className="input border-black w-full join-item" defaultValue={exp.endYear} />
+                                    </div>
+                                    <label className="label text-xs">
+                                        <span><strong>Hint: </strong>Leave the end year <strong>blank</strong> or <strong>0</strong> if you are still working at the company</span>
+                                    </label>
+                                    <label className="label">
+                                        <span className="label-text">Description:</span>
+                                    </label>
+                                    <textarea 
+                                    ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['description'] = el}}
+                                    type="text" 
+                                    rows="5" 
+                                    placeholder="Short description of your responsibilities" 
+                                    className="textarea border-black w-full" 
+                                    defaultValue={exp.description} />
+                                </div>
+                                ))}
+                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
                             </div>
                         </div>
                     </div>

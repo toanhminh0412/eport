@@ -16,6 +16,7 @@ import { storage } from "../../../../public/libs/firebase";
 
 import secureLocalStorage from "react-secure-storage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Experience from "./sections/Experience";
 
 export default function Demo1({content}) {
     const [site, setSite] = useState(content);
@@ -26,6 +27,7 @@ export default function Demo1({content}) {
     const profileRef = useRef([]);
     const aboutMeRef = useRef([]);
     const skillsRef = useRef({'skills': []});
+    const experienceRef = useRef({'experiences': []});
 
     // Toggle edit mode
     const toggleEditMode = () => {
@@ -97,10 +99,34 @@ export default function Demo1({content}) {
             skills: newSkillsList
         }
 
+        // Update experience section
+        let newExperienceList = [];
+        for (let i = 0; i < experienceRef.current.experiences.length; i++) {
+            if (experienceRef.current.experiences[i] && experienceRef.current.experiences[i].jobTitle) {
+                const experienceObj = experienceRef.current.experiences[i];
+                const newExperience = {
+                    jobTitle: experienceObj.jobTitle.value,
+                    company: experienceObj.company.value,
+                    startYear: experienceObj.startYear.value,
+                    endYear: experienceObj.endYear.value,
+                    description: experienceObj.description.value
+                }
+                newExperienceList.push(newExperience);
+            }
+        }
+
+        const newExperience = {
+            id: 3,
+            heading: experienceRef.current.heading.value,
+            experiences: newExperienceList
+        }
+
+        console.log(newExperience);
+
         // Update site
         const newSite = {
             ...site,
-            sections: [newProfile, newAboutMe, newSkills, ...site.sections.slice(3)]
+            sections: [newProfile, newAboutMe, newSkills, newExperience, ...site.sections.slice(4)]
         }
         const siteId = window.location.pathname.split('/').at(-1);
         
@@ -139,7 +165,7 @@ export default function Demo1({content}) {
             <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
                 <UpperNav/>
                 <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
-                <ContentEditor content={site} profileRef={profileRef} aboutMeRef={aboutMeRef} skillsRef={skillsRef}/>
+                <ContentEditor content={site} profileRef={profileRef} aboutMeRef={aboutMeRef} skillsRef={skillsRef} experienceRef={experienceRef}/>
             </main>
         )
     }
@@ -156,19 +182,7 @@ export default function Demo1({content}) {
                     <div className="p-8">
                     <AboutMe content={site.sections[1]}/>
                     <Skills content={site.sections[2]}/>
-                    
-
-                    {/* Experience */}
-                    <section className="prose mt-12">
-                        <h1>Experience</h1>
-                        {site.sections[3].experiences.map((exp, index) => (
-                            <article key={index}>
-                                <h3>{exp.jobTitle}</h3>
-                                <div className="font-light text-slate-500">{exp.company} | {exp.startYear} - {exp.endYear}</div>
-                                <div className="mt-2">{exp.description}</div>
-                            </article>
-                        ))}
-                    </section>
+                    <Experience content={site.sections[3]}/>
 
                     {/* Services */}
                     <section className="prose mt-12">

@@ -14,7 +14,6 @@ export async function POST(request, { params }) {
     }
 
     const siteId = params.site;
-    console.log(siteId);
 
     // Update site info on Firestore
     const siteInfo = await request.json();

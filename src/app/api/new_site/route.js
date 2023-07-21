@@ -51,12 +51,12 @@ export async function GET(request) {
                 id: 2,
                 heading: "Skills",
                 skills: [
-                    {key: "HTML", value: "95%", progressValue: 95},
-                    {key: "jQuery", value: "100%", progressValue: 100},
-                    {key: "CSS", value: "80%", progressValue: 80},
-                    {key: "Bootstrap", value: "85%", progressValue: 85},
-                    {key: "JavaScript", value: "90%", progressValue: 90},
-                    {key: "React", value: "90%", progressValue: 90},
+                    {key: "HTML", value: 95},
+                    {key: "jQuery", value: 100},
+                    {key: "CSS", value: 80},
+                    {key: "Bootstrap", value: 85},
+                    {key: "JavaScript", value: 90},
+                    {key: "React", value: 90},
                 ]
             },
             {

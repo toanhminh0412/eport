@@ -1,6 +1,6 @@
 import { Editor } from '@tinymce/tinymce-react';
 
-export default function TextEditor({ paramRef, defaultValue }) {
+export default function TextEditor({ paramRef, defaultValue, placeholder }) {
   return (
     <>
       <Editor
@@ -19,7 +19,8 @@ export default function TextEditor({ paramRef, defaultValue }) {
             'bold italic forecolor | alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | help' + ' | link',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          placeholder: placeholder
         }}
       />
     </>

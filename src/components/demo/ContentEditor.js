@@ -1,11 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import Image from "next/image";
-
-import { storage } from "../../../public/libs/firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import secureLocalStorage from "react-secure-storage";
+import TextEditor from "../TextEditor";
 
 export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef}) {
     const [site, setSite] = useState(content);
@@ -162,7 +159,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                             <div className="flex flex-row gap-3 flex-wrap mt-4">
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label">
-                                        <span className="label-text">Section heading  (recommend 'About me'):</span>
+                                        <span className="label-text">Section heading  (recommend &apos;About me&apos;):</span>
                                     </label>
                                     <input ref={el => (aboutMeRef.current[0] = el)} type="text" placeholder="Section heading (recommend 'About me')" className="input border-black w-full" defaultValue={aboutMe.heading} />
                                 </div>
@@ -207,7 +204,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         <div className="py-3">
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
-                                    <span className="label-text">Section heading  (recommend 'Skills'):</span>
+                                    <span className="label-text">Section heading  (recommend &apos;Skills&apos;):</span>
                                 </label>
                                 <input ref={el => (skillsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Skills')" className="input border-black w-full" defaultValue={skills.heading} />
                             </div>
@@ -242,7 +239,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         <div className="py-3">
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
-                                    <span className="label-text">Section heading  (recommend 'Experiences'):</span>
+                                    <span className="label-text">Section heading  (recommend &apos;Experiences&apos;):</span>
                                 </label>
                                 <input ref={el => (experienceRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Experience')" className="input border-black w-full" defaultValue={experience.heading} />
                             </div>
@@ -282,13 +279,16 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                     <label className="label">
                                         <span className="label-text">Description:</span>
                                     </label>
-                                    <textarea 
+                                    {/* <textarea 
                                     ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['description'] = el}}
                                     type="text" 
                                     rows="5" 
                                     placeholder="Short description of your responsibilities" 
                                     className="textarea border-black w-full" 
-                                    defaultValue={exp.description} />
+                                    defaultValue={exp.description} /> */}
+                                    <TextEditor 
+                                    paramRef={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['description'] = el}}
+                                    defaultValue={exp.description}/>
                                 </div>
                                 ))}
                                 <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>

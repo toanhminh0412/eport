@@ -98,8 +98,9 @@ export default function Demo1({content}) {
             heading: skillsRef.current.heading.value,
             skills: newSkillsList
         }
-
+        
         // Update experience section
+        console.log(experienceRef.current.experiences);
         let newExperienceList = [];
         for (let i = 0; i < experienceRef.current.experiences.length; i++) {
             if (experienceRef.current.experiences[i] && experienceRef.current.experiences[i].jobTitle) {
@@ -109,7 +110,7 @@ export default function Demo1({content}) {
                     company: experienceObj.company.value,
                     startYear: experienceObj.startYear.value,
                     endYear: experienceObj.endYear.value,
-                    description: experienceObj.description.value
+                    description: experienceObj.description.getContent()
                 }
                 newExperienceList.push(newExperience);
             }

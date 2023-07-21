@@ -3,10 +3,15 @@
 import { useState, useEffect } from "react";
 import UpperNav from "@/components/UpperNav";
 import Demo1 from "@/components/demo/demo1/site";
+import { checkLoggedIn } from "@/actions/client/user";
 
  export default function Site({ params }) {
   const [site, setSite] = useState(null);
   const [response, setResponse] = useState(null);
+
+  useEffect(() => {
+    checkLoggedIn();
+  }, [])
 
   useEffect(() => {
     // Get site content

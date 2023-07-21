@@ -6,7 +6,7 @@ export default function Experience({content}) {
                 <article key={index}>
                     <h3>{exp.jobTitle}</h3>
                     <div className="font-light text-slate-500">{exp.company} | {exp.startYear} - {exp.endYear && exp.endYear != 0 ? exp.endYear : 'Present'}</div>
-                    <div className="mt-2">{exp.description}</div>
+                    <div dangerouslySetInnerHTML={{ __html: exp.description }}></div>
                 </article>
             ))}
         </section>

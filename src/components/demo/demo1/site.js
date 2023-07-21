@@ -17,6 +17,7 @@ import { storage } from "../../../../public/libs/firebase";
 import secureLocalStorage from "react-secure-storage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Experience from "./sections/Experience";
+import Services from "./sections/Services";
 
 export default function Demo1({content}) {
     const [site, setSite] = useState(content);
@@ -28,6 +29,7 @@ export default function Demo1({content}) {
     const aboutMeRef = useRef([]);
     const skillsRef = useRef({'skills': []});
     const experienceRef = useRef({'experiences': []});
+    const servicesRef = useRef({'services': []});
 
     // Toggle edit mode
     const toggleEditMode = () => {
@@ -166,7 +168,13 @@ export default function Demo1({content}) {
             <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
                 <UpperNav/>
                 <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
-                <ContentEditor content={site} profileRef={profileRef} aboutMeRef={aboutMeRef} skillsRef={skillsRef} experienceRef={experienceRef}/>
+                <ContentEditor 
+                content={site} 
+                profileRef={profileRef} 
+                aboutMeRef={aboutMeRef} 
+                skillsRef={skillsRef} 
+                experienceRef={experienceRef}
+                servicesRef={servicesRef}/>
             </main>
         )
     }
@@ -186,18 +194,7 @@ export default function Demo1({content}) {
                     <Experience content={site.sections[3]}/>
 
                     {/* Services */}
-                    <section className="prose mt-12">
-                        <h1>Services</h1>
-                        <div className="block sm:grid md:block lg:grid grid-cols-2 grid-rows-2 gap-4">
-                            {site.sections[4].services.map((service, index) => (
-                                <div key={index} className="text-center mt-2 sm:mt-0 md:mt-2 lg:mt-0">
-                                    <i className={`${service.icon} text-4xl border-2 p-5 rounded-full text-blue-500 hover:text-white hover:bg-blue-500 duration-500 border-blue-500`}></i>
-                                    <h3>{service.title}</h3>
-                                    <p>{service.description}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
+                    <Services content={site.sections[4]}/>
 
                     {/* Projects */}
                     <section className="prose mt-12">

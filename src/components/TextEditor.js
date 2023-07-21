@@ -4,7 +4,7 @@ export default function TextEditor({ paramRef, defaultValue }) {
   return (
     <>
       <Editor
-        apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
+        apiKey={process.env.NEXT_PUBLIC_TINY_MCE_API_KEY}
         onInit={(evt, editor) => paramRef(editor)}
         initialValue={defaultValue}
         init={{
@@ -13,7 +13,7 @@ export default function TextEditor({ paramRef, defaultValue }) {
           plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'link'
           ],
           toolbar: 'undo redo | blocks | ' +
             'bold italic forecolor | alignleft aligncenter ' +

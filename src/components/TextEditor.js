@@ -18,7 +18,7 @@ export default function TextEditor({ paramRef, defaultValue }) {
           toolbar: 'undo redo | blocks | ' +
             'bold italic forecolor | alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
-            'removeformat | help',
+            'removeformat | help' + ' | link',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
       />

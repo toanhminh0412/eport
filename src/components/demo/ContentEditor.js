@@ -4,7 +4,7 @@ import { useState, useEffect} from "react";
 import Image from "next/image";
 import TextEditor from "../TextEditor";
 
-export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef}) {
+export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef, servicesRef}) {
     const [site, setSite] = useState(content);
     
     /*** Profile section ***/ 
@@ -23,6 +23,10 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
     /***  Experience section ***/
     const [experience, setExperience] = useState(content.sections[3]);
     const [experienceList, setExperienceList] = useState(content.sections[3].experiences);
+
+    /*** Services section ***/
+    const [services, setServices] = useState(content.sections[4]);
+    const [servicesList, setServicesList] = useState(content.sections[4].services);
 
     // Preview profile picture
     useEffect(() => {
@@ -279,19 +283,56 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                     <label className="label">
                                         <span className="label-text">Description:</span>
                                     </label>
-                                    {/* <textarea 
-                                    ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['description'] = el}}
-                                    type="text" 
-                                    rows="5" 
-                                    placeholder="Short description of your responsibilities" 
-                                    className="textarea border-black w-full" 
-                                    defaultValue={exp.description} /> */}
                                     <TextEditor 
                                     paramRef={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['description'] = el}}
                                     defaultValue={exp.description}/>
                                 </div>
                                 ))}
                                 <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Services */}
+                <div className="collapse collapse-arrow border border-slate-300">
+                    <input type="radio" name="my-accordion-2" /> 
+                    <div className="collapse-title text-xl font-medium bg-white shadow-lg">
+                        {services.heading}
+                    </div>
+                    <div className="collapse-content bg-white">
+                        <div className="py-3">
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Section heading  (recommend &apos;Services&apos;):</span>
+                                </label>
+                                <input ref={el => (servicesRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Experience')" className="input border-black w-full" defaultValue={services.heading} />
+                            </div>
+                            <div className="font-semibold mt-8">Service list:</div>
+                            <div className="form-control max-w-lg">
+                                {servicesList.map((svc, index) => (
+                                <div key={`${svc.title}-${index}`} className={`${index === 0 ? '' : 'mt-8'} w-full`}>
+                                    <label className="label">
+                                        <span className="label-text">Service name:</span>
+                                        <span className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeService(index)}><i className="fa-solid fa-trash me-2"></i>Remove service</span>
+                                    </label>
+                                    <input 
+                                    ref={el => {servicesRef.current['services'][index] = servicesRef.current['services'][index] ? servicesRef.current['services'][index] : {}; servicesRef.current['services'][index]['title'] = el}}
+                                    type="text" 
+                                    placeholder="e.g. Web design" 
+                                    className="input border-black w-full" 
+                                    defaultValue={svc.title} />
+                                    <label className="label">
+                                        <span className="label-text">Service description:</span>
+                                    </label>
+                                    <TextEditor 
+                                    paramRef={el => {servicesRef.current['services'][index] = servicesRef.current['services'][index] ? servicesRef.current['services'][index] : {}; servicesRef.current['services'][index]['description'] = el}}
+                                    defaultValue={svc.description}
+                                    placeholder="e.g. I will help you build a 6-sections professional landing page to attract more customers."
+                                    />
+                                </div>
+                                ))}
+                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {title: 'Service name', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
                             </div>
                         </div>
                     </div>

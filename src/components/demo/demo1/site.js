@@ -102,7 +102,6 @@ export default function Demo1({content}) {
         }
         
         // Update experience section
-        console.log(experienceRef.current.experiences);
         let newExperienceList = [];
         for (let i = 0; i < experienceRef.current.experiences.length; i++) {
             if (experienceRef.current.experiences[i] && experienceRef.current.experiences[i].jobTitle) {
@@ -124,12 +123,33 @@ export default function Demo1({content}) {
             experiences: newExperienceList
         }
 
-        console.log(newExperience);
+        // Update services section
+        console.log(servicesRef.current);
+        let newServicesList = [];
+        for (let i = 0; i < servicesRef.current.services.length; i++) {
+            if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
+                const serviceObj = servicesRef.current.services[i];
+                const newService = {
+                    title: serviceObj.title.value,
+                    icon: serviceObj.icon.dataset.icon,
+                    description: serviceObj.description.getContent()
+                }
+                newServicesList.push(newService);
+            }
+        }
+
+        const newServices = {
+            id: 4,
+            heading: servicesRef.current.heading.value,
+            services: newServicesList
+        }
+
+        console.log(newServices);
 
         // Update site
         const newSite = {
             ...site,
-            sections: [newProfile, newAboutMe, newSkills, newExperience, ...site.sections.slice(4)]
+            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, ...site.sections.slice(5)]
         }
         const siteId = window.location.pathname.split('/').at(-1);
         

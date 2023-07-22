@@ -6,6 +6,9 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
     
+    // Delay enabling Edit/Save button for 1 second when changing state
+    const [delay, setDelay] = useState(false);
+    
     const stateControlFunc = async () => {
         if (state === 'save') {
             setLoading(true);
@@ -14,13 +17,17 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
         }
 
         setEditMode(state==='edit'); 
+        setDelay(true);
+        setTimeout(() => {
+            setDelay(false);
+        }, 2000);
         setState(state==='edit' ? 'save' : 'edit');
     }
 
     return (
         <div className="navbar bg-neutral text-neutral-content py-3 fixed top-16 z-40">
             <div className="navbar-start">
-                <ControlBtn state={state} loading={loading} onClick={stateControlFunc}/>
+                <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
                 {state === 'edit' ? 
                 <button className="btn ms-2">Publish site</button>
                 :
@@ -32,10 +39,10 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
     )
 }
 
-function ControlBtn({state, loading, onClick}) {
+function ControlBtn({state, loading, onClick, delay}) {
     if (state === 'edit' && !loading) {
         return (
-            <button className="btn" onClick={onClick}>Edit site</button>
+            <button className="btn" onClick={onClick} disabled={delay}>Edit site</button>
         )
     }
     else if (state === 'edit' && loading) {
@@ -47,7 +54,7 @@ function ControlBtn({state, loading, onClick}) {
         )
     } else if (state === 'save' && !loading) {
         return (
-            <button className="btn" onClick={onClick}>Save site</button>
+            <button className="btn" onClick={onClick} disabled={delay}>Save site</button>
         )
     }
     else {

@@ -3,6 +3,7 @@
 import { useState, useEffect} from "react";
 import Image from "next/image";
 import TextEditor from "../TextEditor";
+import IconPicker from "../IconPicker";
 
 export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef, servicesRef}) {
     const [site, setSite] = useState(content);
@@ -67,6 +68,11 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
     const removeExperience = index => {
         setExperienceList(prevExperienceList => prevExperienceList.filter((_, prevIndex) => prevIndex !== index));
         experienceRef.current['experiences'].splice(index, 1);
+    }
+
+    const removeService = index => {
+        setServicesList(prevServicesList => prevServicesList.filter((_, prevIndex) => prevIndex !== index));
+        servicesRef.current['services'].splice(index, 1);
     }
 
     return (
@@ -311,7 +317,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                             <div className="font-semibold mt-8">Service list:</div>
                             <div className="form-control max-w-lg">
                                 {servicesList.map((svc, index) => (
-                                <div key={`${svc.title}-${index}`} className={`${index === 0 ? '' : 'mt-8'} w-full`}>
+                                <div key={`${svc.title}-${index}`} className={`${index === 0 ? '' : 'mt-12'} w-full`}>
                                     <label className="label">
                                         <span className="label-text">Service name:</span>
                                         <span className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeService(index)}><i className="fa-solid fa-trash me-2"></i>Remove service</span>
@@ -322,7 +328,16 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                     placeholder="e.g. Web design" 
                                     className="input border-black w-full" 
                                     defaultValue={svc.title} />
-                                    <label className="label">
+
+                                    <label className="label mt-2">
+                                        <span className="label-text">Service icon:</span>
+                                    </label>
+                                    <IconPicker 
+                                    selectedIcon={svc.icon} 
+                                    id={`${svc.title}-${index}`} 
+                                    iconRef={el => {servicesRef.current['services'][index] = servicesRef.current['services'][index] ? servicesRef.current['services'][index] : {}; servicesRef.current['services'][index]['icon'] = el}}/>
+                                    
+                                    <label className="label mt-2">
                                         <span className="label-text">Service description:</span>
                                     </label>
                                     <TextEditor 
@@ -332,7 +347,8 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                                     />
                                 </div>
                                 ))}
-                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {title: 'Service name', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
+                                
+                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {title: 'Service name', icon: 'fas fa-laptop', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add service</div>
                             </div>
                         </div>
                     </div>

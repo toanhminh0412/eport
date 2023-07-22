@@ -124,7 +124,6 @@ export default function Demo1({content}) {
         }
 
         // Update services section
-        console.log(servicesRef.current);
         let newServicesList = [];
         for (let i = 0; i < servicesRef.current.services.length; i++) {
             if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
@@ -144,13 +143,12 @@ export default function Demo1({content}) {
             services: newServicesList
         }
 
-        console.log(newServices);
-
         // Update site
         const newSite = {
             ...site,
             sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, ...site.sections.slice(5)]
         }
+        console.log(newSite);
         const siteId = window.location.pathname.split('/').at(-1);
         
         // Save new site to database

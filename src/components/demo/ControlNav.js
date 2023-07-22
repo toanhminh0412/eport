@@ -21,7 +21,10 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
         <div className="navbar bg-neutral text-neutral-content py-3 fixed top-16 z-40">
             <div className="navbar-start">
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc}/>
+                {state === 'edit' ? 
                 <button className="btn ms-2">Publish site</button>
+                :
+                <button className="btn ms-2" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
             </div>
             <div className="navbar-center hidden lg:flex"></div>
             <div className="navbar-end"></div>

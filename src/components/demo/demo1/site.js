@@ -146,6 +146,27 @@ export default function Demo1({content}) {
         }
 
         // Update projects section 
+        // Upload new project images
+        for (let i = 0; i < projectsRef.current.projects.length; i++) {
+            if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
+                const projectObj = projectsRef.current.projects[i];
+                if (projectObj.images.length > 0) {
+                    const userId = secureLocalStorage.getItem('eport-uid');
+                    for (let j = 0; j < projectObj.images.length; j++) {
+                        const fileSrc = projectObj.images[j].src;
+                        if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                            const newFile = await fetch(fileSrc).then(r => r.blob());
+                            console.log(newFile);
+                            const projectImagesRef = ref(storage, `users/${userId}/images/projects/${projectObj.title.value}/image-${new Date().valueOf()}`);
+                            const projectImageSnap = await uploadBytes(projectImagesRef, newFile);
+                            const projectImageURL = await getDownloadURL(projectImageSnap.ref);
+                            projectObj.images[j].dataset.src = projectImageURL;
+                        }
+                    }
+                }
+            }
+        }
+        
         let newProjectsList = [];
         for (let i = 0; i < projectsRef.current.projects.length; i++) {
             if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
@@ -155,10 +176,13 @@ export default function Demo1({content}) {
                 const selectedOptions = projectObj.categories.querySelectorAll('option:checked');
                 const selectedCategories = Array.from(selectedOptions).map(el => el.value);
 
+                console.log(projectObj.images);
+                console.log(projectObj.description);
+
                 const newProject = {
                     title: projectObj.title.value,
                     description: projectObj.description.getContent(),
-                    // images: projectObj.images,
+                    images: projectObj.images.map(image => image.dataset.src),
                     categories: selectedCategories
                 }
                 newProjectsList.push(newProject);

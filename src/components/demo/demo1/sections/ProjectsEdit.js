@@ -143,7 +143,8 @@ export default function ProjectsEdit({content, projectsRef}) {
                                             projectsRef.current['projects'][projIndex]['images'] = projectsRef.current['projects'][projIndex]['images'] ? projectsRef.current['projects'][projIndex]['images'] : [];
                                             projectsRef.current['projects'][projIndex]['images'][index] = el;
                                         }
-                                    } 
+                                    }
+                                    data-src={image}
                                     src={image} 
                                     alt="Project image" 
                                     width={300} 

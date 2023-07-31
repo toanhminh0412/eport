@@ -18,6 +18,7 @@ import secureLocalStorage from "react-secure-storage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Experience from "./sections/Experience";
 import Services from "./sections/Services";
+import Projects from "./sections/Projects";
 
 export default function Demo1({content}) {
     const [site, setSite] = useState(content);
@@ -30,6 +31,7 @@ export default function Demo1({content}) {
     const skillsRef = useRef({'skills': []});
     const experienceRef = useRef({'experiences': []});
     const servicesRef = useRef({'services': []});
+    const projectsRef = useRef({'categories': [], 'projects': []});
 
     // Toggle edit mode
     const toggleEditMode = () => {
@@ -143,6 +145,28 @@ export default function Demo1({content}) {
             services: newServicesList
         }
 
+        // Update projects section 
+        let newProjectsList = [];
+        for (let i = 0; i < projectsRef.current.projects.length; i++) {
+            if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
+                const projectObj = projectsRef.current.projects[i];
+                
+                // Get selected categories
+                const selectedOptions = projectObj.categories.querySelectorAll('option:checked');
+                const selectedCategories = Array.from(selectedOptions).map(el => el.value);
+
+                const newProject = {
+                    title: projectObj.title.value,
+                    description: projectObj.description.getContent(),
+                    // images: projectObj.images,
+                    categories: selectedCategories
+                }
+                newProjectsList.push(newProject);
+            }
+        }
+
+        console.log(newProjectsList);
+
         // Update site
         const newSite = {
             ...site,
@@ -192,7 +216,8 @@ export default function Demo1({content}) {
                 aboutMeRef={aboutMeRef} 
                 skillsRef={skillsRef} 
                 experienceRef={experienceRef}
-                servicesRef={servicesRef}/>
+                servicesRef={servicesRef}
+                projectsRef={projectsRef}/>
             </main>
         )
     }
@@ -215,10 +240,7 @@ export default function Demo1({content}) {
                     <Services content={site.sections[4]}/>
 
                     {/* Projects */}
-                    <section className="prose mt-12">
-                        <h1>Projects</h1>
-                        <ProjectShowcase categories={site.sections[5].categories} projects={site.sections[5].projects}/>
-                    </section>
+                    <Projects categories={site.sections[5].categories} projects={site.sections[5].projects}/>
 
                     {/* Testimonials */}
                     <section className="prose mt-20">
@@ -231,7 +253,7 @@ export default function Demo1({content}) {
                 <section className="mt-12 bg-slate-900 w-full p-8 rounded-b-lg text-white">
                     <div className="prose text-white max-w-none">
                         <h1 className="text-white">Get in touch</h1>
-                        <p className="flex flex-row flex-wrap gap-x-4 justify-center w-full text-4xl">
+                        <p className="flex flex-row flex-wrap gap-4 justify-center w-full text-2xl md:text-4xl">
                             <Link href="#" target="_blank"><i className="fa-solid fa-envelope text-blue-200 hover:text-blue-500 duration-300"></i></Link>
                             <Link href="#" target="_blank"><i className="fa-brands fa-facebook text-blue-200 hover:text-blue-500 duration-300"></i></Link>
                             <Link href="#" target="_blank"><i className="fa-brands fa-instagram text-blue-200 hover:text-blue-500 duration-300"></i></Link>

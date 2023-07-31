@@ -34,11 +34,11 @@ export default function ProjectShowcase({categories, projects}) {
                 ))}
             </div>
             <h4>Click on the project to view them</h4>
-            <div className="grid grid-cols-2 gap-4 not-prose mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose mt-10">
                 {projects.map((project, index) => (
                     <div key={index} className={`relative w-full aspect-video duration-500 ${project.categories.includes(activeCategory) ? '' : 'hidden'}`}>
                         <div className="absolute top-0 left-0 w-full h-full bg-black z-10 opacity-10 hover:opacity-50 transition-opacity rounded-box" onClick={() => {document.getElementById(`project-${index}`).showModal();}}></div>
-                        <Image alt="project pic" src={project.images[0]} fill className="rounded-box"/>
+                        <Image alt="project pic" src={project.images[0]} fill className="rounded-md"/>
                     </div>
                 ))}
             </div>

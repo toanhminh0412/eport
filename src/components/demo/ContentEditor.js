@@ -2,10 +2,11 @@
 
 import { useState, useEffect} from "react";
 import Image from "next/image";
+import ProjectsEdit from "./demo1/sections/ProjectsEdit";
 import TextEditor from "../TextEditor";
 import IconPicker from "../IconPicker";
 
-export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef, servicesRef}) {
+export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef, servicesRef, projectsRef}) {
     const [site, setSite] = useState(content);
     
     /*** Profile section ***/ 
@@ -28,6 +29,11 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
     /*** Services section ***/
     const [services, setServices] = useState(content.sections[4]);
     const [servicesList, setServicesList] = useState(content.sections[4].services);
+
+    /*** Projects section ***/
+    const [projects, setProjects] = useState(content.sections[5]);
+    const [categories, setCategories] = useState(content.sections[5].categories);
+    const [projectsList, setProjectsList] = useState(content.sections[5].projects);
 
     // Preview profile picture
     useEffect(() => {
@@ -60,16 +66,19 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
         aboutMeRef.current.splice(2 + 2*index, 2);
     }
 
+    // Remove a skill from Skills section
     const removeSkill = index => {
         setSkillsList(prevSkillsList => prevSkillsList.filter((_, prevIndex) => prevIndex !== index));
         skillsRef.current['skills'].splice(2*index, 2);
     }
 
+    // Remove an experience from Experience section
     const removeExperience = index => {
         setExperienceList(prevExperienceList => prevExperienceList.filter((_, prevIndex) => prevIndex !== index));
         experienceRef.current['experiences'].splice(index, 1);
     }
 
+    // Remove a service from Services section
     const removeService = index => {
         setServicesList(prevServicesList => prevServicesList.filter((_, prevIndex) => prevIndex !== index));
         servicesRef.current['services'].splice(index, 1);
@@ -77,7 +86,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
 
     return (
         <div className="min-h-screen">
-            <div className="px-20 py-10 prose max-w-none">
+            <div className="px-2 md:px-20 py-10 prose max-w-none">
                 <h1>Site editor</h1>
                 
                 {/* Basic profile */}
@@ -87,7 +96,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         Basic profile
                     </div>
                     <div className="collapse-content bg-white">
-                        <div className="py-3">
+                        <div className="p-3 md:p-6">
                             <div>Profile picture:</div>
                             <Image 
                             src={profilePicPreview ? profilePicPreview : profile.profilePic} 
@@ -165,21 +174,21 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         {aboutMe.heading}
                     </div>
                     <div className="collapse-content bg-white">
-                        <div className="py-3">
-                            <div className="flex flex-row gap-3 flex-wrap mt-4">
+                        <div className="p-3 md:p-6">
+                            <div className="mt-4">
                                 <div className="form-control w-full max-w-xs">
                                     <label className="label">
                                         <span className="label-text">Section heading  (recommend &apos;About me&apos;):</span>
                                     </label>
                                     <input ref={el => (aboutMeRef.current[0] = el)} type="text" placeholder="Section heading (recommend 'About me')" className="input border-black w-full" defaultValue={aboutMe.heading} />
                                 </div>
-                                <div className="form-control w-full max-w-2xl">
+                                <div className="form-control w-full max-w-2xl mt-4">
                                     <label className="label">
                                         <span className="label-text">Bio:</span>
                                     </label>
                                     <textarea ref={el => (aboutMeRef.current[1] = el)} type="text" rows="5" placeholder="Your bio" className="textarea border-black w-full" defaultValue={aboutMe.bio} />
                                 </div>
-                                <div className="form-control mt-2">
+                                <div className="form-control mt-4">
                                     <label className="label">
                                         <span className="label-text">Extra information (e.g. age, hobbies, etc):</span>
                                     </label>
@@ -211,7 +220,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         {skills.heading}
                     </div>
                     <div className="collapse-content bg-white">
-                        <div className="py-3">
+                        <div className="p-3 md:p-6">
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text">Section heading  (recommend &apos;Skills&apos;):</span>
@@ -246,7 +255,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         {experience.heading}
                     </div>
                     <div className="collapse-content bg-white">
-                        <div className="py-3">
+                        <div className="p-3 md:p-6">
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text">Section heading  (recommend &apos;Experiences&apos;):</span>
@@ -307,12 +316,12 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         {services.heading}
                     </div>
                     <div className="collapse-content bg-white">
-                        <div className="py-3">
+                        <div className="p-3 md:p-6">
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text">Section heading  (recommend &apos;Services&apos;):</span>
                                 </label>
-                                <input ref={el => (servicesRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Experience')" className="input border-black w-full" defaultValue={services.heading} />
+                                <input ref={el => (servicesRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Services')" className="input border-black w-full" defaultValue={services.heading} />
                             </div>
                             <div className="font-semibold mt-8">Service list:</div>
                             <div className="form-control max-w-lg">
@@ -353,6 +362,10 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         </div>
                     </div>
                 </div>
+
+                {/* Projects */}
+                <ProjectsEdit content={content.sections[5]} projectsRef={projectsRef} />
+
             </div>
         </div>
     )

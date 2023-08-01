@@ -14,7 +14,9 @@ export const checkLoggedInAction = () => {
     }
 }
 
-// Redirect to email verification page if user has not verified their email
+/* Redirect to email verification page if user has not verified their email
+*  Otherwise, returns the user object
+*/
 export async function checkEmailVerificationAction() {
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;

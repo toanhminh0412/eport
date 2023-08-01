@@ -19,8 +19,10 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Experience from "./sections/Experience";
 import Services from "./sections/Services";
 import Projects from "./sections/Projects";
+import Testimonials from "./sections/Testimonials";
+import Footer from "./sections/Footer";
 
-export default function Demo1({content}) {
+export default function Demo1({content, siteId}) {
     const [site, setSite] = useState(content);
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
@@ -200,7 +202,6 @@ export default function Demo1({content}) {
             sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, ...site.sections.slice(6)]
         }
         console.log(newSite);
-        const siteId = window.location.pathname.split('/').at(-1);
         
         // Save new site to database
         const response = await fetch(`/api/save_site/${siteId}`, {
@@ -267,29 +268,14 @@ export default function Demo1({content}) {
                     <Services content={site.sections[4]}/>
 
                     {/* Projects */}
-                    <Projects categories={site.sections[5].categories} projects={site.sections[5].projects}/>
+                    <Projects content={site.sections[5]}/>
 
                     {/* Testimonials */}
-                    <section className="prose mt-20">
-                        <h1>Testimonials</h1>
-                        <TestimonialShowcase testimonials={site.sections[6].testimonials} />
-                    </section>
+                    <Testimonials content={site.sections[6]} />
                     </div>
                 
                 {/* Contact me */}
-                <section className="mt-12 bg-slate-900 w-full p-8 rounded-b-lg text-white">
-                    <div className="prose text-white max-w-none">
-                        <h1 className="text-white">Get in touch</h1>
-                        <p className="flex flex-row flex-wrap gap-4 justify-center w-full text-2xl md:text-4xl">
-                            <Link href="#" target="_blank"><i className="fa-solid fa-envelope text-blue-200 hover:text-blue-500 duration-300"></i></Link>
-                            <Link href="#" target="_blank"><i className="fa-brands fa-facebook text-blue-200 hover:text-blue-500 duration-300"></i></Link>
-                            <Link href="#" target="_blank"><i className="fa-brands fa-instagram text-blue-200 hover:text-blue-500 duration-300"></i></Link>
-                            <Link href="#" target="_blank"><i className="fa-brands fa-linkedin text-blue-200 hover:text-blue-500 duration-300"></i></Link>
-                            <Link href="#" target="_blank"><i className="fa-brands fa-github text-blue-200 hover:text-blue-500 duration-300"></i></Link>
-                        </p>
-                        <div className="text-center font-light">&copy; All rights reserved | Eport</div>
-                    </div>
-                </section>
+                <Footer content={site.sections[7]}/>
                 </div>
             </div>
         </main>

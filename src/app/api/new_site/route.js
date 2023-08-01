@@ -181,7 +181,7 @@ export async function GET(request) {
             },
             {
                 id: 7,
-                headings: "Get in touch",
+                heading: "Get in touch",
                 socials: [
                     {key: "gmail", value: "#"},
                     {key: "facebook", value: "#"},
@@ -193,5 +193,5 @@ export async function GET(request) {
         ]
     })
 
-    redirect(`/sites/${siteRef.id}`)
+    redirect('/')
 }

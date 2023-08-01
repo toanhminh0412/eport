@@ -6,7 +6,7 @@ import TextEditor from "@/components/TextEditor";
 
 export default function ProjectsEdit({content, projectsRef}) {
     /*** Projects section ***/
-    const [projects, setProjects] = useState(content);
+    const [projects, _] = useState(content);
     const [categories, setCategories] = useState(content.categories);
     const [projectCategories, setProjectCategories] = useState(content.categories);
     const [projectsList, setProjectsList] = useState(content.projects);

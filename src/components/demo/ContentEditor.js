@@ -1,11 +1,12 @@
 import ProfileEdit from "./demo1/sections/ProfileEdit";
-import ProjectsEdit from "./demo1/sections/ProjectsEdit";
 import AboutMeEdit from "./demo1/sections/AboutMeEdit";
 import SkillsEdit from "./demo1/sections/SkillsEdit";
 import ExperienceEdit from "./demo1/sections/ExperienceEdit";
 import ServicesEdit from "./demo1/sections/ServicesEdit";
+import ProjectsEdit from "./demo1/sections/ProjectsEdit";
+import TestimonialsEdit from "./demo1/sections/TestimonialsEdit";
 
-export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef, servicesRef, projectsRef}) {
+export default function ContentEditor({content, profileRef, aboutMeRef, skillsRef, experienceRef, servicesRef, projectsRef, testimonialsRef}) {
     return (
         <div className="min-h-screen">
             <div className="px-2 md:px-20 py-10 prose max-w-none">
@@ -28,6 +29,9 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
 
                 {/* Projects */}
                 <ProjectsEdit content={content.sections[5]} projectsRef={projectsRef} />
+
+                {/* Testimonials */}
+                <TestimonialsEdit content={content.sections[6]} testimonialsRef={testimonialsRef} />
 
             </div>
         </div>

@@ -34,6 +34,7 @@ export default function Demo1({content, siteId}) {
     const experienceRef = useRef({'experiences': []});
     const servicesRef = useRef({'services': []});
     const projectsRef = useRef({'categories': [], 'projects': []});
+    const testimonialsRef = useRef({'testimonials': []});
 
     // Toggle edit mode
     const toggleEditMode = () => {
@@ -196,10 +197,30 @@ export default function Demo1({content, siteId}) {
             projects: newProjectsList
         }
 
+        // Update testimonials section
+        let newTestimonialsList = [];
+        for (let i = 0; i < testimonialsRef.current.testimonials.length; i++) {
+            if (testimonialsRef.current.testimonials[i] && testimonialsRef.current.testimonials[i].name) {
+                const testimonialObj = testimonialsRef.current.testimonials[i];
+                const newTestimonial = {
+                    name: testimonialObj.name.value,
+                    job: testimonialObj.job.value,
+                    content: testimonialObj.content.value
+                }
+                newTestimonialsList.push(newTestimonial);
+            }
+        }
+
+        const newTestimonials = {
+            id: 6,
+            heading: testimonialsRef.current.heading.value,
+            testimonials: newTestimonialsList
+        }
+
         // Update site
         const newSite = {
             ...site,
-            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, ...site.sections.slice(6)]
+            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, newTestimonials, ...site.sections.slice(7)]
         }
         console.log(newSite);
         
@@ -245,7 +266,8 @@ export default function Demo1({content, siteId}) {
                 skillsRef={skillsRef} 
                 experienceRef={experienceRef}
                 servicesRef={servicesRef}
-                projectsRef={projectsRef}/>
+                projectsRef={projectsRef}
+                testimonialsRef={testimonialsRef}/>
             </main>
         )
     }

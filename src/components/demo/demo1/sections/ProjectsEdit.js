@@ -5,7 +5,6 @@ import Image from "next/image";
 import TextEditor from "@/components/TextEditor";
 
 export default function ProjectsEdit({content, projectsRef}) {
-    /*** Projects section ***/
     const [projects, _] = useState(content);
     const [categories, setCategories] = useState(content.categories);
     const [projectCategories, setProjectCategories] = useState(content.categories);

@@ -28,7 +28,6 @@ export default function ProjectsEdit({content, projectsRef}) {
     // Upload a new project image for preview
     const uploadProjectImage = (e, index) => {
         const file = e.target.files[0];
-        console.log(URL.createObjectURL(file));
         setProjectsList((prevProjectsList) => {
             return prevProjectsList.map((project, prevIndex) => {
                 if (prevIndex === index) {
@@ -87,8 +86,8 @@ export default function ProjectsEdit({content, projectsRef}) {
                             (<span className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setCategoriesEditState(false); saveCategories()}}><i className="fa-solid fa-check me-2"></i>Save categories</span>)}
                         </label>
                         {categories.map((category, index) => (
-                        categoriesEditState ? 
-                            (<div key={`${category}-${index}-edit`} className="flex flex-row">
+                        <div key={`${category}-${index}-edit`}>
+                            <div className={`flex flex-row ${categoriesEditState ? '' : 'hidden'}`}>
                                 <input 
                                 ref={el => {projectsRef.current['categories'][index] = projectsRef.current['categories'][index] ? projectsRef.current['categories'][index] : el;}}
                                 type="text" 
@@ -96,9 +95,9 @@ export default function ProjectsEdit({content, projectsRef}) {
                                 className="input border-black my-1 w-60" 
                                 defaultValue={category} />
                                 <i className="fa-solid fa-trash text-md text-slate-400 hover:text-slate-700 duration-300 cursor-default my-auto ms-2" onClick={() => removeCategory(index)}></i>
-                            </div>):
-                            (<li key={`${category}-${index}`} className="m-0">{category}</li>)
-                        ))}
+                            </div>
+                            <li key={`${category}-${index}`} className={`m-0 ${categoriesEditState ? 'hidden' : ''}`}>{category}</li>
+                        </div>))}
                         {categoriesEditState ? 
                         (<div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setCategories([...categories, 'New category'])}}><i className="fa-solid fa-plus me-2"></i>Add category</div>) : null}
                     </div>

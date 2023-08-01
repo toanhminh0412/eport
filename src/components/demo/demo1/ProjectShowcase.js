@@ -13,14 +13,16 @@ export default function ProjectShowcase({categories, projects}) {
                 <form method="dialog" className="modal-box">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     <h3 className="font-bold text-lg">{project.title}</h3>
-                    <div className="carousel h-60 rounded-box shadow-lg border border-slate-300 not-prose">
-                        {project.images.map((image, imgIndex) => (
-                        <div key={imgIndex} className="carousel-item">
-                            <img src={image} alt="Project image" className="h-full" />
-                        </div> 
-                        ))}
+                    <div className="text-center">
+                        <div className="carousel h-60 rounded-box shadow-lg border border-slate-300 not-prose">
+                            {project.images.map((image, imgIndex) => (
+                            <div key={imgIndex} className="carousel-item">
+                                <img src={image} alt="Project image" className="h-full" />
+                            </div> 
+                            ))}
+                        </div>
                     </div>
-                    <p className="py-4">{project.description}</p>
+                    <p className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></p>
                 </form>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>
@@ -33,12 +35,12 @@ export default function ProjectShowcase({categories, projects}) {
                     <input key={index} className="join-item btn btn-sm md:btn" type="radio" name="options" aria-label={cat} defaultChecked={index===0} onClick={() => {if (activeCategory !== index) {setActiveCategory(() => index)}}}/>
                 ))}
             </div>
-            <h4>Click on the project to view them</h4>
+            <h4>Click on the project to view the details</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose mt-10">
                 {projects.map((project, index) => (
                     <div key={index} className={`relative w-full aspect-video duration-500 ${project.categories.includes(activeCategory) ? '' : 'hidden'}`}>
                         <div className="absolute top-0 left-0 w-full h-full bg-black z-10 opacity-10 hover:opacity-50 transition-opacity rounded-box" onClick={() => {document.getElementById(`project-${index}`).showModal();}}></div>
-                        <Image alt="project pic" src={project.images[0]} fill className="rounded-md"/>
+                        <Image alt="project pic" src={project.images[0]} fill className="rounded-md" style={{objectFit: 'cover'}}/>
                     </div>
                 ))}
             </div>

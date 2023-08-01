@@ -153,14 +153,15 @@ export default function Demo1({content}) {
                 if (projectObj.images.length > 0) {
                     const userId = secureLocalStorage.getItem('eport-uid');
                     for (let j = 0; j < projectObj.images.length; j++) {
-                        const fileSrc = projectObj.images[j].src;
-                        if (!fileSrc.includes('firebasestorage.googleapis.com')) {
-                            const newFile = await fetch(fileSrc).then(r => r.blob());
-                            console.log(newFile);
-                            const projectImagesRef = ref(storage, `users/${userId}/images/projects/${projectObj.title.value}/image-${new Date().valueOf()}`);
-                            const projectImageSnap = await uploadBytes(projectImagesRef, newFile);
-                            const projectImageURL = await getDownloadURL(projectImageSnap.ref);
-                            projectObj.images[j].dataset.src = projectImageURL;
+                        if (projectObj.images[j]) {
+                            const fileSrc = projectObj.images[j].src;
+                            if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                                const newFile = await fetch(fileSrc).then(r => r.blob());
+                                const projectImagesRef = ref(storage, `users/${userId}/images/projects/image-${new Date().valueOf()}`);
+                                const projectImageSnap = await uploadBytes(projectImagesRef, newFile);
+                                const projectImageURL = await getDownloadURL(projectImageSnap.ref);
+                                projectObj.images[j].dataset.src = projectImageURL;
+                            }
                         }
                     }
                 }
@@ -174,27 +175,29 @@ export default function Demo1({content}) {
                 
                 // Get selected categories
                 const selectedOptions = projectObj.categories.querySelectorAll('option:checked');
-                const selectedCategories = Array.from(selectedOptions).map(el => el.value);
-
-                console.log(projectObj.images);
-                console.log(projectObj.description);
+                const selectedCategories = Array.from(selectedOptions).map(el => parseInt(el.value));
 
                 const newProject = {
                     title: projectObj.title.value,
                     description: projectObj.description.getContent(),
-                    images: projectObj.images.map(image => image.dataset.src),
+                    images: projectObj.images.map(image => image ? image.dataset.src : null).filter(image => image !== null),
                     categories: selectedCategories
                 }
                 newProjectsList.push(newProject);
             }
         }
 
-        console.log(newProjectsList);
+        const newProjects = {
+            id: 5,
+            heading: projectsRef.current.heading.value,
+            categories: projectsRef.current.categories.map(category => category.value),
+            projects: newProjectsList
+        }
 
         // Update site
         const newSite = {
             ...site,
-            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, ...site.sections.slice(5)]
+            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, ...site.sections.slice(6)]
         }
         console.log(newSite);
         const siteId = window.location.pathname.split('/').at(-1);

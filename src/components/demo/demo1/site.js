@@ -176,16 +176,12 @@ export default function Demo1({content, siteId}) {
         for (let i = 0; i < projectsRef.current.projects.length; i++) {
             if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
                 const projectObj = projectsRef.current.projects[i];
-                
-                // Get selected categories
-                const selectedOptions = projectObj.categories.querySelectorAll('option:checked');
-                const selectedCategories = Array.from(selectedOptions).map(el => parseInt(el.value));
 
                 const newProject = {
                     title: projectObj.title.value,
                     description: projectObj.description.getContent(),
                     images: projectObj.images.map(image => image ? image.dataset.src : null).filter(image => image !== null),
-                    categories: selectedCategories
+                    tags: projectObj.tags.value.split(',').filter(tag => tag !== '')
                 }
                 newProjectsList.push(newProject);
             }
@@ -194,7 +190,6 @@ export default function Demo1({content, siteId}) {
         const newProjects = {
             id: 5,
             heading: projectsRef.current.heading.value,
-            categories: projectsRef.current.categories.map(category => category.value),
             projects: newProjectsList
         }
 

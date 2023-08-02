@@ -6,22 +6,32 @@ import TextEditor from "@/components/TextEditor";
 
 export default function ProjectsEdit({content, projectsRef}) {
     const [projects, _] = useState(content);
-    const [categories, setCategories] = useState(content.categories);
-    const [projectCategories, setProjectCategories] = useState(content.categories);
     const [projectsList, setProjectsList] = useState(content.projects);
-    
-    const [categoriesEditState, setCategoriesEditState] = useState(false);
 
-    // Remove a category from Categories section
-    const removeCategory = index => {
-        setCategories(prevCategories => prevCategories.filter((_, prevIndex) => prevIndex !== index));
-        // projectsRef.current['categories'].splice(index, 1);
+    // Remove a tag
+    const removeTag = e => {
+        const projIndex = e.target.dataset.projectIndex;
+        const tag = e.target.dataset.tag;
+        e.target.closest('.project-tag').remove();
+        document.getElementById(`project-${projIndex}-tags-input`).value = document.getElementById(`project-${projIndex}-tags-input`).value.replace(tag, '');
     }
 
-    // Save edited categories
-    const saveCategories = () => {
-        setProjectCategories(categories);
-        projectsRef.current['categories'].filter(categoryInput => categories.includes(categoryInput.value));
+    // Add a new tag
+    const addTag = e => {
+        e.preventDefault();
+        const tagInput = e.target.querySelector('input');
+        const newTag = tagInput.value;
+        const projIndex = e.target.dataset.projectIndex;
+        const tagContainer = document.getElementById(`project-${projIndex}-tags`);
+        tagContainer
+            .insertAdjacentHTML('beforeend', 
+            `<div class="project-tag py-1 px-2 rounded-xl bg-slate-100 shadow-lg cursor-default">
+                ${newTag}
+                <span class="ms-2 text-slate-700 hover:text-black hover:font-semibold" data-project-index="${projIndex}" data-tag="${newTag}">✕</span>
+            </div>`);
+        tagInput.value = '';
+        document.getElementById(`project-${projIndex}-tags-input`).value += `,${newTag}`;
+        tagContainer.querySelector(`span[data-tag="${newTag}"]`).addEventListener('click', removeTag);
     }
 
     // Upload a new project image for preview
@@ -76,34 +86,12 @@ export default function ProjectsEdit({content, projectsRef}) {
                         </label>
                         <input ref={el => (projectsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Projects')" className="input border-black w-full" defaultValue={projects.heading} />
                     </div>
-                    <div className="form-control max-w-lg mt-4">
-                        <label className="label">
-                            <span className="label-text">Categories:</span>
-                            {!categoriesEditState ? 
-                            (<span className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setCategoriesEditState(true)}}><i className="fa-solid fa-pen me-2"></i>Edit categories</span>)
-                            :
-                            (<span className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setCategoriesEditState(false); saveCategories()}}><i className="fa-solid fa-check me-2"></i>Save categories</span>)}
-                        </label>
-                        {categories.map((category, index) => (
-                        <div key={`${category}-${index}-edit`}>
-                            <div className={`flex flex-row ${categoriesEditState ? '' : 'hidden'}`}>
-                                <input 
-                                ref={el => {projectsRef.current['categories'][index] = projectsRef.current['categories'][index] ? projectsRef.current['categories'][index] : el;}}
-                                type="text" 
-                                placeholder="e.g. Web design" 
-                                className="input border-black my-1 w-60" 
-                                defaultValue={category} />
-                                <i className="fa-solid fa-trash text-md text-slate-400 hover:text-slate-700 duration-300 cursor-default my-auto ms-2" onClick={() => removeCategory(index)}></i>
-                            </div>
-                            <li key={`${category}-${index}`} className={`m-0 ${categoriesEditState ? 'hidden' : ''}`}>{category}</li>
-                        </div>))}
-                        {categoriesEditState ? 
-                        (<div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setCategories([...categories, 'New category'])}}><i className="fa-solid fa-plus me-2"></i>Add category</div>) : null}
-                    </div>
+
                     <div className="font-semibold mt-8">Project list:</div>
                     <div className="form-control">
                         {projectsList.map((project, projIndex) => (
                         <div key={`${project.title}-${projIndex}`} className={`${projIndex === 0 ? '' : 'mt-12'} w-full`}>
+                            {/* Title */}
                             <label className="label max-w-lg">
                                 <span className="label-text">Project title:</span>
                                 <span className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeProject(projIndex)}><i className="fa-solid fa-trash me-2"></i>Remove project</span>
@@ -114,19 +102,34 @@ export default function ProjectsEdit({content, projectsRef}) {
                             placeholder="e.g. Paint company website" 
                             className="input border-black w-full max-w-lg" 
                             defaultValue={project.title} />
-
+                            
+                            {/* Tags */}
                             <label className="label mt-2 max-w-lg">
-                                <span className="label-text">Project categories:</span>
+                                <span className="label-text">Project tags:</span>
                             </label>
-                            <select 
-                            ref={el => {projectsRef.current['projects'][projIndex] = projectsRef.current['projects'][projIndex] ? projectsRef.current['projects'][projIndex] : {}; projectsRef.current['projects'][projIndex]['categories'] = el}}
-                            className="select border-black w-full max-w-lg" 
-                            multiple>
-                                {projectCategories.map((category, index) => (
-                                <option key={`${category}-${index}`} value={index} selected={project.categories.includes(index)}>{category}</option>
+                            <form className="join w-full max-w-lg" data-project-index={projIndex} onSubmit={addTag}>
+                                <input 
+                                className="input border-black join-item" 
+                                placeholder="Enter a tag"
+                                required/>
+                                <button className="btn btn-primary join-item">Add tag</button>
+                            </form>
+                            <input 
+                            ref={el => {projectsRef.current['projects'][projIndex] = projectsRef.current['projects'][projIndex] ? projectsRef.current['projects'][projIndex] : {}; projectsRef.current['projects'][projIndex]['tags'] = el}}
+                            id={`project-${projIndex}-tags-input`}
+                            type="text"
+                            className="hidden"
+                            defaultValue={project.tags.join(',')}/>
+                            <div id={`project-${projIndex}-tags`} className="flex flex-row flex-wrap gap-3 mt-3">
+                                {project.tags.map((tag, index) => (
+                                <div key={`${tag}-${index}`} className="project-tag py-1 px-2 rounded-xl bg-slate-100 shadow-lg cursor-default">
+                                    {tag}
+                                    <span className="ms-2 text-slate-700 hover:text-black hover:font-semibold" data-project-index={projIndex} data-tag={tag} onClick={removeTag}>✕</span>
+                                </div>  
                                 ))}
-                            </select>
-
+                            </div>
+                            
+                            {/* Images */}
                             <label className="label mt-2">
                                 <span className="label-text">Project images:</span>
                             </label>
@@ -145,7 +148,7 @@ export default function ProjectsEdit({content, projectsRef}) {
                                     data-src={image}
                                     src={image} 
                                     alt="Project image" 
-                                    width={300} 
+                                    width={300}
                                     height={200} 
                                     style={{objectFit: "cover"}} 
                                     className="w-[300px] h-[200px]"/>
@@ -156,7 +159,8 @@ export default function ProjectsEdit({content, projectsRef}) {
                                     <input type="file" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
                                 </div>
                             </div>
-
+                            
+                            {/* Description */}
                             <label className="label mt-2">
                                 <span className="label-text">Project description:</span>
                             </label>

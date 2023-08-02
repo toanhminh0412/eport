@@ -115,19 +115,18 @@ export async function GET(request) {
             {
                 id: 5,
                 heading: "Projects",
-                categories: ["All", "Design", "Development"],
                 projects: [
                     {
                         images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289'],
-                        title: 'Web application 1',
+                        title: 'Web application',
                         description: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.',
-                        categories: [0, 1]
+                        tags: ['Development', 'Web design']
                     },
                     {
                         images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e'],
-                        title: 'Web application 2',
+                        title: 'Mobile application',
                         description: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.',
-                        categories: [0, 2]
+                        tags: ['Development', 'Mobile design']
                     }
                 ]
             },

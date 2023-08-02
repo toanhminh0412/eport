@@ -19,6 +19,7 @@ export default function TestimonialsEdit({content, testimonialsRef}) {
             </div>
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
+                    {/* Heading */}
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Section heading  (recommend &apos;Testimonials&apos;):</span>

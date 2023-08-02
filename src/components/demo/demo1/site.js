@@ -35,6 +35,7 @@ export default function Demo1({content, siteId}) {
     const servicesRef = useRef({'services': []});
     const projectsRef = useRef({'categories': [], 'projects': []});
     const testimonialsRef = useRef({'testimonials': []});
+    const footerRef = useRef({'socials': []});
 
     // Toggle edit mode
     const toggleEditMode = () => {
@@ -217,10 +218,29 @@ export default function Demo1({content, siteId}) {
             testimonials: newTestimonialsList
         }
 
+        // Update footer section
+        let newSocials = [];
+        for (let i = 0; i < footerRef.current.socials.length; i++) {
+            if (footerRef.current.socials[i] && footerRef.current.socials[i].key) {
+                const socialObj = footerRef.current.socials[i];
+                const newSocial = {
+                    key: socialObj.key.value,
+                    value: socialObj.value.value
+                }
+                newSocials.push(newSocial);
+            }
+        }
+
+        const newFooter = {
+            id: 7,
+            heading: footerRef.current.heading.value,
+            socials: newSocials
+        }
+
         // Update site
         const newSite = {
             ...site,
-            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, newTestimonials, ...site.sections.slice(7)]
+            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, newTestimonials, newFooter]
         }
         console.log(newSite);
         
@@ -267,7 +287,8 @@ export default function Demo1({content, siteId}) {
                 experienceRef={experienceRef}
                 servicesRef={servicesRef}
                 projectsRef={projectsRef}
-                testimonialsRef={testimonialsRef}/>
+                testimonialsRef={testimonialsRef}
+                footerRef={footerRef}/>
             </main>
         )
     }

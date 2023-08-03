@@ -1,5 +1,6 @@
 'use client';
 
+import TextEditor from "@/components/TextEditor";
 import { useState } from "react";
 
 export default function AboutMeEdit({content, aboutMeRef}) {
@@ -31,7 +32,12 @@ export default function AboutMeEdit({content, aboutMeRef}) {
                             <label className="label">
                                 <span className="label-text">Bio:</span>
                             </label>
-                            <textarea ref={el => (aboutMeRef.current[1] = el)} type="text" rows="5" placeholder="Your bio" className="textarea border-black w-full" defaultValue={aboutMe.bio} />
+                            {/* <textarea ref={el => (aboutMeRef.current[1] = el)} type="text" rows="5" placeholder="Your bio" className="textarea border-black w-full" defaultValue={aboutMe.bio} /> */}
+                            <TextEditor
+                            paramRef={el => (aboutMeRef.current[1] = el)}
+                            placeholder="Your bio"
+                            defaultValue={aboutMe.bio}
+                            />
                         </div>
                         <div className="form-control mt-4">
                             <label className="label">

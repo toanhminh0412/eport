@@ -82,7 +82,7 @@ export default function Demo1({content, siteId}) {
         const newAboutMe = {
             id: 1,
             heading: aboutMeRef.current[0].value,
-            bio: aboutMeRef.current[1].value,
+            bio: aboutMeRef.current[1].getContent(),
             extraInfo: newExtraInfo
         }
 

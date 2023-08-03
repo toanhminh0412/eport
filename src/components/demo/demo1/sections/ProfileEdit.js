@@ -48,7 +48,7 @@ export default function ProfileEdit({content, profileRef}) {
                     width={250} 
                     height={250} 
                     style={{objectFit: "contain"}}/>
-                    <input ref={el => (profileRef.current[6] = el)} type="file" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
+                    <input ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
                     <label className="label text-xs">
                         <span><strong>Hint: </strong>Upload a new picture will <strong>immediately</strong> replace the current picture</span>
                     </label>

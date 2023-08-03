@@ -156,7 +156,7 @@ export default function ProjectsEdit({content, projectsRef}) {
                                 ))}
                                 <div className="w-[300px] h-[200px] bg-slate-200 hover:bg-slate-400 duration-300 text-center flex flex-col justify-center relative">
                                     <p className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></p>
-                                    <input type="file" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
+                                    <input type="file" accept="image/*" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
                                 </div>
                             </div>
                             

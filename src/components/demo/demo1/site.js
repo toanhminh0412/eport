@@ -21,6 +21,7 @@ import Services from "./sections/Services";
 import Projects from "./sections/Projects";
 import Testimonials from "./sections/Testimonials";
 import Footer from "./sections/Footer";
+import { compressImageSize } from "@/helpers/files";
 
 export default function Demo1({content, siteId}) {
     const [site, setSite] = useState(content);
@@ -47,7 +48,8 @@ export default function Demo1({content, siteId}) {
         // Upload new profile picture if it's replaced
         let newProfilePicURL = '';
         if (profileRef.current[6].files.length > 0) {
-            const file = profileRef.current[6].files[0];
+            let file = profileRef.current[6].files[0];
+            file = await compressImageSize(file, 0.4);
             const userId = secureLocalStorage.getItem('eport-uid');
             const profilePicRef = ref(storage, `users/${userId}/images/profilePic.jpg`);
             const profilePicSnap = await uploadBytes(profilePicRef, file);
@@ -160,7 +162,8 @@ export default function Demo1({content, siteId}) {
                         if (projectObj.images[j]) {
                             const fileSrc = projectObj.images[j].src;
                             if (!fileSrc.includes('firebasestorage.googleapis.com')) {
-                                const newFile = await fetch(fileSrc).then(r => r.blob());
+                                let newFile = await fetch(fileSrc).then(r => r.blob());
+                                newFile = await compressImageSize(newFile, 0.4);
                                 const projectImagesRef = ref(storage, `users/${userId}/images/projects/image-${new Date().valueOf()}`);
                                 const projectImageSnap = await uploadBytes(projectImagesRef, newFile);
                                 const projectImageURL = await getDownloadURL(projectImageSnap.ref);

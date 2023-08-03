@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# About Eport
+Project link: [https://eport-gamma.vercel.app/](https://eport-gamma.vercel.app/)
 
-## Getting Started
+**Eport** is an easy website builder for job searchers who need to build a website as quickly and easily as possible to show their works and information. Eport can be seen as a version of the [About Me site](https://about.me) that gives users more customization.
 
-First, run the development server:
+# Development
+## Set up developement environment
+To set up your development environment, run:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+git clone https://github.com/toanhminh0412/eport.git    # Clone the repo
+npm install     # Install all packages
+```
+After that, please ask **@toanhminh0412** for the `.env.local` file. the file should include:
+```
+# Firebase
+NEXT_PUBLIC_FIREBASE_API_KEY=<Firebase API key>
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<Firebase auth domain>
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=<Firebase project ID>
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<Firebase storage bucket>
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<Firebase message sender id>
+NEXT_PUBLIC_FIREBASE_APP_ID=<Firebase app ID>
+
+# App settings
+NEXT_PUBLIC_APP_DOMAIN=http://localhost:3000
+
+# React secure storage
+NEXT_PUBLIC_SECURE_LOCAL_STORAGE_HASH_KEY=<Any string length 9>
+NEXT_PUBLIC_SECURE_LOCAL_STORAGE_PREFIX=<Any string length 7>
+
+# TinyMCE editor
+NEXT_PUBLIC_TINY_MCE_API_KEY=<Text editor Tiny MCE API key>
+```
+Paste the `.env.local` file in the root directory and run:
+```
+npm run dev     # Start up the development server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your development server should now be available at `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Contribute
+To contribute:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Select an issue from the [issue list](https://github.com/toanhminh0412/eport/issues) and put on an **in progress** tag.
+2. Run:
+```
+git checkout -b issue-[issue number]        # Create a new branch 'issue-[issue number]'
 
-## Learn More
+# Do your dev work here
 
-To learn more about Next.js, take a look at the following resources:
+git push origin issue-[issue number]        # Push to 'issue-[issue number]' branch
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Please **DO NOT** push code to `main`. When you think your code is ready, feel free to create a Pull Request and set **toanhminh0412** as a reviewer.

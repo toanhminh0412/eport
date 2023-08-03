@@ -1,13 +1,10 @@
 'use client';
 
-import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 import UpperNav from "@/components/UpperNav"
 import ControlNav from "../ControlNav";
 import { ErrorToast, SuccessToast } from "../MessageToast";
-import ProjectShowcase from "./ProjectShowcase";
-import TestimonialShowcase from "./TestimonialShowcase";
 import Profile from "./sections/Profile";
 import AboutMe from "./sections/AboutMe";
 import Skills from "./sections/Skills";

@@ -20,14 +20,6 @@ export default function UpperNav() {
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box w-52">
             <li><Link href="/" className={`${currentPath === '/' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Dashboard</Link></li>
             <li><Link href="/home" className={`${currentPath === '/home' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Home</Link></li>
-            {/* <li>
-              <Link>Parent</Link>
-              <ul className="p-2">
-                <li><Link>Submenu 1</Link></li>
-                <li><Link>Submenu 2</Link></li>
-              </ul>
-            </li>
-            <li><Link>Item 3</Link></li> */}
           </ul>
         </div>
         <Link href="/" className="btn btn-ghost normal-case text-xl">Eport</Link>
@@ -36,21 +28,10 @@ export default function UpperNav() {
         <ul className="menu menu-horizontal px-1">
           <li><Link href="/" className={`${currentPath === '/' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Dashboard</Link></li>
           <li><Link href="/home" className={`${currentPath === '/home' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Home</Link></li>
-          {/* <li tabIndex={0}>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li><Link>Submenu 1</Link></li>
-                <li><Link>Submenu 2</Link></li>
-              </ul>
-            </details>
-          </li>
-          <li><Link>Item 3</Link></li> */}
         </ul>
       </div>
       <div className="navbar-end">
-        {/* <Link href="/" className="btn btn-primary">Button</Link> */}
-        <a className="btn btn-primary">My account</a>
+        <Link href='/api/authenticate/logout' className="btn btn-primary">Logout</Link>
       </div>
     </div>
   )

@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { auth, db } from '../../../../../public/libs/firebase';
+import { auth } from '../../../../../public/libs/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 
 /* Handle users logging in
 Query:

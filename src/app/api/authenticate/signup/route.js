@@ -34,7 +34,7 @@ export async function POST(request) {
         const newUser = {
             uid: user.uid,
             email: user.email,
-            emailVerified: false
+            emailVerified: true
         }
         await setDoc(doc(db, 'users', user.uid), newUser);
         success = true;

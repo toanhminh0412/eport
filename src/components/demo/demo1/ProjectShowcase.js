@@ -47,7 +47,7 @@ export default function ProjectShowcase({projects}) {
                             ))}
                         </div>
                     </div>
-                    <p className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></p>
+                    <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
                 </form>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>

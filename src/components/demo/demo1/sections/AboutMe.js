@@ -1,19 +1,8 @@
 'use client';
-import { useState, useRef } from "react";
+import { useState } from "react";
 
-export default function AboutMe({content, aboutMeRef}) {
-    const [section, setSection] = useState(content);
-    const [extraInfo, setExtraInfo] = useState(content.extraInfo);
-
-    const headingInput = useRef();
-    const bioInput = useRef();
-
-    const deleteExtraInfo = index => {
-        setExtraInfo(prevExtraInfo => {
-            const newInfo = prevExtraInfo.filter((_, prevIndex) => prevIndex !== index);
-            return newInfo;
-        });
-    }
+export default function AboutMe({content}) {
+    const [section, _] = useState(content);
 
     return (
         <section className="prose">

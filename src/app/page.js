@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 
 import { checkEmailVerificationAction, checkLoggedInAction } from "@/actions/server/actions";
-import UpperNav from "@/components/UpperNav";
 import Demo1 from "@/components/demo/demo1/site";
 
 import { db } from "../../public/libs/firebase";

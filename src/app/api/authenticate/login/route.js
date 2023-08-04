@@ -46,7 +46,7 @@ export async function GET(request) {
     return NextResponse.json({
         uid: cookieStore.get('eport-uid').value,
         email: cookieStore.get('eport-email').value,
-        domain: cookieStore.get('eport-domain').value,
+        domain: cookieStore.get('eport-domain') ? cookieStore.get('eport-domain').value : '',
         success: success,
         message: message
     })

@@ -1,5 +1,5 @@
 import PublishedDemo1 from '@/components/demo/demo1/published';
-import UpperNav from '@/components/UpperNav';
+import NotFound from '../not-found';
 import { db } from '../../../public/libs/firebase';
 import { collection, getDocs, query, where } from '@firebase/firestore';
 
@@ -19,13 +19,6 @@ export default async function PublishedSite({ params }) {
     if (site) {
         return <PublishedDemo1 site={site} />
     } else {
-        return (
-            <main>
-                <div className='prose p-10'>
-                    <h1>404</h1>
-                    <p>Sorry! Site doesn&apos;t exist.</p>
-                </div>
-            </main>
-        )
+        return <NotFound/>
     }
 }

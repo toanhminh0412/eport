@@ -20,8 +20,7 @@ export default async function PublishedSite({ params }) {
         return <PublishedDemo1 site={site} />
     } else {
         return (
-            <main className="bg-slate-100 w-screen h-full min-h-screen">
-                <UpperNav isLoggedIn={false}/>
+            <main>
                 <div className='prose p-10'>
                     <h1>404</h1>
                     <p>Sorry! Site doesn&apos;t exist.</p>

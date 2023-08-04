@@ -17,8 +17,6 @@ export async function POST(request) {
     const siteQuery = query(collection(db, 'publishedSites'), where('domain', '==', site.domain));
     const siteQuerySnapshot = await getDocs(siteQuery);
     if (siteQuerySnapshot.docs.length > 0 && siteQuerySnapshot.docs[0].id !== uid) {
-        console.log(siteQuerySnapshot.docs[0].data());
-        console.log(siteQuerySnapshot.docs[0].id);
         return NextResponse.json({
             status: 400,
             message: 'Domain already exists!'
@@ -27,6 +25,11 @@ export async function POST(request) {
 
     // Store the site in the database
     await setDoc(doc(db, 'publishedSites', uid), site);
+    await setDoc(doc(db, 'users', uid), {
+        domain: site.domain
+    }, { merge: true });
+    cookieStore.set('eport-domain', site.domain);
+
     return NextResponse.json({
         status: 200,
         message: 'Site published successfully!'

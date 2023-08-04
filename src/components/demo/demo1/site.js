@@ -273,16 +273,8 @@ export default function Demo1({content, siteId}) {
         if (data.status === 200) {
             toggleEditMode();
             setSite(newSite);
-            // setSuccessMsg(data.message);
-            // setTimeout(() => {
-            //     setSuccessMsg('');
-            // }, 5000);
             showMessageToast(data.message, true);
         } else {
-            // setErrorMsg(data.message);
-            // setTimeout(() => {
-            //     setErrorMsg('');
-            // }, 5000);
             showMessageToast(data.message, false);
         }
     };
@@ -309,8 +301,8 @@ export default function Demo1({content, siteId}) {
     return (
         <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
             <UpperNav/>
-            <PublishModal site={site} showMessageToast={showMessageToast}/>
             <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
+            <PublishModal site={site} showMessageToast={showMessageToast}/>
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap">
                 {successMsg ? <SuccessToast message={successMsg}/> : null}
                 {errorMsg ? <ErrorToast message={errorMsg}/> : null}

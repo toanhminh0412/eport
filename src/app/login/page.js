@@ -42,6 +42,7 @@ export default function Login() {
             if (data.success) {
                 secureLocalStorage.setItem('eport-uid', data.uid);
                 secureLocalStorage.setItem('eport-email', data.email);
+                secureLocalStorage.setItem('eport-domain', data.domain);
                 window.location.href = "/";
             } else {
                 setLoading(false);
@@ -58,7 +59,7 @@ export default function Login() {
     }
 
     return (
-        <div className="bg-slate-100 min-h-screen mt-[-4rem]">
+        <div>
             <div className="flex flex-row flex-wrap text-black">
                 <div className="w-full lg:w-1/2 pt-20 lg:pt-40 pl-12 h-fit">
                     <h1 className="font-semibold text-3xl lg:text-4xl">Welcome to Eport</h1>

@@ -1,12 +1,24 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 
 export default function PublishModal({site, showMessageToast}) {
-    const [domain, setDomain] = useState(secureLocalStorage.getItem('eport-email').split('@')[0].replace('.', '-'));
+    const [url, setUrl] = useState('');
+    const [domain, setDomain] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (secureLocalStorage.getItem('eport-domain', null)) {
+            setDomain(secureLocalStorage.getItem('eport-domain'));
+        } else if (secureLocalStorage.getItem('eport-email', null)) {
+            setDomain(secureLocalStorage.getItem('eport-email').split('@')[0].replace('.', '-'));
+        } else {
+            setDomain('');
+        }
+        setUrl(typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.hostname}` : '');
+    }, []);
 
     // Publish site
     const publishSite = async (e) => {
@@ -33,6 +45,8 @@ export default function PublishModal({site, showMessageToast}) {
         const data = await res.json();
         if (data.status === 200) {
             showMessageToast(data.message, true);
+            secureLocalStorage.setItem('eport-domain', domain);
+            document.getElementById('publish_modal').close();
         } else {
             setError(data.message);
             setTimeout(() => {
@@ -52,7 +66,7 @@ export default function PublishModal({site, showMessageToast}) {
                     <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     <span>{error}</span>
                 </div>: null}
-                <p className="mt-3">Your site URL: <strong>{window.location.protocol}&#47;&#47;{window.location.hostname}/{domain}</strong></p>
+                <p className="mt-3">Your site URL: <strong>{url}/{domain}</strong></p>
                 <input 
                 type="text" 
                 placeholder="Site domain" 

@@ -1,5 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { cookies } from "next/headers";
+import UpperNav from '@/components/UpperNav';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,12 +11,18 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const cookieStore = cookies();
+  const isLoggedIn = cookieStore.get('eport-uid') ? true : false;
+
   return (
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </head>
-      <body className={`${inter.className} pt-16`}>{children}</body>
+      <body className={`${inter.className} pt-24 pb-20 bg-slate-100 w-screen min-h-screen`}>
+        <UpperNav isLoggedIn={isLoggedIn}/>
+        {children}
+      </body>
     </html>
   )
 }

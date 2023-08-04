@@ -11,12 +11,8 @@ import Testimonials from "./sections/Testimonials";
 import Footer from "./sections/Footer";
 
 export default function PublishedDemo1({site}) {
-    const cookieStore = cookies();
-    const isLoggedIn = cookieStore.get('eport-uid') ? true : false;
-
     return (
-        <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
-            <UpperNav isLoggedIn={isLoggedIn}/>
+        <main>
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap">
                 <Profile content={site.sections[0]}/>
                 <div className="card min-h-screen w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">

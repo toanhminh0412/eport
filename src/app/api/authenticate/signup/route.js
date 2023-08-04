@@ -29,12 +29,14 @@ export async function POST(request) {
         newEmail = user.email;
         cookieStore.set('eport-uid', user.uid);
         cookieStore.set('eport-email', user.email);
+        cookieStore.set('eport-domain', '');
         
         // Store the new user in the database
         const newUser = {
             uid: user.uid,
             email: user.email,
-            emailVerified: true
+            emailVerified: true,
+            domain: '',
         }
         await setDoc(doc(db, 'users', user.uid), newUser);
         success = true;
@@ -53,6 +55,7 @@ export async function POST(request) {
         success: success,
         message: message,
         newEmail: newEmail,
-        uid: cookieStore.get('eport-uid').value
+        uid: cookieStore.get('eport-uid').value,
+        domain: cookieStore.get('eport-domain').value
     })
 }

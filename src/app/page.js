@@ -35,10 +35,5 @@ export default async function Dashboard() {
   const user = await checkEmailVerificationAction();
   const site = await getSite(user.uid);
 
-  return (
-    <div>
-      <UpperNav/>
-      <Demo1 content={site.site} siteId={site.id}/>
-    </div>
-  )
+  return <Demo1 content={site.site} siteId={site.id}/>
 }

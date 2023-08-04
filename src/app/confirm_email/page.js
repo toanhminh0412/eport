@@ -15,7 +15,7 @@ export default async function ConfirmEmail() {
     }
 
     return (
-        <div className="bg-slate-100 w-screen h-screen relative flex flex-col justify-center mt-[-4rem]">
+        <div className="relative flex flex-col justify-center">
             <div className="card w-96 bg-white shadow-xl mx-auto mb-20">
                 <div className="card-body">
                     <p>A confirmation link has been sent to <span className='link link-primary'>{email}</span>. Please click on that link to start using the app!</p>

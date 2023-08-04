@@ -1,13 +1,22 @@
 'use client';
 
-import { useState } from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import secureLocalStorage from "react-secure-storage";
 
 export default function ControlNav({setEditMode, saveSiteFunc}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
+    const [domain, setDomain] = useState('');
     
     // Delay enabling Edit/Save button for 1 second when changing state
     const [delay, setDelay] = useState(false);
+
+    useEffect(() => {
+        if (secureLocalStorage.getItem('eport-domain', null)) {
+            setDomain(secureLocalStorage.getItem('eport-domain'));
+        };
+    }, [secureLocalStorage.getItem('eport-domain', null)]);
     
     const stateControlFunc = async () => {
         if (state === 'save') {
@@ -32,6 +41,7 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
                 <button className="btn ms-2" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
                 <button className="btn ms-2" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
+                {domain !== '' ? <Link href={`/${domain}`} className="btn ms-2" target="_blank">Visit site</Link> : null}
             </div>
             <div className="navbar-center hidden lg:flex"></div>
             <div className="navbar-end"></div>

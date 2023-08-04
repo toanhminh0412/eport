@@ -29,7 +29,7 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
             <div className="navbar-start">
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
                 {state === 'edit' ? 
-                <button className="btn ms-2">Publish site</button>
+                <button className="btn ms-2" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
                 <button className="btn ms-2" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
             </div>

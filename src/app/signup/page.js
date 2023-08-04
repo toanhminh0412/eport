@@ -63,6 +63,7 @@ export default function Signup() {
             if (data.success) {
                 const newEmail = data.newEmail;
                 secureLocalStorage.setItem('eport-uid', data.uid);
+                secureLocalStorage.setItem('eport-email', newEmail);
                 window.location.href = '/confirm_email';
             } else {
                 setLoading(false);

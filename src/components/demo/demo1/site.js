@@ -19,6 +19,7 @@ import Projects from "./sections/Projects";
 import Testimonials from "./sections/Testimonials";
 import Footer from "./sections/Footer";
 import { compressImageSize } from "@/helpers/files";
+import PublishModal from "../PublishModal";
 
 export default function Demo1({content, siteId}) {
     const [site, setSite] = useState(content);
@@ -38,6 +39,21 @@ export default function Demo1({content, siteId}) {
     // Toggle edit mode
     const toggleEditMode = () => {
         setEditMode(prevEditMode => !prevEditMode);
+    }
+
+    // Show message toast
+    const showMessageToast = (message, success=true) => {
+        if (success) {
+            setSuccessMsg(message);
+            setTimeout(() => {
+                setSuccessMsg('');
+            }, 5000);
+        } else {
+            setErrorMsg(message);
+            setTimeout(() => {
+                setErrorMsg('');
+            }, 5000);
+        }
     }
 
     // Save new site
@@ -257,15 +273,17 @@ export default function Demo1({content, siteId}) {
         if (data.status === 200) {
             toggleEditMode();
             setSite(newSite);
-            setSuccessMsg(data.message);
-            setTimeout(() => {
-                setSuccessMsg('');
-            }, 5000);
+            // setSuccessMsg(data.message);
+            // setTimeout(() => {
+            //     setSuccessMsg('');
+            // }, 5000);
+            showMessageToast(data.message, true);
         } else {
-            setErrorMsg(data.message);
-            setTimeout(() => {
-                setErrorMsg('');
-            }, 5000);
+            // setErrorMsg(data.message);
+            // setTimeout(() => {
+            //     setErrorMsg('');
+            // }, 5000);
+            showMessageToast(data.message, false);
         }
     };
     
@@ -291,6 +309,7 @@ export default function Demo1({content, siteId}) {
     return (
         <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
             <UpperNav/>
+            <PublishModal site={site} showMessageToast={showMessageToast}/>
             <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap">
                 {successMsg ? <SuccessToast message={successMsg}/> : null}

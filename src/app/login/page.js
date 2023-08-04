@@ -41,6 +41,7 @@ export default function Login() {
             console.log(data);
             if (data.success) {
                 secureLocalStorage.setItem('eport-uid', data.uid);
+                secureLocalStorage.setItem('eport-email', data.email);
                 window.location.href = "/";
             } else {
                 setLoading(false);

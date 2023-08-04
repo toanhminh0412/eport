@@ -2,7 +2,7 @@ export default function Skills({content}) {
     const skills = content.skills;
     
     return (
-        <section className="prose mt-12">
+        <section className="prose mb-12">
             <h1>{content.heading}</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-4">

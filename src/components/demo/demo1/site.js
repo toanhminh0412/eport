@@ -5,21 +5,15 @@ import { useRef, useState } from "react";
 import UpperNav from "@/components/UpperNav"
 import ControlNav from "../ControlNav";
 import { ErrorToast, SuccessToast } from "../MessageToast";
-import Profile from "./sections/Profile";
-import AboutMe from "./sections/AboutMe";
-import Skills from "./sections/Skills";
 import ContentEditor from "../ContentEditor";
 import { storage } from "../../../../public/libs/firebase";
 
 import secureLocalStorage from "react-secure-storage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import Experience from "./sections/Experience";
-import Services from "./sections/Services";
-import Projects from "./sections/Projects";
-import Testimonials from "./sections/Testimonials";
 import Footer from "./sections/Footer";
 import { compressImageSize } from "@/helpers/files";
 import PublishModal from "../PublishModal";
+import Section from "./Section";
 
 export default function Demo1({content, siteId}) {
     const [site, setSite] = useState(content);
@@ -97,6 +91,7 @@ export default function Demo1({content, siteId}) {
         const newAboutMe = {
             id: 1,
             heading: aboutMeRef.current[0].value,
+            hidden: aboutMeRef.current['hidden'].checked,
             bio: aboutMeRef.current[1].getContent(),
             extraInfo: newExtraInfo
         }
@@ -119,6 +114,7 @@ export default function Demo1({content, siteId}) {
         const newSkills = {
             id: 2,
             heading: skillsRef.current.heading.value,
+            hidden: skillsRef.current['hidden'].checked,
             skills: newSkillsList
         }
         
@@ -141,6 +137,7 @@ export default function Demo1({content, siteId}) {
         const newExperience = {
             id: 3,
             heading: experienceRef.current.heading.value,
+            hidden: experienceRef.current['hidden'].checked,
             experiences: newExperienceList
         }
 
@@ -161,6 +158,7 @@ export default function Demo1({content, siteId}) {
         const newServices = {
             id: 4,
             heading: servicesRef.current.heading.value,
+            hidden: servicesRef.current['hidden'].checked,
             services: newServicesList
         }
 
@@ -206,6 +204,7 @@ export default function Demo1({content, siteId}) {
         const newProjects = {
             id: 5,
             heading: projectsRef.current.heading.value,
+            hidden: projectsRef.current['hidden'].checked,
             projects: newProjectsList
         }
 
@@ -226,6 +225,7 @@ export default function Demo1({content, siteId}) {
         const newTestimonials = {
             id: 6,
             heading: testimonialsRef.current.heading.value,
+            hidden: testimonialsRef.current['hidden'].checked,
             testimonials: newTestimonialsList
         }
 
@@ -306,21 +306,10 @@ export default function Demo1({content, siteId}) {
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap">
                 {successMsg ? <SuccessToast message={successMsg}/> : null}
                 {errorMsg ? <ErrorToast message={errorMsg}/> : null}
-                <Profile content={site.sections[0]}/>
-                <div className="card min-h-screen w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
+                <Section content={site.sections[0]}/>
+                <div className="card h-fit w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
                     <div className="p-8">
-                    <AboutMe content={site.sections[1]}/>
-                    <Skills content={site.sections[2]}/>
-                    <Experience content={site.sections[3]}/>
-
-                    {/* Services */}
-                    <Services content={site.sections[4]}/>
-
-                    {/* Projects */}
-                    <Projects content={site.sections[5]}/>
-
-                    {/* Testimonials */}
-                    <Testimonials content={site.sections[6]} />
+                        {site.sections.slice(1, 7).map((section, index) => <Section key={`${section.heading}-${index}`} content={section}/>)}
                     </div>
                 
                 {/* Contact me */}

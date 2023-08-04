@@ -22,12 +22,28 @@ export default function ServicesEdit({content, servicesRef}) {
             </div>
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full max-w-lg">
+                        {/* Section visibility */}
+                        <label className="label">
+                            <span className="label-text">Hide section:</span>
+                        </label>
+                        <input
+                        ref={el => (servicesRef.current['hidden'] = el)}
+                        type="checkbox" 
+                        className="toggle" 
+                        defaultChecked={services.hidden}/>
+                        <label className="label text-xs">
+                            <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                        </label>
+
+                        {/* Section heading */}
                         <label className="label">
                             <span className="label-text">Section heading  (recommend &apos;Services&apos;):</span>
                         </label>
                         <input ref={el => (servicesRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Services')" className="input border-black w-full" defaultValue={services.heading} />
                     </div>
+
+                    {/* Services */}
                     <div className="font-semibold mt-8">Service list:</div>
                     <div className="form-control max-w-lg">
                         {servicesList.map((svc, index) => (

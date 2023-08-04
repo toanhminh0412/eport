@@ -5,7 +5,7 @@ export default function AboutMe({content}) {
     const [section, _] = useState(content);
 
     return (
-        <section className="prose">
+        <section className="prose mb-12">
             <h1>{section.heading}</h1>
             <div dangerouslySetInnerHTML={{ __html: section.bio }}></div>
             <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 text-md">

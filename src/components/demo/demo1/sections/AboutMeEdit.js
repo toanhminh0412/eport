@@ -22,12 +22,29 @@ export default function AboutMeEdit({content, aboutMeRef}) {
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
                     <div className="mt-4">
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full max-w-lg">
+                            {/* Section visibility */}
+                            <label className="label">
+                                <span className="label-text">Hide section:</span>
+                            </label>
+                            <input
+                            ref={el => (aboutMeRef.current['hidden'] = el)}
+                            type="checkbox" 
+                            className="toggle" 
+                            defaultChecked={aboutMe.hidden}/>
+                            <label className="label text-xs">
+                                <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                            </label>
+                            
+
+                            {/* Heading */}
                             <label className="label">
                                 <span className="label-text">Section heading  (recommend &apos;About me&apos;):</span>
                             </label>
                             <input ref={el => (aboutMeRef.current[0] = el)} type="text" placeholder="Section heading (recommend 'About me')" className="input border-black w-full" defaultValue={aboutMe.heading} />
                         </div>
+
+                        {/* Bio */}
                         <div className="form-control w-full max-w-2xl mt-4">
                             <label className="label">
                                 <span className="label-text">Bio:</span>
@@ -39,6 +56,8 @@ export default function AboutMeEdit({content, aboutMeRef}) {
                             defaultValue={aboutMe.bio}
                             />
                         </div>
+
+                        {/* Extra information */}
                         <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text">Extra information (e.g. age, hobbies, etc):</span>

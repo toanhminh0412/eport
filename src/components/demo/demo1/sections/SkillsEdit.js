@@ -20,12 +20,28 @@ export default function SkillsEdit({content, skillsRef}) {
             </div>
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full max-w-lg">
+                        {/* Section visibility */}
+                        <label className="label">
+                            <span className="label-text">Hide section:</span>
+                        </label>
+                        <input
+                        ref={el => (skillsRef.current['hidden'] = el)}
+                        type="checkbox" 
+                        className="toggle" 
+                        defaultChecked={skills.hidden}/>
+                        <label className="label text-xs">
+                            <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                        </label>
+
+                        {/* Section heading */}
                         <label className="label">
                             <span className="label-text">Section heading  (recommend &apos;Skills&apos;):</span>
                         </label>
                         <input ref={el => (skillsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Skills')" className="input border-black w-full" defaultValue={skills.heading} />
                     </div>
+
+                    {/* Skills */}
                     <div className="form-control mt-2 max-w-lg">
                         {skillsList.map((skill, index) => (
                         <div key={skill.key !== 'Blank skill' ? skill.key : index} className="mt-2 w-full">

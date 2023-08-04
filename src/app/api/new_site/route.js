@@ -37,6 +37,7 @@ export async function GET(request) {
             {
                 id: 1,
                 heading: "About me",
+                hidden: false,
                 bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam convallis sapien sit amet pulvinar. Morbi a elit in velit eleifend malesuada et eget libero. Nulla suscipit congue purus, quis tristique tortor euismod ut. Sed ullamcorper magna id tristique facilisis. Fusce consequat metus vitae augue sagittis ultricies. Nullam varius posuere dapibus. Nullam luctus, sapien nec fermentum cursus, elit dolor vestibulum leo, et elementum enim neque vitae ligula. In at elit pellentesque, laoreet nibh eu, sagittis elit. Donec sit amet ultrices tortor, ut pharetra leo. Donec pretium nisi a mi sollicitudin, vitae consectetur sem rutrum.",
                 extraInfo: [
                     {key: "Name", value: "John Doe"},
@@ -50,6 +51,7 @@ export async function GET(request) {
             {
                 id: 2,
                 heading: "Skills",
+                hidden: false,
                 skills: [
                     {key: "HTML", value: 95},
                     {key: "jQuery", value: 100},
@@ -62,6 +64,7 @@ export async function GET(request) {
             {
                 id: 3,
                 heading: "Experience",
+                hidden: false,
                 experiences: [
                     {
                         jobTitle: 'Web designer',
@@ -89,6 +92,7 @@ export async function GET(request) {
             {
                 id: 4,
                 heading: "Services",
+                hidden: false,
                 services: [
                     {
                         icon: 'fa-solid fa-laptop',
@@ -115,6 +119,7 @@ export async function GET(request) {
             {
                 id: 5,
                 heading: "Projects",
+                hidden: false,
                 projects: [
                     {
                         images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289'],
@@ -133,6 +138,7 @@ export async function GET(request) {
             {
                 id: 6,
                 heading: "Testimonials",
+                hidden: false,
                 testimonials: [
                     {
                         name: 'Catherine Oliver',
@@ -154,6 +160,7 @@ export async function GET(request) {
             {
                 id: 7,
                 heading: "Get in touch",
+                hidden: false,
                 socials: [
                     {key: "gmail", value: "https://gmail.com"},
                     {key: "instagram", value: "https://instagram.com"},

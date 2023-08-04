@@ -1,6 +1,6 @@
 export default function Services({content}) {
     return (
-        <section className="prose mt-12">
+        <section className="prose mb-12">
             <h1>{content.heading}</h1>
             <div className="block sm:grid md:block lg:grid grid-cols-2 gap-4">
                 {content.services.map((service, index) => (

@@ -22,7 +22,21 @@ export default function ExperienceEdit({content, experienceRef}) {
             </div>
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full max-w-lg">
+                        {/* Section visibility */}
+                        <label className="label">
+                            <span className="label-text">Hide section:</span>
+                        </label>
+                        <input
+                        ref={el => (experienceRef.current['hidden'] = el)}
+                        type="checkbox" 
+                        className="toggle" 
+                        defaultChecked={experience.hidden}/>
+
+                        {/* Heading */}
+                        <label className="label text-xs">
+                            <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                        </label>
                         <label className="label">
                             <span className="label-text">Section heading  (recommend &apos;Experiences&apos;):</span>
                         </label>

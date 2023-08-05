@@ -28,6 +28,7 @@ export default function Demo1({content, siteId}) {
     const servicesRef = useRef({'services': []});
     const projectsRef = useRef({'categories': [], 'projects': []});
     const testimonialsRef = useRef({'testimonials': []});
+    const referencesRef = useRef({'references': []})
     const footerRef = useRef({'socials': []});
 
     // Toggle edit mode
@@ -229,6 +230,29 @@ export default function Demo1({content, siteId}) {
             testimonials: newTestimonialsList
         }
 
+        // Update refrerences section
+        let newReferencesList = [];
+        for (let i = 0; i < referencesRef.current.references.length; i++) {
+            if (referencesRef.current.references[i] && referencesRef.current.references[i].name) {
+                const referenceObj = referencesRef.current.references[i];
+                const newReference = {
+                    name: referenceObj.name.value,
+                    relationship: referenceObj.relationship.value,
+                    phone: referenceObj.phone.value,
+                    email: referenceObj.email.value,
+                    linkedin: referenceObj.linkedin.value
+                }
+                newReferencesList.push(newReference);
+            }
+        }
+
+        const newReferences = {
+            id: 8,
+            heading: referencesRef.current.heading.value,
+            hidden: referencesRef.current['hidden'].checked,
+            references: newReferencesList
+        }
+
         // Update footer section
         let newSocials = [];
         for (let i = 0; i < footerRef.current.socials.length; i++) {
@@ -259,6 +283,7 @@ export default function Demo1({content, siteId}) {
         newSections[servicesRef.current.index.dataset.index] = newServices;
         newSections[projectsRef.current.index.dataset.index] = newProjects;
         newSections[testimonialsRef.current.index.dataset.index] = newTestimonials;
+        newSections[referencesRef.current.index.dataset.index] = newReferences;
 
         // Update site
         const newSite = {
@@ -305,6 +330,7 @@ export default function Demo1({content, siteId}) {
                 servicesRef={servicesRef}
                 projectsRef={projectsRef}
                 testimonialsRef={testimonialsRef}
+                referencesRef={referencesRef}
                 footerRef={footerRef}/>
             </main>
         )
@@ -321,11 +347,11 @@ export default function Demo1({content, siteId}) {
                 <Section content={site.sections[0]}/>
                 <div className="card h-fit w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
                     <div className="p-8">
-                        {site.sections.slice(1, 7).map((section, index) => <Section key={`${section.heading}-${index}`} content={section}/>)}
+                        {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section}/>)}
                     </div>
                 
                 {/* Contact me */}
-                <Footer content={site.sections[7]}/>
+                <Footer content={site.sections[site.sections.length-1]}/>
                 </div>
             </div>
         </main>

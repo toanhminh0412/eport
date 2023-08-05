@@ -6,6 +6,7 @@ import ServicesEdit from "./sections/ServicesEdit";
 import ProjectsEdit from "./sections/ProjectsEdit";
 import TestimonialsEdit from "./sections/TestimonialsEdit";
 import FooterEdit from "./sections/FooterEdit";
+import ReferencesEdit from "./sections/ReferencesEdit";
 
 // Render a single edit section based on id
 export default function SectionEdit({
@@ -17,6 +18,7 @@ export default function SectionEdit({
     servicesRef,
     projectsRef,
     testimonialsRef,
+    referencesRef,
     footerRef,
     index,
     moveUp,
@@ -40,6 +42,8 @@ export default function SectionEdit({
             return <TestimonialsEdit content={content} testimonialsRef={testimonialsRef} index={index} moveUp={moveUp} moveDown={moveDown}/>
         case 7:
             return <FooterEdit content={content} footerRef={footerRef} />
+        case 8:
+            return <ReferencesEdit content={content} referencesRef={referencesRef} index={index} moveUp={moveUp} moveDown={moveDown}/>
         default:
             return null;
     }

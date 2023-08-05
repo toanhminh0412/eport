@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, } from "react";
 import Image from "next/image";
+import { useState, useContext } from "react";
+import { SiteContext } from "../../ContentEditor";
 import TextEditor from "@/components/TextEditor";
 
 export default function ProjectsEdit({
@@ -11,6 +12,7 @@ export default function ProjectsEdit({
     moveUp, 
     moveDown
 }) {
+    const site = useContext(SiteContext);
     const [projects, _] = useState(content);
     const [projectsList, setProjectsList] = useState(content.projects);
 
@@ -92,7 +94,7 @@ export default function ProjectsEdit({
             <div className="ms-4 z-10 absolute right-12 top-4">
                 <div className="text-xl">
                     {index !== 1 ? <i className="fa-solid fa-arrow-up me-2 text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveUp(index)}></i> : null}
-                    {index !== 6 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
+                    {index !== site.sections.length - 2 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
                 </div>
             </div>
 
@@ -205,7 +207,7 @@ export default function ProjectsEdit({
                             />
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setProjectsList([...projectsList, {title: 'Project name', categories: [0], images: [], description: 'Provide a short description for your project here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add project</div>
+                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setProjectsList([...projectsList, {title: 'Project name', tags: ['Tag 1', 'Tag 2'], images: [], description: 'Provide a short description for your project here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add project</div>
                     </div>
                 </div>
             </div>

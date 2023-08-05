@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, } from "react";
+import { useState, useContext} from "react";
+import { SiteContext } from "../../ContentEditor";
 
 export default function TestimonialsEdit({
     content, 
@@ -9,6 +10,7 @@ export default function TestimonialsEdit({
     moveUp, 
     moveDown
 }) {
+    const site = useContext(SiteContext);
     const [testimonials, _] = useState(content);
     const [testimonialsList, setTestimonialsList] = useState(content.testimonials);
     
@@ -31,7 +33,7 @@ export default function TestimonialsEdit({
             <div className="ms-4 z-10 absolute right-12 top-4">
                 <div className="text-xl">
                     {index !== 1 ? <i className="fa-solid fa-arrow-up me-2 text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveUp(index)}></i> : null}
-                    {index !== 6 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
+                    {index !== site.sections.length - 2 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
                 </div>
             </div>
 

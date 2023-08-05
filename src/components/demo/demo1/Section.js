@@ -6,6 +6,7 @@ import Services from "./sections/Services";
 import Projects from "./sections/Projects";
 import Testimonials from "./sections/Testimonials";
 import Footer from "./sections/Footer";
+import References from "./sections/References";
 
 // Render a single section based on id
 export default function Section({content}) {
@@ -32,6 +33,8 @@ export default function Section({content}) {
             return <Testimonials content={content} />
         case 7:
             return <Footer content={content} />
+        case 8:
+            return <References content={content} />
         default:
             return null;
     }

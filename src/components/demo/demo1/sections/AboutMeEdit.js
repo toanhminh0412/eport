@@ -1,7 +1,8 @@
 'use client';
 
 import TextEditor from "@/components/TextEditor";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { SiteContext } from "../../ContentEditor";
 
 export default function AboutMeEdit({
     content, 
@@ -10,6 +11,7 @@ export default function AboutMeEdit({
     moveUp, 
     moveDown
 }) {
+    const site = useContext(SiteContext);
     const [aboutMe, _] = useState(content);
     const [extraInfo, setExtraInfo] = useState(content.extraInfo);
 
@@ -33,7 +35,7 @@ export default function AboutMeEdit({
             <div className="ms-4 z-10 absolute right-12 top-4">
                 <div className="text-xl">
                     {index !== 1 ? <i className="fa-solid fa-arrow-up me-2 text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveUp(index)}></i> : null}
-                    {index !== 6 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
+                    {index !== site.sections.length - 2 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
                 </div>
             </div>
 

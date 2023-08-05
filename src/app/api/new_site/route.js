@@ -158,6 +158,20 @@ export async function GET(request) {
                 ]
             },
             {
+                id: 8,
+                heading: "References",
+                hidden: false,
+                references: [
+                    {
+                        name: 'Catherine Oliver',
+                        relationship: 'Manager at Company A',
+                        phone: 123456789,
+                        email: 'coliver@example.org',
+                        linkedin: 'https://linkedin.com'
+                    }
+                ]
+            },
+            {
                 id: 7,
                 heading: "Get in touch",
                 hidden: false,
@@ -166,7 +180,7 @@ export async function GET(request) {
                     {key: "instagram", value: "https://instagram.com"},
                     {key: "linkedin", value: "https://linkedin.com"},
                 ]
-            }
+            },
         ]
     })
 

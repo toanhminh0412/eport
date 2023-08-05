@@ -79,7 +79,10 @@ export default function ProjectsEdit({
     }
 
     return (
-        <div className="collapse collapse-arrow border border-slate-300">
+        <div 
+        ref={el => (projectsRef.current['index'] = el)}
+        className="collapse collapse-arrow border border-slate-300 overflow-x-scroll"
+        data-index={index}>
             <input type="checkbox" name="my-accordion-2" /> 
             <div className="collapse-title text-xl font-medium bg-white shadow-lg">
                 {projects.heading}
@@ -138,9 +141,9 @@ export default function ProjectsEdit({
                             <label className="label mt-2 max-w-lg">
                                 <span className="label-text">Project tags:</span>
                             </label>
-                            <form className="join w-full max-w-lg" data-project-index={projIndex} onSubmit={addTag}>
+                            <form className="join max-w-lg" data-project-index={projIndex} onSubmit={addTag}>
                                 <input 
-                                className="input border-black join-item" 
+                                className="input border-black join-item w-40 xs:w-auto" 
                                 placeholder="Enter a tag"
                                 required/>
                                 <button className="btn btn-primary join-item">Add tag</button>
@@ -182,10 +185,10 @@ export default function ProjectsEdit({
                                     width={300}
                                     height={200} 
                                     style={{objectFit: "cover"}} 
-                                    className="w-[300px] h-[200px]"/>
+                                    className="w-[250px] xs:w-[300px] h-[200px]"/>
                                 </div>
                                 ))}
-                                <div className="w-[300px] h-[200px] bg-slate-200 hover:bg-slate-400 duration-300 text-center flex flex-col justify-center relative">
+                                <div className="w-[250px] xs:w-[300px] h-[200px] bg-slate-200 hover:bg-slate-400 duration-300 text-center flex flex-col justify-center relative">
                                     <div className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
                                     <input type="file" accept="image/*" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
                                 </div>

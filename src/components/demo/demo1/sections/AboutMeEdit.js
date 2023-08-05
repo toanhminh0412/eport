@@ -20,7 +20,10 @@ export default function AboutMeEdit({
     }
 
     return (
-        <div className="collapse collapse-arrow border border-slate-300">
+        <div 
+        ref={el => {(aboutMeRef.current['index'] = el)}} 
+        className="collapse collapse-arrow border border-slate-300" 
+        data-index={index}>
             <input type="checkbox" name="my-accordion-2" /> 
             <div className="collapse-title text-xl font-medium bg-white shadow-lg">
                 {aboutMe.heading}

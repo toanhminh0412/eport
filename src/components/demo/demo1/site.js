@@ -248,10 +248,22 @@ export default function Demo1({content, siteId}) {
             socials: newSocials
         }
 
+        // New sections
+        const sectionsNum = site.sections.length;
+        let newSections = Array(sectionsNum).fill(null);
+        newSections[0] = newProfile;
+        newSections[sectionsNum - 1] = newFooter;
+        newSections[aboutMeRef.current.index.dataset.index] = newAboutMe;
+        newSections[skillsRef.current.index.dataset.index] = newSkills;
+        newSections[experienceRef.current.index.dataset.index] = newExperience;
+        newSections[servicesRef.current.index.dataset.index] = newServices;
+        newSections[projectsRef.current.index.dataset.index] = newProjects;
+        newSections[testimonialsRef.current.index.dataset.index] = newTestimonials;
+
         // Update site
         const newSite = {
             ...site,
-            sections: [newProfile, newAboutMe, newSkills, newExperience, newServices, newProjects, newTestimonials, newFooter]
+            sections: newSections
         }
         console.log(newSite);
         

@@ -74,7 +74,7 @@ export default function ProjectsEdit({content, projectsRef}) {
 
     return (
         <div className="collapse collapse-arrow border border-slate-300">
-            <input type="radio" name="my-accordion-2" /> 
+            <input type="checkbox" name="my-accordion-2" /> 
             <div className="collapse-title text-xl font-medium bg-white shadow-lg">
                 {projects.heading}
             </div>

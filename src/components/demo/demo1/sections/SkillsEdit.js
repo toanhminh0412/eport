@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export default function SkillsEdit({content, skillsRef}) {
+export default function SkillsEdit({
+    content, 
+    skillsRef, 
+    index, 
+    moveUp, 
+    moveDown
+}) {
     const [skills, _] = useState(content);
     const [skillsList, setSkillsList] = useState(content.skills);
     
@@ -18,6 +24,16 @@ export default function SkillsEdit({content, skillsRef}) {
             <div className="collapse-title text-xl font-medium bg-white shadow-lg">
                 {skills.heading}
             </div>
+
+            {/* Move up/down buttons */}
+            <div className="ms-4 z-10 absolute right-12 top-4">
+                <div className="text-xl">
+                    {index !== 1 ? <i className="fa-solid fa-arrow-up me-2 text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveUp(index)}></i> : null}
+                    {index !== 6 ? <i className="fa-solid fa-arrow-down text-slate-300 hover:text-slate-700 active:text-slate-700 duration-200" onClick={() => moveDown(index)}></i>: null}
+                </div>
+            </div>
+
+            {/* Content */}
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
                     <div className="form-control w-full max-w-lg">

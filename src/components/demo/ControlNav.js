@@ -38,10 +38,10 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
             <div className="navbar-start">
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
                 {state === 'edit' ? 
-                <button className="btn ms-2" onClick={() => window.publish_modal.showModal()}>Publish site</button>
+                <button className="btn btn-sm xs:btn ms-2" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
-                <button className="btn ms-2" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
-                {domain !== '' ? <Link href={`/${domain}`} className="btn ms-2" target="_blank">Visit site</Link> : null}
+                <button className="btn btn-sm xs:btn ms-2" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
+                {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn ms-2" target="_blank">Visit site</Link> : null}
             </div>
             <div className="navbar-center hidden lg:flex"></div>
             <div className="navbar-end"></div>
@@ -52,24 +52,24 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
 function ControlBtn({state, loading, onClick, delay}) {
     if (state === 'edit' && !loading) {
         return (
-            <button className="btn" onClick={onClick} disabled={delay}>Edit site</button>
+            <button className="btn btn-sm xs:btn" onClick={onClick} disabled={delay}>Edit site</button>
         )
     }
     else if (state === 'edit' && loading) {
         return (
-            <button className="btn">
+            <button className="btn btn-sm xs:btn">
                 <span className="loading loading-spinner"></span>
                 Editing
             </button>
         )
     } else if (state === 'save' && !loading) {
         return (
-            <button className="btn" onClick={onClick} disabled={delay}>Save site</button>
+            <button className="btn btn-sm xs:btn" onClick={onClick} disabled={delay}>Save site</button>
         )
     }
     else {
         return (
-            <button className="btn">
+            <button className="btn btn-sm xs:btn">
                 <span className="loading loading-spinner"></span>
                 Saving
             </button>

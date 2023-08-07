@@ -168,7 +168,7 @@ export default function Demo1({content, siteId}) {
         for (let i = 0; i < projectsRef.current.projects.length; i++) {
             if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
                 const projectObj = projectsRef.current.projects[i];
-                if (projectObj.images.length > 0) {
+                if (projectObj.images && projectObj.images.length > 0) {
                     const userId = secureLocalStorage.getItem('eport-uid');
                     for (let j = 0; j < projectObj.images.length; j++) {
                         if (projectObj.images[j]) {
@@ -195,7 +195,7 @@ export default function Demo1({content, siteId}) {
                 const newProject = {
                     title: projectObj.title.value,
                     description: projectObj.description.getContent(),
-                    images: projectObj.images.map(image => image ? image.dataset.src : null).filter(image => image !== null),
+                    images: projectObj.images ? projectObj.images.map(image => image ? image.dataset.src : null).filter(image => image !== null) : [],
                     tags: projectObj.tags.value.split(',').filter(tag => tag !== '')
                 }
                 newProjectsList.push(newProject);

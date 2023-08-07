@@ -5,6 +5,8 @@ import { useState, useContext } from "react";
 import { SiteContext } from "../../ContentEditor";
 import TextEditor from "@/components/TextEditor";
 
+import { nanoid } from "nanoid";
+
 export default function ProjectsEdit({
     content, 
     projectsRef,
@@ -14,7 +16,7 @@ export default function ProjectsEdit({
 }) {
     const site = useContext(SiteContext);
     const [projects, _] = useState(content);
-    const [projectsList, setProjectsList] = useState(content.projects);
+    const [projectsList, setProjectsList] = useState(content.projects.map(proj => ({id: nanoid(), ...proj})));
 
     // Remove a tag
     const removeTag = e => {
@@ -126,7 +128,7 @@ export default function ProjectsEdit({
                     <div className="font-semibold mt-8">Project list:</div>
                     <div className="form-control">
                         {projectsList.map((project, projIndex) => (
-                        <div key={`${project.title}-${projIndex}`} className={`${projIndex === 0 ? '' : 'mt-12'} w-full`}>
+                        <div key={project.id} className={`${projIndex === 0 ? '' : 'mt-12'} w-full`}>
                             {/* Title */}
                             <label className="label max-w-lg">
                                 <span className="label-text">Project title:</span>
@@ -207,7 +209,7 @@ export default function ProjectsEdit({
                             />
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setProjectsList([...projectsList, {title: 'Project name', tags: ['Tag 1', 'Tag 2'], images: [], description: 'Provide a short description for your project here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add project</div>
+                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setProjectsList([...projectsList, {id: nanoid(), title: 'Project name', tags: ['Tag 1', 'Tag 2'], images: [], description: 'Provide a short description for your project here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add project</div>
                     </div>
                 </div>
             </div>

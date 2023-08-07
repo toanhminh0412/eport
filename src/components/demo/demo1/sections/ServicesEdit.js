@@ -5,6 +5,8 @@ import { SiteContext } from "../../ContentEditor";
 import IconPicker from "@/components/IconPicker";
 import TextEditor from "@/components/TextEditor";
 
+import { nanoid } from "nanoid";
+
 export default function ServicesEdit({
     content, 
     servicesRef,
@@ -14,7 +16,7 @@ export default function ServicesEdit({
 }) {
     const site = useContext(SiteContext);
     const [services, _] = useState(content);
-    const [servicesList, setServicesList] = useState(content.services);
+    const [servicesList, setServicesList] = useState(content.services.map(service => ({id: nanoid(), ...service})));
 
     // Remove a service from Services section
     const removeService = index => {
@@ -68,7 +70,7 @@ export default function ServicesEdit({
                     <div className="font-semibold mt-8">Service list:</div>
                     <div className="form-control max-w-lg">
                         {servicesList.map((svc, index) => (
-                        <div key={`${svc.title}-${index}`} className={`${index === 0 ? '' : 'mt-12'} w-full`}>
+                        <div key={svc.id} className={`${index === 0 ? '' : 'mt-12'} w-full`}>
                             <label className="label">
                                 <span className="label-text">Service name:</span>
                                 <span className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeService(index)}><i className="fa-solid fa-trash me-2"></i>Remove service</span>
@@ -99,7 +101,7 @@ export default function ServicesEdit({
                         </div>
                         ))}
                         
-                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {title: 'Service name', icon: 'fas fa-laptop', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add service</div>
+                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {id: nanoid(), title: 'Service name', icon: 'fas fa-laptop', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add service</div>
                     </div>
                 </div>
             </div>

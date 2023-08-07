@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { db } from '../../../../../public/libs/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 

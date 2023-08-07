@@ -4,6 +4,8 @@ import TextEditor from "@/components/TextEditor";
 import { useState, useContext } from "react";
 import { SiteContext } from "../../ContentEditor";
 
+import { nanoid } from "nanoid";
+
 export default function AboutMeEdit({
     content, 
     aboutMeRef, 
@@ -13,7 +15,7 @@ export default function AboutMeEdit({
 }) {
     const site = useContext(SiteContext);
     const [aboutMe, _] = useState(content);
-    const [extraInfo, setExtraInfo] = useState(content.extraInfo);
+    const [extraInfo, setExtraInfo] = useState(content.extraInfo.map(info => ({id: nanoid(), ...info})));
 
     // Remove extra info item
     const removeExtraInfo = index => {
@@ -84,7 +86,7 @@ export default function AboutMeEdit({
                                 <span className="label-text">Extra information (e.g. age, hobbies, etc):</span>
                             </label>
                             {extraInfo.map((info, index) => (
-                            <div key={info.key !== 'Info name' ? info.key : index} className="mt-2">
+                            <div key={info.id} className="mt-2">
                                 <label className="label">
                                     <span className="label-text">Info name/value:</span>
                                 </label>
@@ -97,7 +99,7 @@ export default function AboutMeEdit({
                                 </div>
                             </div>
                             ))}
-                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExtraInfo([...extraInfo, {key: 'Info name', value: 'Info value'}])}}><i className="fa-solid fa-plus me-2"></i>Add info</div>
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExtraInfo([...extraInfo, {id: nanoid(), key: 'Info name', value: 'Info value'}])}}><i className="fa-solid fa-plus me-2"></i>Add info</div>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,8 @@
 import { useState, useContext } from "react";
 import { SiteContext } from "../../ContentEditor";
 
+import { nanoid } from "nanoid";
+
 export default function SkillsEdit({
     content, 
     skillsRef, 
@@ -12,7 +14,7 @@ export default function SkillsEdit({
 }) {
     const site = useContext(SiteContext);
     const [skills, _] = useState(content);
-    const [skillsList, setSkillsList] = useState(content.skills);
+    const [skillsList, setSkillsList] = useState(content.skills.map(skill => ({id: nanoid(), ...skill})));
     
     // Remove a skill from Skills section
     const removeSkill = index => {
@@ -65,7 +67,7 @@ export default function SkillsEdit({
                     {/* Skills */}
                     <div className="form-control mt-2 max-w-lg">
                         {skillsList.map((skill, index) => (
-                        <div key={skill.key !== 'Blank skill' ? skill.key : index} className="mt-2 w-full">
+                        <div key={skill.id} className="mt-2 w-full">
                             <label className="label">
                                 <span className="label-text">Skill name/value (between 0 and 100):</span>
                             </label>
@@ -78,7 +80,7 @@ export default function SkillsEdit({
                             </div>
                         </div>
                         ))}
-                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setSkillsList([...skillsList, {key: 'Blank skill', value: 50}])}}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
+                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setSkillsList([...skillsList, {id: nanoid(), key: 'Blank skill', value: 50}])}}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
                     </div>
                 </div>
             </div>

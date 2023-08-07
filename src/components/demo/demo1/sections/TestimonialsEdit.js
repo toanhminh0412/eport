@@ -3,6 +3,8 @@
 import { useState, useContext} from "react";
 import { SiteContext } from "../../ContentEditor";
 
+import { nanoid } from "nanoid";
+
 export default function TestimonialsEdit({
     content, 
     testimonialsRef,
@@ -12,7 +14,7 @@ export default function TestimonialsEdit({
 }) {
     const site = useContext(SiteContext);
     const [testimonials, _] = useState(content);
-    const [testimonialsList, setTestimonialsList] = useState(content.testimonials);
+    const [testimonialsList, setTestimonialsList] = useState(content.testimonials.map(testimonial => ({id: nanoid(), ...testimonial})));
     
     const removeTestimony = index => {
         setTestimonialsList(prevTestimonialsList => prevTestimonialsList.filter((_, prevIndex) => prevIndex !== index));
@@ -65,7 +67,7 @@ export default function TestimonialsEdit({
 
                     <div className="form-control mt-[-20px] max-w-lg">
                         {testimonialsList.map((testimonial, index) => (
-                        <div key={`${testimonial.name}-${testimonial.job}-${index}`} className="mt-4 w-full">
+                        <div key={testimonial.id} className="mt-4 w-full">
                             {/* Name */}
                             <label className="label">
                                 <span className="label-text">Testimony giver&apos;s name:</span>
@@ -102,7 +104,7 @@ export default function TestimonialsEdit({
                             defaultValue={testimonial.content} />
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setTestimonialsList([...testimonialsList, {name: "Person's name", job: "Person's job", description: 'What was the feedback for your work?'}])}}><i className="fa-solid fa-plus me-2"></i>Add testimony</div>
+                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setTestimonialsList([...testimonialsList, {id: nanoid(), name: "Person's name", job: "Person's job", description: 'What was the feedback for your work?'}])}}><i className="fa-solid fa-plus me-2"></i>Add testimony</div>
                     </div>
                 </div>
             </div>

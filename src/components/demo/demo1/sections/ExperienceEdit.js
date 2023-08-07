@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import { SiteContext } from "../../ContentEditor";
 import TextEditor from "@/components/TextEditor";
 
+import { nanoid } from "nanoid";
+
 export default function ExperienceEdit({
     content, 
     experienceRef,
@@ -14,7 +16,7 @@ export default function ExperienceEdit({
     const site = useContext(SiteContext);
     /***  Experience section ***/
     const [experience, _] = useState(content);
-    const [experienceList, setExperienceList] = useState(content.experiences);
+    const [experienceList, setExperienceList] = useState(content.experiences.map(exp => ({id: nanoid(), ...exp})));
     
     // Remove an experience from Experience section
     const removeExperience = index => {
@@ -66,7 +68,7 @@ export default function ExperienceEdit({
                     <div className="font-semibold mt-8">Experience list:</div>
                     <div className="form-control max-w-lg">
                         {experienceList.map((exp, index) => (
-                        <div key={`${exp.jobTitle}-${exp.startYear}-${exp.endYear}-${index}`} className={`${index === 0 ? '' : 'mt-8'} w-full`}>
+                        <div key={exp.id} className={`${index === 0 ? '' : 'mt-8'} w-full`}>
                             <label className="label">
                                 <span className="label-text">Job title:</span>
                                 <span className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeExperience(index)}><i className="fa-solid fa-trash me-2"></i>Remove experience</span>
@@ -104,7 +106,7 @@ export default function ExperienceEdit({
                             defaultValue={exp.description}/>
                         </div>
                         ))}
-                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
+                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {id: nanoid(), jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,8 @@
 import { useState, useContext } from "react";
 import { SiteContext } from "../../ContentEditor";
 
+import { nanoid } from "nanoid";
+
 export default function ReferencesEdit({
     content, 
     referencesRef, 
@@ -12,7 +14,7 @@ export default function ReferencesEdit({
 }) {
     const site = useContext(SiteContext);
     const [references, _] = useState(content);
-    const [referencesList, setReferencesList] = useState(content.references);
+    const [referencesList, setReferencesList] = useState(content.references.map(reference => ({id: nanoid(), ...reference})));
 
     // Remove a reference
     const removeReference = index => {
@@ -66,7 +68,7 @@ export default function ReferencesEdit({
                             <div className="font-semibold mt-8">Reference list:</div>
                             <div className="form-control">
                                 {referencesList.map((reference, refIndex) => (
-                                <div key={`${reference.name}-${refIndex}`} className={`${refIndex === 0 ? '' : 'mt-12'} w-full`}>
+                                <div key={reference.id} className={`${refIndex === 0 ? '' : 'mt-12'} w-full`}>
                                     {/* Name */}
                                     <label className="label max-w-lg">
                                         <span className="label-text">Referrer&apos;s name:</span>
@@ -124,7 +126,7 @@ export default function ReferencesEdit({
                                     defaultValue={reference.linkedin} />
                                 </div>
                                 ))}
-                                <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setReferencesList([...referencesList, {name: 'Person name', relationship: 'Relationship with you', phone: 123456789, email: 'person@example.org', linkedin: 'https://linkedin.com'}])}}><i className="fa-solid fa-plus me-2"></i>Add reference</div>
+                                <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setReferencesList([...referencesList, {id: nanoid(), name: 'Person name', relationship: 'Relationship with you', phone: 123456789, email: 'person@example.org', linkedin: 'https://linkedin.com'}])}}><i className="fa-solid fa-plus me-2"></i>Add reference</div>
                             </div>
                         </div>
                     </div>

@@ -3,9 +3,11 @@
 import { useState, } from "react";
 import socialIcons from "../../../../data/social-icons";
 
+import { nanoid } from "nanoid";
+
 export default function FooterEdit({content, footerRef}) {
     const [footer, _] = useState(content);
-    const [socials, setSocials] = useState(content.socials);
+    const [socials, setSocials] = useState(content.socials.map(social => ({id: nanoid(), ...social})));
     
     const removeSocial = (index) => {
         setSocials(prevSocials => prevSocials.filter((_, prevIndex) => prevIndex !== index));
@@ -31,7 +33,7 @@ export default function FooterEdit({content, footerRef}) {
                     <div className="font-semibold mt-8">Social medias:</div>
                     <div className="form-control mt-[-20px] max-w-lg">
                         {socials.map((social, index) => (
-                        <div key={`${social.key}-${index}`} className="mt-4 w-full">
+                        <div key={social.id} className="mt-4 w-full">
                             {/* Name */}
                             <label className="label">
                                 <span className="label-text">Social media brand:</span>
@@ -71,7 +73,7 @@ export default function FooterEdit({content, footerRef}) {
                             
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setSocials([...socials, {key: 'gmail', value: 'https://gmail.com'}])}}><i className="fa-solid fa-plus me-2"></i>Add social media</div>
+                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setSocials([...socials, {id: nanoid(), key: 'gmail', value: 'user@example.org'}])}}><i className="fa-solid fa-plus me-2"></i>Add social media</div>
                     </div>
                 </div>
             </div>

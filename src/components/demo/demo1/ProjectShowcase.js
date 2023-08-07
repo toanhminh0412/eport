@@ -37,8 +37,8 @@ export default function ProjectShowcase({projects}) {
             <dialog key={index} id={`project-${index}`} className="modal text-start">
                 <form method="dialog" className="modal-box">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    <h3 className="font-bold text-lg">{project.title}</h3>
-                    <div className="text-center">
+                    <h3 className="font-bold text-lg mt-0">{project.title}</h3>
+                    {project.images.length > 0 ? <div className="text-center">
                         <div className="carousel h-60 rounded-box shadow-lg border border-slate-300 not-prose">
                             {project.images.map((image, imgIndex) => (
                             <div key={imgIndex} className="carousel-item">
@@ -46,8 +46,10 @@ export default function ProjectShowcase({projects}) {
                             </div> 
                             ))}
                         </div>
-                    </div>
+                    </div> : null}
+                    {project.images.length > 0 ? 
                     <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
+                    : <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>}
                 </form>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>
@@ -67,7 +69,12 @@ export default function ProjectShowcase({projects}) {
                 {projects.map((project, index) => (
                     <div key={index} className={`relative w-full aspect-video duration-500 ${haveActiveTags(project) ? '' : 'hidden'}`}>
                         <div className="absolute top-0 left-0 w-full h-full bg-black z-10 opacity-10 hover:opacity-50 transition-opacity rounded-box" onClick={() => {document.getElementById(`project-${index}`).showModal();}}></div>
-                        <Image alt="project pic" src={project.images[0]} fill className="rounded-md" style={{objectFit: 'cover'}}/>
+                        {project.images.length > 0 ? 
+                        <Image alt="project pic" src={project.images[0]} fill className="rounded-md" style={{objectFit: 'cover'}}/> 
+                        : 
+                        <div className="h-full flex flex-col justify-center">
+                            <div className="font-semibold">{project.title}</div>
+                        </div>}
                     </div>
                 ))}
             </div>

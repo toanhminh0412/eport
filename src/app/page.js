@@ -32,6 +32,7 @@ async function getSite(uid) {
 export default async function Dashboard() {
   await checkLoggedInAction();
   const user = await checkEmailVerificationAction();
+  console.log(user.uid);
   const site = await getSite(user.uid);
 
   return <Demo1 content={site.site} siteId={site.id}/>

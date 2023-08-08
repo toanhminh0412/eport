@@ -18,34 +18,37 @@ export async function GET(request) {
     let message = '';
 
     // Log user in
-    await signInWithEmailAndPassword(auth, email, password)
-    .then(async(userCredential) => {
-        // Signed in, set user info in cookie
-        const user = userCredential.user;
-        cookieStore.set('eport-uid', user.uid);
-        cookieStore.set('eport-email', user.email);
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        if (userCredential) {
+            const user = userCredential.user;
+            cookieStore.set('eport-uid', user.uid);
+            cookieStore.set('eport-email', user.email);
 
-        // Get user profile
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists()) {
-            const userData = userDoc.data();
-            cookieStore.set('eport-domain', userData.domain);
+            // Get user profile
+            const userDoc = await getDoc(doc(db, 'users', user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                cookieStore.set('eport-domain', userData.domain);
+            }
+
+            success = true;
+            message = 'Login successfully!';
+        } else {
+            success = false;
+            message = 'User credential not found!';
         }
-
-        success = true;
-        message = 'Login successfully!';
-    })
-    .catch((error) => {
+    } catch(error) {
         if (error.code == "auth/user-not-found") {
             message = "Invalid email and password. Please try again or sign up!"
         } else {
             message = error.message;
         }
-    });
+    };
 
     return NextResponse.json({
-        uid: cookieStore.get('eport-uid').value,
-        email: cookieStore.get('eport-email').value,
+        uid: cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '',
+        email: cookieStore.get('eport-email') ? cookieStore.get('eport-email').value : '',
         domain: cookieStore.get('eport-domain') ? cookieStore.get('eport-domain').value : '',
         success: success,
         message: message

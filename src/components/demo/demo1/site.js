@@ -341,7 +341,7 @@ export default function Demo1({content, siteId}) {
             <UpperNav/>
             <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
             <PublishModal site={site} showMessageToast={showMessageToast}/>
-            <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap">
+            <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words">
                 {successMsg ? <SuccessToast message={successMsg}/> : null}
                 {errorMsg ? <ErrorToast message={errorMsg}/> : null}
                 <Section content={site.sections[0]}/>

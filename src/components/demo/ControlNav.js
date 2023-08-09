@@ -34,17 +34,15 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
     }
 
     return (
-        <div className="navbar bg-neutral text-neutral-content py-3 fixed top-16 z-40">
-            <div className="navbar-start">
+        <div className="navbar bg-neutral text-neutral-content py-3 fixed top-16 z-30">
+            <div className="navbar-start w-full flex-wrap gap-2">
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
                 {state === 'edit' ? 
-                <button className="btn btn-sm xs:btn ms-2" onClick={() => window.publish_modal.showModal()}>Publish site</button>
+                <button className="btn btn-sm xs:btn" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
-                <button className="btn btn-sm xs:btn ms-2" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
-                {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn ms-2" target="_blank">Visit site</Link> : null}
+                <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
+                {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
             </div>
-            <div className="navbar-center hidden lg:flex"></div>
-            <div className="navbar-end"></div>
         </div>
     )
 }

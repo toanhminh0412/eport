@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 
 import { db } from '../../../../../public/libs/firebase';
 
-import { query, where, getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection } from 'firebase/firestore';
 
 import bcrypt from 'bcrypt';
 
@@ -17,7 +17,6 @@ export async function GET(request) {
     const requestHeaders = new Headers(request.headers)
     const email = requestHeaders.get('x-forwarded-email');
     const password = requestHeaders.get('x-forwarded-password');
-    console.log(password);
     let success = false;
     let message = '';
 

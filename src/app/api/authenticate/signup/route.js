@@ -31,7 +31,6 @@ export async function POST(request) {
     
     // Check if email already exists
     const existingUser = await getDocs(query(usersCollection, where('email', '==', email)));
-    console.log(existingUser);
     if (existingUser.docs.length > 0) {
         success = false;
         message = "Email already exists. Please log in!";

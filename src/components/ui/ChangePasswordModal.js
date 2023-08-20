@@ -58,9 +58,9 @@ export default function ChangePasswordModal() {
                 setTimeout(() => {
                     setSucessMsg('');
                 }, 5000);
-                // setCurrentPassword('');
-                // setNewPassword('');
-                // setConfirmPassword('');
+                setCurrentPassword('');
+                setNewPassword('');
+                setConfirmPassword('');
             } else {
                 setErrorMsg(data.message);
                 setTimeout(() => {

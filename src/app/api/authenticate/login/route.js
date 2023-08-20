@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { auth, db } from '../../../../../public/libs/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { getDoc, doc } from 'firebase/firestore';
+
+import { db } from '../../../../../public/libs/firebase';
+
+import { query, where, getDocs, collection } from 'firebase/firestore';
+
+import bcrypt from 'bcrypt';
 
 /* Handle users logging in
 Query:
@@ -14,37 +17,35 @@ export async function GET(request) {
     const requestHeaders = new Headers(request.headers)
     const email = requestHeaders.get('x-forwarded-email');
     const password = requestHeaders.get('x-forwarded-password');
+    console.log(password);
     let success = false;
     let message = '';
 
-    // Log user in
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        if (userCredential) {
-            const user = userCredential.user;
-            cookieStore.set('eport-uid', user.uid);
-            cookieStore.set('eport-email', user.email);
+    // Get user by email and password from Firestore
+    const userDoc = await getDocs(collection(db, 'users'));
+    let i = 0;
 
-            // Get user profile
-            const userDoc = await getDoc(doc(db, 'users', user.uid));
-            if (userDoc.exists()) {
-                const userData = userDoc.data();
-                cookieStore.set('eport-domain', userData.domain);
+    // Have to use while as await doesn't work in for loop
+    while (i < userDoc.docs.length) {
+        const userData = userDoc.docs[i].data();
+        if (userData.email == email) {
+            if (userData.password) {
+                const passwordMatch = await bcrypt.compare(password, userData.password);
+                if (passwordMatch) {
+                    success = true;
+                    message = 'Login successfully!';
+                    cookieStore.set('eport-uid', userData.uid);
+                    cookieStore.set('eport-email', userData.email);
+                    cookieStore.set('eport-domain', userData.domain);
+                }
             }
-
-            success = true;
-            message = 'Login successfully!';
-        } else {
-            success = false;
-            message = 'User credential not found!';
+            break;
         }
-    } catch(error) {
-        if (error.code == "auth/user-not-found") {
-            message = "Invalid email and password. Please try again or sign up!"
-        } else {
-            message = error.message;
-        }
+        i++;
     };
+    if (!success) {
+        message = 'Invalid email and password. Please try again or sign up!';
+    }
 
     return NextResponse.json({
         uid: cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '',

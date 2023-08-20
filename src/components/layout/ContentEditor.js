@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, createContext } from "react";
-import SectionEdit from "./demo1/SectionEdit";
+import SectionEdit from "../demo/demo1/SectionEdit";
 
 export const SiteContext = createContext();
 

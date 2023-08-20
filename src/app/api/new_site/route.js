@@ -10,10 +10,10 @@ import { addDoc, collection } from 'firebase/firestore';
 export async function GET(request) {
     // Get current user id
     const cookieStore = cookies();
-    const uid = cookieStore.get('eport-uid');
+    const uidCookie = cookieStore.get('eport-uid');
 
     // Unauthenticated users can't visit this route
-     if (!uid) {
+     if (!uidCookie) {
         redirect('/login');
     }
 
@@ -23,7 +23,7 @@ export async function GET(request) {
     
     // Create the new template in Firestore
     const siteRef = await addDoc(collection(db, "sites"), {
-        owner: uid.value,
+        owner: uidCookie.value,
         selectedTemplate: parseInt(selectedTemplate),
         sections: [
             {

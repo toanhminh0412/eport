@@ -1,8 +1,13 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { auth, db } from '../../../../../public/libs/firebase';
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import { doc, setDoc } from 'firebase/firestore';
+
+import { db } from '../../../../../public/libs/firebase';
+import { SALT_ROUNDS } from '../../../../../public/libs/bcryptConfig';
+
+import { collection, doc, query, setDoc, getDocs, where } from 'firebase/firestore';
+
+import bcrypt from 'bcrypt';
+import { nanoid } from 'nanoid';
 
 
 /* Handle users signing up
@@ -11,51 +16,54 @@ Body:
     - Password: string
 */
 export async function POST(request) {
+
     const cookieStore = cookies();
     const signUpInfo = await request.json();
     const email = signUpInfo.email;
-    const password = signUpInfo.password;
+    const password = await bcrypt.hash(signUpInfo.password, SALT_ROUNDS);
     
     // Information returned to users
     let success = false;
     let message = '';
-    let newEmail = '';
 
     // Create a new user
-    await createUserWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
-        // Send an email verification link
-        const user = userCredential.user;
-        newEmail = user.email;
-        cookieStore.set('eport-uid', user.uid);
-        cookieStore.set('eport-email', user.email);
-        cookieStore.set('eport-domain', '');
-        
-        // Store the new user in the database
+    const usersCollection = collection(db, 'users');
+    
+    // Check if email already exists
+    const existingUser = await getDocs(query(usersCollection, where('email', '==', email)));
+    console.log(existingUser);
+    if (existingUser.docs.length > 0) {
+        success = false;
+        message = "Email already exists. Please log in!";
+    
+    // If not create new user in Firestore and log user in
+    } else {
+        const newUserId = nanoid();
         const newUser = {
-            uid: user.uid,
-            email: user.email,
+            uid: newUserId,
+            email: email,
+            password: password,
             emailVerified: true,
             domain: '',
         }
-        await setDoc(doc(db, 'users', user.uid), newUser);
+        
+        // Save user in 'users' collection in Firestore
+        await setDoc(doc(usersCollection, newUserId), newUser);
+        
+        // Log user in
+        cookieStore.set('eport-uid', newUser.uid);
+        cookieStore.set('eport-email', newUser.email);
+        cookieStore.set('eport-domain', newUser.domain);
+
         success = true;
         message = 'Signed up successfully!';
-    })
-    .catch((error) => {
-        success = false;
-        console.log('Error code: ' + error.code);
-        if (error.code === 'auth/email-already-in-use') {
-            message = "Email already exists. Please log in!"
-        } else {
-            message = error.message;
-        }
-    });
+    }
+
     return NextResponse.json({
         success: success,
         message: message,
-        newEmail: newEmail,
-        uid: cookieStore.get('eport-uid').value,
-        domain: cookieStore.get('eport-domain').value
+        email: cookieStore.get('eport-email') ? cookieStore.get('eport-email').value : '',
+        uid: cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '',
+        domain: cookieStore.get('eport-domain') ? cookieStore.get('eport-domain').value : '',
     })
 }

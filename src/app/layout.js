@@ -1,7 +1,8 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { cookies } from "next/headers";
-import UpperNav from '@/components/UpperNav';
+import UpperNav from '@/components/layout/UpperNav';
+import ChangePasswordModal from '@/components/ui/ChangePasswordModal';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className} pt-24 pb-20 bg-slate-100 w-screen min-h-screen`}>
         <UpperNav isLoggedIn={isLoggedIn}/>
+        {isLoggedIn ? <ChangePasswordModal /> : null}
         {children}
       </body>
     </html>

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useContext } from "react";
-import { SiteContext } from "../../ContentEditor";
-import TextEditor from "@/components/TextEditor";
+import { SiteContext } from "../../../layout/ContentEditor";
+import TextEditor from "@/components/ui/TextEditor";
 
 import { nanoid } from "nanoid";
 

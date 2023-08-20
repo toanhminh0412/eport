@@ -2,17 +2,17 @@
 
 import { useRef, useState } from "react";
 
-import UpperNav from "@/components/UpperNav"
-import ControlNav from "../ControlNav";
-import { ErrorToast, SuccessToast } from "../MessageToast";
-import ContentEditor from "../ContentEditor";
+import UpperNav from "@/components/layout/UpperNav"
+import ControlNav from "../../layout/ControlNav";
+import { ErrorToast, SuccessToast } from "../../ui/MessageToast";
+import ContentEditor from "../../layout/ContentEditor";
 import { storage } from "../../../../public/libs/firebase";
 
 import secureLocalStorage from "react-secure-storage";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Footer from "./sections/Footer";
 import { compressImageSize } from "@/helpers/files";
-import PublishModal from "../PublishModal";
+import PublishModal from "../../ui/PublishModal";
 import Section from "./Section";
 
 export default function Demo1({content, siteId}) {

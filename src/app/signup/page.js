@@ -61,9 +61,8 @@ export default function Signup() {
         .then(data => {
             console.log(data);
             if (data.success) {
-                const newEmail = data.newEmail;
                 secureLocalStorage.setItem('eport-uid', data.uid);
-                secureLocalStorage.setItem('eport-email', newEmail);
+                secureLocalStorage.setItem('eport-email', data.email);
                 secureLocalStorage.setItem('eport-domain', data.domain);
                 window.location.href = '/confirm_email';
             } else {

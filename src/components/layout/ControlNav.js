@@ -34,7 +34,7 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
     }
 
     return (
-        <div className="navbar bg-neutral text-neutral-content py-3 fixed top-16 z-30">
+        <div className="navbar bg-neutral text-neutral-content py-3 fixed top-18 z-30">
             <div className="navbar-start w-full flex-wrap gap-2">
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
                 {state === 'edit' ? 

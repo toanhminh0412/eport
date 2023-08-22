@@ -1,7 +1,8 @@
 # About Eport
-Project link: [https://eport-gamma.vercel.app/](https://eport-gamma.vercel.app/)
+Production site: [eport.site](https://eport.site) (code on `main` branch)\
+Development site: [eport-dev.vercel.app](https://eport-dev.vercel.app/) (code on `dev` branch)
 
-**Eport** is an easy website builder for job searchers who need to build a website as quickly and easily as possible to show their works and information. Eport can be seen as a version of the [About Me site](https://about.me) that gives users more customization.
+**Eport** is an easy website builder for job seekers who need to build a website as quickly and easily as possible to show their works and information. Eport can be seen as an advanced version of the [About Me site](https://about.me) that gives users more customization.
 
 # Development
 ## Set up developement environment
@@ -51,4 +52,4 @@ git checkout -b issue-[issue number]        # Create a new branch 'issue-[issue 
 git push origin issue-[issue number]        # Push to 'issue-[issue number]' branch
 ```
 
-Please **DO NOT** push code to `main`. When you think your code is ready, feel free to create a Pull Request and set **toanhminh0412** as a reviewer.
+Please **DO NOT** push code to `main`. When you think your code is ready, feel free to create a Pull Request to the `dev` branch and set **toanhminh0412** as a reviewer.

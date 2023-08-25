@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </head>
-      <body className={`${inter.className} pt-24 pb-20 bg-slate-100 w-screen min-h-screen`}>
+      <body className={`${inter.className} pt-16 pb-20 bg-slate-100 w-screen min-h-screen`}>
         <UpperNav isLoggedIn={isLoggedIn}/>
         {isLoggedIn ? <ChangePasswordModal /> : null}
         {children}

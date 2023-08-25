@@ -16,6 +16,17 @@ module.exports = {
       },
       spacing: {
         '18': '4.5rem',
+        '220': '55rem',
+        '120': '30rem',
+      },
+      borderRadius: {
+        '16': '4rem',
+      },
+      boxShadow: {
+        'blue-btn': '0 0 1rem rgb(59, 130, 246)'
+      },
+      gridTemplateColumns: {
+        'priceTable': 'repeat(auto, minmax(250px, 1fr))',
       }
     },
     screens: {

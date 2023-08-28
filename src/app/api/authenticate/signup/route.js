@@ -42,7 +42,8 @@ export async function POST(request) {
             uid: newUserId,
             email: email,
             password: password,
-            emailVerified: true,
+            // emailVerified: true,
+            emailVerified: false,
             domain: '',
         }
         

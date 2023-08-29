@@ -9,11 +9,11 @@ import { getDoc, doc } from "firebase/firestore";
 
 
 export default async function ConfirmEmail() {
+    checkLoggedInAction();
+
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;
     const email = cookieStore.get('eport-email').value;
-
-    checkLoggedInAction();
 
     // Check if user has verfied email
     // Redirect to home page if user already verifies email

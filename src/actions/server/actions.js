@@ -8,6 +8,7 @@ import { db } from "../../../public/libs/firebase";
 export const checkLoggedInAction = () => {
     const cookieStore = cookies();
     if (!cookieStore.get('eport-uid')) {
+        console.log('Redirecting to login in checkLoggedInAction');
         redirect('/login');
     }
 }
@@ -23,11 +24,13 @@ export async function checkEmailVerificationAction() {
 
     // Log user out if user is not found
     if (!user) {
+        console.log('Calling logout');
         redirect('/api/authenticate/logout');
     }
 
     // Redirect to email verification page if user has not verified their email
     if (!user.emailVerified) {
+        console.log('Calling confirm_email');
         redirect('/confirm_email');
     }
     return user;

@@ -64,7 +64,7 @@ export default function ProjectShowcase({projects}) {
                 </div>  
                 ))}
             </div>
-            <h4>Click on each project to view the details</h4>
+            <h4>Click on each project to view more details</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose mt-10">
                 {projects.map((project, index) => (
                     <div key={index} className={`relative w-full aspect-video duration-500 ${haveActiveTags(project) ? '' : 'hidden'}`}>

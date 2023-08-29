@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { db } from "../../../public/libs/firebase";
 import { checkLoggedIn } from "@/actions/client/user";
@@ -10,6 +11,7 @@ import secureLocalStorage from "react-secure-storage";
 import emailjs from "@emailjs/browser";
 
 export default function ConfirmEmail() {
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [confirmationCode, setConfirmationCode] = useState(0);  // 6-digit code
 
@@ -42,7 +44,7 @@ export default function ConfirmEmail() {
             const userId = secureLocalStorage.getItem('eport-uid');
             const user = (await getDoc(doc(db, 'users', userId))).data();
             if (user.emailVerified) {
-                window.location.href = '/';
+                router.push('/');
                 return true;
             }
             return false;
@@ -67,7 +69,7 @@ export default function ConfirmEmail() {
             await updateDoc(userRef, {emailVerified: true});
 
             // Redirect to dashboard
-            window.location.href = '/';
+            router.push('/');
         }
     }
 

@@ -45,9 +45,11 @@ export default function ConfirmEmail() {
             return false;
         }
         
-        if (!checkEmailVerified()) {
-            confirmEmail(userEmail);
-        }
+        checkEmailVerified().then(emailVerified => {
+            if (!emailVerified) {
+                confirmEmail(userEmail);
+            }
+        });
     }, []);
 
     // Check if confirmation code is correct

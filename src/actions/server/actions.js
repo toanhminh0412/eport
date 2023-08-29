@@ -19,7 +19,8 @@ export async function checkEmailVerificationAction() {
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;
     const user = (await getDoc(doc(db, 'users', userId))).data();
-    
+    console.log(user);
+
     // Log user out if user is not found
     if (!user) {
         redirect('/api/authenticate/logout');

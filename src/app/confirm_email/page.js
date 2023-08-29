@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import { db } from "../../../public/libs/firebase";
+import { checkLoggedIn } from "@/actions/client/user";
 
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import secureLocalStorage from "react-secure-storage";
@@ -30,6 +31,8 @@ export default function ConfirmEmail() {
     }
 
     useEffect(() => {
+        checkLoggedIn();
+
         const userEmail = secureLocalStorage.getItem('eport-email');
         setEmail(userEmail);
 
@@ -53,7 +56,7 @@ export default function ConfirmEmail() {
     }, []);
 
     // Check if confirmation code is correct
-    const checkConfirmationCode = e => {
+    const checkConfirmationCode = async (e) => {
         const code = parseInt(e.target.value);
         if (code === confirmationCode) {
             console.log('Correct confirmation code!');
@@ -61,7 +64,7 @@ export default function ConfirmEmail() {
             // Update user's emailVerified to true
             const userId = secureLocalStorage.getItem('eport-uid');
             const userRef = doc(db, 'users', userId);
-            updateDoc(userRef, {emailVerified: true});
+            await updateDoc(userRef, {emailVerified: true});
 
             // Redirect to dashboard
             window.location.href = '/';

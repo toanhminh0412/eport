@@ -20,7 +20,10 @@ export default function EmailConfirmForm({email}) {
 
     // Send confirmation email
     const confirmEmail = async (toEmail) => {            
-        const newConfirmationCode = Math.floor(Math.random() * 1000000);
+        let newConfirmationCode = Math.floor(Math.random() * 1000000);
+        if (newConfirmationCode < 100000) {
+            newConfirmationCode += 100000;
+        }
         setConfirmationCode(newConfirmationCode);
         const templateParams = {
             to_email: toEmail,

@@ -7,6 +7,7 @@ import { db } from "../../../public/libs/firebase";
 // Redirect to login page if user is not logged in
 export const checkLoggedInAction = () => {
     const cookieStore = cookies();
+    console.log(cookieStore.get('eport-uid'));
     if (!cookieStore.get('eport-uid')) {
         console.log('Redirecting to login in checkLoggedInAction');
         redirect('/login');

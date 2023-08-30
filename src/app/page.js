@@ -30,9 +30,13 @@ async function getSite(uid) {
 }
 
 export default async function Dashboard() {
+  console.log('Rendering dashboard');
   const cookieStore = cookies();
+  console.log(cookieStore.get('eport-uid'))
   const userId = cookieStore.get('eport-uid').value;
+  console.log('Fetching site...');
   const site = await getSite(userId);
+  console.log('Got site');
 
   return <Demo1 content={site.site} siteId={site.id}/>
 }

@@ -69,6 +69,21 @@ export default function EmailConfirmForm({email}) {
             const userRef = doc(db, 'users', userId);
             await updateDoc(userRef, {emailVerified: true});
 
+            // TEMPORARY FIX: Prevent page from redirecting to the login page after confirming email 
+            // Force update user cookies on the backend
+            await fetch('/api/authenticate/set_user_cookie', {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: userId
+                })
+            })
+
             // Redirect to dashboard
             router.push('/');
         }

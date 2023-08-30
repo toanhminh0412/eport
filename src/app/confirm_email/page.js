@@ -9,7 +9,7 @@ import { getDoc, doc } from "firebase/firestore";
 
 
 export default async function ConfirmEmail() {
-    checkLoggedInAction();
+    await checkLoggedInAction();
 
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;

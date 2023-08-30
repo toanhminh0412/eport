@@ -5,7 +5,7 @@ import { db } from "../public/libs/firebase";
 import { getDoc, doc } from "firebase/firestore";
 
 export async function middleware(request) {
-    const PROTECTED_PATHS = ['/', '/confirm_email'];
+    const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1'];
     console.log('Calling this middleware');
 
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
@@ -46,5 +46,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/', '/confirm_email', '/login', '/signup'],
+    matcher: ['/', '/confirm_email', '/demo/:path*', '/login', '/signup'],
 }

@@ -1,11 +1,6 @@
 import PublishedDemo1 from "@/components/demo/demo1/published";
-import { checkEmailVerificationAction, checkLoggedInAction } from "@/actions/server/actions";
-
 
 export default function Demo1() {
-    checkLoggedInAction();
-    checkEmailVerificationAction();
-
     const site = {
         owner: null,
         selectedTemplate: 0,

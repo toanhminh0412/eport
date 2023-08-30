@@ -8,6 +8,7 @@ import { db } from "../../../public/libs/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import secureLocalStorage from "react-secure-storage";
 import emailjs from "@emailjs/browser";
+import Link from "next/link";
 
 export default function EmailConfirmForm({email}) {
     const router = useRouter();
@@ -17,6 +18,7 @@ export default function EmailConfirmForm({email}) {
     // 'Resend button controller'
     const [btnText, setBtnText] = useState('Resend code');
     const [btnDisabled, setBtnDisabled] = useState(false);
+    const [correctCode, setCorrectCode] = useState(false);
 
     // Send confirmation email
     const confirmEmail = async (toEmail) => {            
@@ -60,32 +62,34 @@ export default function EmailConfirmForm({email}) {
         const code = parseInt(e.target.value);
         if (code === confirmationCode) {
             console.log('Correct confirmation code!');
-            setMessage('Correct confirmation code! Redirecting to dashboard...');
-            setBtnText('Redirecting...');
-            setBtnDisabled(true);
             
             // Update user's emailVerified to true
             const userId = secureLocalStorage.getItem('eport-uid');
             const userRef = doc(db, 'users', userId);
             await updateDoc(userRef, {emailVerified: true});
 
+            setMessage('Correct confirmation code! Click the button below to go to the dashboard');
+            // setBtnText('Redirecting...');
+            // setBtnDisabled(true);
+            setCorrectCode(true);
+
             // TEMPORARY FIX: Prevent page from redirecting to the login page after confirming email 
             // Force update user cookies on the backend
-            await fetch('/api/authenticate/set_user_cookie', {
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userId: userId
-                })
-            })
+            // await fetch('/api/authenticate/set_user_cookie', {
+            //     method: 'POST',
+            //     mode: 'cors',
+            //     cache: 'no-cache',
+            //     credentials: 'same-origin',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         userId: userId
+            //     })
+            // })
 
             // Redirect to dashboard
-            router.push('/');
+            // router.push('/');
         }
     }
 
@@ -99,10 +103,12 @@ export default function EmailConfirmForm({email}) {
                 <input type="text" placeholder="Insert code" className="input border-black w-full" onChange={checkConfirmationCode}/>
             </div>
             <div className="w-full mt-2">
-                <button 
+                {correctCode ? <Link href="/" className="btn btn-accent w-full">Visit Dashboard</Link>
+                : <button 
                     className="btn btn-accent w-full" 
                     onClick={() => resendConfirmationEmail(email)} 
                     disabled={btnDisabled}>{btnText}</button>
+                }
             </div>
         </form>
     )

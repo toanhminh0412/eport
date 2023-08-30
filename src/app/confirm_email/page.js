@@ -14,6 +14,8 @@ export default async function ConfirmEmail() {
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;
     const email = cookieStore.get('eport-email').value;
+    cookieStore.set('eport-uid', userId);
+    cookieStore.set('eport-email', email);
 
     // Check if user has verfied email
     // Redirect to home page if user already verifies email

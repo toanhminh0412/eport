@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-import { checkEmailVerificationAction, checkLoggedInAction } from "@/actions/server/actions";
 import Demo1 from "@/components/demo/demo1/site";
 
 import { db } from "../../public/libs/firebase";
@@ -30,9 +30,9 @@ async function getSite(uid) {
 }
 
 export default async function Dashboard() {
-  await checkLoggedInAction();
-  const user = await checkEmailVerificationAction();
-  const site = await getSite(user.uid);
+  const cookieStore = cookies();
+  const userId = cookieStore.get('eport-uid').value;
+  const site = await getSite(userId);
 
   return <Demo1 content={site.site} siteId={site.id}/>
 }

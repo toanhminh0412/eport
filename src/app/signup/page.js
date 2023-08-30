@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { checkLoggedIn } from "@/actions/client/user";
 import secureLocalStorage from "react-secure-storage";
 
 export default function Signup() {
@@ -13,10 +12,6 @@ export default function Signup() {
     const [successMsg, setSucessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        checkLoggedIn();
-    }, [])
 
     // Update email on type
     const updateEmail = e => {

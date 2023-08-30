@@ -9,7 +9,9 @@ import { getDoc, doc } from "firebase/firestore";
 
 
 export default async function ConfirmEmail() {
+    console.log('ConfirmEmail: Before checkLoggedInAction');
     await checkLoggedInAction();
+    console.log('ConfirmEmail: After checkLoggedInAction');
 
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;
@@ -19,6 +21,7 @@ export default async function ConfirmEmail() {
     // Redirect to home page if user already verifies email
     const user = (await getDoc(doc(db, 'users', userId))).data();
     if (user.emailVerified) {
+        console.log('Email already verified!');
         redirect('/');
     }
 

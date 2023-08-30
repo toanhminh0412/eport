@@ -9,6 +9,8 @@ import { getDoc, doc } from "firebase/firestore";
 
 
 export default async function ConfirmEmail() {
+    console.log('cookieStore in ConfirmEmail:');
+    console.log(cookieStore.getAll());
     console.log('ConfirmEmail: Before checkLoggedInAction');
     await checkLoggedInAction();
     console.log('ConfirmEmail: After checkLoggedInAction');

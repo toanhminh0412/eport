@@ -9,13 +9,13 @@ import { getDoc, doc } from "firebase/firestore";
 
 
 export default async function ConfirmEmail() {
-    console.log('cookieStore in ConfirmEmail:');
-    console.log(cookieStore.getAll());
     console.log('ConfirmEmail: Before checkLoggedInAction');
     await checkLoggedInAction();
     console.log('ConfirmEmail: After checkLoggedInAction');
 
     const cookieStore = cookies();
+    console.log('cookieStore in ConfirmEmail:');
+    console.log(cookieStore.getAll());
     const userId = cookieStore.get('eport-uid').value;
     const email = cookieStore.get('eport-email').value;
 

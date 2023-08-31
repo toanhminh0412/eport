@@ -35,6 +35,7 @@ export async function GET(request) {
                     message = 'Login successfully!';
                     cookieStore.set('eport-uid', userData.uid);
                     cookieStore.set('eport-email', userData.email);
+                    cookieStore.set('eport-email-verified', userData.emailVerified);
                     cookieStore.set('eport-domain', userData.domain);
                 }
             }

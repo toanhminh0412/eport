@@ -53,7 +53,7 @@ export default function Features() {
                             <h2 className="text-5xl font-medium text-center mt-5 mx-0 mb-10">Free</h2>
                             <div className="text-center">You have the following sections</div>
                             
-                            <ul className="my-5 mx-0 list-none">
+                            <ul className="mt-5 mx-0 list-none">
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Basic Profile</li>
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>About Me</li>
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Experience</li>
@@ -76,7 +76,7 @@ export default function Features() {
                             <h2 className="text-5xl font-medium mt-5 mx-0 mb-10 text-center">2 <span className="text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
                             <div className="text-center">You have the following sections</div>
 
-                            <ul className="my-5 mx-0 list-none">
+                            <ul className="mt-5 mx-0 list-none">
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Basic Profile</li>
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>About Me</li>
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Experience</li>

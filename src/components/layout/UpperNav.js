@@ -58,7 +58,7 @@ export default function UpperNav({isLoggedIn = true}) {
           </ul>
         </div>
         :
-        <Link href='/login' className="btn btn-primary" onClick={() => {setCurrentPath('/login')}}>Login</Link>}
+        <Link href='/login' className="btn btn-primary" onClick={() => {setCurrentPath('/login')}} prefetch={false}>Login</Link>}
       </div>
     </div>
   )

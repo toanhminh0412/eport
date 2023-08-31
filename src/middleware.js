@@ -3,11 +3,16 @@ import { NextResponse } from "next/server";
 export async function middleware(request) {
     const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1'];
 
+    console.log('Calling middleware');
+
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
         // Check if user is logged in, redirect to login page if not
         if (!request.cookies.get('eport-uid')) {
+            console.log('User not logged in');
             return NextResponse.redirect(new URL('/login', request.url));
         }
+
+        console.log('User logged in!');
 
         if (!request.cookies.get('eport-email-verified')) {
             return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));

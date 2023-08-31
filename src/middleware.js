@@ -16,6 +16,21 @@ export async function middleware(request) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
 
+        if (!request.cookies.get('eport-email-verified')) {
+            return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
+        }
+
+        const emailVerified = request.cookies.get('eport-email-verified').value;
+        if (!emailVerified || emailVerified === 'false') {
+            if (request.nextUrl.pathname !== '/confirm_email') {
+                return NextResponse.redirect(new URL('/confirm_email', request.url));
+            }
+        } else {
+            if (request.nextUrl.pathname === '/confirm_email') {
+                return NextResponse.redirect(new URL('/', request.url));
+            }
+        }
+
         // const userId = request.cookies.get('eport-uid').value;
         // const user = (await getDoc(doc(db, 'users', userId))).data();
         // console.log(user);

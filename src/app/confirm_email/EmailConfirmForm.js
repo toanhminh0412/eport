@@ -1,16 +1,9 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-import { db } from "../../../public/libs/firebase";
-
-import { doc, updateDoc } from "firebase/firestore";
-import secureLocalStorage from "react-secure-storage";
 import emailjs from "@emailjs/browser";
 
 export default function EmailConfirmForm({email}) {
-    const router = useRouter();
     const [confirmationCode, setConfirmationCode] = useState(0);  // 6-digit code
     const [message, setMessage] = useState('');
 
@@ -63,14 +56,19 @@ export default function EmailConfirmForm({email}) {
             setMessage('Correct confirmation code! Redirecting to dashboard...');
             setBtnText('Redirecting...');
             setBtnDisabled(true);
-            
-            // Update user's emailVerified to true
-            const userId = secureLocalStorage.getItem('eport-uid');
-            const userRef = doc(db, 'users', userId);
-            await updateDoc(userRef, {emailVerified: true});
 
-            // Redirect to dashboard
-            router.push('/');
+            // Update user emailVerified status on the backend
+            const response = await fetch('/api/authenticate/confirm_email');
+            const data = await response.json();
+            console.log(data);
+            if (!data || data.status !== 200) {
+                console.log('Execute this block');
+                setMessage('Fail to confirm user email! Please contact our team to get support.');
+            } else {
+                console.log('Redirecting');
+                // Redirect to dashboard
+                window.location.href = '/';
+            } 
         }
     }
 

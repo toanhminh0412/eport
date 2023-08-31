@@ -57,18 +57,21 @@ export default function EmailConfirmForm({email}) {
             setBtnText('Redirecting...');
             setBtnDisabled(true);
 
-            // Update user emailVerified status on the backend
-            const response = await fetch('/api/authenticate/confirm_email');
-            const data = await response.json();
-            console.log(data);
-            if (!data || data.status !== 200) {
-                console.log('Execute this block');
+            try {
+                // Update user emailVerified status on the backend
+                const response = await fetch('/api/authenticate/confirm_email');
+                const data = await response.json();
+                console.log(data);
+                
+                if (!data || data.status !== 200) {
+                    setMessage('Fail to confirm user email! Please contact our team to get support.');
+                } else {
+                    // Redirect to dashboard
+                    window.location.href = '/';
+                } 
+            } catch (error) {
                 setMessage('Fail to confirm user email! Please contact our team to get support.');
-            } else {
-                console.log('Redirecting');
-                // Redirect to dashboard
-                window.location.href = '/';
-            } 
+            }
         }
     }
 

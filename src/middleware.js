@@ -2,13 +2,10 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
     const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1'];
-    console.log('Calling this middleware');
 
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
-        console.log('Detect protected path');
         // Check if user is logged in, redirect to login page if not
         if (!request.cookies.get('eport-uid')) {
-            console.log('User is not logged in');
             return NextResponse.redirect(new URL('/login', request.url));
         }
 
@@ -28,14 +25,12 @@ export async function middleware(request) {
         }
 
     } else {
-        console.log('Detect unprotected path');
         // If a logged in user visit '/login' or '/signup', redirect to home page
         if (request.cookies.get('eport-uid') && (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/signup')) {
             return NextResponse.redirect(new URL('/', request.url));
         }
     }
 
-    console.log('Return a response');
 
     const response = NextResponse.next();
     return response;

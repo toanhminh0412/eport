@@ -337,7 +337,7 @@ export default function Demo1({content, siteId}) {
     }
 
     return (
-        <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
+        <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
             <UpperNav/>
             <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
             <PublishModal site={site} showMessageToast={showMessageToast}/>

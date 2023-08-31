@@ -16,28 +16,28 @@ export async function middleware(request) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
 
-        const userId = request.cookies.get('eport-uid').value;
-        const user = (await getDoc(doc(db, 'users', userId))).data();
-        console.log(user);
+        // const userId = request.cookies.get('eport-uid').value;
+        // const user = (await getDoc(doc(db, 'users', userId))).data();
+        // console.log(user);
 
-        // Log user out if user is not found
-        if (!user && request.nextUrl.pathname !== '/api/authenticate/logout') {
-            console.log('User not found. Loggined user out...');
-            return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
-        }
+        // // Log user out if user is not found
+        // if (!user && request.nextUrl.pathname !== '/api/authenticate/logout') {
+        //     console.log('User not found. Loggined user out...');
+        //     return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
+        // }
 
-        if (!user.emailVerified) {
-            console.log('User has not veried email, redirect to confirm email page')
-            if (request.nextUrl.pathname !== '/confirm_email') {
-                return NextResponse.redirect(new URL('/confirm_email', request.url));
-            }
-        } else {
-            console.log('User has veried email, redirect to dashboard')
-            // Redirect to dashboard if user already confirmed email and visit '/confirm_email'
-            if (request.nextUrl.pathname === '/confirm_email') {
-                return NextResponse.redirect(new URL('/', request.url));
-            }
-        }
+        // if (!user.emailVerified) {
+        //     console.log('User has not veried email, redirect to confirm email page')
+        //     if (request.nextUrl.pathname !== '/confirm_email') {
+        //         return NextResponse.redirect(new URL('/confirm_email', request.url));
+        //     }
+        // } else {
+        //     console.log('User has veried email, redirect to dashboard')
+        //     // Redirect to dashboard if user already confirmed email and visit '/confirm_email'
+        //     if (request.nextUrl.pathname === '/confirm_email') {
+        //         return NextResponse.redirect(new URL('/', request.url));
+        //     }
+        // }
 
     } else {
         console.log('Detect unprotected path');

@@ -1,9 +1,5 @@
 import { NextResponse } from "next/server";
 
-import { db } from "../public/libs/firebase";
-
-import { getDoc, doc } from "firebase/firestore";
-
 export async function middleware(request) {
     const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1'];
     console.log('Calling this middleware');

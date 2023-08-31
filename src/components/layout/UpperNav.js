@@ -34,7 +34,7 @@ export default function UpperNav({isLoggedIn = true}) {
           </ul>
         </div>}
         
-        <Link href={loggedIn ? '/' : '/login'} className="btn btn-ghost normal-case text-xl" onClick={() => {setCurrentPath('/')}}>Eport</Link>
+        <Link href="/" className="btn btn-ghost normal-case text-xl" onClick={() => {setCurrentPath('/')}}>Eport</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         {loggedIn ? 

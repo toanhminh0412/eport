@@ -10,15 +10,15 @@ import bcrypt from 'bcrypt';
 
 /* Handle users changing password
 Body:
-    - Current password: string
-    - New password: string
+    - userId (optional): string. If userId is omitted, userId is extracted from cookie
+    - newPassword: string
 */
 export async function POST(request) {
     const cookieStore = cookies();
     const uidCookie = cookieStore.get('eport-uid');
 
     const changePasswordInfo = await request.json();
-    const currentPassword = changePasswordInfo.currentPassword;
+    const userId = changePasswordInfo.userId;
     const newPassword = await bcrypt.hash(changePasswordInfo.newPassword, SALT_ROUNDS);
 
     // Information returned to users
@@ -26,10 +26,10 @@ export async function POST(request) {
     let message = '';
     
     // Unauthenticated users cannot change password
-    if (!uidCookie) {
+    if (!uidCookie && !userId) {
         redirect('/login');
     }
-    const uid = uidCookie.value;
+    const uid = userId ? userId : uidCookie.value;
     
     // Get user by id from Firestore
     const userSnap = await getDoc(doc(db, 'users', uid));

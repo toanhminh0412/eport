@@ -44,7 +44,7 @@ export default function Features() {
                 </div>
             </div>
 
-            <div className="relative w-full min-h-screen flex flex-col justify-center bg-blue-100 md:pb-12" id="pricing">
+            <div className="relative w-full min-h-screen flex flex-col justify-center bg-blue-100 pb-24 md:pb-12" id="pricing">
                 <h1 className="mt-12 text-5xl text-center text-black">Pricing</h1>
                 <div className="flex flex-row flex-wrap justify-center gap-8 text-lg px-4 mt-12">
                     <div className="card w-96 sm:w-120 bg-base-100 shadow-xl">
@@ -66,7 +66,7 @@ export default function Features() {
                             </ul>
 
                             <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">Subcribe Now</Link>
-                            <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
+                            <Link href="/examples_basic" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@ export default function Features() {
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Testimonials</li>
                             </ul>
                             <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">Subcribe Now</Link>
-                            <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
+                            <Link href="/examples_premium" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
                         </div>
                     </div>
                 </div>

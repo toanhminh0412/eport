@@ -6,7 +6,7 @@ export async function middleware(request) {
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
         // Check if user is logged in, redirect to login page if not
         if (!request.cookies.get('eport-uid')) {
-            return NextResponse.redirect(new URL('/login', request.url));
+            return NextResponse.redirect(new URL('/features', request.url));
         }
 
         if (!request.cookies.get('eport-email-verified')) {

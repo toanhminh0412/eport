@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useState } from "react";
 import Slider from "@/components/ui/Slider";
 import Link from "next/link"
 

@@ -66,7 +66,7 @@ export default function Features() {
                             </ul>
 
                             <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">Subcribe Now</Link>
-                            <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
+                            <Link href="/examples" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@ export default function Features() {
                                 <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Testimonials</li>
                             </ul>
                             <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">Subcribe Now</Link>
-                            <Link href="" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
+                            <Link href="/examples" className="py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl text-black tracking-widest font-semibold duration-500 no-underline mt-4 w-fit mx-auto">See Examples</Link>
                         </div>
                     </div>
                 </div>

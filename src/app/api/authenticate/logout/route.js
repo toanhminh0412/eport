@@ -8,5 +8,7 @@ export async function GET(request) {
     // Delete user info from cookie (Log user out)
     cookieStore.delete('eport-uid');
     cookieStore.delete('eport-email');
+    cookieStore.delete('eport-email-verified');
+    cookieStore.delete('eport-domain');
     redirect('/login');
 }

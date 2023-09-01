@@ -53,6 +53,7 @@ export async function POST(request) {
         // Log user in
         cookieStore.set('eport-uid', newUser.uid);
         cookieStore.set('eport-email', newUser.email);
+        cookieStore.set('eport-email-verified', newUser.emailVerified);
         cookieStore.set('eport-domain', newUser.domain);
 
         success = true;

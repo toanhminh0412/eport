@@ -1,5 +1,6 @@
 import Link from "next/link";
 import socialIcons from "../../../../data/social-icons";
+import { convertToURL } from "@/helpers/helpers";
 
 export default function Footer({content}) {
     return (
@@ -9,7 +10,7 @@ export default function Footer({content}) {
                 <div className="flex flex-row flex-wrap gap-4 justify-center w-full text-2xl md:text-4xl">
                     {content.socials.map((social, index) => social.key === 'gmail' ? 
                     <Link key={`${social.key}-${index}`} href={`mailto:${social.value}`} target="_blank"><i className={`${socialIcons[social.key]} text-blue-200 hover:text-blue-500 duration-300`}></i></Link>
-                    :<Link key={`${social.key}-${index}`} href={social.value.includes('https://') ? social.value : `https://${social.value}`} target="_blank"><i className={`${socialIcons[social.key]} text-blue-200 hover:text-blue-500 duration-300`}></i></Link>)}
+                    :<Link key={`${social.key}-${index}`} href={convertToURL(social.value)} target="_blank"><i className={`${socialIcons[social.key]} text-blue-200 hover:text-blue-500 duration-300`}></i></Link>)}
                 </div>
                 <div className="text-center font-light">&copy; All rights reserved | Eport</div>
             </div>

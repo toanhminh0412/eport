@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { checkLoggedIn } from "@/actions/client/user";
 import secureLocalStorage from "react-secure-storage";
 
 export default function Signup() {
@@ -13,10 +12,6 @@ export default function Signup() {
     const [successMsg, setSucessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        checkLoggedIn();
-    }, [])
 
     // Update email on type
     const updateEmail = e => {
@@ -81,7 +76,7 @@ export default function Signup() {
 
     return (
         <div>
-            <div className="flex flex-row flex-wrap pt-10 lg:pt-32 mb-28">
+            <div className="flex flex-row flex-wrap pt-10 lg:pt-32 mb-32">
                 <div className="w-11/12 mx-auto md:mx-0 text-center md:text-left lg:w-1/2 md:pl-12 h-fit">
                     <h1 className="font-semibold text-3xl lg:text-4xl">Welcome to <span className="text-blue-400">Eport</span></h1>
                     <p className="text-lg lg:text-xl mt-4 font-light">Impress employers with a professional portfolio website! Build yours now! Barely any work is needed!</p>

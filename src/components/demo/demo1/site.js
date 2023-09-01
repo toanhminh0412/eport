@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react";
 
-import UpperNav from "@/components/layout/UpperNav"
 import ControlNav from "../../layout/ControlNav";
 import { ErrorToast, SuccessToast } from "../../ui/MessageToast";
 import ContentEditor from "../../layout/ContentEditor";
@@ -319,7 +318,6 @@ export default function Demo1({content, siteId}) {
     if (editMode) {
         return (
             <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
-                <UpperNav/>
                 <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
                 <ContentEditor 
                 content={site} 
@@ -337,8 +335,7 @@ export default function Demo1({content, siteId}) {
     }
 
     return (
-        <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
-            <UpperNav/>
+        <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
             <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
             <PublishModal site={site} showMessageToast={showMessageToast}/>
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words">

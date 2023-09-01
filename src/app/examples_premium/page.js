@@ -1,7 +1,7 @@
 import Slider from "@/components/ui/Slider";
 import Link from "next/link"
 
-export default function Examples() {
+export default function ExamplesPremium() {
     const slides1 = [
         {
             img: '/img/ckiki_profile.png'

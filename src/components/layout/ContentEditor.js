@@ -31,7 +31,7 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
     return (
         <SiteContext.Provider value={site}>
             <div className="min-h-screen">
-                <div className="px-2 md:px-20 py-10 prose max-w-none">
+                <div className="px-2 md:px-20 py-10 prose max-w-none pb-40 md:pb-20">
                     <h1>Site editor</h1>
                     {site.sections.map((section, index) => (
                     <SectionEdit 

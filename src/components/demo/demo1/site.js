@@ -63,14 +63,25 @@ export default function Demo1({content, siteId}) {
             newProfilePicURL = await getDownloadURL(profilePicSnap.ref);
         }
 
+        // Upload new CV if it's replaced
+        let newCVURL = '';
+        if (profileRef.current[2].files.length > 0) {
+            let file = profileRef.current[2].files[0];
+            const userId = secureLocalStorage.getItem('eport-uid');
+            const cvRef = ref(storage, `users/${userId}/cv.pdf`);
+            const cvSnap = await uploadBytes(cvRef, file);
+            newCVURL = await getDownloadURL(cvSnap.ref);
+        }
+
         // Update profile section
         const newProfile = {
             id: 0,
             profilePic: newProfilePicURL ? newProfilePicURL : site.sections[0].profilePic,
             fullName: profileRef.current[0].value,
             job: profileRef.current[1].value,
-            link1: [profileRef.current[2].value, profileRef.current[3].value],
-            link2: [profileRef.current[4].value, profileRef.current[5].value]
+            cvURL: newCVURL ? newCVURL : site.sections[0].cvURL,
+            // link1: [profileRef.current[2].value, profileRef.current[3].value],
+            // link2: [profileRef.current[4].value, profileRef.current[5].value]
         }
 
         // Update about me section

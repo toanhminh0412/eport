@@ -24,7 +24,12 @@ export default function Profile({content}) {
                     <div className="w-2/12 text-center text-slate-200">|</div>
                     <Link href={convertToURL(section.link2[1])} target="_blank" className="w-5/12 text-center link link-primary">{section.link2[0]}</Link>
                 </div> */}
-                <Link href='#' className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white mt-8 w-full max-w-xs mx-auto">Download CV</Link>
+                <Link
+                    href={section.cvURL} 
+                    className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white mt-8 w-full max-w-xs mx-auto" 
+                    download
+                    target="_blank"
+                    prefetch={false}>Download CV</Link>
             </div>
         </div>
     )

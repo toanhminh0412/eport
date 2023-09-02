@@ -1,12 +1,16 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function ProfileEdit({content, profileRef}) {
     const [profile, _] = useState(content);
     const [profilePicFile, setProfilePicFile] = useState(null);
     const [profilePicPreview, setProfilePicPreview] = useState(null);
+
+    const [newCV, setNewCV] = useState(null);
+    const [newCVURL, setNewCVURL] = useState('');
 
     // Preview profile picture
     useEffect(() => {
@@ -31,6 +35,17 @@ export default function ProfileEdit({content, profileRef}) {
     // Upload new profile picture for review or change
     const uploadProfilePic = e => {
         setProfilePicFile(e.target.files[0]);
+    }
+
+    // Upload new CV for review or change
+    const uploadCV = e => {
+        if (e.target.files.length > 0){
+            setNewCV(e.target.files[0]);
+            if (newCVURL) URL.revokeObjectURL(newCVURL);
+            const cvURL = URL.createObjectURL(e.target.files[0]);
+            setNewCVURL(cvURL);
+        }
+        
     }
 
     return (
@@ -65,7 +80,22 @@ export default function ProfileEdit({content, profileRef}) {
                             </label>
                             <input ref={el => (profileRef.current[1] = el)} type="text" placeholder="Your job title" className="input border-black w-full" defaultValue={profile.job} />
                         </div>
-                        <div className="flex flex-row flex-wrap gap-x-3">
+                        <div className="mt-4">
+                            {newCV ? 
+                            <div>CV: <Link href={newCVURL} download target="_blank" prefetch={false}>{newCV.name}</Link></div> 
+                            : 
+                            <div>CV: <Link href={profile.cvURL} download target="_blank" prefetch={false}>cv.pdf</Link></div>}
+                            <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative">
+                                Upload CV
+                                <input 
+                                    ref={el => (profileRef.current[2] = el)}
+                                    type="file" 
+                                    className="absolute top-0 left-0 w-full h-full opacity-0" 
+                                    accept=".pdf, .doc, .docx" 
+                                    onChange={uploadCV}/>
+                            </div>
+                        </div>
+                        {/* <div className="flex flex-row flex-wrap gap-x-3">
                             <div className="form-control w-full max-w-xs">
                                 <label className="label">
                                     <span className="label-text">Link 1 text:</span>
@@ -105,7 +135,7 @@ export default function ProfileEdit({content, profileRef}) {
                                     <span><strong>Hint: </strong>The actual URL you want user to visit (e.g. facebook.com)</span>
                                 </label>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

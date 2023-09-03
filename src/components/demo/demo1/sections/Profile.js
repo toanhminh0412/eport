@@ -16,12 +16,12 @@ export default function Profile({content}) {
                 className="mx-auto"/>
                 <h1 className="font-bold text-4xl mt-4">{section.fullName}</h1>
                 <div className="text-2xl font-normal text-slate-500">{section.job}</div>
+                {section.cvURL ? 
                 <Link
                     href={section.cvURL} 
                     className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white mt-8 w-full max-w-xs mx-auto" 
-                    download
                     target="_blank"
-                    prefetch={false}>View CV</Link>
+                    prefetch={false}>View CV</Link> : null}
             </div>
         </div>
     )

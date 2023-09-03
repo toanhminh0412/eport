@@ -80,20 +80,20 @@ export default function ProfileEdit({content, profileRef}) {
                             </label>
                             <input ref={el => (profileRef.current[1] = el)} type="text" placeholder="Your job title" className="input border-black w-full" defaultValue={profile.job} />
                         </div>
-                        <div className="mt-4">
-                            {newCV ? 
-                            <div>CV: <Link href={newCVURL} download target="_blank" prefetch={false}>{newCV.name}</Link></div> 
-                            : 
-                            <div>CV: <Link href={profile.cvURL} download target="_blank" prefetch={false}>cv.pdf</Link></div>}
-                            <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative">
-                                Upload CV
-                                <input 
-                                    ref={el => (profileRef.current[2] = el)}
-                                    type="file" 
-                                    className="absolute top-0 left-0 w-full h-full opacity-0" 
-                                    accept=".pdf, .doc, .docx" 
-                                    onChange={uploadCV}/>
-                            </div>
+                    </div>
+                    <div className="mt-4">
+                        {newCV ? 
+                        <div>CV: <Link href={newCVURL} target="_blank" prefetch={false}>{newCV.name}</Link></div> 
+                        : 
+                        <div>CV: {profile.cvURL ? <Link href={profile.cvURL} target="_blank" prefetch={false}>cv.pdf</Link> : "No CV uploaded"}</div>}
+                        <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative">
+                            Upload CV
+                            <input 
+                                ref={el => (profileRef.current[2] = el)}
+                                type="file" 
+                                className="absolute top-0 left-0 w-full h-full opacity-0" 
+                                accept=".pdf, .doc, .docx" 
+                                onChange={uploadCV}/>
                         </div>
                     </div>
                 </div>

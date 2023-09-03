@@ -6,6 +6,7 @@ import { useState } from "react";
 import { db } from "../../../public/libs/firebase";
 
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { passwordValidator } from "@/helpers/authentication";
 import emailjs from "@emailjs/browser";
 
 export default function ForgotPasswordForm() {
@@ -115,6 +116,14 @@ export default function ForgotPasswordForm() {
     // Update user password on the backend
     const updatePasswordOnBackend = async (e) => {
         e.preventDefault();
+
+        // Password Validator
+        const passwordErrorMsg = passwordValidator(password)
+        if (passwordErrorMsg !== "") {
+            setMsg(passwordErrorMsg);
+            return
+        }
+
         setLoading(true);
         setBtnText('Updating password...');
 
@@ -146,9 +155,6 @@ export default function ForgotPasswordForm() {
             console.log(error);
             setMsg('Fail to update user password! Please contact our team to get support.');
         }
-
-        
-        
     }
 
     if (formState === 'email') {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { passwordValidator } from "@/helpers/authentication";
 
 export default function ChangePasswordModal() {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -36,6 +37,16 @@ export default function ChangePasswordModal() {
     // Change password
     const changePassword = e => {
         e.preventDefault();
+
+        // Password Validator
+        const passwordErrorMsg = passwordValidator(newPassword)
+        if (passwordErrorMsg !== "" && !errorMsg) {
+            setErrorMsg(passwordErrorMsg);
+            return
+        } else if (errorMsg) {
+            setErrorMsg("");
+        }
+
         setLoading(true);
         fetch('/api/authenticate/change_password', {
             method: "POST",

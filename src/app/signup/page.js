@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
+import { passwordValidator } from "@/helpers/authentication";
 
 export default function Signup() {
     const [email, setEmail] = useState('');
@@ -38,6 +39,15 @@ export default function Signup() {
     // Sign up user with email and password
     const signUp = e => {
         e.preventDefault();
+        // Password Validator
+        const passwordErrorMsg = passwordValidator(password)
+        if (passwordErrorMsg !== "" && !errorMsg) {
+            setErrorMsg(passwordErrorMsg);
+            return
+        } else if (errorMsg) {
+            setErrorMsg("");
+        }
+        
         setLoading(true);
         fetch('/api/authenticate/signup', {
             method: "POST",

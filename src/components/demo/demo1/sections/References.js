@@ -1,10 +1,8 @@
-'use client';
 import { convertToURL } from "@/helpers/helpers";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function References({content}) {
-    const [section, _] = useState(content);
+    const section = content
 
     return (
         <section className="prose mb-12">

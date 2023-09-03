@@ -95,47 +95,6 @@ export default function ProfileEdit({content, profileRef}) {
                                     onChange={uploadCV}/>
                             </div>
                         </div>
-                        {/* <div className="flex flex-row flex-wrap gap-x-3">
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Link 1 text:</span>
-                                </label>
-                                <input ref={el => (profileRef.current[2] = el)} type="text" placeholder="Title of link 1" className="input border-black w-full" defaultValue={profile.link1[0]} />
-                                <label className="label text-xs">
-                                    <span><strong>Hint: </strong>Describe the link you want users to click on (e.g. social media)</span>
-                                </label>
-                            </div>
-                        
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Link 1 URL:</span>
-                                </label>
-                                <input ref={el => (profileRef.current[3] = el)} type="url" placeholder="URL of link 1" className="input border-black w-full" defaultValue={profile.link1[1]} />
-                                <label className="label text-xs">
-                                    <span><strong>Hint: </strong>The actual URL you want user to visit (e.g. facebook.com)</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div className="flex flex-row flex-wrap gap-x-3">
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Link 2 text:</span>
-                                </label>
-                                <input ref={el => (profileRef.current[4] = el)} type="text" placeholder="Title of link 2" className="input border-black w-full" defaultValue={profile.link2[0]} />
-                                <label className="label text-xs">
-                                    <span><strong>Hint: </strong>Describe the link you want users to click on (e.g. social media)</span>
-                                </label>
-                            </div>
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Link 2 URL:</span>
-                                </label>
-                                <input ref={el => (profileRef.current[5] = el)} type="url" placeholder="URL of link 2" className="input border-black w-full" defaultValue={profile.link2[1]} />
-                                <label className="label text-xs">
-                                    <span><strong>Hint: </strong>The actual URL you want user to visit (e.g. facebook.com)</span>
-                                </label>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

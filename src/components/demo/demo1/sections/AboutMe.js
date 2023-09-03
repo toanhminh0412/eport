@@ -1,8 +1,5 @@
-'use client';
-import { useState } from "react";
-
 export default function AboutMe({content}) {
-    const [section, _] = useState(content);
+    const section = content;
 
     return (
         <section className="prose mb-12">

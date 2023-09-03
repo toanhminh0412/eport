@@ -182,7 +182,6 @@ export default function ForgotPasswordForm() {
             <form>
                 <div className="card w-full h-fit bg-white shadow-xl mt-40">
                     <div className="card-body">
-                        {/* A confirmation code has been sent to your email. Please type in the code below to confirm your email. */}
                         {msg}
                     </div>
                 </div>

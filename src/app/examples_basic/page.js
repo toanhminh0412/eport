@@ -2,68 +2,26 @@ import Slider from "@/components/ui/Slider";
 import Link from "next/link"
 
 export default function ExamplesBasic() {
-    const slides1 = [
-        {
-            img: '/img/jglanville_profile.png'
-        },
-        {
-            img: '/img/jglanville_aboutme.png'
-        },
-        {
-            img: '/img/jglanville_experience.png'
-        },
-        {
-            img: '/img/jglanville_references.png'
-        },
-        {
-            img: '/img/jglanville_getintouch.png'
-        },
-    ];
+    const slides1 = ['/img/jglanville_profile.png', '/img/jglanville_aboutme.png',
+                     '/img/jglanville_experience.png', '/img/jglanville_references.png',
+                     '/img/jglanville_getintouch.png'];
 
-    const slides2 = [
-        {
-            img: '/img/ttory_profile.png'
-        },
-        {
-            img: '/img/ttory_aboutme.png'
-        },
-        {
-            img: '/img/ttory_experience.png'
-        },
-        {
-            img: '/img/ttory_references.png'
-        },
-        {
-            img: '/img/ttory_getintouch.png'
-        },
-    ];
+    const slides2 = ['/img/ttory_profile.png', '/img/ttory_aboutme.png',
+                    '/img/ttory_experience.png', '/img/ttory_references.png',
+                    '/img/ttory_getintouch.png']
 
-    const slides3 = [
-        {
-            img: '/img/lrilla_profile.png'
-        },
-        {
-            img: '/img/lrilla_aboutme.png'
-        },
-        {
-            img: '/img/lrilla_experience.png'
-        },
-        {
-            img: '/img/lrilla_references.png'
-        },
-        {
-            img: '/img/lrilla_getintouch.png'
-        },
-    ];
+    const slides3 = ['/img/lrilla_profile.png', '/img/lrilla_aboutme.png',
+                    '/img/lrilla_experience.png', '/img/lrilla_references.png',
+                    '/img/lrilla_getintouch.png']
 
     return (
-        <div>
+        <div className="px-10">
             <div className="mb-20">
                 <div className="flex justify-center mt-12">
                     <h1 className="text-3xl">Jolie Glanville - Web Designer</h1>
                     <Link href='https://www.eport.site/jglanville' target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white ml-5 mt-[-3px]">Visit Site</Link>
                 </div>
-                <Slider slides={slides1}></Slider>
+                <Slider slides={slides1}></Slider>   
             </div>
             
             <div className="mb-20">

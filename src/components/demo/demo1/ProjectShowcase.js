@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ProjectModal } from "@/components/ui/ProjectModal";
 
 export default function ProjectShowcase({projects}) {
     const [activeTags, setActiveTags] = useState([]);
@@ -34,27 +35,7 @@ export default function ProjectShowcase({projects}) {
     return (
         <div className="text-center">
             {projects.map((project, index) => (
-            <dialog key={index} id={`project-${index}`} className="modal text-start">
-                <form method="dialog" className="modal-box">
-                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    <h3 className="font-bold text-lg mt-0">{project.title}</h3>
-                    {project.images.length > 0 ? <div className="text-center">
-                        <div className="carousel h-60 rounded-box shadow-lg border border-slate-300 not-prose">
-                            {project.images.map((image, imgIndex) => (
-                            <div key={imgIndex} className="carousel-item">
-                                <img src={image} alt="Project image" className="h-full" />
-                            </div> 
-                            ))}
-                        </div>
-                    </div> : null}
-                    {project.images.length > 0 ? 
-                    <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
-                    : <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>}
-                </form>
-                <form method="dialog" className="modal-backdrop">
-                    <button>close</button>
-                </form>
-            </dialog>
+                <ProjectModal key={index} project={project} index={index}></ProjectModal>
             ))}
 
             <div className="flex flex-row flex-wrap gap-3">

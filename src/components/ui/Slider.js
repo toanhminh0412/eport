@@ -9,7 +9,6 @@ export default function Slider({slides}) {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
-        console.log(currentIndex)
     }
 
     const nextSlide = () => {
@@ -24,12 +23,12 @@ export default function Slider({slides}) {
 
     return (
         <div>
-            <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative">
-                <div style={{ backgroundImage: `url(${slides[currentIndex].img})`}} className={`w-full h-full rounded-2xl duration-500 bg-center bg-contain bg-no-repeat`}></div>
+            <div className="max-w-[1400px] aspect-video w-full m-auto py-4 relative">
+                <div style={{ backgroundImage: `url(${slides[currentIndex]})`}} className={`w-full h-full rounded-2xl duration-500 bg-center bg-contain bg-no-repeat`}></div>
 
-                <div className="absolute top-[50%] left-5 cursor-pointer"><i className="fa-solid fa-circle-arrow-left text-3xl text-slate-400" onClick={prevSlide}></i></div>
+                <div className="absolute top-[43%] left-5 cursor-pointer"><i className="fa-solid fa-circle-arrow-left text-3xl text-slate-400" onClick={prevSlide}></i></div>
 
-                <div className="absolute top-[50%] right-5 cursor-pointer"><i className="fa-solid fa-circle-arrow-right text-3xl text-slate-400" onClick={nextSlide}></i></div>
+                <div className="absolute top-[43%] right-5 cursor-pointer"><i className="fa-solid fa-circle-arrow-right text-3xl text-slate-400" onClick={nextSlide}></i></div>
 
                 <div className="flex top-4 justify-center py-2">
                     {slides.map((_, slideIndex) => (

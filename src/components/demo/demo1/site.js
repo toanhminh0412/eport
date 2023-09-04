@@ -64,9 +64,9 @@ export default function Demo1({content, siteId}) {
         }
 
         // Upload new CV if it's replaced
-        let newCVURL = '';
-        if (profileRef.current[2].files.length > 0) {
-            let file = profileRef.current[2].files[0];
+        let newCVURL = profileRef.current[2].dataset.cvurl;
+        if (newCVURL && !newCVURL.includes('firebasestorage.googleapis.com')) {
+            let file = await fetch(newCVURL).then(r => r.blob());
             const userId = secureLocalStorage.getItem('eport-uid');
             const cvRef = ref(storage, `users/${userId}/cv.pdf`);
             const cvSnap = await uploadBytes(cvRef, file);
@@ -79,9 +79,7 @@ export default function Demo1({content, siteId}) {
             profilePic: newProfilePicURL ? newProfilePicURL : site.sections[0].profilePic,
             fullName: profileRef.current[0].value,
             job: profileRef.current[1].value,
-            cvURL: newCVURL ? newCVURL : site.sections[0].cvURL,
-            // link1: [profileRef.current[2].value, profileRef.current[3].value],
-            // link2: [profileRef.current[4].value, profileRef.current[5].value]
+            cvURL: newCVURL
         }
 
         // Update about me section

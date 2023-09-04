@@ -4,10 +4,10 @@ import Slider from "./Slider";
 import React, { useState } from "react";
 
 export function ProjectModal({project, index}) {
-    const [showMore, setShowMe] = useState(false);
+    const [showMore, setShowMore] = useState(false);
 
     const toggleCloseButton = () => {
-        setShowMe(false);
+        setShowMore(false);
     };
 
     return (

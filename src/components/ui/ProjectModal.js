@@ -11,7 +11,7 @@ export function ProjectModal({project, index}) {
     };
 
     return (
-        <dialog  key={index} id={`project-${index}`} className="modal text-start">
+        <dialog id={`project-${index}`} className="modal text-start">
             <form method="dialog" className="modal-box w-11/12 max-w-5xl">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={toggleCloseButton}>✕</button>
                 <h3 className="font-bold text-lg mt-0">{project.title}</h3>

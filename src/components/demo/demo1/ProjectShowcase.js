@@ -35,7 +35,7 @@ export default function ProjectShowcase({projects}) {
     return (
         <div className="text-center">
             {projects.map((project, index) => (
-                <ProjectModal project={project} index={index}></ProjectModal>
+                <ProjectModal key={index} project={project} index={index}></ProjectModal>
             ))}
 
             <div className="flex flex-row flex-wrap gap-3">

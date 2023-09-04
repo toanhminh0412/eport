@@ -27,7 +27,7 @@ export function ProjectModal({project, index}) {
                     : <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description.slice(0, 500).concat(" ...") }}></div>}
                 </div>}
                 {project.description.length >= 500 ?
-                    <div className="btn" onClick={() => setShowMe(!showMore)}>
+                    <div className="btn" onClick={() => setShowMore(!showMore)}>
                         {showMore ? "Show less" : "Show more"}
                     </div>
                 : null}

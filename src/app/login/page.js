@@ -56,7 +56,7 @@ export default function Login() {
         })
     }
 
-    // const auth = auth();
+    // Sign In With Google
     const signInWithGoogle = () => {
         const provider = new GoogleAuthProvider();
 

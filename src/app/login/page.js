@@ -39,6 +39,7 @@ export default function Login() {
             if (data.success) {
                 secureLocalStorage.setItem('eport-uid', data.uid);
                 secureLocalStorage.setItem('eport-email', data.email);
+                secureLocalStorage.setItem('eport-signInMethod', null);
                 secureLocalStorage.setItem('eport-domain', data.domain);
                 window.location.href = "/";
             } else {
@@ -79,6 +80,7 @@ export default function Login() {
                     secureLocalStorage.setItem('eport-uid', data.uid);
                     secureLocalStorage.setItem('eport-email', data.email);
                     secureLocalStorage.setItem('eport-signInMethod', data.signInMethod);
+                    secureLocalStorage.setItem('eport-domain', data.domain);
                     window.location.href = "/";
                 } else {
                     setLoading(false);
@@ -97,7 +99,6 @@ export default function Login() {
             console.log(error);
         });
     }
-    
 
     return (
         <div>
@@ -124,8 +125,17 @@ export default function Login() {
                         <input type="password" placeholder="Password" className="input input-bordered w-full" onChange={updatePassword}/>
                         <Link href="/forgotpassword" className="link text-blue-700 mt-4">Forgot password?</Link>
                         <p className="mt-2">Don&apos;t have an account? <Link href="/signup" className="link text-blue-700">Sign up</Link>!</p>
+                        <div className="mt-6 relative inline-block w-[240px] h-[50px] bg-blue-600 text-white rounded-[5px] shadow-xl hover:cursor-pointer hover:bg-blue-800" onClick={() => signInWithGoogle()}>
+                            <div className="h-full w-full border-[1px] border-transparent border-solid">
+                                <div className="p-4 bg-white w-[48px] h-full rounded-[5px] inline-block">
+                                    <img className="w-[18px] h-[18px]" src="https://developers.google.com/identity/images/g-logo.png"></img>
+                                </div>
+                                <div className="text-base tracking-wide leading-[48px] align-top border-none inline-block text-center w-[180px]">
+                                    <p>Sign In with Google</p>
+                                </div>
+                            </div>
+                        </div>
                         <input type="submit" value={loading? "Logging in..." : "Login"} className="btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white" disabled={!(email&&password) || loading}></input>
-                        <div className="btn mt-6" onClick={() => signInWithGoogle()}><i className="fa-brands fa-google"></i>Sign in with Google</div>
                     </form>
                 </div>
             </div>

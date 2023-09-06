@@ -42,7 +42,6 @@ export async function GET(request) {
         message = 'Login successfully!';
     } else {
         usersDocs.forEach((doc) => {
-            console.log(doc.data());
             const user = doc.data();
             if (user.signInMethod === "Google") {
                 success = true;

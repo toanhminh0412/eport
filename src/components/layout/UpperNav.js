@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState} from "react";
+import secureLocalStorage from "react-secure-storage";
 
 export default function UpperNav({isLoggedIn = true}) {
   const [currentPath, setCurrentPath] = useState();
@@ -54,7 +55,7 @@ export default function UpperNav({isLoggedIn = true}) {
           <label tabIndex={0} className="btn btn-primary m-1">My account</label>
           <ul tabIndex={0} className="menu dropdown-content mt-3 z-[1] p-2 shadow text-black bg-white rounded-box w-fit min-w-[10rem]">
             <li><label onClick={() => window.change_password_modal.showModal()}>Change password</label></li>
-            <li><Link href="/api/authenticate/logout" prefetch={false} onClick={() => {setCurrentPath('/login'); setLoggedIn(false)}}>Logout</Link></li>
+            <li><Link href="/api/authenticate/logout" prefetch={false} onClick={() => {setCurrentPath('/login'); setLoggedIn(false); secureLocalStorage.clear()}}>Logout</Link></li>
           </ul>
         </div>
         :

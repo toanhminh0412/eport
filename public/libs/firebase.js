@@ -25,3 +25,6 @@ export const db = getFirestore(app);
 
 // Initialize Cloud storage for images/static files
 export const storage = getStorage(app);
+
+// Initialize Firebase Authentication
+export const auth = getAuth(app);

@@ -37,7 +37,6 @@ export async function POST(request) {
     const userSnap = await getDoc(doc(db, 'users', uid));
     if (userSnap.exists()) {
         const user = userSnap.data();
-
         // If currentPassword is presented, check if that password is correct
         if (currentPassword) {
             const isPasswordCorrect = await bcrypt.compare(currentPassword, user.password);
@@ -46,7 +45,7 @@ export async function POST(request) {
                 message = 'Current password is incorrect!';
                 return NextResponse.json({
                     status: status,
-                    message: message
+                    message: message,
                 });
             }
         }
@@ -66,6 +65,6 @@ export async function POST(request) {
 
     return NextResponse.json({
         status: status,
-        message: message
+        message: message,
     });
 }

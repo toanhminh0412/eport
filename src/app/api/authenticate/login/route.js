@@ -37,6 +37,27 @@ export async function GET(request) {
                     cookieStore.set('eport-email', userData.email);
                     cookieStore.set('eport-email-verified', userData.emailVerified);
                     cookieStore.set('eport-domain', userData.domain);
+                    cookieStore.set('eport-stripe-customer-id', userData.stripeCustomerId ? userData.stripeCustomerId : '');
+
+
+                    // Check if user has an active subscription
+                    const stripeCustomerId = cookieStore.get('eport-stripe-customer-id') ? cookieStore.get('eport-stripe-customer-id').value : '';
+                    if (!userData.stripeCustomerId) {
+                        cookieStore.set('eport-plan', 'basic');
+                    } else {
+                        const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+                        const customer = await stripe.customers.retrieve(
+                            stripeCustomerId, {
+                                expand: ['subscriptions']
+                            }
+                        );
+                        if (customer && customer.subscriptions.data.length > 0 && customer.subscriptions.data[0].current_period_end * 1000 > new Date().getTime()) {
+                            console.log('Subscription is active');
+                            cookieStore.set('eport-plan', 'premium');
+                        } else {
+                            cookieStore.set('eport-plan', 'basic');
+                        }
+                    }
                 }
             }
             break;

@@ -2,95 +2,25 @@ import Slider from "@/components/ui/Slider";
 import Link from "next/link"
 
 export default function ExamplesPremium() {
-    const slides1 = [
-        {
-            img: '/img/ckiki_profile.png'
-        },
-        {
-            img: '/img/ckiki_aboutme.png'
-        },
-        {
-            img: '/img/ckiki_skills.png'
-        },
-        {
-            img: '/img/ckiki_experience.png'
-        },
-        {
-            img: '/img/ckiki_services.png'
-        },
-        {
-            img: '/img/ckiki_projects.png'
-        },
-        {
-            img: '/img/ckiki_testimonials.png'
-        },
-        {
-            img: '/img/ckiki_references.png'
-        },
-        {
-            img: '/img/ckiki_getintouch.png'
-        },
-    ];
+    const slides1 = ['/img/ckiki_profile.png', '/img/ckiki_aboutme.png',
+                    '/img/ckiki_skills.png', '/img/ckiki_experience.png',
+                    '/img/ckiki_services.png', '/img/ckiki_projects.png',
+                    '/img/ckiki_testimonials.png', '/img/ckiki_references.png',
+                    '/img/ckiki_getintouch.png']
 
-    const slides2 = [
-        {
-            img: '/img/stiffany_profile.png'
-        },
-        {
-            img: '/img/stiffany_aboutme.png'
-        },
-        {
-            img: '/img/stiffany_skills.png'
-        },
-        {
-            img: '/img/stiffany_experience.png'
-        },
-        {
-            img: '/img/stiffany_services.png'
-        },
-        {
-            img: '/img/stiffany_projects.png'
-        },
-        {
-            img: '/img/stiffany_testimonials.png'
-        },
-        {
-            img: '/img/stiffany_references.png'
-        },
-        {
-            img: '/img/stiffany_getintouch.png'
-        },
-    ];
+    const slides2 = ['/img/stiffany_profile.png', '/img/stiffany_aboutme.png',
+                    '/img/stiffany_skills.png', '/img/stiffany_experience.png',
+                    '/img/stiffany_services.png', '/img/stiffany_projects.png',
+                    '/img/stiffany_testimonials.png', '/img/stiffany_references.png',
+                    '/img/stiffany_getintouch.png']
 
-    const slides3 = [
-        {
-            img: '/img/mmiles_profile.png'
-        },
-        {
-            img: '/img/mmiles_aboutme.png'
-        },
-        {
-            img: '/img/mmiles_experience.png'
-        },
-        {
-            img: '/img/mmiles_services.png'
-        },
-        {
-            img: '/img/mmiles_projects.png'
-        },
-        {
-            img: '/img/mmiles_testimonials.png'
-        },
-        {
-            img: '/img/mmiles_references.png'
-        },
-        {
-            img: '/img/mmiles_getintouch.png'
-        },
-    ];
+    const slides3 = ['/img/mmiles_profile.png', '/img/mmiles_aboutme.png',
+                    '/img/mmiles_experience.png', '/img/mmiles_services.png',
+                    '/img/mmiles_projects.png', '/img/mmiles_testimonials.png',
+                    '/img/mmiles_references.png', '/img/mmiles_getintouch.png']
 
     return (
-        <div>
+        <div className="px-10">
             <div className="mb-20">
                 <div className="flex justify-center mt-12">
                     <h1 className="text-3xl">Crispian Kiki - Software Developer</h1>

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { passwordValidator } from "@/helpers/authentication";
+import secureLocalStorage from "react-secure-storage";
 
 export default function ChangePasswordModal() {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -11,6 +12,7 @@ export default function ChangePasswordModal() {
     const [successMsg, setSucessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [loading, setLoading] = useState(false);
+    const [signInMethod, setSignInMethod] = useState('');
 
     // Update current password on type
     const updateCurrentPassword = e => {
@@ -33,7 +35,7 @@ export default function ChangePasswordModal() {
             setErrorMsg('');
         }
     }
-
+    
     // Change password
     const changePassword = e => {
         e.preventDefault();
@@ -87,65 +89,84 @@ export default function ChangePasswordModal() {
             }, 5000);
         })
     }
-
+    useEffect(() => {
+        setSignInMethod(secureLocalStorage.getItem("eport-signInMethod"));
+    }, []);
+    
+    if (!signInMethod) {
+        return (
+            <dialog id="change_password_modal" className="modal">
+                <form method="dialog" className="modal-box" onSubmit={changePassword}>
+                    <div className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => window.change_password_modal.close()}>✕</div>
+                    <h3 className="font-bold text-lg">Change password</h3>
+                    
+                    {/* Flash success/error message */}
+                    {successMsg ? (
+                    <div className="alert alert-success bg-green-300 border-none mt-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{successMsg}</span>
+                    </div>
+                    ) : null}
+                    {errorMsg ? (
+                    <div className="alert alert-error bg-red-300 border-none mt-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{errorMsg}</span>
+                    </div>
+                    ) : null}
+    
+                    {/* Current password */}
+                    
+                    <label className="label mt-2">
+                        <span className="label-text">Current password:</span>
+                    </label>
+                    <input 
+                    value={currentPassword} 
+                    type="password" 
+                    placeholder="Password" 
+                    className="input input-bordered w-full" 
+                    onChange={updateCurrentPassword}/>
+                    
+    
+                    {/* New password */}
+                    <label className="label mt-2">
+                        <span className="label-text">New password:</span>
+                    </label>
+                    <input 
+                    value={newPassword} 
+                    type="password" 
+                    placeholder="Password" 
+                    className="input input-bordered w-full" 
+                    onChange={updateNewPassword}/>
+    
+                    {/* Confirm new password */}
+                    <label className="label mt-2">
+                        <span className="label-text">Confirm new password:</span>
+                    </label>
+                    <input 
+                    value={confirmPassword} 
+                    type="password" 
+                    placeholder="Password" 
+                    className="input input-bordered w-full" 
+                    onChange={updateConfirmPassword}/>
+    
+                    {/* Submit button */}
+                    <input type="submit" value={loading ? "Updating password..." : "Update password"} className={`btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white`} disabled={(!(currentPassword && newPassword && confirmPassword && (newPassword === confirmPassword)))||loading }></input>
+                </form>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+        )
+    }
+    
     return (
         <dialog id="change_password_modal" className="modal">
-            <form method="dialog" className="modal-box" onSubmit={changePassword}>
+            <form method="dialog" className="modal-box max-w-xl">
                 <div className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => window.change_password_modal.close()}>✕</div>
-                <h3 className="font-bold text-lg">Change password</h3>
-                
-                {/* Flash success/error message */}
-                {successMsg ? (
-                <div className="alert alert-success bg-green-300 border-none mt-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span>{successMsg}</span>
-                </div>
-                ) : null}
-                {errorMsg ? (
-                <div className="alert alert-error bg-red-300 border-none mt-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span>{errorMsg}</span>
-                </div>
-                ) : null}
-
-                {/* Current password */}
-                <label className="label mt-2">
-                    <span className="label-text">Current password:</span>
-                </label>
-                <input 
-                value={currentPassword} 
-                type="password" 
-                placeholder="Password" 
-                className="input input-bordered w-full" 
-                onChange={updateCurrentPassword}/>
-
-                {/* New password */}
-                <label className="label mt-2">
-                    <span className="label-text">New password:</span>
-                </label>
-                <input 
-                value={newPassword} 
-                type="password" 
-                placeholder="Password" 
-                className="input input-bordered w-full" 
-                onChange={updateNewPassword}/>
-
-                {/* Confirm new password */}
-                <label className="label mt-2">
-                    <span className="label-text">Confirm new password:</span>
-                </label>
-                <input 
-                value={confirmPassword} 
-                type="password" 
-                placeholder="Password" 
-                className="input input-bordered w-full" 
-                onChange={updateConfirmPassword}/>
-
-                {/* Submit button */}
-                <input type="submit" value={loading ? "Updating password..." : "Update password"} className={`btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white`} disabled={(!(currentPassword && newPassword && confirmPassword && (newPassword === confirmPassword)))||loading }></input>
+                <h3>You cannot change the password since you logged in using {signInMethod}!</h3>
             </form>
             <form method="dialog" className="modal-backdrop">
-                <button>close</button>
+                    <button>close</button>
             </form>
         </dialog>
     )

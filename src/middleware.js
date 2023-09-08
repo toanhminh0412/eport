@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 export async function middleware(request) {
-    const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1'];
+    /*** Authentication ***/
+    const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1', '/manage_subscriptions'];
 
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
         // Check if user is logged in, redirect to login page if not
@@ -31,11 +32,17 @@ export async function middleware(request) {
         }
     }
 
-
+    /*** Plan ***/
+    if (request.nextUrl.pathname === '/manage_subscriptions') {
+        if (!request.cookies.get('eport-plan')) {
+            return NextResponse.redirect(new URL('/api/stripe/set_plan_cookie', request.url));
+        }
+    }
+    
     const response = NextResponse.next();
     return response;
 }
 
 export const config = {
-    matcher: ['/', '/confirm_email', '/demo/:path*', '/login', '/signup'],
+    matcher: ['/', '/confirm_email', '/demo/:path*', '/login', '/signup', '/manage_subscriptions'],
 }

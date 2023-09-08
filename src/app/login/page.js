@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../public/libs/firebase";
 
 export default function Login() {
@@ -100,6 +100,25 @@ export default function Login() {
         });
     }
 
+    // Sign In with Facebook
+    const signInWithFacebook = () => {
+        const provider = new FacebookAuthProvider();
+
+        signInWithPopup(auth, provider)
+        .then((result) => {
+            // The signed-in user info.
+            const user = result.user;
+            const credential = FacebookAuthProvider.credentialFromResult(result);
+            const accessToken = credential.accessToken;
+            console.log(user);
+            console.log(credential);
+            console.log(accessToken);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
     return (
         <div>
             <div className="flex flex-row flex-wrap text-black pt-10 lg:pt-32 mb-32">
@@ -136,6 +155,7 @@ export default function Login() {
                             </div>
                         </div>
                         <input type="submit" value={loading? "Logging in..." : "Login"} className="btn w-fit mt-6 bg-orange-600 hover:bg-orange-800 text-white" disabled={!(email&&password) || loading}></input>
+                        {/* <div className="btn mt-6" onClick={() => signInWithFacebook()}>Sign In with Facebook</div> */}
                     </form>
                 </div>
             </div>

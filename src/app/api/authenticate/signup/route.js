@@ -45,6 +45,7 @@ export async function POST(request) {
             // emailVerified: true,
             emailVerified: false,
             domain: '',
+            stripeCustomerId: ''
         }
         
         // Save user in 'users' collection in Firestore
@@ -55,6 +56,8 @@ export async function POST(request) {
         cookieStore.set('eport-email', newUser.email);
         cookieStore.set('eport-email-verified', newUser.emailVerified);
         cookieStore.set('eport-domain', newUser.domain);
+        cookieStore.set('eport-stripe-customer-id', '');
+        cookieStore.set('eport-plan', 'basic');
 
         success = true;
         message = 'Signed up successfully!';

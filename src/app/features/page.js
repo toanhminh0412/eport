@@ -1,3 +1,4 @@
+import PlansDisplay from "@/components/ui/plans_display/PlansDisplay"
 import Link from "next/link"
 
 export default function Features() {
@@ -46,52 +47,7 @@ export default function Features() {
 
             <div className="relative w-full flex flex-col justify-center bg-blue-100 pb-40 md:pb-12" id="pricing">
                 <h1 className="mt-12 text-3xl md:text-5xl text-center text-black">Pricing</h1>
-                <div className="flex flex-row flex-wrap justify-center gap-8 text-lg px-4 mt-8">
-                    <div className="card w-96 sm:w-120 bg-base-100 shadow-xl">
-                        <div className="card-body text-left mt-[-30px]">
-                            <p className="text-2xl md:text-3xl mb-0 pb-0 text-center">Basic</p>
-                            <h2 className="text-3xl md:text-5xl font-medium text-center mt-5 mx-0 mb-10">Free</h2>
-                            <div className="text-center">You have the following sections</div>
-                            
-                            <ul className="mt-5 mx-0 list-none">
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Basic Profile</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>About Me</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Experience</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>References</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Get In Touch</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Skills</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Services</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Projects</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Testimonials</li>
-                            </ul>
-
-                            <Link href="" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Subcribe Now</Link>
-                            <Link href="/examples_basic" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Basic Examples</Link>
-                        </div>
-                    </div>
-
-                    <div className="card w-96 sm:w-120 bg-base-100 shadow-xl">
-                        <div className="card-body text-left mt-[-30px]">
-                            <p className="text-2xl md:text-3xl text-center">Premium</p>
-                            <h2 className="text-3xl md:text-5xl font-medium mt-5 mx-0 mb-10 text-center">2 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
-                            <div className="text-center">You have the following sections</div>
-
-                            <ul className="mt-5 mx-0 list-none">
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Basic Profile</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>About Me</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Experience</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>References</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Get In Touch</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Skills</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Services</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Projects</li>
-                                <li className="my-4 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Testimonials</li>
-                            </ul>
-                            <Link href="" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Subcribe Now</Link>
-                            <Link href="/examples_premium" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Premium Examples</Link>
-                        </div>
-                    </div>
-                </div>
+                <PlansDisplay mode="showcase"/>
             </div>
         </div>
     )

@@ -1,7 +1,10 @@
 import PlansDisplay from "@/components/ui/plans_display/PlansDisplay"
-import Link from "next/link"
+import Link from "next/link";
+import { cookies } from "next/headers";
 
 export default function Features() {
+    const loggedIn = cookies().get('eport-uid') ? true : false;
+    
     return (
         <div className="prose max-w-none scroll-smooth">
             <div className="hero h-220 bg-[url('/img/header-bg.jpg')]">
@@ -47,7 +50,7 @@ export default function Features() {
 
             <div className="relative w-full flex flex-col justify-center bg-blue-100 pb-40 md:pb-12" id="pricing">
                 <h1 className="mt-12 text-3xl md:text-5xl text-center text-black">Pricing</h1>
-                <PlansDisplay mode="showcase"/>
+                <PlansDisplay mode="showcase" loggedIn={loggedIn}/>
             </div>
         </div>
     )

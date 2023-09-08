@@ -2,13 +2,14 @@ import Link from "next/link";
 
 import ManagePlanButton from "./ManagePlanButton";
 
-export default function PlansDisplay({mode="showcase", plan="basic", status="", expiredDate=""}) {
+export default function PlansDisplay({mode="showcase", plan="basic", status="", expiredDate="", loggedIn=false}) {
     /*
     Props:
         - mode: "showcase" or "manage"
         - plan: "basic" or "premium"
         - status: "Active" or "Cancelled". Only avaiable when plan is "premium"
         - expiredDate: Date string. Only avaiable when plan is "premium"
+        - loggedIn: true or false. Only avaiable when mode is "showcase"
     */
     if (mode === "manage") return (
         <div className="flex flex-row flex-wrap justify-center gap-8 text-lg px-4 mt-8">
@@ -83,7 +84,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                         <li className="my-2 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Testimonials</li>
                     </ul>
 
-                    <Link href="/login" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Subcribe Now</Link>
+                    <Link href={loggedIn ? "/manage_subscriptions" : "/login"} className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Subcribe Now</Link>
                     <Link href="/examples_basic" target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Basic Examples</Link>
                 </div>
             </div>
@@ -105,7 +106,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                         <li className="my-2 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Projects</li>
                         <li className="my-2 mx-0"><i className="fa-solid fa-check text-green-500 mr-3"></i>Testimonials</li>
                     </ul>
-                    <Link href="" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Subcribe Now</Link>
+                    <Link href={loggedIn ? "/manage_subscriptions" : "/login"} className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Subcribe Now</Link>
                     <Link href="/examples_premium" target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Premium Examples</Link>
                 </div>
             </div>

@@ -32,5 +32,13 @@ export async function GET(request) {
         cookieStore.set('eport-plan', 'basic');
     }
 
-    redirect('/manage_subscriptions');
+    const planStatus = cookieStore.get('eport-plan-status') ? cookieStore.get('eport-plan-status').value : '';
+
+    if (planStatus === 'Active') {
+        redirect('/manage_subscriptions?status=active');
+    } else if (planStatus === 'Cancelled') {
+        redirect('/manage_subscriptions?status=cancel');
+    } else {
+        redirect('/manage_subscriptions');
+    }
 }

@@ -99,7 +99,7 @@ export default function ManagePlanButton({displayPlan, currentPlan="basic", stat
         );
 
         return (
-            <div></div>
+            <div className="opacity-0 btn btn-disabled">Button</div>
         )
     }
 }

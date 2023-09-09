@@ -46,6 +46,8 @@ export async function GET(request) {
         mode: 'subscription',
         success_url: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/manage_subscriptions`,
         cancel_url: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/manage_subscriptions`,
+        customer_update: {address: 'auto'},
+        automatic_tax: {enabled: true},
         subscription_data: {
             trial_period_days: 15
         }

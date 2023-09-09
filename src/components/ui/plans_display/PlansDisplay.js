@@ -32,7 +32,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                         <li className="my-2 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Testimonials</li>
                     </ul>
 
-                    <ManagePlanButton displayPlan="basic" currentPlan={plan}/>
+                    <ManagePlanButton displayPlan="basic" currentPlan={plan} status={status} expiredDate={expiredDate}/>
                     <Link href="/examples_basic" target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Basic Examples</Link>
                 </div>
             </div>

@@ -54,6 +54,10 @@ export async function GET(request) {
                         if (customer && customer.subscriptions.data.length > 0 && customer.subscriptions.data[0].current_period_end * 1000 > new Date().getTime()) {
                             console.log('Subscription is active');
                             cookieStore.set('eport-plan', 'premium');
+                            // Store plan status and expired date in cookie
+                            const currentSubscription = customer.subscriptions.data[0];
+                            cookieStore.set('eport-plan-status', currentSubscription.cancel_at_period_end ? 'Cancelled' : 'Active');
+                            cookieStore.set('eport-plan-expired-date', new Date(currentSubscription.current_period_end * 1000).toDateString());
                         } else {
                             cookieStore.set('eport-plan', 'basic');
                         }

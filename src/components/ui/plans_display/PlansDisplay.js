@@ -15,8 +15,15 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
         <div className="flex flex-row flex-wrap justify-center gap-8 text-lg px-4 mt-8">
             <div className="card p-4 w-fit bg-base-100 shadow-xl">
                 <div className="card-body text-left mt-[-30px]">
-                    <p className="text-2xl md:text-3xl mb-0 pb-0 text-center mt-2">Basic</p>
-                    <h2 className="text-3xl md:text-5xl font-medium text-center mt-[-10px] mx-0 mb-10">Free</h2>
+                    <p className="text-2xl md:text-3xl text-center mt-2">Basic</p>
+                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-auto text-center">Free</h2>
+                    
+                    {/* Invisible block to make two plan prices align */}
+                    <div className="text-center opacity-0">15 days free trial</div>
+                    {plan === "premium" ? <div className="opacity-0 badge text-blue-500 badge-outline mx-auto badge-lg">Current plan</div> : null}
+                    {plan === "premium" && status ? <div className={`opacity-0 badge ${status === 'Active' ? 'text-green-500' : 'text-orange-500'} badge-outline mx-auto badge-lg`}>{status}</div> : null}
+                    {plan === "premium" && status === 'Cancelled' && expiredDate ? <div className="opacity-0 badge text-red-500 badge-outline mx-auto badge-lg whitespace-nowrap">Expired on: {expiredDate}</div> : null}
+                    
                     {plan === "basic" ? <div className="badge text-blue-500 badge-outline mx-auto badge-lg text-xl my-3">Current plan</div> : null}
                     <div className="text-center">You have the following sections</div>
                     
@@ -32,7 +39,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                         <li className="my-2 mx-0"><i className="fa-solid fa-x text-red-500 mr-3"></i>Testimonials</li>
                     </ul>
 
-                    <ManagePlanButton displayPlan="basic" currentPlan={plan}/>
+                    <ManagePlanButton displayPlan="basic" currentPlan={plan} status={status} expiredDate={expiredDate}/>
                     <Link href="/examples_basic" target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white w-full max-w-xs mx-auto">Basic Examples</Link>
                 </div>
             </div>
@@ -40,10 +47,15 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
             <div className="card p-4 w-fit bg-base-100 shadow-xl">
                 <div className="card-body text-left mt-[-30px]">
                     <p className="text-2xl md:text-3xl text-center mt-2">Premium</p>
-                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-10 text-center">2 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
+                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-0 text-center">1.99 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
+                    <div className="text-center">15 days free trial</div>
                     {plan === "premium" ? <div className="badge text-blue-500 badge-outline mx-auto badge-lg">Current plan</div> : null}
                     {plan === "premium" && status ? <div className={`badge ${status === 'Active' ? 'text-green-500' : 'text-orange-500'} badge-outline mx-auto badge-lg`}>{status}</div> : null}
-                    {plan === "premium" && status === 'Cancelled' && expiredDate ? <div className="badge text-red-500 badge-outline mx-auto badge-lg">Expired on: {expiredDate}</div> : null}
+                    {plan === "premium" && status === 'Cancelled' && expiredDate ? <div className="badge text-red-500 badge-outline mx-auto badge-lg whitespace-nowrap">Expired on: {expiredDate}</div> : null}
+                    
+                    {/* Invisible block to make two plan prices align */}
+                    {plan === "basic" ? <div className="opacity-0 badge text-blue-500 badge-outline mx-auto badge-lg text-xl my-3">Current plan</div> : null}
+
                     <div className="text-center">You have the following sections</div>
 
                     <ul className="mt-5 mx-0 list-none">

@@ -19,6 +19,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                     <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-auto text-center">Free</h2>
                     
                     {/* Invisible block to make two plan prices align */}
+                    <div className="text-center text-sm opacity-0">(Tax included)</div>
                     <div className="text-center opacity-0">15 days free trial</div>
                     {plan === "premium" ? <div className="opacity-0 badge text-blue-500 badge-outline mx-auto badge-lg">Current plan</div> : null}
                     {plan === "premium" && status ? <div className={`opacity-0 badge ${status === 'Active' ? 'text-green-500' : 'text-orange-500'} badge-outline mx-auto badge-lg`}>{status}</div> : null}
@@ -47,7 +48,8 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
             <div className="card p-4 w-fit bg-base-100 shadow-xl">
                 <div className="card-body text-left mt-[-30px]">
                     <p className="text-2xl md:text-3xl text-center mt-2">Premium</p>
-                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-0 text-center">1.99 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
+                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-0 text-center">2.49 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
+                    <div className="text-center text-sm">(Tax included)</div>
                     <div className="text-center">15 days free trial</div>
                     {plan === "premium" ? <div className="badge text-blue-500 badge-outline mx-auto badge-lg">Current plan</div> : null}
                     {plan === "premium" && status ? <div className={`badge ${status === 'Active' ? 'text-green-500' : 'text-orange-500'} badge-outline mx-auto badge-lg`}>{status}</div> : null}
@@ -81,7 +83,12 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
             <div className="card p-4 w-fit bg-base-100 shadow-xl">
                 <div className="card-body text-left mt-[-30px]">
                     <p className="text-2xl md:text-3xl text-center mt-2">Basic</p>
-                    <h2 className="text-3xl md:text-5xl font-medium mx-0 mb-10 text-center mt-[-10px]">Free</h2>
+                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-auto text-center">Free</h2>
+
+                    {/* Invisible block to make two plan prices align */}
+                    <div className="text-center text-sm opacity-0">(Tax included)</div>
+                    <div className="text-center opacity-0">15 days free trial</div>
+
                     <div className="text-center">You have the following sections</div>
                     
                     <ul className="mt-5 mx-0 list-none">
@@ -104,7 +111,9 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
             <div className="card p-4 w-fit bg-base-100 shadow-xl">
                 <div className="card-body text-left mt-[-30px]">
                     <p className="text-2xl md:text-3xl text-center mt-2">Premium</p>
-                    <h2 className="text-3xl md:text-5xl font-medium mx-0 mb-10 text-center mt-[-10px]">2 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
+                    <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-0 text-center">2.49 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
+                    <div className="text-center text-sm">(Tax included)</div>
+                    <div className="text-center">15 days free trial</div>
                     <div className="text-center">You have the following sections</div>
 
                     <ul className="mt-5 mx-0 list-none">

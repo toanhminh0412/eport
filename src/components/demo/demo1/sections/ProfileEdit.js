@@ -40,7 +40,7 @@ export default function ProfileEdit({content, profileRef}) {
     // Upload new CV for review or change
     const uploadCV = e => {
         if (e.target.files.length > 0){
-            if (!cvURL.includes('firebasestorage.googleapis.com')) URL.revokeObjectURL(cvURL);
+            if (cvURL && !cvURL.includes('firebasestorage.googleapis.com')) URL.revokeObjectURL(cvURL);
             const newCvURL = URL.createObjectURL(e.target.files[0]);
             setCvURL(newCvURL);
             setCvMsg('New CV uploaded. Click "Save" to save changes.');

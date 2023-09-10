@@ -2,6 +2,7 @@ import PublishedDemo1 from '@/components/demo/demo1/published';
 import NotFound from '../not-found';
 import { db } from '../../../public/libs/firebase';
 import { collection, getDocs, query, where } from '@firebase/firestore';
+import { cookies } from 'next/headers';
 
 const getSite = async (domain) => {
     const siteQuery = query(collection(db, 'publishedSites'), where('domain', '==', domain));
@@ -15,9 +16,11 @@ const getSite = async (domain) => {
 
 export default async function PublishedSite({ params }) {
     const site = await getSite(params.domain);
+    const cookieStore = cookies();
+    const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
 
     if (site) {
-        return <PublishedDemo1 site={site} />
+        return <PublishedDemo1 site={site} plan={plan}/>
     } else {
         return <NotFound/>
     }

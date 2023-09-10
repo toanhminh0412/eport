@@ -12,5 +12,7 @@ export async function GET(request) {
     cookieStore.delete('eport-domain');
     cookieStore.delete('eport-stripe-customer-id');
     cookieStore.delete('eport-plan');
+    cookieStore.delete('eport-plan-status');
+    cookieStore.delete('eport-plan-expired-date');
     redirect('/login');
 }

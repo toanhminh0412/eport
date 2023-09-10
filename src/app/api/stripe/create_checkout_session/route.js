@@ -37,12 +37,6 @@ export async function GET(request) {
 
     const customerId = cookieStore.get('eport-stripe-customer-id').value;
 
-    // Create a new portal session for this customer
-    // const session = await stripe.billingPortal.sessions.create({
-    //     customer: customerId,
-    //     return_url: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/manage_subscriptions`
-    // });
-
     // Create a checkout session
     const session = await stripe.checkout.sessions.create({
         customer: customerId,
@@ -51,7 +45,12 @@ export async function GET(request) {
         ],
         mode: 'subscription',
         success_url: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/manage_subscriptions`,
-        cancel_url: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/manage_subscriptions`
+        cancel_url: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/manage_subscriptions`,
+        customer_update: {address: 'auto'},
+        automatic_tax: {enabled: true},
+        subscription_data: {
+            trial_period_days: 15
+        }
     });
 
     return NextResponse.json({

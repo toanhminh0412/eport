@@ -33,12 +33,16 @@ export async function GET(request) {
         await setDoc(doc(usersCollection, newUserId), newUser);
         
         // Log user in
-        cookieStore.set('eport-uid', newUser.uid);
-        cookieStore.set('eport-email', newUser.email);
-        cookieStore.set('eport-signInMethod', newUser.signInMethod);
-        cookieStore.set('eport-email-verified', newUser.emailVerified);
-        cookieStore.set('eport-domain', newUser.domain);
-        cookieStore.set('eport-stripe-customer-id', '');
+        const cookieOptions = {
+            secure: true,
+            httpOnly: true,
+        }
+        cookieStore.set('eport-uid', newUser.uid, cookieOptions);
+        cookieStore.set('eport-email', newUser.email, cookieOptions);
+        cookieStore.set('eport-signInMethod', newUser.signInMethod, cookieOptions);
+        cookieStore.set('eport-email-verified', newUser.emailVerified, cookieOptions);
+        cookieStore.set('eport-domain', newUser.domain, cookieOptions);
+        cookieStore.set('eport-stripe-customer-id', '', cookieOptions);
 
         success = true;
         message = 'Login successfully!';

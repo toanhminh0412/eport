@@ -45,7 +45,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                 {!isEqual ?
                 <div>
                     {messageLoading ? 
-                        <span className="loading loading-spinner"></span>
+                        <span className="loading loading-spinner md:ml-5"></span>
                     :
                         <div>
                             {state === "edit" ?
@@ -53,14 +53,14 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                                     <span className="fa-solid fa-x mr-3"></span>
                                     {message}
                                 </div>
-                                : null }
+                            : null }
                         </div>
                     }
                 </div>
                 :
                 <div>
                     {messageLoading ? 
-                        <span className="loading loading-spinner"></span>
+                        <span className="loading loading-spinner md:ml-5"></span>
                     :
                         <div>
                             {state === "edit" ?
@@ -68,7 +68,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                                     <span className="fa-solid fa-check mr-3"></span>
                                     {message}
                                 </div>
-                                : null}
+                            : null}
                         </div>
                     }
                 </div> 

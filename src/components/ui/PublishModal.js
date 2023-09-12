@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 
-export default function PublishModal({site, showMessageToast}) {
+export default function PublishModal({site, showMessageToast, setPublishMessage}) {
     const [url, setUrl] = useState('');
     const [domain, setDomain] = useState('');
     const [loading, setLoading] = useState(false);
@@ -45,6 +45,7 @@ export default function PublishModal({site, showMessageToast}) {
         const data = await res.json();
         if (data.status === 200) {
             showMessageToast(data.message, true);
+            setPublishMessage();
             secureLocalStorage.setItem('eport-domain', domain);
             document.getElementById('publish_modal').close();
         } else {
@@ -54,6 +55,7 @@ export default function PublishModal({site, showMessageToast}) {
             }, 5000);
         }
         setLoading(false);
+
     }
 
     return (

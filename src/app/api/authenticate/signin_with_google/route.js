@@ -53,7 +53,7 @@ export async function GET(request) {
             cookieStore.set('eport-email', user.email);
             cookieStore.set('eport-signInMethod', 'Google');
             cookieStore.set('eport-email-verified', true);
-            cookieStore.set('eport-domain', "");
+            cookieStore.set('eport-domain', user.domain);
             cookieStore.set('eport-stripe-customer-id', user.stripeCustomerId ? user.stripeCustomerId : '');
 
             // Check if user has an active subscription

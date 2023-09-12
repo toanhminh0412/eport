@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import ControlNav from "../../layout/ControlNav";
 import { ErrorToast, SuccessToast } from "../../ui/MessageToast";
@@ -19,6 +19,9 @@ export default function Demo1({content, siteId}) {
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
     const [editMode, setEditMode] = useState(false);
+    const [isEqual, setIsEqual] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [msgLoading, setMsgLoading] = useState(false);
 
     const profileRef = useRef([]);
     const aboutMeRef = useRef([]);
@@ -29,6 +32,36 @@ export default function Demo1({content, siteId}) {
     const testimonialsRef = useRef({'testimonials': []});
     const referencesRef = useRef({'references': []})
     const footerRef = useRef({'socials': []});
+
+    // Compare current site and published site
+    useEffect(() => {
+        async function fetchData() {
+            setMsgLoading(true);
+            const response = await fetch('/api/site/check_latest_version');
+            const data = await response.json();
+            console.log(data);
+            if (data.status === 200 && data.isEqual === false) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is not up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 200 && data.isEqual === true) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 400) {
+                setIsEqual(data.isEqual);
+                setMessage('Click "Publish Site" to publish your site!');
+                setMsgLoading(false);
+            }
+        }
+        fetchData();
+    }, [site]);
+
+    // Set message when publish site
+    const setPublishMessage = () => {
+        setIsEqual(true);
+        setMessage('Your published site is up-to-date!');
+    }
 
     // Toggle edit mode
     const toggleEditMode = () => {
@@ -345,8 +378,8 @@ export default function Demo1({content, siteId}) {
 
     return (
         <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
-            <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
-            <PublishModal site={site} showMessageToast={showMessageToast}/>
+            <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
+            <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage}/>
             <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words">
                 {successMsg ? <SuccessToast message={successMsg}/> : null}
                 {errorMsg ? <ErrorToast message={errorMsg}/> : null}

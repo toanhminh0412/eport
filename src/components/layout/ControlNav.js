@@ -13,12 +13,9 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
     const [delay, setDelay] = useState(false);
 
     useEffect(() => {
-        console.log(secureLocalStorage.getItem('eport-domain', null));
         if (secureLocalStorage.getItem('eport-domain', null)) {
-            console.log('bbb');
             setDomain(secureLocalStorage.getItem('eport-domain'));
         };
-        console.log(secureLocalStorage.getItem('eport-domain', null));
     }, [secureLocalStorage.getItem('eport-domain', null)]);
     
     const stateControlFunc = async () => {
@@ -45,14 +42,18 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                 :
                 <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
                 {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
-                {isEqual === false ?
+                {!isEqual ?
                 <div>
                     {messageLoading ? 
                         <span className="loading loading-spinner"></span>
                     :
-                        <div className="text-red-300 md:ml-5">
-                            <i className="fa-solid fa-x mr-3"></i>
-                            {message}
+                        <div>
+                            {state === "edit" ?
+                                <div className="text-red-300 md:ml-5">
+                                    <span className="fa-solid fa-x mr-3"></span>
+                                    {message}
+                                </div>
+                                : null }
                         </div>
                     }
                 </div>
@@ -61,9 +62,13 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                     {messageLoading ? 
                         <span className="loading loading-spinner"></span>
                     :
-                        <div className="text-green-300 md:ml-5">
-                            <i className="fa-solid fa-check mr-3"></i>
-                            {message}
+                        <div>
+                            {state === "edit" ?
+                                <div className="text-green-300 md:ml-5">
+                                    <span className="fa-solid fa-check mr-3"></span>
+                                    {message}
+                                </div>
+                                : null}
                         </div>
                     }
                 </div> 

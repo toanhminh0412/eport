@@ -3,9 +3,10 @@ import { db } from "../../../../../public/libs/firebase";
 import { cookies } from "next/headers";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
+const util = require('util');
+
 export async function GET(request) {
     // Get current user id
-    const util = require('util');
     const cookieStore = cookies();
     const uidCookie = cookieStore.get('eport-uid').value;
 

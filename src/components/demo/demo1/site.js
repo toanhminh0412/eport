@@ -35,7 +35,7 @@ export default function Demo1({content, siteId}) {
 
     // Compare current site and published site
     useEffect(() => {
-        async function fetchData() {
+        async function compareSites() {
             setMsgLoading(true);
             const response = await fetch('/api/site/check_latest_version');
             const data = await response.json();
@@ -54,7 +54,7 @@ export default function Demo1({content, siteId}) {
                 setMsgLoading(false);
             }
         }
-        fetchData();
+        compareSites();
     }, [site]);
 
     // Set message when publish site

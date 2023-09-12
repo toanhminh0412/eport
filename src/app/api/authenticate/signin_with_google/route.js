@@ -51,14 +51,27 @@ export async function GET(request) {
     } else {
         const user = usersDocs.docs[0].data();
         if (user.signInMethod === "Google") {
+            console.log('Calling this');
             success = true;
             message = 'Login successfully!';
-            cookieStore.set('eport-uid', user.uid);
-            cookieStore.set('eport-email', user.email);
-            cookieStore.set('eport-signInMethod', 'Google');
-            cookieStore.set('eport-email-verified', true);
-            cookieStore.set('eport-domain', "");
-            cookieStore.set('eport-stripe-customer-id', user.stripeCustomerId ? user.stripeCustomerId : '');
+            const cookieOptions = {
+                secure: true,
+                httpOnly: true,
+            }
+            console.log(cookieOptions);
+            cookieStore.set('eport-uid', user.uid, cookieOptions);
+            // cookieStore.set({
+            //     name: 'eport-uid',
+            //     value: user.uid,
+            //     secure: true,
+            //     httpOnly: true,
+            //     path: '/',
+            // })
+            cookieStore.set('eport-email', user.email, cookieOptions);
+            cookieStore.set('eport-signInMethod', 'Google', cookieOptions);
+            cookieStore.set('eport-email-verified', true, cookieOptions);
+            cookieStore.set('eport-domain', "", cookieOptions);
+            cookieStore.set('eport-stripe-customer-id', user.stripeCustomerId ? user.stripeCustomerId : '', cookieOptions);
 
             // Check if user has an active subscription
             const stripeCustomerId = cookieStore.get('eport-stripe-customer-id') ? cookieStore.get('eport-stripe-customer-id').value : '';

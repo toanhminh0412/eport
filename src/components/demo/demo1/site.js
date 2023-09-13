@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, createContext } from "react";
+import { useRef, useEffect, useState, createContext } from "react";
 
 import ControlNav from "../../layout/ControlNav";
 import { ErrorToast, SuccessToast } from "../../ui/MessageToast";
@@ -419,8 +419,8 @@ export default function Demo1({content, siteId, plan}) {
     return (
         <planContext.Provider value={plan}>
             <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
-                <PublishModal site={site} showMessageToast={showMessageToast}/>
+                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
+                <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage}/>
                 <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words">
                     {successMsg ? <SuccessToast message={successMsg}/> : null}
                     {errorMsg ? <ErrorToast message={errorMsg}/> : null}

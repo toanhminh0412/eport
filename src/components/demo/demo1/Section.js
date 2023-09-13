@@ -9,7 +9,7 @@ import Footer from "./sections/Footer";
 import References from "./sections/References";
 
 // Render a single section based on id
-export default function Section({content}) {
+export default function Section({content, userPlan}) {
     const sectionId = content.id;
     const hidden = content.hidden;
     if (hidden) {
@@ -22,15 +22,31 @@ export default function Section({content}) {
         case 1:
             return <AboutMe content={content} />
         case 2:
-            return <Skills content={content} />
+            if (userPlan === "basic") {
+                return null;
+            } else {
+                return <Skills content={content} />
+            }
         case 3:
             return <Experience content={content} />
         case 4:
-            return <Services content={content} />
+            if (userPlan === "basic") {
+                return null;
+            } else {
+                return <Services content={content} />
+            }
         case 5:
-            return <Projects content={content} />
+            if (userPlan === "basic") {
+                return null;
+            } else {
+                return <Projects content={content} />
+            }
         case 6:
-            return <Testimonials content={content} />
+            if (userPlan === "basic") {
+                return null;
+            } else {
+                return <Testimonials content={content} />
+            }
         case 7:
             return <Footer content={content} />
         case 8:

@@ -142,5 +142,5 @@ export default function Demo1() {
         ]
     }
 
-    return <PublishedDemo1 site={site} />
+    return <PublishedDemo1 site={site}/>
 }

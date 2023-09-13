@@ -33,6 +33,7 @@ export default async function Dashboard() {
     const cookieStore = cookies();
     const userId = cookieStore.get('eport-uid').value;
     const site = await getSite(userId);
+    const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
 
-    return <Demo1 content={site.site} siteId={site.id}/>
+    return <Demo1 content={site.site} siteId={site.id} plan={plan}/>
 }

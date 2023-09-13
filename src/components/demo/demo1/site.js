@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, createContext } from "react";
 
 import ControlNav from "../../layout/ControlNav";
 import { ErrorToast, SuccessToast } from "../../ui/MessageToast";
@@ -14,7 +14,9 @@ import { compressImageSize } from "@/helpers/files";
 import PublishModal from "../../ui/PublishModal";
 import Section from "./Section";
 
-export default function Demo1({content, siteId}) {
+export const planContext = createContext();
+
+export default function Demo1({content, siteId, plan}) {
     const [site, setSite] = useState(content);
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
@@ -139,26 +141,35 @@ export default function Demo1({content, siteId}) {
         }
 
         // Update skills section
-        let newSkillsList = [];
-        for (let i = 0; i < skillsRef.current.skills.length; i++) {
-            if (skillsRef.current.skills[i]) {
-                const key = skillsRef.current.skills[i].value;
-                const value = skillsRef.current.skills[++i].value;
-                if (key && value) {
-                    newSkillsList.push({
-                        key: key,
-                        value: value
-                    });
+        let newSkills = {};
+        let skillsIndex = 0;
+
+        if (plan === "basic") {
+            newSkills = site.sections.filter((section) => section.id === 2)[0];
+            skillsIndex = site.sections.findIndex(section => section.id === 2);
+        } else {
+            let newSkillsList = [];
+            for (let i = 0; i < skillsRef.current.skills.length; i++) {
+                if (skillsRef.current.skills[i]) {
+                    const key = skillsRef.current.skills[i].value;
+                    const value = skillsRef.current.skills[++i].value;
+                    if (key && value) {
+                        newSkillsList.push({
+                            key: key,
+                            value: value
+                        });
+                    }
                 }
             }
+            newSkills = {
+                id: 2,
+                heading: skillsRef.current.heading.value,
+                hidden: skillsRef.current['hidden'].checked,
+                skills: newSkillsList
+            }
+            skillsIndex = skillsRef.current.index.dataset.index;
         }
-
-        const newSkills = {
-            id: 2,
-            heading: skillsRef.current.heading.value,
-            hidden: skillsRef.current['hidden'].checked,
-            skills: newSkillsList
-        }
+        
         
         // Update experience section
         let newExperienceList = [];
@@ -184,91 +195,118 @@ export default function Demo1({content, siteId}) {
         }
 
         // Update services section
-        let newServicesList = [];
-        for (let i = 0; i < servicesRef.current.services.length; i++) {
-            if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
-                const serviceObj = servicesRef.current.services[i];
-                const newService = {
-                    title: serviceObj.title.value,
-                    icon: serviceObj.icon.dataset.icon,
-                    description: serviceObj.description.getContent()
-                }
-                newServicesList.push(newService);
-            }
-        }
+        let newServices = {};
+        let servicesIndex = 0;
 
-        const newServices = {
-            id: 4,
-            heading: servicesRef.current.heading.value,
-            hidden: servicesRef.current['hidden'].checked,
-            services: newServicesList
+        if (plan === "basic") {
+            newServices = site.sections.filter((section) => section.id === 4)[0];
+            servicesIndex = site.sections.findIndex((section) => section.id === 4);
+        } else {
+            let newServicesList = [];
+            for (let i = 0; i < servicesRef.current.services.length; i++) {
+                if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
+                    const serviceObj = servicesRef.current.services[i];
+                    const newService = {
+                        title: serviceObj.title.value,
+                        icon: serviceObj.icon.dataset.icon,
+                        description: serviceObj.description.getContent()
+                    }
+                    newServicesList.push(newService);
+                }
+            }
+            
+            newServices = {
+                id: 4,
+                heading: servicesRef.current.heading.value,
+                hidden: servicesRef.current['hidden'].checked,
+                services: newServicesList
+            }
+            servicesIndex = servicesRef.current.index.dataset.index;
         }
 
         // Update projects section 
         // Upload new project images
-        for (let i = 0; i < projectsRef.current.projects.length; i++) {
-            if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
-                const projectObj = projectsRef.current.projects[i];
-                if (projectObj.images && projectObj.images.length > 0) {
-                    const userId = secureLocalStorage.getItem('eport-uid');
-                    for (let j = 0; j < projectObj.images.length; j++) {
-                        if (projectObj.images[j]) {
-                            const fileSrc = projectObj.images[j].src;
-                            if (!fileSrc.includes('firebasestorage.googleapis.com')) {
-                                let newFile = await fetch(fileSrc).then(r => r.blob());
-                                newFile = await compressImageSize(newFile, 0.4);
-                                const projectImagesRef = ref(storage, `users/${userId}/images/projects/image-${new Date().valueOf()}`);
-                                const projectImageSnap = await uploadBytes(projectImagesRef, newFile);
-                                const projectImageURL = await getDownloadURL(projectImageSnap.ref);
-                                projectObj.images[j].dataset.src = projectImageURL;
+        let newProjects = {};
+        let projectsIndex = 0;
+
+        if (plan === "basic") {
+            newProjects = site.sections.filter((section) => section.id === 5)[0];
+            projectsIndex = site.sections.findIndex(section => section.id === 5);
+        } else {
+            for (let i = 0; i < projectsRef.current.projects.length; i++) {
+                if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
+                    const projectObj = projectsRef.current.projects[i];
+                    if (projectObj.images && projectObj.images.length > 0) {
+                        const userId = secureLocalStorage.getItem('eport-uid');
+                        for (let j = 0; j < projectObj.images.length; j++) {
+                            if (projectObj.images[j]) {
+                                const fileSrc = projectObj.images[j].src;
+                                if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                                    let newFile = await fetch(fileSrc).then(r => r.blob());
+                                    newFile = await compressImageSize(newFile, 0.4);
+                                    const projectImagesRef = ref(storage, `users/${userId}/images/projects/image-${new Date().valueOf()}`);
+                                    const projectImageSnap = await uploadBytes(projectImagesRef, newFile);
+                                    const projectImageURL = await getDownloadURL(projectImageSnap.ref);
+                                    projectObj.images[j].dataset.src = projectImageURL;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        
-        let newProjectsList = [];
-        for (let i = 0; i < projectsRef.current.projects.length; i++) {
-            if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
-                const projectObj = projectsRef.current.projects[i];
-
-                const newProject = {
-                    title: projectObj.title.value,
-                    description: projectObj.description.getContent(),
-                    images: projectObj.images ? projectObj.images.map(image => image ? image.dataset.src : null).filter(image => image !== null) : [],
-                    tags: projectObj.tags.value.split(',').filter(tag => tag !== '')
+            
+            let newProjectsList = [];
+            for (let i = 0; i < projectsRef.current.projects.length; i++) {
+                if (projectsRef.current.projects[i] && projectsRef.current.projects[i].title) {
+                    const projectObj = projectsRef.current.projects[i];
+    
+                    const newProject = {
+                        title: projectObj.title.value,
+                        description: projectObj.description.getContent(),
+                        images: projectObj.images ? projectObj.images.map(image => image ? image.dataset.src : null).filter(image => image !== null) : [],
+                        tags: projectObj.tags.value.split(',').filter(tag => tag !== '')
+                    }
+                    newProjectsList.push(newProject);
                 }
-                newProjectsList.push(newProject);
             }
-        }
-
-        const newProjects = {
-            id: 5,
-            heading: projectsRef.current.heading.value,
-            hidden: projectsRef.current['hidden'].checked,
-            projects: newProjectsList
+    
+            newProjects = {
+                id: 5,
+                heading: projectsRef.current.heading.value,
+                hidden: projectsRef.current['hidden'].checked,
+                projects: newProjectsList
+            }
+            projectsIndex = projectsRef.current.index.dataset.index;
         }
 
         // Update testimonials section
-        let newTestimonialsList = [];
-        for (let i = 0; i < testimonialsRef.current.testimonials.length; i++) {
-            if (testimonialsRef.current.testimonials[i] && testimonialsRef.current.testimonials[i].name) {
-                const testimonialObj = testimonialsRef.current.testimonials[i];
-                const newTestimonial = {
-                    name: testimonialObj.name.value,
-                    job: testimonialObj.job.value,
-                    content: testimonialObj.content.value
+        let newTestimonials = {};
+        let testimonialsIndex = 0;
+        
+        if (plan === "basic") {
+            newTestimonials = site.sections.filter((section) => section.id === 6)[0];
+            testimonialsIndex = site.sections.findIndex((section) => section.id === 6);
+        } else {
+            let newTestimonialsList = [];
+            for (let i = 0; i < testimonialsRef.current.testimonials.length; i++) {
+                if (testimonialsRef.current.testimonials[i] && testimonialsRef.current.testimonials[i].name) {
+                    const testimonialObj = testimonialsRef.current.testimonials[i];
+                    const newTestimonial = {
+                        name: testimonialObj.name.value,
+                        job: testimonialObj.job.value,
+                        content: testimonialObj.content.value
+                    }
+                    newTestimonialsList.push(newTestimonial);
                 }
-                newTestimonialsList.push(newTestimonial);
             }
-        }
 
-        const newTestimonials = {
-            id: 6,
-            heading: testimonialsRef.current.heading.value,
-            hidden: testimonialsRef.current['hidden'].checked,
-            testimonials: newTestimonialsList
+            newTestimonials = {
+                id: 6,
+                heading: testimonialsRef.current.heading.value,
+                hidden: testimonialsRef.current['hidden'].checked,
+                testimonials: newTestimonialsList
+            }
+            testimonialsIndex = testimonialsRef.current.index.dataset.index;
         }
 
         // Update refrerences section
@@ -319,13 +357,13 @@ export default function Demo1({content, siteId}) {
         newSections[0] = newProfile;
         newSections[sectionsNum - 1] = newFooter;
         newSections[aboutMeRef.current.index.dataset.index] = newAboutMe;
-        newSections[skillsRef.current.index.dataset.index] = newSkills;
+        newSections[skillsIndex] = newSkills;
         newSections[experienceRef.current.index.dataset.index] = newExperience;
-        newSections[servicesRef.current.index.dataset.index] = newServices;
-        newSections[projectsRef.current.index.dataset.index] = newProjects;
-        newSections[testimonialsRef.current.index.dataset.index] = newTestimonials;
+        newSections[servicesIndex] = newServices;
+        newSections[projectsIndex] = newProjects;
+        newSections[testimonialsIndex] = newTestimonials;
         newSections[referencesRef.current.index.dataset.index] = newReferences;
-
+        
         // Update site
         const newSite = {
             ...site,
@@ -359,40 +397,44 @@ export default function Demo1({content, siteId}) {
     
     if (editMode) {
         return (
-            <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
-                <ContentEditor 
-                content={site} 
-                profileRef={profileRef} 
-                aboutMeRef={aboutMeRef} 
-                skillsRef={skillsRef} 
-                experienceRef={experienceRef}
-                servicesRef={servicesRef}
-                projectsRef={projectsRef}
-                testimonialsRef={testimonialsRef}
-                referencesRef={referencesRef}
-                footerRef={footerRef}/>
-            </main>
+            <planContext.Provider value={plan}>
+                <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
+                    <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
+                    <ContentEditor 
+                    content={site} 
+                    profileRef={profileRef} 
+                    aboutMeRef={aboutMeRef} 
+                    skillsRef={skillsRef} 
+                    experienceRef={experienceRef}
+                    servicesRef={servicesRef}
+                    projectsRef={projectsRef}
+                    testimonialsRef={testimonialsRef}
+                    referencesRef={referencesRef}
+                    footerRef={footerRef}/>
+                </main>
+            </planContext.Provider>
         )
     }
 
     return (
-        <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
-            <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
-            <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage}/>
-            <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words">
-                {successMsg ? <SuccessToast message={successMsg}/> : null}
-                {errorMsg ? <ErrorToast message={errorMsg}/> : null}
-                <Section content={site.sections[0]}/>
-                <div className="card h-fit w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
-                    <div className="p-8">
-                        {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section}/>)}
+        <planContext.Provider value={plan}>
+            <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
+                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
+                <PublishModal site={site} showMessageToast={showMessageToast}/>
+                <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words">
+                    {successMsg ? <SuccessToast message={successMsg}/> : null}
+                    {errorMsg ? <ErrorToast message={errorMsg}/> : null}
+                    <Section content={site.sections[0]} userPlan={plan}/>
+                    <div className="card h-fit w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
+                        <div className="p-8">
+                            {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section} userPlan={plan}/>)}
+                        </div>
+                    
+                    {/* Contact me */}
+                    <Footer content={site.sections[site.sections.length-1]}/>
                     </div>
-                
-                {/* Contact me */}
-                <Footer content={site.sections[site.sections.length-1]}/>
                 </div>
-            </div>
-        </main>
+            </main>
+        </planContext.Provider>
     )
 }

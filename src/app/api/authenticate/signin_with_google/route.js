@@ -33,12 +33,16 @@ export async function GET(request) {
         await setDoc(doc(usersCollection, newUserId), newUser);
         
         // Log user in
-        cookieStore.set('eport-uid', newUser.uid);
-        cookieStore.set('eport-email', newUser.email);
-        cookieStore.set('eport-signInMethod', newUser.signInMethod);
-        cookieStore.set('eport-email-verified', newUser.emailVerified);
-        cookieStore.set('eport-domain', newUser.domain);
-        cookieStore.set('eport-stripe-customer-id', '');
+        const cookieOptions = {
+            secure: true,
+            httpOnly: true,
+        }
+        cookieStore.set('eport-uid', newUser.uid, cookieOptions);
+        cookieStore.set('eport-email', newUser.email, cookieOptions);
+        cookieStore.set('eport-signInMethod', newUser.signInMethod, cookieOptions);
+        cookieStore.set('eport-email-verified', newUser.emailVerified, cookieOptions);
+        cookieStore.set('eport-domain', newUser.domain, cookieOptions);
+        cookieStore.set('eport-stripe-customer-id', '', cookieOptions);
 
         success = true;
         message = 'Login successfully!';
@@ -47,14 +51,28 @@ export async function GET(request) {
     } else {
         const user = usersDocs.docs[0].data();
         if (user.signInMethod === "Google") {
+            console.log('Calling this');
             success = true;
             message = 'Login successfully!';
-            cookieStore.set('eport-uid', user.uid);
-            cookieStore.set('eport-email', user.email);
-            cookieStore.set('eport-signInMethod', 'Google');
-            cookieStore.set('eport-email-verified', true);
-            cookieStore.set('eport-domain', user.domain);
-            cookieStore.set('eport-stripe-customer-id', user.stripeCustomerId ? user.stripeCustomerId : '');
+          
+            const cookieOptions = {
+                secure: true,
+                httpOnly: true,
+            }
+            console.log(cookieOptions);
+            cookieStore.set('eport-uid', user.uid, cookieOptions);
+            // cookieStore.set({
+            //     name: 'eport-uid',
+            //     value: user.uid,
+            //     secure: true,
+            //     httpOnly: true,
+            //     path: '/',
+            // })
+            cookieStore.set('eport-email', user.email, cookieOptions);
+            cookieStore.set('eport-signInMethod', 'Google', cookieOptions);
+            cookieStore.set('eport-email-verified', true, cookieOptions);
+            cookieStore.set('eport-domain', "", cookieOptions);
+            cookieStore.set('eport-stripe-customer-id', user.stripeCustomerId ? user.stripeCustomerId : '', cookieOptions);
 
             // Check if user has an active subscription
             const stripeCustomerId = cookieStore.get('eport-stripe-customer-id') ? cookieStore.get('eport-stripe-customer-id').value : '';

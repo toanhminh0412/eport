@@ -21,10 +21,10 @@ export function ProjectModal({project, index}) {
 
                 {project.images.length > 0 ? 
                     <div> {showMore ? <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
-                    : <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description.slice(0, 500).concat(" ...") }}></div>}
+                    : <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description.length >= 500 && !showMore ? project.description.slice(0, 500).concat(" ...") : project.description }}></div>}
                     </div>
                 :   <div>{showMore ? <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
-                    : <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description.slice(0, 500).concat(" ...") }}></div>}
+                    : <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description.length >= 500 && !showMore ? project.description.slice(0, 500).concat(" ...") : project.description }}></div>}
                 </div>}
                 {project.description.length >= 500 ?
                     <div className="btn" onClick={() => setShowMore(!showMore)}>

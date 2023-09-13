@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 
-export default function ControlNav({setEditMode, saveSiteFunc}) {
+export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
     const [domain, setDomain] = useState('');
@@ -42,6 +42,37 @@ export default function ControlNav({setEditMode, saveSiteFunc}) {
                 :
                 <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
                 {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
+                {!isEqual ?
+                <div>
+                    {messageLoading ? 
+                        <span className="loading loading-spinner md:ml-5"></span>
+                    :
+                        <div>
+                            {state === "edit" ?
+                                <div className="text-red-300 md:ml-5">
+                                    <span className="fa-solid fa-x mr-3"></span>
+                                    {message}
+                                </div>
+                            : null }
+                        </div>
+                    }
+                </div>
+                :
+                <div>
+                    {messageLoading ? 
+                        <span className="loading loading-spinner md:ml-5"></span>
+                    :
+                        <div>
+                            {state === "edit" ?
+                                <div className="text-green-300 md:ml-5">
+                                    <span className="fa-solid fa-check mr-3"></span>
+                                    {message}
+                                </div>
+                            : null}
+                        </div>
+                    }
+                </div> 
+                }
             </div>
         </div>
     )

@@ -21,6 +21,9 @@ export default function Demo1({content, siteId, plan}) {
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
     const [editMode, setEditMode] = useState(false);
+    const [isEqual, setIsEqual] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [msgLoading, setMsgLoading] = useState(false);
 
     const profileRef = useRef([]);
     const aboutMeRef = useRef([]);
@@ -31,6 +34,36 @@ export default function Demo1({content, siteId, plan}) {
     const testimonialsRef = useRef({'testimonials': []});
     const referencesRef = useRef({'references': []})
     const footerRef = useRef({'socials': []});
+
+    // Compare current site and published site
+    useEffect(() => {
+        async function compareSites() {
+            setMsgLoading(true);
+            const response = await fetch('/api/site/check_latest_version');
+            const data = await response.json();
+            console.log(data);
+            if (data.status === 200 && data.isEqual === false) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is not up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 200 && data.isEqual === true) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 400) {
+                setIsEqual(data.isEqual);
+                setMessage('Click "Publish Site" to publish your site!');
+                setMsgLoading(false);
+            }
+        }
+        compareSites();
+    }, [site]);
+
+    // Set message when publish site
+    const setPublishMessage = () => {
+        setIsEqual(true);
+        setMessage('Your published site is up-to-date!');
+    }
 
     // Toggle edit mode
     const toggleEditMode = () => {

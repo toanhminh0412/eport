@@ -54,6 +54,7 @@ export async function GET(request) {
             console.log('Calling this');
             success = true;
             message = 'Login successfully!';
+          
             const cookieOptions = {
                 secure: true,
                 httpOnly: true,

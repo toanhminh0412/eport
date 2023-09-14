@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
 
-export default function PublishModal({site, showMessageToast, setPublishMessage}) {
+export default function PublishModal({site, showMessageToast, setPublishMessage, plan}) {
     const [url, setUrl] = useState('');
     const [domain, setDomain] = useState('');
     const [loading, setLoading] = useState(false);
@@ -26,6 +26,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage}
         setLoading(true);
         const publishedSite = {
             domain: domain,
+            plan: plan,
             ...site
         }
         console.log(publishedSite);

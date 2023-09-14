@@ -3,11 +3,18 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
+import dynamic from "next/dynamic";
+// import Tour from "../ui/InstructionsModal";
+const Tour = dynamic(
+    () => import("../ui/InstructionsModal"),
+    { ssr:false }
+)
 
 export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
     const [domain, setDomain] = useState('');
+    const [run, setRun] = useState(false);
     
     // Delay enabling Edit/Save button for 1 second when changing state
     const [delay, setDelay] = useState(false);
@@ -36,9 +43,15 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
     return (
         <div className="navbar bg-neutral text-neutral-content py-3 fixed top-18 z-30">
             <div className="navbar-start w-full flex-wrap gap-2">
+                {state === 'edit' ?
+                    <>
+                    <button className="btn btn-info btn-sm xs:btn xs:btn-info" onClick={() => setRun(true)}>Show Instructions</button>
+                        {run ? <Tour run={run} setRun={setRun}/> : null}
+                    </>
+                : null}
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
-                {state === 'edit' ? 
-                <button className="btn btn-sm xs:btn" onClick={() => window.publish_modal.showModal()}>Publish site</button>
+                {state === 'edit' ?
+                <button className="btn btn-sm xs:btn tour-publishSiteButton" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
                 <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
                 {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
@@ -81,7 +94,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
 function ControlBtn({state, loading, onClick, delay}) {
     if (state === 'edit' && !loading) {
         return (
-            <button className="btn btn-sm xs:btn" onClick={onClick} disabled={delay}>Edit site</button>
+            <button className="btn btn-sm xs:btn tour-editSiteButton" onClick={onClick} disabled={delay}>Edit site</button>
         )
     }
     else if (state === 'edit' && loading) {

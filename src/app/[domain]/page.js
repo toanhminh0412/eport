@@ -16,11 +16,9 @@ const getSite = async (domain) => {
 
 export default async function PublishedSite({ params }) {
     const site = await getSite(params.domain);
-    const cookieStore = cookies();
-    const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
 
     if (site) {
-        return <PublishedDemo1 site={site} plan={plan}/>
+        return <PublishedDemo1 site={site}/>
     } else {
         return <NotFound/>
     }

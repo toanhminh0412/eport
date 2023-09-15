@@ -42,6 +42,7 @@ export default function Footer({isLoggedIn = true}) {
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-discover"></i></div>
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-diners-club"></i></div>
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-jcb"></i></div>
+                    <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-google-pay"></i></div>
                 </div>
                 <div className="text-white text-lg mb-3 text-center">© Copyright Eport (2023)</div>
             </div>

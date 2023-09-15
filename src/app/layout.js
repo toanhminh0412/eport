@@ -25,7 +25,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="shortcut icon" href="/favicon/favicon.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
+        <meta name="google-site-verification" content="CcLS5kalq0t1-UtZAeY7oSQACSXROO0nmytbDpXz_kw" />
       </head>
       <body className={`${inter.className} pt-16 pb-[340px] bg-slate-100 w-screen min-h-screen relative`}>
         <UpperNav isLoggedIn={isLoggedIn} email={user ? user.email : null}/>

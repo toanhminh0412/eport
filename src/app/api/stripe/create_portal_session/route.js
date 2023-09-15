@@ -26,7 +26,6 @@ export async function GET(request) {
     // Must delete plan from cookie so current plan cookie is reevaluated after going back to /manage_subscriptions
     let user = getUserFromToken(userToken);
     user.plan = '';
-    // cookieStore.delete('eport-plan');
 
     // Create a new customer with this user's email if user is not a Stripe customer
     const uid = user.uid;
@@ -35,7 +34,6 @@ export async function GET(request) {
         const customer = await stripe.customers.create({
             email: email
         });
-        // cookieStore.set('eport-stripe-customer-id', customer.id);
         user.stripeCustomerId = customer.id;
         
         // Update Stripe customer id for user on Firestore

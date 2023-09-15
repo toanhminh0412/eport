@@ -13,12 +13,9 @@ export async function GET(request) {
     if (!userToken) {
         redirect('/login');
     }
-    console.log('Calling set_plan_cookie');
 
     let user = getUserFromToken(userToken);
     const stripeCustomerId = user.stripeCustomerId;
-    console.log('Before user:');
-    console.log(user);
     // Set plan cookie if not exists
     if (stripeCustomerId && !user.plan) {
         const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
@@ -27,7 +24,6 @@ export async function GET(request) {
                 expand: ['subscriptions']
             }
         );
-        console.log(customer);
         if (customer && customer.subscriptions.data.length > 0 && customer.subscriptions.data[0].current_period_end * 1000 > new Date().getTime()) {
             console.log('Subscription is active');
             user.plan = 'premium';
@@ -46,7 +42,6 @@ export async function GET(request) {
         user.planExpiredDate = '';
     }
 
-    console.log(user);
     const newToken = getTokenFromUser(user);
     cookieStore.set('eport-token', newToken);
 

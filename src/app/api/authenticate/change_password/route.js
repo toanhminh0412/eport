@@ -35,9 +35,13 @@ export async function POST(request) {
     if (!userTokenCookie && !userId) {
         redirect('/login');
     }
-    const userToken = userTokenCookie.value;
-    const user = getUserFromToken(userToken);
-    const uid = userId ? userId : user.uid;
+
+    let uid = userId;
+    if (!uid) {
+        const userToken = userTokenCookie.value;
+        const user = getUserFromToken(userToken);
+        uid = user.uid;
+    }
     
     // Get user by id from Firestore
     const userSnap = await getDoc(doc(db, 'users', uid));

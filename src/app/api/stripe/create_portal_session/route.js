@@ -1,18 +1,22 @@
+// Next imports
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
+// Local imports
 import { db } from '../../../../../public/libs/firebase';
+import { getUserFromToken, getTokenFromUser } from '@/helpers/authentication';
+
+// 3rd party imports
 import { doc, updateDoc } from 'firebase/firestore';
 
 const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export async function GET(request) {
     const cookieStore = cookies();
-    const uid = cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '';
-    const email = cookieStore.get('eport-email') ? cookieStore.get('eport-email').value : '';
+    const userToken = cookieStore.get('eport-token') ? cookieStore.get('eport-token').value : '';
 
     // Check if user is logged in
-    if (!uid) {
+    if (!userToken) {
         return NextResponse.json({
             status: 403,
             message: 'You are not logged in'
@@ -20,14 +24,17 @@ export async function GET(request) {
     }
 
     // Must delete plan from cookie so current plan cookie is reevaluated after going back to /manage_subscriptions
-    cookieStore.delete('eport-plan');
+    let user = getUserFromToken(userToken);
+    user.plan = '';
 
     // Create a new customer with this user's email if user is not a Stripe customer
-    if (!cookieStore.get('eport-stripe-customer-id') || !cookieStore.get('eport-stripe-customer-id').value) {
+    const uid = user.uid;
+    const email = user.email;
+    if (!user.stripeCustomerId) {
         const customer = await stripe.customers.create({
             email: email
         });
-        cookieStore.set('eport-stripe-customer-id', customer.id);
+        user.stripeCustomerId = customer.id;
         
         // Update Stripe customer id for user on Firestore
         await updateDoc(doc(db, 'users', uid), {
@@ -35,7 +42,9 @@ export async function GET(request) {
         });
     }
 
-    const customerId = cookieStore.get('eport-stripe-customer-id').value;
+    const newUserToken = getTokenFromUser(user);
+    cookieStore.set('eport-token', newUserToken);
+    const customerId = user.stripeCustomerId;
 
     // Create a new portal session for this customer
     const session = await stripe.billingPortal.sessions.create({

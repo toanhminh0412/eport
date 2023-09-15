@@ -1,8 +1,10 @@
+/* Note: this file is not in use. It might be used if we need to handle events from Stripe */
+// Next imports
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 
 const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
-const endpointSecret = "whsec_5e138e06334ddd1a711bf21935bc0bb011cea541d3bb3dd86ccbc16ad072d550";
+const endpointSecret = process.env.NEXT_PUBLIC_STRIPE_ENDPOINT_SECRET;
 
 export async function POST(request) {
     const headersList = headers();

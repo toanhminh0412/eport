@@ -1,12 +1,17 @@
+// Next imports
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+// Local imports
+import { getUserFromToken, getTokenFromUser } from "@/helpers/authentication";
+
+
 export async function GET(request) {
     const cookieStore = cookies();
-    const uid = cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '';
+    const userToken = cookieStore.get('eport-token') ? cookieStore.get('eport-token').value : '';
 
     // Check if user is logged in
-    if (!uid) {
+    if (!userToken) {
         return NextResponse.json({
             status: 403,
             message: 'You are not logged in'
@@ -14,16 +19,20 @@ export async function GET(request) {
     }
 
     // Must delete plan from cookie so current plan cookie is reevaluated after going back to /manage_subscriptions
-    cookieStore.delete('eport-plan');
+    let user = getUserFromToken(userToken);
+    user.plan = '';
+    // cookieStore.delete('eport-plan');
+    const newUserToken = getTokenFromUser(user);
+    cookieStore.set('eport-token', newUserToken);
     
     // User must be a customer to cancel a subscription
-    if (!cookieStore.get('eport-stripe-customer-id') || !cookieStore.get('eport-stripe-customer-id').value) {
+    const stripeCustomerId = user.stripeCustomerId;
+    if (!stripeCustomerId) {
         return NextResponse.json({
             status: 400,
             message: 'You are not a customer. Please subscribe to a plan first.'
         })
     }
-    const stripeCustomerId = cookieStore.get('eport-stripe-customer-id').value;
 
     // Cancel subscription on Stripe
     const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);

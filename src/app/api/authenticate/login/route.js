@@ -2,10 +2,12 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 import { db } from '../../../../../public/libs/firebase';
+import cookieOptions from '@/data/cookieOptions';
+import { getTokenFromUser } from '@/helpers/authentication';
 
 import { getDocs, collection } from 'firebase/firestore';
-
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 /* Handle users logging in
 Query:
@@ -19,6 +21,9 @@ export async function GET(request) {
     const password = requestHeaders.get('x-forwarded-password');
     let success = false;
     let message = '';
+    let responseUid = '';
+    let responseEmail = '';
+    let responseDomain = '';
 
     // Get user by email and password from Firestore
     const userDoc = await getDocs(collection(db, 'users'));
@@ -26,25 +31,25 @@ export async function GET(request) {
 
     // Have to use while as await doesn't work in for loop
     while (i < userDoc.docs.length) {
-        const userData = userDoc.docs[i].data();
+        let userData = userDoc.docs[i].data();
         if (userData.email == email) {
             if (userData.password) {
                 const passwordMatch = await bcrypt.compare(password, userData.password);
                 if (passwordMatch) {
+                    // Set info sending back to user
                     success = true;
                     message = 'Login successfully!';
-                    cookieStore.set('eport-uid', userData.uid);
-                    cookieStore.set('eport-email', userData.email);
-                    cookieStore.set('eport-email-verified', userData.emailVerified);
-                    cookieStore.set('eport-domain', userData.domain);
-                    cookieStore.set('eport-stripe-customer-id', userData.stripeCustomerId ? userData.stripeCustomerId : '');
+                    responseUid = userData.uid;
+                    responseEmail = userData.email;
+                    responseDomain = userData.domain;
 
+                    userData.stripeCustomerId = userData.stripeCustomerId ? userData.stripeCustomerId : '';
 
                     // Check if user has an active subscription
-                    const stripeCustomerId = cookieStore.get('eport-stripe-customer-id') ? cookieStore.get('eport-stripe-customer-id').value : '';
                     if (!userData.stripeCustomerId) {
-                        cookieStore.set('eport-plan', 'basic');
+                        userData.plan = 'basic';
                     } else {
+                        const stripeCustomerId = userData.stripeCustomerId;
                         const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
                         const customer = await stripe.customers.retrieve(
                             stripeCustomerId, {
@@ -52,16 +57,17 @@ export async function GET(request) {
                             }
                         );
                         if (customer && customer.subscriptions.data.length > 0 && customer.subscriptions.data[0].current_period_end * 1000 > new Date().getTime()) {
-                            console.log('Subscription is active');
-                            cookieStore.set('eport-plan', 'premium');
+                            userData.plan = 'premium';
                             // Store plan status and expired date in cookie
                             const currentSubscription = customer.subscriptions.data[0];
-                            cookieStore.set('eport-plan-status', currentSubscription.cancel_at_period_end ? 'Cancelled' : 'Active');
-                            cookieStore.set('eport-plan-expired-date', new Date(currentSubscription.current_period_end * 1000).toDateString());
+                            userData.planStatus = currentSubscription.cancel_at_period_end ? 'Cancelled' : 'Active';
+                            userData.planExpiredDate = new Date(currentSubscription.current_period_end * 1000).toDateString();
                         } else {
-                            cookieStore.set('eport-plan', 'basic');
+                            userData.plan = 'basic';
                         }
                     }
+                    let userToken = getTokenFromUser(userData);
+                    cookieStore.set('eport-token', userToken, cookieOptions);
                 }
             }
             break;
@@ -73,9 +79,9 @@ export async function GET(request) {
     }
 
     return NextResponse.json({
-        uid: cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '',
-        email: cookieStore.get('eport-email') ? cookieStore.get('eport-email').value : '',
-        domain: cookieStore.get('eport-domain') ? cookieStore.get('eport-domain').value : '',
+        uid: responseUid,
+        email: responseEmail,
+        domain: responseDomain,
         success: success,
         message: message
     })

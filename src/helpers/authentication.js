@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 /* Validate if a password meets certain standards
 * Params: 
     - password (string)
@@ -23,5 +25,42 @@ export function passwordValidator(password) {
         return "Password must have at least 8 characters!";
     } else {
         return "";
+    }
+}
+
+// Return a JWT token from a user object
+export function getTokenFromUser(user) {
+    if (!user) {
+        return null;
+    }
+
+    try {
+        let token;
+        if (user.exp) {
+            token = jwt.sign(user, process.env.NEXT_PUBLIC_JWT_SECRET_KEY);
+        } else {
+            token = jwt.sign(user, process.env.NEXT_PUBLIC_JWT_SECRET_KEY, { expiresIn: '1d' });
+        }
+        return token;
+    } catch(error) {
+        console.log('JSON web token encoding error:');
+        console.log(error);
+        return null
+    }
+}
+
+// Return a decoded user object from a JWT token
+export function getUserFromToken(token) {
+    if (!token) {
+        return null;
+    }
+
+    try {
+        const user = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET_KEY);
+        return user;
+    } catch(error) {
+        console.log('JSON web token decoding error:');
+        console.log(error);
+        return null
     }
 }

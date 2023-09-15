@@ -1,10 +1,14 @@
+// Next imports
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
+// Local imports
 import { db } from '../../../../../public/libs/firebase';
 import { SALT_ROUNDS } from '../../../../../public/libs/bcryptConfig';
+import { getUserFromToken } from '@/helpers/authentication';
 
+// 3rd party imports
 import { getDoc, doc, setDoc } from 'firebase/firestore';
 import bcrypt from 'bcrypt';
 
@@ -16,7 +20,7 @@ Body:
 */
 export async function POST(request) {
     const cookieStore = cookies();
-    const uidCookie = cookieStore.get('eport-uid');
+    const userTokenCookie = cookieStore.get('eport-token');
 
     const changePasswordInfo = await request.json();
     const userId = changePasswordInfo.userId;
@@ -28,10 +32,12 @@ export async function POST(request) {
     let message = '';
     
     // Unauthenticated users cannot change password
-    if (!uidCookie && !userId) {
+    if (!userTokenCookie && !userId) {
         redirect('/login');
     }
-    const uid = userId ? userId : uidCookie.value;
+    const userToken = userTokenCookie.value;
+    const user = getUserFromToken(userToken);
+    const uid = userId ? userId : user.uid;
     
     // Get user by id from Firestore
     const userSnap = await getDoc(doc(db, 'users', uid));

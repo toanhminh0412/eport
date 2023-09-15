@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import secureLocalStorage from "react-secure-storage";
+import domainValidator from "@/helpers/helpers";
 
 export default function PublishModal({site, showMessageToast, setPublishMessage, plan}) {
     const [url, setUrl] = useState('');
@@ -23,12 +24,23 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
     // Publish site
     const publishSite = async (e) => {
         e.preventDefault();
-        setLoading(true);
+
+        // Domain Validator
+        const domainErrorMsg = domainValidator(domain)
+        if (domainErrorMsg !== "") {
+            setError(domainErrorMsg);
+            return
+        } else if (error) {
+            setError("");
+        }
+
         const publishedSite = {
             domain: domain,
             plan: plan,
             ...site
         }
+
+        setLoading(true);
         console.log(publishedSite);
         // Post request to publish site
         const res = await fetch('/api/site/publish', {
@@ -51,9 +63,6 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
             document.getElementById('publish_modal').close();
         } else {
             setError(data.message);
-            setTimeout(() => {
-                setError('');
-            }, 5000);
         }
         setLoading(false);
 
@@ -78,7 +87,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
                 onChange={e => setDomain(e.target.value)}/>
                 <p className="mt-3"><strong>Note:</strong> You can change this later</p>
                 <div className="modal-action">
-                    <button disabled={domain === '' || loading} className="btn btn-primary" onClick={publishSite}>
+                    <button disabled={domain === '' || loading} className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white" onClick={publishSite}>
                     {loading ?
                     <>
                     <span className="loading loading-spinner"></span>

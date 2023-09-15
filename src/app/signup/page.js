@@ -41,7 +41,7 @@ export default function Signup() {
         e.preventDefault();
         // Password Validator
         const passwordErrorMsg = passwordValidator(password)
-        if (passwordErrorMsg !== "" && !errorMsg) {
+        if (passwordErrorMsg !== "") {
             setErrorMsg(passwordErrorMsg);
             return
         } else if (errorMsg) {

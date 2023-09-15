@@ -64,13 +64,6 @@ export async function GET(request) {
             responseSignInMethod = user.signInMethod;
             responseDomain = user.domain;
             
-
-            // cookieStore.set('eport-uid', user.uid, cookieOptions);
-            // cookieStore.set('eport-email', user.email, cookieOptions);
-            // cookieStore.set('eport-signInMethod', 'Google', cookieOptions);
-            // cookieStore.set('eport-email-verified', true, cookieOptions);
-            // cookieStore.set('eport-domain', user.domain, cookieOptions);
-            // cookieStore.set('eport-stripe-customer-id', user.stripeCustomerId ? user.stripeCustomerId : '', cookieOptions);
             user.stripeCustomerId = user.stripeCustomerId ? user.stripeCustomerId : '';
 
             // Check if user has an active subscription

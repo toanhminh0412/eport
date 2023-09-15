@@ -1,13 +1,21 @@
+// Next imports
 import { cookies } from "next/headers";
 
+// Local imports
 import PlansDisplay from "@/components/ui/plans_display/PlansDisplay";
 import InfoToast from "./InfoToast";
+import { getUserFromToken } from "@/helpers/authentication";
 
 export default function ManageSubscriptions({searchParams}) {
     const cookieStore = cookies();
-    const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
-    const planStatus = cookieStore.get('eport-plan-status') ? cookieStore.get('eport-plan-status').value : '';
-    const planExpiredDate = cookieStore.get('eport-plan-expired-date') ? cookieStore.get('eport-plan-expired-date').value : '';
+    const userToken = cookieStore.get('eport-token').value;
+    const user = getUserFromToken(userToken);
+    // const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
+    // const planStatus = cookieStore.get('eport-plan-status') ? cookieStore.get('eport-plan-status').value : '';
+    // const planExpiredDate = cookieStore.get('eport-plan-expired-date') ? cookieStore.get('eport-plan-expired-date').value : '';
+    const plan = user.plan ? user.plan : 'basic';
+    const planStatus = user.planStatus ? user.planStatus : '';
+    const planExpiredDate = user.planExpiredDate ? user.planExpiredDate : '';
     
     // Display a message to show the new subscription status
     const status = searchParams.status ? searchParams.status : '';

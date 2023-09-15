@@ -1,10 +1,15 @@
+// Next imports
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-import Demo1 from "@/components/demo/demo1/site";
-
+// Local imports
 import { db } from "../../public/libs/firebase";
+import Demo1 from "@/components/demo/demo1/site";
+import { getUserFromToken } from "@/helpers/authentication";
+
+// 3rd party imports
 import { collection, getDocs, query, where } from "firebase/firestore";
+
 
 /* Get site data from uid
 *  Params:
@@ -31,7 +36,8 @@ async function getSite(uid) {
 
 export default async function Dashboard() {
     const cookieStore = cookies();
-    const userId = cookieStore.get('eport-uid').value;
+    const userToken = cookieStore.get('eport-token') ? cookieStore.get('eport-token').value : null;
+    const userId = getUserFromToken(userToken).uid;
     const site = await getSite(userId);
     const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
 

@@ -1,6 +1,12 @@
+// Next imports
 import { NextResponse } from "next/server";
-import { db } from "../../../../../public/libs/firebase";
 import { cookies } from "next/headers";
+
+// Local imports
+import { db } from "../../../../../public/libs/firebase";
+import { getUserFromToken } from "@/helpers/authentication";
+
+// 3rd party imports
 import { query, collection, getDocs, where } from "firebase/firestore";
 
 const util = require('util');
@@ -8,15 +14,17 @@ const util = require('util');
 export async function GET(request) {
     // Get current user id
     const cookieStore = cookies();
-    const uidCookie = cookieStore.get('eport-uid').value;
+    const userToken = cookieStore.get('eport-token').value;
+    const user = getUserFromToken(userToken);
+    const uid = user.uid;
 
     // Get current site
-    const sitesQuery = query(collection(db, 'sites'), where('owner', '==', uidCookie));
+    const sitesQuery = query(collection(db, 'sites'), where('owner', '==', uid));
     const sitesSnap = await getDocs(sitesQuery);
     let sites = sitesSnap.docs;
 
     // Get published site
-    const publishedSitesQuery = query(collection(db, 'publishedSites'), where('owner', '==', uidCookie));
+    const publishedSitesQuery = query(collection(db, 'publishedSites'), where('owner', '==', uid));
     const publishedSitesSnap = await getDocs(publishedSitesQuery);
     let publishedSites = publishedSitesSnap.docs; 
 

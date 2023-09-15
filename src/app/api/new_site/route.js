@@ -1,29 +1,35 @@
-// import { NextResponse } from 'next/server';
+// Next imports
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 
+// Local imports
 import { db } from '../../../../public/libs/firebase';
+import { getUserFromToken } from '@/helpers/authentication';
 
+// 3rd party imports
 import { addDoc, collection } from 'firebase/firestore';
 
 // Create a new template for current user
 export async function GET(request) {
     // Get current user id
     const cookieStore = cookies();
-    const uidCookie = cookieStore.get('eport-uid');
+    const userTokenCookie = cookieStore.get('eport-token');
 
     // Unauthenticated users can't visit this route
-     if (!uidCookie) {
+    if (!userTokenCookie) {
         redirect('/login');
     }
+
+    const userToken = userTokenCookie.value;
+    const user = getUserFromToken(userToken);
 
     // Get template selected
     const { searchParams } = new URL(request.url);
     const selectedTemplate = searchParams.get('selectedTemplate');
     
     // Create the new template in Firestore
-    const siteRef = await addDoc(collection(db, "sites"), {
-        owner: uidCookie.value,
+    await addDoc(collection(db, "sites"), {
+        owner: user.uid,
         selectedTemplate: parseInt(selectedTemplate),
         sections: [
             {

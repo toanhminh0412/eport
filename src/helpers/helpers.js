@@ -18,7 +18,7 @@ export const convertToURL = url => {
 // Check domain sensitive values
 export default function domainValidator(domain) {
     for (let i = 0; i < domainSensitiveValues.length; i++) {
-        if (domain === sensitiveValues[i]) {
+        if (domain === domainSensitiveValues[i]) {
             return "Your domain contains sensitive value: '" + domain + "'. Please try another one!";
         }
     }

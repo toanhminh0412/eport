@@ -10,6 +10,13 @@ import { getUserFromToken } from "@/helpers/authentication";
 // 3rd party imports
 import { collection, getDocs, query, where } from "firebase/firestore";
 
+export const metadata = {
+  title: 'Dashboard',
+  description: "View, edit and publish your site here!",
+  alternates: {
+      canonical: 'https://eport.site',
+  }
+}
 
 /* Get site data from uid
 *  Params:

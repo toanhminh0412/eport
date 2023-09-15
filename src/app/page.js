@@ -37,9 +37,10 @@ async function getSite(uid) {
 export default async function Dashboard() {
     const cookieStore = cookies();
     const userToken = cookieStore.get('eport-token') ? cookieStore.get('eport-token').value : null;
-    const userId = getUserFromToken(userToken).uid;
+    const user = getUserFromToken(userToken);
+    const userId = user.uid;
     const site = await getSite(userId);
-    const plan = cookieStore.get('eport-plan') ? cookieStore.get('eport-plan').value : 'basic';
+    const plan = user.plan ? user.plan : 'basic';
 
     return <Demo1 content={site.site} siteId={site.id} plan={plan}/>
 }

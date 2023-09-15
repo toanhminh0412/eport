@@ -1,8 +1,14 @@
+// Next imports
+import { cookies } from 'next/headers';
+
+// Local imports
 import PublishedDemo1 from '@/components/demo/demo1/published';
 import NotFound from '../not-found';
 import { db } from '../../../public/libs/firebase';
+
+// 3rd party imports
 import { collection, getDocs, query, where } from '@firebase/firestore';
-import { cookies } from 'next/headers';
+
 
 const getSite = async (domain) => {
     const siteQuery = query(collection(db, 'publishedSites'), where('domain', '==', domain));

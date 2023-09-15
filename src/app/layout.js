@@ -8,6 +8,8 @@ import UpperNav from '@/components/layout/UpperNav';
 import Footer from '@/components/layout/Footer';
 import ChangePasswordModal from '@/components/ui/ChangePasswordModal';
 import { getUserFromToken } from '@/helpers/authentication';
+import { Analytics } from '@vercel/analytics/react';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,6 +35,7 @@ export default function RootLayout({ children }) {
         <UpperNav isLoggedIn={isLoggedIn} email={user ? user.email : null}/>
         {isLoggedIn ? <ChangePasswordModal /> : null}
         {children}
+        <Analytics />
         <Footer isLoggedIn={isLoggedIn}/>
       </body>
     </html>

@@ -35,8 +35,8 @@ export async function GET(request) {
             {
                 id: 0,
                 profilePic: "https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fprofile-new.jpg?alt=media&token=47be1e13-26e6-4416-afa5-205f1d5635b7",
-                fullName: "John Doe",
-                job: "Web Developer",
+                fullName: "Eport Website",
+                job: "Portfolio Builder",
                 link1: ["Download CV", "#"],
                 link2: ["Download CV", "#"]
             },
@@ -44,14 +44,14 @@ export async function GET(request) {
                 id: 1,
                 heading: "About me",
                 hidden: false,
-                bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquam convallis sapien sit amet pulvinar. Morbi a elit in velit eleifend malesuada et eget libero. Nulla suscipit congue purus, quis tristique tortor euismod ut. Sed ullamcorper magna id tristique facilisis. Fusce consequat metus vitae augue sagittis ultricies. Nullam varius posuere dapibus. Nullam luctus, sapien nec fermentum cursus, elit dolor vestibulum leo, et elementum enim neque vitae ligula. In at elit pellentesque, laoreet nibh eu, sagittis elit. Donec sit amet ultrices tortor, ut pharetra leo. Donec pretium nisi a mi sollicitudin, vitae consectetur sem rutrum.",
+                bio: "This is the simple bio with concrete facts goes a long way. Remember that your About Me section serves as a first impression for many people who encounter your onlne presence. It should leave a memorable and positive impresison while giving readers a glimpse into your personality, values, and professional background. To edit this section, go to Edit and find About Me section.",
                 extraInfo: [
-                    {key: "Name", value: "John Doe"},
-                    {key: "Degree", value: "Master in Computer Science"},
-                    {key: "Age", value: "24"},
-                    {key: "Experience", value: "3 years"},
-                    {key: "Email", value: "jdoe@example.org"},
-                    {key: "Hobbies", value: "Soccer, Video game"}
+                    {key: "Name", value: "Eport Website"},
+                    {key: "Support email", value: "support@eport.site"},
+                    {key: "Since", value: "2023"},
+                    {key: "Produced by", value: "Archie To & Hoang Nguyen"},
+                    {key: "Basic plan", value: "Free"},
+                    {key: "Premium plan", value: "2 CAD / month with 15 days of free trial"}
                 ]
             },
             {
@@ -59,12 +59,12 @@ export async function GET(request) {
                 heading: "Skills",
                 hidden: false,
                 skills: [
-                    {key: "HTML", value: 95},
-                    {key: "jQuery", value: 100},
-                    {key: "CSS", value: 80},
-                    {key: "Bootstrap", value: 85},
-                    {key: "JavaScript", value: 90},
-                    {key: "React", value: 90},
+                    {key: "Cheap Price", value: 100},
+                    {key: "Professional", value: 100},
+                    {key: "Impressive", value: 100},
+                    {key: "Secure", value: 100},
+                    {key: "Responsive", value: 100},
+                    {key: "Design", value: 100},
                 ]
             },
             {
@@ -73,25 +73,25 @@ export async function GET(request) {
                 hidden: false,
                 experiences: [
                     {
-                        jobTitle: 'Web designer',
-                        company: 'Soft Company',
-                        startYear: 2020,
-                        endYear: 2023,
-                        description: 'Tempor eos dolore amet tempor dolor tempor. Dolore ea magna sit amet dolor eirmod. Eos ipsum est tempor dolor. Clita lorem kasd sed ea lorem diam ea lorem eirmod duo sit ipsum stet lorem diam'
+                        jobTitle: 'Portfolio Builder',
+                        company: 'Eport Website',
+                        startYear: 2023,
+                        endYear: 0,
+                        description: 'Remember that your experience section should tell a compelling story of your career progression and accomplishments. It should make it clear to potential employers why you are a strong candidate for the job you are seeking. Be honest, concise, and specific in your description, and focus on how your past experiences have prepared you for future success. To edit this section, go to Edit and find Experience section.'
                     },
                     {
-                        jobTitle: 'Web designer',
-                        company: 'Soft Company',
-                        startYear: 2020,
-                        endYear: 2023,
-                        description: 'Tempor eos dolore amet tempor dolor tempor. Dolore ea magna sit amet dolor eirmod. Eos ipsum est tempor dolor. Clita lorem kasd sed ea lorem diam ea lorem eirmod duo sit ipsum stet lorem diam'
+                        jobTitle: 'Portfolio Builder',
+                        company: 'Eport Website',
+                        startYear: 2023,
+                        endYear: 0,
+                        description: 'Remember that your experience section should tell a compelling story of your career progression and accomplishments. It should make it clear to potential employers why you are a strong candidate for the job you are seeking. Be honest, concise, and specific in your description, and focus on how your past experiences have prepared you for future success. To edit this section, go to Edit and find Experience section.'
                     },
                     {
-                        jobTitle: 'Web designer',
-                        company: 'Soft Company',
-                        startYear: 2020,
-                        endYear: 2023,
-                        description: 'Tempor eos dolore amet tempor dolor tempor. Dolore ea magna sit amet dolor eirmod. Eos ipsum est tempor dolor. Clita lorem kasd sed ea lorem diam ea lorem eirmod duo sit ipsum stet lorem diam'
+                        jobTitle: 'Portfolio Builder',
+                        company: 'Eport Website',
+                        startYear: 2023,
+                        endYear: 0,
+                        description: 'Remember that your experience section should tell a compelling story of your career progression and accomplishments. It should make it clear to potential employers why you are a strong candidate for the job you are seeking. Be honest, concise, and specific in your description, and focus on how your past experiences have prepared you for future success. To edit this section, go to Edit and find Experience section.'
                     }
                 ]
             },
@@ -102,23 +102,23 @@ export async function GET(request) {
                 services: [
                     {
                         icon: 'fa-solid fa-laptop',
-                        title: 'Web design',
-                        description: 'Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem lorem lorem est amet labore'
+                        title: 'Portfolio Design',
+                        description: 'Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit and find Services section.'
                     },
                     {
                         icon: 'fa-solid fa-laptop',
-                        title: 'Web design',
-                        description: 'Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem lorem lorem est amet labore'
+                        title: 'Portfolio Design',
+                        description: 'Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit and find Services section.'
                     },
                     {
                         icon: 'fa-solid fa-laptop',
-                        title: 'Web design',
-                        description: 'Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem lorem lorem est amet labore'
+                        title: 'Portfolio Design',
+                        description: 'Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit and find Services section.'
                     },
                     {
                         icon: 'fa-solid fa-laptop',
-                        title: 'Web design',
-                        description: 'Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem lorem lorem est amet labore'
+                        title: 'Portfolio Design',
+                        description: 'Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit and find Services section.'
                     }
                 ]
             },
@@ -129,15 +129,15 @@ export async function GET(request) {
                 projects: [
                     {
                         images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289'],
-                        title: 'Web application',
-                        description: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.',
-                        tags: ['Development', 'Web design']
+                        title: 'Eport Website',
+                        description: 'The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit and find Projects section.',
+                        tags: ['Development', 'Website', 'Portfolio']
                     },
                     {
                         images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e'],
-                        title: 'Mobile application',
-                        description: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.',
-                        tags: ['Development', 'Mobile design']
+                        title: 'Eport Website',
+                        description: 'The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit and find Projects section.',
+                        tags: ['Development', 'Mobile design', 'Portfolio']
                     }
                 ]
             },
@@ -147,19 +147,19 @@ export async function GET(request) {
                 hidden: false,
                 testimonials: [
                     {
-                        name: 'Catherine Oliver',
-                        job: 'Lawyer',
-                        content: 'Integer sollicitudin fringilla tellus, id viverra urna dignissim suscipit. Praesent ut leo at lectus tincidunt aliquam. Curabitur non enim sed est lacinia congue. Nunc ante ex, convallis quis metus id, euismod consectetur mi. Aliquam erat volutpat. Aenean sit amet eros eu erat imperdiet ultricies. Mauris a blandit urna.'
+                        name: 'Eport Website',
+                        job: 'Portfolio Builder',
+                        content: 'The Testimonials section serves as social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience. To edit this section, go to Edit and find Testimonials section.'
                     },
                     {
-                        name: 'Louella Kim',
-                        job: 'Marketing manager',
-                        content: 'Maecenas eleifend interdum vestibulum. Aliquam commodo mattis mauris in interdum. Nam ut arcu non augue tempus ultricies. Nam non lorem vitae nunc bibendum mollis. Donec velit arcu, euismod ultrices eros a, vestibulum fringilla dui. Nam quis nibh ante. Quisque lacus tellus, mattis in lectus quis, eleifend bibendum augue.'
+                        name: 'Eport Website',
+                        job: 'Portfolio Builder',
+                        content: 'The Testimonials section serves as social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience. To edit this section, go to Edit and find Testimonials section.'
                     },
                     {
-                        name: 'Luis Kim',
-                        job: 'Plumber',
-                        content: 'Donec laoreet, ligula ut ultrices rhoncus, metus leo dictum nisi, ut viverra ex odio vel mauris. Sed laoreet laoreet risus ut convallis. Donec nec facilisis augue, at rhoncus est. Aliquam eros justo, pulvinar eu tortor a, cursus auctor felis. In tincidunt mauris sollicitudin auctor pretium. Aenean auctor neque non arcu facilisis, a pulvinar turpis iaculis. Duis vel vulputate neque.'
+                        name: 'Eport Website',
+                        job: 'Portfolio Builder',
+                        content: 'The Testimonials section serves as social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience. To edit this section, go to Edit and find Testimonials section.'
                     }
                 ]
             },
@@ -169,10 +169,10 @@ export async function GET(request) {
                 hidden: false,
                 references: [
                     {
-                        name: 'Catherine Oliver',
-                        relationship: 'Manager at Company A',
+                        name: 'Eport Support',
+                        relationship: 'Supporter',
                         phone: 123456789,
-                        email: 'coliver@example.org',
+                        email: 'support@eport.site',
                         linkedin: 'https://linkedin.com'
                     }
                 ]
@@ -182,7 +182,7 @@ export async function GET(request) {
                 heading: "Get in touch",
                 hidden: false,
                 socials: [
-                    {key: "gmail", value: "https://gmail.com"},
+                    {key: "gmail", value: "support@eport.site"},
                     {key: "instagram", value: "https://instagram.com"},
                     {key: "linkedin", value: "https://linkedin.com"},
                 ]

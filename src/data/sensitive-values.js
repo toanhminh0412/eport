@@ -1,4 +1,4 @@
-const sensitiveValues = ["login", "features", "features#pricing", "examples_premium",
-                        "examples_basic", "manage_subscriptions"];
+const domainSensitiveValues = ["login", "features", "features#pricing", "examples_premium",
+                        "examples_basic", "manage_subscriptions", "porn", "sex", "fuck"];
 
-export default sensitiveValues;
+export default domainSensitiveValues;

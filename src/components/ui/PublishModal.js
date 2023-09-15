@@ -25,7 +25,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
     const publishSite = async (e) => {
         e.preventDefault();
 
-        // Domain Validator
+        // Set error message when domain is invalid
         const domainErrorMsg = domainValidator(domain)
         if (domainErrorMsg !== "") {
             setError(domainErrorMsg);

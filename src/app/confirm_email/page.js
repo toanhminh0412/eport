@@ -5,6 +5,10 @@ import { cookies } from "next/headers";
 import EmailConfirmForm from "./EmailConfirmForm";
 import { getUserFromToken } from "@/helpers/authentication";
 
+export const metadata = {
+    title: 'Confirm Email',
+    description: "Confirm your email to start using Eport right now!",
+}
 
 export default async function ConfirmEmail() {
     const cookieStore = cookies();

@@ -2,6 +2,12 @@ import PlansDisplay from "@/components/ui/plans_display/PlansDisplay"
 import Link from "next/link";
 import { cookies } from "next/headers";
 
+export const metadata = {
+    alternates: {
+        canonical: 'https://eport.site/features',
+    }
+}
+
 export default function Features() {
     const loggedIn = cookies().get('eport-uid') ? true : false;
     
@@ -12,7 +18,7 @@ export default function Features() {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-xl">
                         <h1 className="mb-5 text-4xl md:text-6xl font-bold text-white">What is Eport?</h1>
-                        <p className="mb-5 text-lg md:text-2xl"><strong className="text-blue-500">Eport</strong> is an easy website builder for job seekers who need to build a website as quickly and easily as possible to show their works and information.</p>
+                        <p className="mb-5 text-lg md:text-2xl"><strong className="text-blue-500">Eport</strong> is the easiest way for job seekers to build a website/portfolio to showcase their works and information.</p>
                         <Link href="#pricing" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4">Pricing</Link>
                     </div>
                 </div>

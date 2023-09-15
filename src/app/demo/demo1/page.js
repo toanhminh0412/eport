@@ -1,5 +1,10 @@
 import PublishedDemo1 from "@/components/demo/demo1/published";
 
+export const metadata = {
+    title: 'Demo1',
+    description: 'The most basic template that Eport has to offer. It is a simple one-page website with a profile picture, a short bio, a list of skills, a list of experiences, a list of services, a list of projects, a list of testimonials, and a list of social media links. Despite the simplicity, this is more than enough more anyone who needs a website for their job applications.',
+}
+
 export default function Demo1() {
     const site = {
         owner: null,

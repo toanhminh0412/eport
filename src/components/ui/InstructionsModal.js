@@ -9,12 +9,12 @@ const steps = [
     },
     {
         target: ".tour-editSiteButton",
-        content: "Click 'Edit Site' button to edit your portfolio! After editing your site, click 'Save' button!",
+        content: "Click 'Edit Site' button to edit your portfolio! After editing your site, click 'Save Site' button!",
         placement: "bottom"
     },
     {
         target: ".tour-publishSiteButton",
-        content: "Click 'Publish Site' button to publish your site! Then click 'Visit Site' to visit your page!",
+        content: "Click 'Publish Site' button to publish your site. Then, the 'Visit Site' button will appear. Click on the 'Visit Site' button to visit your page!",
         placement: "bottom"
     },
     {
@@ -27,11 +27,12 @@ const steps = [
 const Tour = (runHandle) => {
     const { setRun, run } = runHandle;
 
+    // Need to set our running state to false, so we can restart if we click start again
+    // Note: must use this function name to get data i.e. handleJoyrideCallback
     const handleJoyrideCallback = (data) => {
-        const { status} = data;
+        const { status } = data;
         const finishedStatuses = [STATUS.FINISHED, STATUS.SKIPPED];
         if (finishedStatuses.includes(status)) {
-            // Need to set our running state to false, so we can restart if we click start again
             setRun(false);
         }
     }

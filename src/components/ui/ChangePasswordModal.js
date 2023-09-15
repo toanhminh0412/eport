@@ -42,7 +42,7 @@ export default function ChangePasswordModal() {
 
         // Password Validator
         const passwordErrorMsg = passwordValidator(newPassword)
-        if (passwordErrorMsg !== "" && !errorMsg) {
+        if (passwordErrorMsg !== "") {
             setErrorMsg(passwordErrorMsg);
             return
         } else if (errorMsg) {

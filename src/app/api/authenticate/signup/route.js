@@ -72,8 +72,8 @@ export async function POST(request) {
     return NextResponse.json({
         success: success,
         message: message,
-        email: cookieStore.get('eport-email') ? cookieStore.get('eport-email').value : '',
-        uid: cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '',
-        domain: cookieStore.get('eport-domain') ? cookieStore.get('eport-domain').value : '',
+        email: responseEmail,
+        uid: responseUid,
+        domain: responseDomain,
     })
 }

@@ -86,6 +86,11 @@ export async function GET(request) {
                     user.planExpiredDate = new Date(currentSubscription.current_period_end * 1000).toDateString();
                 } else {
                     user.plan = 'basic';
+
+                    // Make user's published site basic plan if user has no active subscription
+                    await setDoc(doc(db, "publishedSites", user.uid), {
+                        plan: "basic"
+                    }, {merge: true});
                 }
             }
             let userToken = getTokenFromUser(user);

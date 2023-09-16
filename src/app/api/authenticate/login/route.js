@@ -5,7 +5,7 @@ import { db } from '../../../../../public/libs/firebase';
 import cookieOptions from '@/data/cookieOptions';
 import { getTokenFromUser } from '@/helpers/authentication';
 
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, setDoc, doc } from 'firebase/firestore';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -64,6 +64,11 @@ export async function GET(request) {
                             userData.planExpiredDate = new Date(currentSubscription.current_period_end * 1000).toDateString();
                         } else {
                             userData.plan = 'basic';
+
+                            // Make user's published site basic plan if user has no active subscription
+                            await setDoc(doc(db, "publishedSites", userData.uid), {
+                                plan: "basic"
+                            }, {merge: true});
                         }
                     }
                     let userToken = getTokenFromUser(userData);

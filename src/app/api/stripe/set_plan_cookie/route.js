@@ -42,6 +42,11 @@ export async function GET(request) {
             user.plan = 'basic';
             user.planStatus = '';
             user.planExpiredDate = '';
+
+            // Make user's published site basic plan if user has no active subscription
+            await setDoc(doc(db, "publishedSites", user.uid), {
+                plan: "basic"
+            }, {merge: true});
         }
     } else if (!stripeCustomerId) {
         user.plan = 'basic';

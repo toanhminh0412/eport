@@ -22,30 +22,30 @@ export default function Section({content, userPlan}) {
         case 1:
             return <AboutMe content={content} />
         case 2:
-            if (userPlan === "basic") {
-                return null;
+            if (userPlan === "premium") {
+                return <Skills content={content} />   
             } else {
-                return <Skills content={content} />
+                return null;
             }
         case 3:
             return <Experience content={content} />
         case 4:
-            if (userPlan === "basic") {
-                return null;
-            } else {
+            if (userPlan === "premium") {
                 return <Services content={content} />
+            } else {
+                return null;
             }
         case 5:
-            if (userPlan === "basic") {
-                return null;
-            } else {
+            if (userPlan === "premium") {
                 return <Projects content={content} />
+            } else {
+                return null;
             }
         case 6:
-            if (userPlan === "basic") {
-                return null;
-            } else {
+            if (userPlan === "premium") {
                 return <Testimonials content={content} />
+            } else {
+                return null;
             }
         case 7:
             return <Footer content={content} />

@@ -128,13 +128,13 @@ export async function GET(request) {
                 hidden: false,
                 projects: [
                     {
-                        images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289'],
+                        images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822282938?alt=media&token=2696ffc5-f9e7-4085-b25a-aa41d8cd5ae3', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822284610?alt=media&token=84c6958e-6edc-4fab-8378-cab9fb48a9d5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822286561?alt=media&token=1f9c7dfb-eb11-4d29-ae71-e0ed5b865cad', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822288531?alt=media&token=3258842d-1cf4-41cd-ba27-77187737ed63'],
                         title: 'Eport Website',
                         description: 'The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.',
                         tags: ['Development', 'Website', 'Portfolio']
                     },
                     {
-                        images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-2.jpg?alt=media&token=bf0a6327-f60a-492d-bf4c-60304fb13bb5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-1.jpg?alt=media&token=ede526bb-b5e2-4648-a8ab-b683e181b46a', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-3.jpg?alt=media&token=193fbd36-9f41-4441-b515-86353e1b5289', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/demo1%2Fportfolio-new-4.jpg?alt=media&token=7f8dbb12-04f4-45db-9a17-9e175c9bf33e'],
+                        images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822297022?alt=media&token=e35fa406-7205-4bbc-aee3-bd6957983f5e', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822299537?alt=media&token=6a1cb01c-956f-448c-b711-8296e524b03c', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822301377?alt=media&token=6ee5ab2f-2fc4-4dff-96f6-5513d215413c', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822303224?alt=media&token=a31443ab-a5d7-4607-8eeb-23142478fce2'],
                         title: 'Eport Website',
                         description: 'The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.',
                         tags: ['Development', 'Mobile design', 'Portfolio']
@@ -173,8 +173,9 @@ export async function GET(request) {
                         relationship: 'Supporter',
                         phone: 123456789,
                         email: 'support@eport.site',
-                        linkedin: 'https://linkedin.com',
-                        facebook: 'https://www.facebook.com/eportsite'
+                        linkedin: 'https://www.linkedin.com/company/eport',
+                        facebook: 'https://www.facebook.com/eportsite',
+                        instagram: 'https://www.instagram.com/eportsite'
                     }
                 ]
             },
@@ -184,9 +185,9 @@ export async function GET(request) {
                 hidden: false,
                 socials: [
                     {key: "gmail", value: "support@eport.site"},
+                    {key: "linkedin", value: "https://www.linkedin.com/company/eport"},
                     {key: "facebook", value: "https://www.facebook.com/eportsite"},
-                    {key: "instagram", value: "https://instagram.com"},
-                    {key: "linkedin", value: "https://linkedin.com"},
+                    {key: "instagram", value: "https://www.instagram.com/eportsite"},
                 ]
             },
         ]

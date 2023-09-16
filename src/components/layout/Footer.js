@@ -29,9 +29,9 @@ export default function Footer({isLoggedIn = true}) {
                     <div className="w-1/3 px-4 py-0 mt-8">
                         <h3 className="text-xl text-white relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:bg-red-500 before:h-[2px] before:box-border before:w-[50px]">Contact</h3>
                         <div className="px-0 py-8">
-                            <Link href="" className="inline-block h-10 w-10 text-xl bg-slate-500 mt-0 mr-6 mb-2 ml-0 text-center leading-10 rounded-full text-white duration-500 hover:text-black hover:bg-white"><i className="fa-brands fa-facebook"></i></Link>
-                            <Link href="" className="inline-block h-10 w-10 text-xl bg-slate-500 mt-0 mr-6 mb-2 ml-0 text-center leading-10 rounded-full text-white duration-500 hover:text-black hover:bg-white"><i className="fa-brands fa-instagram"></i></Link>
-                            <Link href="" className="inline-block h-10 w-10 text-xl bg-slate-500 mt-0 mr-6 mb-2 ml-0 text-center leading-10 rounded-full text-white duration-500 hover:text-black hover:bg-white"><i className="fa-brands fa-linkedin"></i></Link>
+                            <Link href="https://www.facebook.com/eportsite" target="_blank" className="inline-block h-10 w-10 text-xl bg-slate-500 mt-0 mr-6 mb-2 ml-0 text-center leading-10 rounded-full text-white duration-500 hover:text-black hover:bg-white"><i className="fa-brands fa-facebook"></i></Link>
+                            <Link href="https://www.instagram.com/eportsite" target="_blank" className="inline-block h-10 w-10 text-xl bg-slate-500 mt-0 mr-6 mb-2 ml-0 text-center leading-10 rounded-full text-white duration-500 hover:text-black hover:bg-white"><i className="fa-brands fa-instagram"></i></Link>
+                            <Link href="https://www.linkedin.com/company/eport" target="_blank" className="inline-block h-10 w-10 text-xl bg-slate-500 mt-0 mr-6 mb-2 ml-0 text-center leading-10 rounded-full text-white duration-500 hover:text-black hover:bg-white"><i className="fa-brands fa-linkedin"></i></Link>
                         </div>
                     </div>
                 </div>

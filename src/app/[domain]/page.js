@@ -13,7 +13,12 @@ export async function generateMetadata({ params }) {
    
     // fetch data
     const site = await getSite(domain);
-    console.log(site);
+    if (!site) {
+        return {
+            title: "Not found",
+            description: "This page is not found",
+        }
+    }
    
     // optionally access and extend (rather than replace) parent metadata
     const openGraphImage = site.sections[0].profilePic

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function ProfileEdit({content, profileRef}) {
     const [profile, _] = useState(content);
@@ -11,6 +11,8 @@ export default function ProfileEdit({content, profileRef}) {
 
     const [cvURL, setCvURL] = useState(content.cvURL);
     const [cvMsg, setCvMsg] = useState('');
+
+    const cvRef = useRef();
 
     // Preview profile picture
     useEffect(() => {
@@ -52,6 +54,7 @@ export default function ProfileEdit({content, profileRef}) {
     const removeCV = () => {
         setCvURL('');
         setCvMsg('CV removed. Click "Save" to save changes.');
+        cvRef.current.value = '';
     }
 
     return (
@@ -102,6 +105,7 @@ export default function ProfileEdit({content, profileRef}) {
                         <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative">
                             Upload CV
                             <input 
+                                ref={cvRef}
                                 type="file" 
                                 className="absolute top-0 left-0 w-full h-full opacity-0" 
                                 accept=".pdf, .doc, .docx" 

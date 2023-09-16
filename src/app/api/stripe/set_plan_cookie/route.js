@@ -1,17 +1,24 @@
+// Next imports
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+// Local imports
+import { getUserFromToken, getTokenFromUser } from "@/helpers/authentication";
+import { db } from '../../../../../public/libs/firebase';
+import { setDoc, doc } from "firebase/firestore";
+
 export async function GET(request) {
     const cookieStore = cookies();
-    const uid = cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '';
+    const userToken = cookieStore.get('eport-token') ? cookieStore.get('eport-token').value : '';
 
-    if (!uid) {
+    if (!userToken) {
         redirect('/login');
     }
 
-    const stripeCustomerId = cookieStore.get('eport-stripe-customer-id') ? cookieStore.get('eport-stripe-customer-id').value : '';
+    let user = getUserFromToken(userToken);
+    const stripeCustomerId = user.stripeCustomerId;
     // Set plan cookie if not exists
-    if (stripeCustomerId && !cookieStore.get('eport-plan')) {
+    if (stripeCustomerId && !user.plan) {
         const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
         const customer = await stripe.customers.retrieve(
             stripeCustomerId, {
@@ -20,19 +27,32 @@ export async function GET(request) {
         );
         if (customer && customer.subscriptions.data.length > 0 && customer.subscriptions.data[0].current_period_end * 1000 > new Date().getTime()) {
             console.log('Subscription is active');
-            cookieStore.set('eport-plan', 'premium');
+            user.plan = 'premium';
             // Store plan status and expired date in cookie
             const currentSubscription = customer.subscriptions.data[0];
-            cookieStore.set('eport-plan-status', currentSubscription.cancel_at_period_end ? 'Cancelled' : 'Active');
-            cookieStore.set('eport-plan-expired-date', new Date(currentSubscription.current_period_end * 1000).toDateString());
+            user.planStatus = currentSubscription.cancel_at_period_end ? 'Cancelled' : 'Active';
+            user.planExpiredDate = new Date(currentSubscription.current_period_end * 1000).toDateString();
+            // if plan status is active, set plan to be premium in published site
+            if (user.planStatus === "Active") {
+                await setDoc(doc(db, "publishedSites", user.uid), {
+                    plan: user.plan
+                }, {merge: true});
+            }
         } else {
-            cookieStore.set('eport-plan', 'basic');
+            user.plan = 'basic';
+            user.planStatus = '';
+            user.planExpiredDate = '';
         }
     } else if (!stripeCustomerId) {
-        cookieStore.set('eport-plan', 'basic');
+        user.plan = 'basic';
+        user.planStatus = '';
+        user.planExpiredDate = '';
     }
 
-    const planStatus = cookieStore.get('eport-plan-status') ? cookieStore.get('eport-plan-status').value : '';
+    const newToken = getTokenFromUser(user);
+    cookieStore.set('eport-token', newToken);
+
+    const planStatus = user.planStatus;
 
     if (planStatus === 'Active') {
         redirect('/manage_subscriptions?status=active');

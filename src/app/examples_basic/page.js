@@ -1,6 +1,14 @@
 import Slider from "@/components/ui/Slider";
 import Link from "next/link"
 
+export const metadata = {
+    title: 'Basic examples',
+    description: 'Below are the beatiful, clean and simple websites that you can build with Eport basic tier. It includes your basic profile, an about me, experience, references and a get in touch section. The great thing is that you only need to spend 5 minutes to build it.',
+    alternates: {
+        canonical: 'https://eport.site/examples_basic',
+    }
+}
+
 export default function ExamplesBasic() {
     const slides1 = ['/img/jglanville_profile.png', '/img/jglanville_aboutme.png',
                      '/img/jglanville_experience.png', '/img/jglanville_references.png',

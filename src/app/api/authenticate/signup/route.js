@@ -1,11 +1,15 @@
+// Next imports
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
+// Local imports
 import { db } from '../../../../../public/libs/firebase';
 import { SALT_ROUNDS } from '../../../../../public/libs/bcryptConfig';
+import cookieOptions from '@/data/cookieOptions';
+import { getTokenFromUser } from '@/helpers/authentication';
 
+// 3rd party imports
 import { collection, doc, query, setDoc, getDocs, where } from 'firebase/firestore';
-
 import bcrypt from 'bcrypt';
 import { nanoid } from 'nanoid';
 
@@ -25,6 +29,9 @@ export async function POST(request) {
     // Information returned to users
     let success = false;
     let message = '';
+    let responseUid = '';
+    let responseEmail = '';
+    let responseDomain = '';
 
     // Create a new user
     const usersCollection = collection(db, 'users');
@@ -38,11 +45,11 @@ export async function POST(request) {
     // If not create new user in Firestore and log user in
     } else {
         const newUserId = nanoid();
-        const newUser = {
+        let newUser = {
             uid: newUserId,
             email: email,
             password: password,
-            // emailVerified: true,
+            signInMethod: '',
             emailVerified: false,
             domain: '',
             stripeCustomerId: ''
@@ -52,22 +59,21 @@ export async function POST(request) {
         await setDoc(doc(usersCollection, newUserId), newUser);
         
         // Log user in
-        cookieStore.set('eport-uid', newUser.uid);
-        cookieStore.set('eport-email', newUser.email);
-        cookieStore.set('eport-email-verified', newUser.emailVerified);
-        cookieStore.set('eport-domain', newUser.domain);
-        cookieStore.set('eport-stripe-customer-id', '');
-        cookieStore.set('eport-plan', 'basic');
+        newUser.plan = 'basic';
+        const userToken = getTokenFromUser(newUser);
+        cookieStore.set('eport-token', userToken, cookieOptions);
 
         success = true;
         message = 'Signed up successfully!';
+        responseUid = newUserId;
+        responseEmail = email;
     }
 
     return NextResponse.json({
         success: success,
         message: message,
-        email: cookieStore.get('eport-email') ? cookieStore.get('eport-email').value : '',
-        uid: cookieStore.get('eport-uid') ? cookieStore.get('eport-uid').value : '',
-        domain: cookieStore.get('eport-domain') ? cookieStore.get('eport-domain').value : '',
+        email: responseEmail,
+        uid: responseUid,
+        domain: responseDomain,
     })
 }

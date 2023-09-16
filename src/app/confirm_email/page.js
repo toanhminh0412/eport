@@ -1,10 +1,20 @@
+// Next imports
 import { cookies } from "next/headers";
-import EmailConfirmForm from "./EmailConfirmForm";
 
+// Local imports
+import EmailConfirmForm from "./EmailConfirmForm";
+import { getUserFromToken } from "@/helpers/authentication";
+
+export const metadata = {
+    title: 'Confirm Email',
+    description: "Confirm your email to start using Eport right now!",
+}
 
 export default async function ConfirmEmail() {
     const cookieStore = cookies();
-    const email = cookieStore.get('eport-email').value;
+    const userToken = cookieStore.get('eport-token').value;
+    const user = getUserFromToken(userToken);
+    const email = user.email;
 
     return (
         <div className="relative flex flex-col justify-center mb-32">

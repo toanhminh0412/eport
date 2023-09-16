@@ -50,7 +50,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                     <p className="text-2xl md:text-3xl text-center mt-2">Premium</p>
                     <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-0 text-center">2.49 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
                     <div className="text-center text-sm">(Tax included)</div>
-                    <div className="text-center">15 days free trial</div>
+                    <div className="text-center">15 days free trial (cancel anytime)</div>
                     {plan === "premium" ? <div className="badge text-blue-500 badge-outline mx-auto badge-lg">Current plan</div> : null}
                     {plan === "premium" && status ? <div className={`badge ${status === 'Active' ? 'text-green-500' : 'text-orange-500'} badge-outline mx-auto badge-lg`}>{status}</div> : null}
                     {plan === "premium" && status === 'Cancelled' && expiredDate ? <div className="badge text-red-500 badge-outline mx-auto badge-lg whitespace-nowrap">Expired on: {expiredDate}</div> : null}
@@ -113,7 +113,7 @@ export default function PlansDisplay({mode="showcase", plan="basic", status="", 
                     <p className="text-2xl md:text-3xl text-center mt-2">Premium</p>
                     <h2 className="text-3xl md:text-5xl font-medium mt-[-10px] mx-0 mb-0 text-center">2.49 <span className="text-2xl md:text-4xl">CAD</span><span className="text-2xl"> / month</span></h2>
                     <div className="text-center text-sm">(Tax included)</div>
-                    <div className="text-center">15 days free trial</div>
+                    <div className="text-center">15 days free trial (cancel anytime)</div>
                     <div className="text-center">You have the following sections</div>
 
                     <ul className="mt-5 mx-0 list-none">

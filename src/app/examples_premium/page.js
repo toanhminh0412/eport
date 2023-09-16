@@ -1,5 +1,13 @@
 import Slider from "@/components/ui/Slider";
-import Link from "next/link"
+import Link from "next/link";
+
+export const metadata = {
+    title: 'Premium examples',
+    description: "Below are the modern, professional and detailed websites that you can build with Eport premium tier. It includes your profile, an about me, skills, experience, services, projects, testimonials, references and a get in touch section. This will help you stand out from the crowd and impress any employer. The great thing is that you only need to spend 10 minutes to build it.",
+    alternates: {
+        canonical: 'https://eport.site/examples_premium',
+    }
+}
 
 export default function ExamplesPremium() {
     const slides1 = ['/img/ckiki_profile.png', '/img/ckiki_aboutme.png',

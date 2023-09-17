@@ -34,7 +34,7 @@ export async function GET(request) {
         sections: [
             {
                 id: 0,
-                profilePic: "https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FciAeL8lbbMDaFbZadkGRI%2Fimages%2FprofilePic.jpg?alt=media&token=360a0dbc-e6ae-4b30-8ce9-05562a109409",
+                profilePic: "https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2FprofilePic.png?alt=media&token=7662614a-bfdf-4769-9665-238fbce93c2d",
                 fullName: "Eport Website",
                 job: "Portfolio Builder",
                 link1: ["Download CV", "#"],
@@ -128,13 +128,23 @@ export async function GET(request) {
                 hidden: false,
                 projects: [
                     {
-                        images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822282938?alt=media&token=2696ffc5-f9e7-4085-b25a-aa41d8cd5ae3', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822284610?alt=media&token=84c6958e-6edc-4fab-8378-cab9fb48a9d5', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822286561?alt=media&token=1f9c7dfb-eb11-4d29-ae71-e0ed5b865cad', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822288531?alt=media&token=3258842d-1cf4-41cd-ba27-77187737ed63'],
+                        images: [
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2FprofilePic.png?alt=media&token=7662614a-bfdf-4769-9665-238fbce93c2d',
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject1-1.png?alt=media&token=85b76be4-ec11-4e74-823f-5d42c62c7456',
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject1-2.png?alt=media&token=01e40960-6166-4556-8219-673e4ef00fc4',
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject1-3.png?alt=media&token=989a2664-98f0-49d1-915c-b5ff8ae753ff'
+                        ],
                         title: 'Eport Website',
                         description: 'The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.',
                         tags: ['Development', 'Website', 'Portfolio']
                     },
                     {
-                        images: ['https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822297022?alt=media&token=e35fa406-7205-4bbc-aee3-bd6957983f5e', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822299537?alt=media&token=6a1cb01c-956f-448c-b711-8296e524b03c', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822301377?alt=media&token=6ee5ab2f-2fc4-4dff-96f6-5513d215413c', 'https://firebasestorage.googleapis.com/v0/b/eport-4141e.appspot.com/o/users%2FEpRtquFyJ1O7K4klzYVKV%2Fimages%2Fprojects%2Fimage-1694822303224?alt=media&token=a31443ab-a5d7-4607-8eeb-23142478fce2'],
+                        images: [
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject2-1.png?alt=media&token=1a0b1ecf-0507-4f15-ad03-9a9587a33459',
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject2-2.png?alt=media&token=21c2c366-6661-432a-97ce-b64f04486308',
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject2-3.png?alt=media&token=030d9ff7-46df-48a5-8661-2ce26273b423',
+                            'https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2Fproject2-4.png?alt=media&token=7b794bfa-9a67-44ae-b905-586ff60a1dde'
+                        ],
                         title: 'Eport Website',
                         description: 'The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.',
                         tags: ['Development', 'Mobile design', 'Portfolio']

@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
 import IconPicker from "@/components/ui/IconPicker";
 import TextEditor from "@/components/ui/TextEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -15,6 +16,7 @@ export default function ServicesEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     const [services, _] = useState(content);
     const [servicesList, setServicesList] = useState(content.services.map(service => ({id: nanoid(), ...service})));
 
@@ -100,8 +102,13 @@ export default function ServicesEdit({
                             />
                         </div>
                         ))}
-                        
-                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {id: nanoid(), title: 'Service name', icon: 'fas fa-laptop', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add service</div>
+
+                        {/* Ask user login to add more field */}
+                        {isLoggedIn ?
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setServicesList([...servicesList, {id: nanoid(), title: 'Service name', icon: 'fas fa-laptop', description: 'Provide a short description for your service here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add service</div>
+                        :
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add service</div>
+                        }
                     </div>
                 </div>
             </div>

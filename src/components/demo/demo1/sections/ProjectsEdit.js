@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useContext } from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
 import TextEditor from "@/components/ui/TextEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -15,6 +16,7 @@ export default function ProjectsEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     const [projects, _] = useState(content);
     const [projectsList, setProjectsList] = useState(content.projects.map(proj => ({id: nanoid(), ...proj})));
 
@@ -193,8 +195,17 @@ export default function ProjectsEdit({
                                 </div>
                                 ))}
                                 <div className="w-[250px] xs:w-[300px] h-[200px] bg-slate-200 hover:bg-slate-400 duration-300 text-center flex flex-col justify-center relative">
-                                    <div className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
-                                    <input type="file" accept="image/*" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
+                                    {isLoggedIn ?
+                                        <>
+                                            <div className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
+                                            <input type="file" accept="image/*" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
+                                        </>
+                                    :
+                                        <>
+                                            <div className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
+                                            <input type="button" className="absolute top-0 left-0 w-full h-full opacity-0" onClick={() => window.ask_login_modal.showModal()}/>
+                                        </>
+                                    }
                                 </div>
                             </div>
                             
@@ -209,7 +220,13 @@ export default function ProjectsEdit({
                             />
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setProjectsList([...projectsList, {id: nanoid(), title: 'Project name', tags: ['Tag 1', 'Tag 2'], images: [], description: 'Provide a short description for your project here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add project</div>
+
+                        {/* Ask user login to add more field */}
+                        {isLoggedIn ?
+                            <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setProjectsList([...projectsList, {id: nanoid(), title: 'Project name', tags: ['Tag 1', 'Tag 2'], images: [], description: 'Provide a short description for your project here.'}])}}><i className="fa-solid fa-plus me-2"></i>Add project</div>
+                        :
+                            <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add project</div>
+                        }
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState, useContext} from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -13,6 +14,7 @@ export default function TestimonialsEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     const [testimonials, _] = useState(content);
     const [testimonialsList, setTestimonialsList] = useState(content.testimonials.map(testimonial => ({id: nanoid(), ...testimonial})));
     
@@ -104,7 +106,13 @@ export default function TestimonialsEdit({
                             defaultValue={testimonial.content} />
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setTestimonialsList([...testimonialsList, {id: nanoid(), name: "Person's name", job: "Person's job", description: 'What was the feedback for your work?'}])}}><i className="fa-solid fa-plus me-2"></i>Add testimony</div>
+
+                        {/* Ask user login to add more field */}
+                        {isLoggedIn ?
+                            <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setTestimonialsList([...testimonialsList, {id: nanoid(), name: "Person's name", job: "Person's job", description: 'What was the feedback for your work?'}])}}><i className="fa-solid fa-plus me-2"></i>Add testimony</div>
+                        :
+                            <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add testimony</div>
+                        }
                     </div>
                 </div>
             </div>

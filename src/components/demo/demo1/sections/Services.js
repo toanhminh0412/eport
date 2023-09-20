@@ -7,8 +7,7 @@ export default function Services({content}) {
                     <div key={index} className="card w-80 xs:w-96 border border-slate-300 shadow-lg text-center">
                         <div className="card-body">
                             <h3 className="my-0">{service.title}</h3>
-                            {/* <i className={`${service.icon} text-4xl border-2 p-5 rounded-full text-blue-500 hover:text-white hover:bg-blue-500 duration-500 border-blue-500`}></i> */}
-                            <h1 className="mb-2">{service.price}</h1>
+                            <h2 className="mb-2">{service.price}</h2>
                             <div dangerouslySetInnerHTML={{ __html: service.description }}></div>
                         </div>
                     </div>

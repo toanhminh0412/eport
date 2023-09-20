@@ -6,6 +6,7 @@ import { cookies } from 'next/headers';
 import { db } from '../../../../public/libs/firebase';
 import { getUserFromToken } from '@/helpers/authentication';
 import sectionData from '@/data/site';
+import siteData from '@/data/site';
 
 // 3rd party imports
 import { addDoc, collection } from 'firebase/firestore';
@@ -15,6 +16,7 @@ export async function GET(request) {
     // Get current user id
     const cookieStore = cookies();
     const userTokenCookie = cookieStore.get('eport-token');
+    const siteDataLength = siteData.length;
 
     // Unauthenticated users can't visit this route
     if (!userTokenCookie) {
@@ -22,12 +24,12 @@ export async function GET(request) {
     }
 
     // Check if there is a demo site in cookies
-    var count = 0;
+    let count = 0;
     const sectionDemoData = [];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < siteDataLength; i++) {
         if (cookieStore.get('eport-demoSite-' + i)) {
             count = count + 1;
-            sectionDemoData.push(JSON.parse(cookieStore.get('eport-demoSite-' + i).value))
+            sectionDemoData.push(JSON.parse(cookieStore.get('eport-demoSite-' + i).value));
         }
     }
 
@@ -38,7 +40,7 @@ export async function GET(request) {
     const selectedTemplate = searchParams.get('selectedTemplate');
 
     // if user edit demo section, add a demo site to database
-    if (count === 9) {
+    if (count === siteDataLength) {
         // Create the new template same with deno in Firestore
         await addDoc(collection(db, "sites"), {
             owner: user.uid,

@@ -2,30 +2,31 @@
 import { cookies } from "next/headers";
 import { nanoid } from "nanoid";
 import { redirect } from "next/navigation";
+import siteData from "@/data/site";
 
 // Local imports
 import Demo1 from "@/components/demo/demo1/site";
 
 function getDemoSite() {
     const cookieStore = cookies();
-
+    const siteDataLength = siteData.length;
     // Get sections in cookies and add it up to one array
-    var count = 0;
+    let count = 0;
     const sectionsData = [];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < siteDataLength; i++) {
         if (cookieStore.get('eport-demoSite-' + i)) {
             count = count + 1;
-            sectionsData.push(JSON.parse(cookieStore.get('eport-demoSite-' + i).value))
+            sectionsData.push(JSON.parse(cookieStore.get('eport-demoSite-' + i).value));
         }
     }
 
     // If missing cookies, recreate a new demo site
-    if (count !== 9) {
+    if (count !== siteDataLength) {
         redirect('/api/demo/new_site');
     }
 
     // return site
-    const site = {sections: sectionsData}
+    const site = {sections: sectionsData};
     return site
 }
 

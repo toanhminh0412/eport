@@ -7,6 +7,14 @@ import siteData from "@/data/site";
 // Local imports
 import Demo1 from "@/components/demo/demo1/site";
 
+export const metadata = {
+    title: 'Demo',
+    description: "Too lazy to login? Build your own site with Eport right now, no login required!",
+    alternates: {
+        canonical: 'https://eport.site/demo',
+    }
+}
+
 function getDemoSite() {
     const cookieStore = cookies();
     const siteDataLength = siteData.length;
@@ -26,8 +34,7 @@ function getDemoSite() {
     }
 
     // return site
-    const site = {sections: sectionsData};
-    return site
+    return {sections: sectionsData}
 }
 
 export default function Demo() {

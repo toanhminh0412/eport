@@ -41,27 +41,27 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     
     useEffect(() => {
         async function compareSites() {
-            if (demo === false) {
-                setMsgLoading(true);
-                const response = await fetch('/api/site/check_latest_version');
-                const data = await response.json();
-                console.log(data);
-                if (data.status === 200 && data.isEqual === false) {
-                    setIsEqual(data.isEqual);
-                    setMessage('Your published site is not up-to-date!');
-                    setMsgLoading(false);
-                } else if (data.status === 200 && data.isEqual === true) {
-                    setIsEqual(data.isEqual);
-                    setMessage('Your published site is up-to-date!');
-                    setMsgLoading(false);
-                } else if (data.status === 400) {
-                    setIsEqual(data.isEqual);
-                    setMessage('Click "Publish Site" to publish your site!');
-                    setMsgLoading(false);
-                }
+            setMsgLoading(true);
+            const response = await fetch('/api/site/check_latest_version');
+            const data = await response.json();
+            console.log(data);
+            if (data.status === 200 && data.isEqual === false) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is not up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 200 && data.isEqual === true) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 400) {
+                setIsEqual(data.isEqual);
+                setMessage('Click "Publish Site" to publish your site!');
+                setMsgLoading(false);
             }
         }
-        compareSites();
+        if (demo === false) {
+            compareSites();
+        }
     }, [site]);
 
     // Set message when publish site

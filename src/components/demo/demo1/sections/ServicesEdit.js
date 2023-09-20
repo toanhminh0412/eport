@@ -84,13 +84,23 @@ export default function ServicesEdit({
                             className="input border-black w-full" 
                             defaultValue={svc.title} />
 
-                            <label className="label mt-2">
+                            {/* <label className="label mt-2">
                                 <span className="label-text">Service icon:</span>
                             </label>
                             <IconPicker 
                             selectedIcon={svc.icon} 
                             id={`${svc.title}-${index}`} 
-                            iconRef={el => {servicesRef.current['services'][index] = servicesRef.current['services'][index] ? servicesRef.current['services'][index] : {}; servicesRef.current['services'][index]['icon'] = el}}/>
+                            iconRef={el => {servicesRef.current['services'][index] = servicesRef.current['services'][index] ? servicesRef.current['services'][index] : {}; servicesRef.current['services'][index]['icon'] = el}}/> */}
+
+                            <label className="label">
+                                <span className="label-text">Service price:</span>
+                            </label>
+                            <input 
+                            ref={el => {servicesRef.current['services'][index] = servicesRef.current['services'][index] ? servicesRef.current['services'][index] : {}; servicesRef.current['services'][index]['price'] = el}}
+                            type="text" 
+                            placeholder="e.g. 200 CAD / month" 
+                            className="input border-black w-full" 
+                            defaultValue={svc.price} />
                             
                             <label className="label mt-2">
                                 <span className="label-text">Service description:</span>

@@ -205,31 +205,33 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             let newServices = {};
             let servicesIndex = 0;
 
-            if (plan === "basic") {
-                newServices = site.sections.filter((section) => section.id === 4)[0];
-                servicesIndex = site.sections.findIndex((section) => section.id === 4);
-            } else {
-                let newServicesList = [];
-                for (let i = 0; i < servicesRef.current.services.length; i++) {
-                    if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
-                        const serviceObj = servicesRef.current.services[i];
-                        const newService = {
-                            title: serviceObj.title.value,
-                            icon: serviceObj.icon.dataset.icon,
-                            description: serviceObj.description.getContent()
-                        }
-                        newServicesList.push(newService);
+        if (plan === "basic") {
+            newServices = site.sections.filter((section) => section.id === 4)[0];
+            servicesIndex = site.sections.findIndex((section) => section.id === 4);
+        // For premium plan, update services section based on what was written in the editor
+        } else {
+            let newServicesList = [];
+            for (let i = 0; i < servicesRef.current.services.length; i++) {
+                if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
+                    const serviceObj = servicesRef.current.services[i];
+                    const newService = {
+                        title: serviceObj.title.value,
+                        // icon: serviceObj.icon.dataset.icon,
+                        price: serviceObj.price.value,
+                        description: serviceObj.description.getContent()
                     }
+                    newServicesList.push(newService);
                 }
-                
-                newServices = {
-                    id: 4,
-                    heading: servicesRef.current.heading.value,
-                    hidden: servicesRef.current['hidden'].checked,
-                    services: newServicesList
-                }
-                servicesIndex = servicesRef.current.index.dataset.index;
             }
+            
+            newServices = {
+                id: 4,
+                heading: servicesRef.current.heading.value,
+                hidden: servicesRef.current['hidden'].checked,
+                services: newServicesList
+            }
+            servicesIndex = servicesRef.current.index.dataset.index;
+        }
 
             // Update projects section 
             // Upload new project images
@@ -653,24 +655,19 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     return (
         <planContext.Provider value={plan}>
             <isLoggedInContext.Provider value={isLoggedIn}>
-                <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
-                    <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
-                    <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
-                    <AskLoginModal/>
-                    <div className="inset-x-0 w-11/12 mx-auto flex flex-row min-h-screen gap-x-3 flex-wrap md:flex-nowrap break-words mt-10 sm:mt-0">
-                        {successMsg ? <SuccessToast message={successMsg}/> : null}
-                        {errorMsg ? <ErrorToast message={errorMsg}/> : null}
-                        <Section content={site.sections[0]} userPlan={plan}/>
-                        <div className="card h-fit w-full md:w-[60%] lg:w-2/3 bg-white mt-[2vh]">
-                            <div className="p-8">
-                                {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section} userPlan={plan}/>)}
-                            </div>
-                        
-                        {/* Contact me */}
-                        <Footer content={site.sections[site.sections.length-1]}/>
-                        </div>
-                    </div>
-                </main>
+            <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
+                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
+                <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
+                <AskLoginModal/>
+                <div className="mt-10 sm:mt-0">
+                    {successMsg ? <SuccessToast message={successMsg}/> : null}
+                    {errorMsg ? <ErrorToast message={errorMsg}/> : null}
+                    <Section content={site.sections[0]} userPlan={plan}/>
+                    {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section} userPlan={plan}/>)}
+                    {/* Contact me */}
+                    <Footer content={site.sections[site.sections.length-1]}/>
+                </div>
+            </main>
             </isLoggedInContext.Provider>
         </planContext.Provider>
     )

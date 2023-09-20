@@ -3,6 +3,7 @@ import Image from "next/image"
 
 // Local imports
 import { ProjectModal } from "@/components/ui/ProjectModal"
+import ProjectModalButton from "./ProjectModalButton"
 
 export default function Projects({content}) {
     return (
@@ -35,9 +36,9 @@ export default function Projects({content}) {
                                 </div>  
                                 ))}
                             </div>
-                            <button 
-                                className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white mt-6"
-                                onClick={() => {document.getElementById(`project-${projIndex}`).showModal()}}>See more</button>
+
+                            {/* Project modal button has to be client-rendered as it has an onClick event */}
+                            <ProjectModalButton projIndex={projIndex}/>
                         </div>
                     </div>
                 </div>

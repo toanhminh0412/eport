@@ -69,23 +69,23 @@ const siteData = [
         hidden: false,
         services: [
             {
-                icon: "fa-solid fa-laptop",
                 title: "Portfolio Design",
+                price: "200 CAD / project",
                 description: "Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section."
             },
             {
-                icon: "fa-solid fa-laptop",
                 title: "Portfolio Design",
+                price: "200 CAD / project",
                 description: "Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section."
             },
             {
-                icon: "fa-solid fa-laptop",
                 title: "Portfolio Design",
+                price: "200 CAD / project",
                 description: "Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section."
             },
             {
-                icon: "fa-solid fa-laptop",
                 title: "Portfolio Design",
+                price: "200 CAD / project",
                 description: "Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section."
             }
         ]

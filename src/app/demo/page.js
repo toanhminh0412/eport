@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { nanoid } from "nanoid";
 import { redirect } from "next/navigation";
-import siteData from "@/data/site";
+import siteData from "@/data/demo1/newSite";
 
 // Local imports
 import Demo1 from "@/components/demo/demo1/site";

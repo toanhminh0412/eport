@@ -5,7 +5,7 @@ export default function References({content}) {
     const section = content
 
     return (
-        <section className="prose mb-12">
+        <section className="prose max-w-none w-11/12 mx-auto shadow-md rounded-lg p-8 my-4 border border-slate-300 bg-white text-justify">
             <h1>{section.heading}</h1>
             {section.references.map((reference, index) => (
             <div key={`${reference.name}-${index}`} className="mb-6">

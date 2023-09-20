@@ -5,8 +5,8 @@ import { cookies } from 'next/headers';
 // Local imports
 import { db } from '../../../../public/libs/firebase';
 import { getUserFromToken } from '@/helpers/authentication';
-import sectionData from '@/data/site';
-import siteData from '@/data/site';
+import sectionData from '@/data/demo1/newSite';
+import siteData from '@/data/demo1/newSite';
 
 // 3rd party imports
 import { addDoc, collection } from 'firebase/firestore';

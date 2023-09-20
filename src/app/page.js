@@ -26,7 +26,6 @@ export const metadata = {
 */
 async function getSite(uid) {
     const sitesQuery = query(collection(db, 'sites'), where('owner', '==', uid));
-
     const sitesSnap = await getDocs(sitesQuery);
     let sites = []; 
     sitesSnap.forEach((doc) => {
@@ -43,11 +42,17 @@ async function getSite(uid) {
 
 export default async function Dashboard() {
     const cookieStore = cookies();
+    
+    // Check if user login
     const userToken = cookieStore.get('eport-token') ? cookieStore.get('eport-token').value : null;
+    const isLoggedIn = userToken ? true : false;
+
+    // Set user id, site, plan and demo
     const user = getUserFromToken(userToken);
     const userId = user.uid;
     const site = await getSite(userId);
     const plan = user.plan ? user.plan : 'basic';
+    const demo = false
 
-    return <Demo1 content={site.site} siteId={site.id} plan={plan}/>
+    return <Demo1 content={site.site} siteId={site.id} plan={plan} demo={demo} isLoggedIn={isLoggedIn}/>
 }

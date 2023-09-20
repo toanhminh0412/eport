@@ -3,6 +3,7 @@
 import TextEditor from "@/components/ui/TextEditor";
 import { useState, useContext } from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -14,6 +15,7 @@ export default function AboutMeEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     const [aboutMe, _] = useState(content);
     const [extraInfo, setExtraInfo] = useState(content.extraInfo.map(info => ({id: nanoid(), ...info})));
 
@@ -99,7 +101,13 @@ export default function AboutMeEdit({
                                 </div>
                             </div>
                             ))}
-                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExtraInfo([...extraInfo, {id: nanoid(), key: 'Info name', value: 'Info value'}])}}><i className="fa-solid fa-plus me-2"></i>Add info</div>
+                            
+                            {/* Ask user login to add more field */}
+                            {isLoggedIn ?
+                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExtraInfo([...extraInfo, {id: nanoid(), key: 'Info name', value: 'Info value'}])}}><i className="fa-solid fa-plus me-2"></i>Add info</div>
+                            :
+                                <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add info</div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { isLoggedInContext } from "../site";
 
 export default function ProfileEdit({content, profileRef}) {
     const [profile, _] = useState(content);
@@ -13,6 +14,7 @@ export default function ProfileEdit({content, profileRef}) {
     const [cvMsg, setCvMsg] = useState('');
 
     const cvRef = useRef();
+    const isLoggedIn = useContext(isLoggedInContext);
 
     // Preview profile picture
     useEffect(() => {
@@ -72,9 +74,17 @@ export default function ProfileEdit({content, profileRef}) {
                     width={250} 
                     height={250} 
                     style={{objectFit: "contain"}}/>
-                    <input ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
+                    {isLoggedIn ?
+                        <input ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
+                    :
+                        <input disabled ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
+                    }
                     <label className="label text-xs">
-                        <span><strong>Hint: </strong>Upload a new picture will <strong>immediately</strong> replace the current picture</span>
+                        {isLoggedIn ?
+                            <span><strong>Hint: </strong>Upload a new picture will <strong>immediately</strong> replace the current picture</span>
+                        :
+                            <span><strong>Hint: </strong>Please <strong>login to</strong> upload image!</span>
+                        }
                     </label>
                     <div className="flex flex-row gap-3 flex-wrap mt-4">
                         <div className="form-control w-full max-w-xs">
@@ -90,28 +100,34 @@ export default function ProfileEdit({content, profileRef}) {
                             <input ref={el => (profileRef.current[1] = el)} type="text" placeholder="Your job title" className="input border-black w-full" defaultValue={profile.job} />
                         </div>
                     </div>
-                    <div className="mt-6">
-                        {cvMsg ? <div className="alert alert-success w-fit">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>{cvMsg}</span>
-                        </div>: null}
-                        <div>CV: {cvURL ? <Link href={cvURL} target="_blank" prefetch={false}>cv.pdf</Link> : "No CV uploaded"} {cvURL ? <span className="link ml-3 text-sm" onClick={removeCV}>Remove</span> : null}</div> 
-                        
-                        {/* This hidden div stores current CV URL as an attribute */}
-                        <div 
-                            ref={el => (profileRef.current[2] = el)}
-                            className="hidden" data-cvurl={cvURL}></div>
-                        
-                        <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative">
-                            Upload CV
-                            <input 
-                                ref={cvRef}
-                                type="file" 
-                                className="absolute top-0 left-0 w-full h-full opacity-0" 
-                                accept=".pdf, .doc, .docx" 
-                                onChange={uploadCV}/>
+                    {isLoggedIn ?
+                        <div className="mt-6">
+                            {cvMsg ? <div className="alert alert-success w-fit">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span>{cvMsg}</span>
+                            </div>: null}
+                            <div>CV: {cvURL ? <Link href={cvURL} target="_blank" prefetch={false}>cv.pdf</Link> : "No CV uploaded"} {cvURL ? <span className="link ml-3 text-sm" onClick={removeCV}>Remove</span> : null}</div> 
+                            
+                            {/* This hidden div stores current CV URL as an attribute */}
+                            <div 
+                                ref={el => (profileRef.current[2] = el)}
+                                className="hidden" data-cvurl={cvURL}></div>
+                            
+                            <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative">
+                                Upload CV
+                                <input 
+                                    ref={cvRef}
+                                    type="file" 
+                                    className="absolute top-0 left-0 w-full h-full opacity-0" 
+                                    accept=".pdf, .doc, .docx" 
+                                    onChange={uploadCV}/>
+                            </div>
                         </div>
-                    </div>
+                    :
+                        <div className="mt-6">
+                            <div className="btn bg-blue-500 hover:bg-blue-700 text-white duration-200 mt-2 relative" onClick={() => window.ask_login_modal.showModal()}>Upload CV</div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

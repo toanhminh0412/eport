@@ -2,6 +2,7 @@
 
 import { useState, useContext } from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -13,6 +14,7 @@ export default function ReferencesEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     const [references, _] = useState(content);
     const [referencesList, setReferencesList] = useState(content.references.map(reference => ({id: nanoid(), ...reference})));
 
@@ -126,7 +128,13 @@ export default function ReferencesEdit({
                                     defaultValue={reference.linkedin} />
                                 </div>
                                 ))}
-                                <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setReferencesList([...referencesList, {id: nanoid(), name: 'Person name', relationship: 'Relationship with you', phone: 123456789, email: 'person@example.org', linkedin: 'https://linkedin.com'}])}}><i className="fa-solid fa-plus me-2"></i>Add reference</div>
+
+                                {/* Ask user login to add more field */}
+                                {isLoggedIn ?
+                                    <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setReferencesList([...referencesList, {id: nanoid(), name: 'Person name', relationship: 'Relationship with you', phone: 123456789, email: 'person@example.org', linkedin: 'https://linkedin.com'}])}}><i className="fa-solid fa-plus me-2"></i>Add reference</div>
+                                :
+                                    <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add reference</div>
+                                }
                             </div>
                         </div>
                     </div>

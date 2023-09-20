@@ -31,7 +31,7 @@ export async function POST(request, { params }) {
     // Block non-owner to update site
     if (site.owner !== user.uid) {
         return NextResponse.json({
-            status: 403,
+            status: 400,
             message: "You cannot save sites you don't own"
         })
     }

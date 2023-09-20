@@ -30,6 +30,7 @@ export async function GET(request) {
         if (cookieStore.get('eport-demoSite-' + i)) {
             count = count + 1;
             sectionDemoData.push(JSON.parse(cookieStore.get('eport-demoSite-' + i).value));
+            cookieStore.delete('eport-demoSite-' + i);
         }
     }
 

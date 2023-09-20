@@ -487,7 +487,8 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
                     const serviceObj = servicesRef.current.services[i];
                     const newService = {
                         title: serviceObj.title.value,
-                        icon: serviceObj.icon.dataset.icon,
+                        // icon: serviceObj.icon.dataset.icon,
+                        price: serviceObj.price.value,
                         description: serviceObj.description.getContent()
                     }
                     newServicesList.push(newService);

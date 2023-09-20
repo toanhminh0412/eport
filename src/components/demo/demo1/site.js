@@ -38,9 +38,10 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     const footerRef = useRef({'socials': []});
 
     // Compare current site and published site
-    if (demo === false) {
-        useEffect(() => {
-            async function compareSites() {
+    
+    useEffect(() => {
+        async function compareSites() {
+            if (demo === false) {
                 setMsgLoading(true);
                 const response = await fetch('/api/site/check_latest_version');
                 const data = await response.json();
@@ -59,9 +60,9 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
                     setMsgLoading(false);
                 }
             }
-            compareSites();
-        }, [site]);
-    }
+        }
+        compareSites();
+    }, [site]);
 
     // Set message when publish site
     const setPublishMessage = () => {

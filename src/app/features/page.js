@@ -19,7 +19,8 @@ export default function Features() {
                     <div className="max-w-xl">
                         <h1 className="mb-5 text-4xl md:text-6xl font-bold text-white">What is Eport?</h1>
                         <p className="mb-5 text-lg md:text-2xl"><strong className="text-blue-500">Eport</strong> is the easiest way for job seekers to build a website/portfolio to showcase their works and information.</p>
-                        <Link href="#pricing" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4">Pricing</Link>
+                        <Link href="#pricing" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4 mr-4">Pricing</Link>
+                        <Link href="/demo" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4 ml-4">Demo</Link>
                     </div>
                 </div>
             </div>

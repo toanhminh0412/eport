@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, } from "react";
+import { useState, useContext} from "react";
 import socialIcons from "../../../../data/social-icons";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
 export default function FooterEdit({content, footerRef}) {
+    const isLoggedIn = useContext(isLoggedInContext);
     const [footer, _] = useState(content);
     const [socials, setSocials] = useState(content.socials.map(social => ({id: nanoid(), ...social})));
     
@@ -73,7 +75,13 @@ export default function FooterEdit({content, footerRef}) {
                             
                         </div>
                         ))}
-                        <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setSocials([...socials, {id: nanoid(), key: 'gmail', value: 'user@example.org'}])}}><i className="fa-solid fa-plus me-2"></i>Add social media</div>
+
+                        {/* Ask user login to add more field */}
+                        {isLoggedIn ?
+                            <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => {setSocials([...socials, {id: nanoid(), key: 'gmail', value: 'user@example.org'}])}}><i className="fa-solid fa-plus me-2"></i>Add social media</div>
+                        :
+                            <div className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-6 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add social media</div>
+                        }
                     </div>
                 </div>
             </div>

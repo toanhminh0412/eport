@@ -2,6 +2,7 @@
 
 import { useState, useContext } from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -13,6 +14,7 @@ export default function SkillsEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     const [skills, _] = useState(content);
     const [skillsList, setSkillsList] = useState(content.skills.map(skill => ({id: nanoid(), ...skill})));
     
@@ -80,7 +82,13 @@ export default function SkillsEdit({
                             </div>
                         </div>
                         ))}
-                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setSkillsList([...skillsList, {id: nanoid(), key: 'Blank skill', value: 50}])}}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
+
+                        {/* Ask user login to add more field */}
+                        {isLoggedIn ?
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setSkillsList([...skillsList, {id: nanoid(), key: 'Blank skill', value: 50}])}}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
+                        :
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add skill</div>
+                        }
                     </div>
                 </div>
             </div>

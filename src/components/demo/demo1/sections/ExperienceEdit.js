@@ -3,6 +3,7 @@
 import { useState, useContext } from "react";
 import { SiteContext } from "../../../layout/ContentEditor";
 import TextEditor from "@/components/ui/TextEditor";
+import { isLoggedInContext } from "../site";
 
 import { nanoid } from "nanoid";
 
@@ -14,6 +15,7 @@ export default function ExperienceEdit({
     moveDown
 }) {
     const site = useContext(SiteContext);
+    const isLoggedIn = useContext(isLoggedInContext);
     /***  Experience section ***/
     const [experience, _] = useState(content);
     const [experienceList, setExperienceList] = useState(content.experiences.map(exp => ({id: nanoid(), ...exp})));
@@ -106,7 +108,13 @@ export default function ExperienceEdit({
                             defaultValue={exp.description}/>
                         </div>
                         ))}
-                        <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {id: nanoid(), jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
+
+                        {/* Ask user login to add more field */}
+                        {isLoggedIn ?
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => {setExperienceList([...experienceList, {id: nanoid(), jobTitle: 'Some position', company: 'Company A', startYear: 2020, endYear: 2023, description: 'I was in charge of meeting with clients, gathering user requirements for our products, etc'}])}}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
+                        :
+                            <div className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => window.ask_login_modal.showModal()}><i className="fa-solid fa-plus me-2"></i>Add experience</div>
+                        }
                     </div>
                 </div>
             </div>

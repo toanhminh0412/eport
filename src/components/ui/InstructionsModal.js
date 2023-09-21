@@ -1,32 +1,7 @@
 import React from "react";
 import ReactJoyride, { STATUS } from "react-joyride";
 
-const steps = [
-    {
-        target: "body",
-        content: "Let's begin our journey! This is the template of your portfolio!",
-        placement: "center"
-    },
-    {
-        target: ".tour-editSiteButton",
-        content: "Click 'Edit Site' button to edit your portfolio! After editing your site, click 'Save Site' button!",
-        placement: "bottom"
-    },
-    {
-        target: ".tour-publishSiteButton",
-        content: "Click 'Publish Site' button to publish your site. Then, the 'Visit Site' button will appear. Click on the 'Visit Site' button to visit your page!",
-        placement: "bottom"
-    },
-    {
-        target: ".tour-myAccountButton",
-        content: "Click 'My Account' button to manage your subscriptions, change password and log out!",
-        placement: "bottom"
-    }
-];
-
-const Tour = (runHandle) => {
-    const { setRun, run } = runHandle;
-
+export default function Tour ({setRun, run, isLoggedIn}) {
     // Need to set our running state to false, so we can restart if we click start again
     // Note: must use this function name to get data i.e. handleJoyrideCallback
     const handleJoyrideCallback = (data) => {
@@ -36,6 +11,34 @@ const Tour = (runHandle) => {
             setRun(false);
         }
     }
+
+    const steps = [
+        {
+            target: "body",
+            content: "Let's begin our journey! This is the template of your portfolio!",
+            placement: "center"
+        },
+        {
+            target: ".tour-editSiteButton",
+            content: "Click 'Edit Site' button to edit your portfolio! After editing your site, click 'Save Site' button!",
+            placement: "bottom"
+        },
+        {
+            target: ".tour-publishSiteButton",
+            content: "Click 'Publish Site' button to publish your site. Then, the 'Visit Site' button will appear. Click on the 'Visit Site' button to visit your page!",
+            placement: "bottom"
+        },
+        isLoggedIn ? {
+            target: ".tour-myAccountButton",
+            content: "Click 'My Account' button to manage your subscriptions, change password and log out!",
+            placement: "bottom"
+        } :
+        {
+            target: ".tour-loginButton",
+            content: "Login to your account to make this your real portfolio!",
+            placement: "bottom"
+        },
+    ];
 
     return (
         <>
@@ -63,5 +66,3 @@ const Tour = (runHandle) => {
         </>
     )
 }
-
-export default Tour;

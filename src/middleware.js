@@ -17,6 +17,11 @@ export async function middleware(request) {
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
         // Check if user is logged in, redirect to login page if not
         if (!user) {
+            // Log user out if user is logged in with an invalid token
+            if (request.cookies.get('eport-token')) {
+                return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
+            }
+            // Otherwise redirect user to 'features' page
             return NextResponse.redirect(new URL('/features', request.url));
         }
 

@@ -3,6 +3,7 @@ const siteData = [
     {
         id: 0,
         profilePic: "https://firebasestorage.googleapis.com/v0/b/eport-29971.appspot.com/o/demo%2Fdemo1%2FprofilePic.png?alt=media&token=7662614a-bfdf-4769-9665-238fbce93c2d",
+        coverPhoto: "/img/header-bg.jpg",
         fullName: "Eport Website",
         job: "Portfolio Builder",
         link1: ["Download CV", "#"],

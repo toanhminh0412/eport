@@ -105,6 +105,17 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
                 newProfilePicURL = await getDownloadURL(profilePicSnap.ref);
             }
 
+            // Upload new cover photo if it's replaced
+            let newCoverPhotoURL = '';
+            if (profileRef.current[3].files.length > 0) {
+                let file = profileRef.current[3].files[0];
+                file = await compressImageSize(file, 0.4);
+                const userId = secureLocalStorage.getItem('eport-uid');
+                const coverPhotoRef = ref(storage, `users/${userId}/images/coverPhoto.jpg`);
+                const coverPhotoSnap = await uploadBytes(coverPhotoRef, file);
+                newCoverPhotoURL = await getDownloadURL(coverPhotoSnap.ref);
+            }
+
             // Upload new CV if it's replaced
             let newCVURL = profileRef.current[2].dataset.cvurl;
             if (newCVURL && !newCVURL.includes('firebasestorage.googleapis.com')) {
@@ -119,6 +130,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             const newProfile = {
                 id: 0,
                 profilePic: newProfilePicURL ? newProfilePicURL : site.sections[0].profilePic,
+                coverPhoto: newCoverPhotoURL ? newCoverPhotoURL : site.sections[0].coverPhoto,
                 fullName: profileRef.current[0].value,
                 job: profileRef.current[1].value,
                 cvURL: newCVURL
@@ -408,6 +420,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             const newProfile = {
                 id: 0,
                 profilePic: site.sections[0].profilePic,
+                coverPhoto: site.sections[0].coverPhoto,
                 fullName: profileRef.current[0].value,
                 job: profileRef.current[1].value,
                 cvURL: null

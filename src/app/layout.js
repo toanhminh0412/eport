@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         <meta name="twitter:image:height" content="192" />
         <meta property="twitter:image:alt" content="Eport - the easiest way for job seekers to build a website to show their works and information." />
       </head>
-      <body className={`${inter.className} pt-16 pb-[340px] bg-slate-100 w-screen min-h-screen relative`}>
+      <body className={`${inter.className} pt-16 pb-[400px] xs:pb-[340px] bg-slate-100 w-screen min-h-screen relative`}>
         <UpperNav isLoggedIn={isLoggedIn} email={user ? user.email : null}/>
         {isLoggedIn ? <ChangePasswordModal /> : null}
         {children}

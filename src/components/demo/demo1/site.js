@@ -656,7 +656,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     return (
         <planContext.Provider value={plan}>
             <isLoggedInContext.Provider value={isLoggedIn}>
-            <main className="bg-slate-100 w-screen h-full pb-10 pt-24 mb-32">
+            <main className="bg-slate-100 w-screen h-full pb-10 pt-40 lg:pt-24 mb-32">
                 <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
                 <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
                 <AskLoginModal/>

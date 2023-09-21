@@ -3,7 +3,7 @@ import Footer from "./sections/Footer";
 
 export default function PublishedDemo1({site}) {
     return (
-            <main className="pt-20">
+            <main className="pt-20 pb-20">
                 <div className="mt-10 sm:mt-0 mb-20">
                     {/* Profile section */}
                     <Section content={site.sections[0]}/>

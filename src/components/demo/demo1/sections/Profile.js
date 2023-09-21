@@ -6,7 +6,7 @@ export default function Profile({content}) {
 
     return (
         <div className="w-11/12 mx-auto shadow-md">
-            <div className="hero h-40 xs:h-60 lg:h-80 relative rounded-t-lg" style={{backgroundImage: 'url(/img/header-bg.jpg)'}}>
+            <div className="hero h-40 xs:h-60 lg:h-80 relative rounded-t-lg" style={{backgroundImage: `url(${section.coverPhoto ? section.coverPhoto : "/img/header-bg.jpg"})`}}>
                 <div className="hero-overlay bg-opacity-80 rounded-t-lg"></div>
                 <Image 
                     src={section.profilePic} 

@@ -1,45 +1,21 @@
 'use client';
 
-import Image from "next/image";
+// Next, React imports
 import Link from "next/link";
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useRef, useContext } from "react";
+
+// Local imports
 import { isLoggedInContext } from "../site";
+import ImageUploadPreviewer from "@/components/ui/ImageUploadPreviewer";
 
 export default function ProfileEdit({content, profileRef}) {
     const [profile, _] = useState(content);
-    const [profilePicFile, setProfilePicFile] = useState(null);
-    const [profilePicPreview, setProfilePicPreview] = useState(null);
 
     const [cvURL, setCvURL] = useState(content.cvURL);
     const [cvMsg, setCvMsg] = useState('');
 
     const cvRef = useRef();
     const isLoggedIn = useContext(isLoggedInContext);
-
-    // Preview profile picture
-    useEffect(() => {
-        let fileReader = false;
-        if (profilePicFile) {
-          fileReader = new FileReader();
-          fileReader.onload = (e) => {
-            const { result } = e.target;
-            if (result) {
-              setProfilePicPreview(result);
-            }
-          }
-          fileReader.readAsDataURL(profilePicFile);
-        }
-        return () => {
-            if (fileReader && fileReader.readyState === 1) {
-                fileReader.abort();
-            }
-        }
-    }, [profilePicFile]);
-
-    // Upload new profile picture for review or change
-    const uploadProfilePic = e => {
-        setProfilePicFile(e.target.files[0]);
-    }
 
     // Upload new CV for review or change
     const uploadCV = e => {
@@ -67,32 +43,30 @@ export default function ProfileEdit({content, profileRef}) {
             </div>
             <div className="collapse-content bg-white">
                 <div className="p-3 md:p-6">
-                    <div>Profile picture:</div>
-                    <Image 
-                    src={profilePicPreview ? profilePicPreview : profile.profilePic} 
-                    alt="Profile picture" 
-                    width={250} 
-                    height={250} 
-                    style={{objectFit: "contain"}}/>
-                    {isLoggedIn ?
-                        <input ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
-                    :
-                        <input disabled ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadProfilePic}/>
-                    }
-                    <label className="label text-xs">
-                        {isLoggedIn ?
-                            <span><strong>Hint: </strong>Upload a new picture will <strong>immediately</strong> replace the current picture</span>
-                        :
-                            <span><strong>Hint: </strong>Please <strong>login to</strong> upload image!</span>
-                        }
-                    </label>
+                    {/* Profile picture */}
+                    <ImageUploadPreviewer
+                        imageRef={el => (profileRef.current[6] = el)}
+                        demo={!isLoggedIn}
+                        label="Profile picture:"
+                        defaultImageSrc={profile.profilePic}/>
+
+                    {/* Cover photo */}
+                    <ImageUploadPreviewer
+                        imageRef={el => (profileRef.current[3] = el)}
+                        demo={!isLoggedIn}
+                        label="Cover photo:"
+                        defaultImageSrc={profile.coverPhoto ? profile.coverPhoto : "/img/header-bg.jpg"}/>
+
                     <div className="flex flex-row gap-3 flex-wrap mt-4">
+                        {/* Full name */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Full name:</span>
                             </label>
                             <input ref={el => (profileRef.current[0] = el)} type="text" placeholder="Your full name" className="input border-black w-full" defaultValue={profile.fullName} />
                         </div>
+
+                        {/* Job */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Job:</span>
@@ -100,6 +74,8 @@ export default function ProfileEdit({content, profileRef}) {
                             <input ref={el => (profileRef.current[1] = el)} type="text" placeholder="Your job title" className="input border-black w-full" defaultValue={profile.job} />
                         </div>
                     </div>
+
+                    {/* CV */}
                     {isLoggedIn ?
                         <div className="mt-6">
                             {cvMsg ? <div className="alert alert-success w-fit">

@@ -46,7 +46,7 @@ export default function ImageUploadPreviewer({imageRef=null, demo=false, label, 
             {!demo ?
                 <input ref={imageRef} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadImage}/>
             :
-                <input disabled ref={el => (profileRef.current[6] = el)} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadImage}/>
+                <input disabled ref={imageRef} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadImage}/>
             }
             <label className="label text-xs">
                 {!demo ?

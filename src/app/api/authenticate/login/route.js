@@ -4,10 +4,10 @@ import { cookies } from 'next/headers';
 import { db } from '../../../../../public/libs/firebase';
 import cookieOptions from '@/data/cookieOptions';
 import { getTokenFromUser } from '@/helpers/authentication';
+import siteData from '@/data/demo1/newSite';
 
 import { getDocs, collection, setDoc, doc } from 'firebase/firestore';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
 /* Handle users logging in
 Query:
@@ -73,6 +73,13 @@ export async function GET(request) {
                     }
                     let userToken = getTokenFromUser(userData);
                     cookieStore.set('eport-token', userToken, cookieOptions);
+
+                    // Delete all demo site cookies
+                    if (cookieStore.get('eport-demoSite-0')) {
+                        for (let i = 0; i < siteData.length; i++) {
+                            cookieStore.delete('eport-demoSite-' + i);
+                        }
+                    }
                 }
             }
             break;

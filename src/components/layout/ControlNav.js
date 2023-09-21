@@ -48,7 +48,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                 {state === 'edit' ?
                     <>
                     <button className="btn btn-info btn-sm xs:btn xs:btn-info" onClick={() => setRun(true)}>Show Instructions</button>
-                        {run ? <Tour run={run} setRun={setRun}/> : null}
+                        {run ? <Tour run={run} setRun={setRun} isLoggedIn={isLoggedIn}/> : null}
                     </>
                 : null}
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>

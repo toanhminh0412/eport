@@ -65,7 +65,7 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
           </ul>
         </div>
         :
-        <Link href='/login' className="btn btn-default m-1" prefetch={false}>Login</Link>}
+        <Link href='/login' className="btn btn-default m-1 tour-loginButton" prefetch={false}>Login</Link>}
       </div>
     </div>
   )

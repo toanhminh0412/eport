@@ -6,7 +6,7 @@ export default function Profile({content}) {
 
     return (
         <div className="w-11/12 mx-auto shadow-md">
-            <div className="hero h-40 xs:h-60 lg:h-80 relative rounded-t-lg" style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}>
+            <div className="hero h-40 xs:h-60 lg:h-80 relative rounded-t-lg" style={{backgroundImage: 'url(/img/header-bg.jpg)'}}>
                 <div className="hero-overlay bg-opacity-80 rounded-t-lg"></div>
                 <Image 
                     src={section.profilePic} 
@@ -14,7 +14,7 @@ export default function Profile({content}) {
                     width={200} 
                     height={200} 
                     style={{objectFit: "contain"}}
-                    className="w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] absolute bottom-[-30px] xs:bottom-[-50px] left-0 right-0 mx-auto flex flex-row z-20"/>
+                    className="w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] absolute bottom-[-40px] xs:bottom-[-50px] left-0 right-0 mx-auto flex flex-row z-20"/>
             </div>
             <div className="prose bg-white pt-16 pb-5 shadow-md max-w-none text-center rounded-b-lg">
                 <h1 className="mb-0">{section.fullName}</h1>

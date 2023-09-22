@@ -46,7 +46,7 @@ export default function ExamplesPremium() {
                 <Slider slides={slides2}></Slider>
             </div>
 
-            <div className="mb-10 sm:mb-20">
+            <div className="mb-20">
                 <div className="flex justify-center mt-12">
                     <h1 className="text-lg sm:text-3xl">Maxine Miles - Senior Chef</h1>
                     <Link href='https://www.eport.site/mmiles' target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white ml-5">Visit Site</Link>

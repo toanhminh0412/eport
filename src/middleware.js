@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function middleware(request) {
     /*** Authentication ***/
     const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1', '/manage_subscriptions'];
-    console.log('Before verifying token');
+
     // Get user from jwt token in cookie
     const userResponse = await fetch(new URL('/api/authenticate/verifyToken', request.url), {
         method: 'GET',
@@ -11,7 +11,6 @@ export async function middleware(request) {
             'X-forward-token': request.cookies.get('eport-token') ? request.cookies.get('eport-token').value : null,
         }
     });
-    console.log('Receive a response from verifyToken route');
     const data = await userResponse.json();
     const user = data.user;
 

@@ -9,6 +9,7 @@ export const metadata = {
 }
 
 export default function Features() {
+    console.log('Calling Features');
     const loggedIn = cookies().get('eport-token') ? true : false;
     
     return (

@@ -22,6 +22,7 @@ export async function middleware(request) {
                 return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
             }
             // Otherwise redirect user to 'features' page
+            console.log("Before redirecting to '/features'");
             return NextResponse.redirect(new URL('/features', request.url));
         }
 

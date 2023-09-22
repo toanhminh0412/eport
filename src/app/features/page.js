@@ -2,14 +2,13 @@ import PlansDisplay from "@/components/ui/plans_display/PlansDisplay"
 import Link from "next/link";
 import { cookies } from "next/headers";
 
-// export const metadata = {
-//     alternates: {
-//         canonical: 'https://eport.site/features',
-//     }
-// }
+export const metadata = {
+    alternates: {
+        canonical: 'https://eport.site/features',
+    }
+}
 
 export default function Features() {
-    console.log('Calling Features');
     const loggedIn = cookies().get('eport-token') ? true : false;
     
     return (

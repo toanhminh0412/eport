@@ -41,6 +41,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
             domain: domain,
             plan: plan,
             displayedOnEport: displayedOnEport,
+            publishedDate: new Date(),
             ...site
         }
 
@@ -100,7 +101,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
                 <div className="form-control flex flex-row mt-2 w-fit">
                     <input 
                         type="checkbox" 
-                        className="checkbox checkbox-primary" 
+                        className="checkbox" 
                         checked={displayedOnEport}
                         onChange={e => setDisplayedOnEport(e.target.checked)}/>
                     <strong className="ml-2">Yes, I do</strong> 

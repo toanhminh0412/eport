@@ -6,7 +6,7 @@ import { db } from "../../../public/libs/firebase";
 import PublishedDemo1 from "@/components/demo/demo1/published";
 
 // 3rd party imports
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, getDocs, where, limit, orderBy } from "firebase/firestore";
 
 export const metadata = {
     title: 'Published sites',
@@ -18,7 +18,7 @@ export const metadata = {
 
 // Get all published sites that are set to display on "published_sites" page
 const getPublishedSites = async () => {
-    const publishedSitesQuery = query(collection(db, 'publishedSites'), where('displayedOnEport', '==', true));
+    const publishedSitesQuery = query(collection(db, 'publishedSites'), where('displayedOnEport', '==', true), orderBy('publishedDate', 'desc'), limit(20));
     // const publishedSitesQuery = query(collection(db, 'publishedSites'));
     const publishedSitesQuerySnapshot = await getDocs(publishedSitesQuery);
     return publishedSitesQuerySnapshot.docs.map(doc => doc.data());
@@ -35,7 +35,7 @@ export default async function Page() {
                     {publishedSites.map((site, index) => (
                     <div key={`${site.domain}-${index}`}>
                         <h2>
-                            {site.sections[0].fullName} - {site.sections[0].job}
+                            {site.sections[0].fullName} - {site.sections[0].job} ({site.plan} plan)
                             <span><br className="sm:hidden"/><Link href={`/${site.domain}`} className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white sm:ml-5 sm:mt-[-3px]">Visit Site</Link></span>
                         </h2>
                         <div className="w-full md:px-6 h-128 overflow-y-auto border border-slate-300 shadow-md rounded-md bg-slate-100">

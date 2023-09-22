@@ -24,8 +24,9 @@ export default function ExamplesPremium() {
 
     const slides3 = ['/img/mmiles_profile.png', '/img/mmiles_aboutme.png',
                     '/img/mmiles_experience.png', '/img/mmiles_services.png',
-                    '/img/mmiles_projects.png', '/img/mmiles_testimonials.png',
-                    '/img/mmiles_references.png', '/img/mmiles_getintouch.png']
+                    '/img/mmiles_projects_1.png', '/img/mmiles_projects_2.png',
+                    '/img/mmiles_testimonials.png', '/img/mmiles_references.png',
+                    '/img/mmiles_getintouch.png']
 
     return (
         <div className="px-10">

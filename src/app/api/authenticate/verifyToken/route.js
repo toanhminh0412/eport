@@ -8,6 +8,7 @@ import { getUserFromToken } from "@/helpers/authentication";
 Return: decoded user object
 */
 export function GET(request) {
+    console.log('In verifyToken route');
     const requestHeaders = new Headers(request.headers);
     const userToken = requestHeaders.get('x-forward-token');
     return NextResponse.json(

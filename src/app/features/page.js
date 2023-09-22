@@ -9,7 +9,7 @@ export const metadata = {
 }
 
 export default function Features() {
-    const loggedIn = cookies().get('eport-uid') ? true : false;
+    const loggedIn = cookies().get('eport-token') ? true : false;
     
     return (
         <div className="prose max-w-none scroll-smooth">

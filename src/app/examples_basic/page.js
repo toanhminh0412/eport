@@ -23,18 +23,18 @@ export default function ExamplesBasic() {
                     '/img/lrilla_getintouch.png']
 
     return (
-        <div className="px-10">
-            <div className="mb-20">
+        <div className="px-2 sm:px-10">
+            <div className="mb-10 sm:mb-20">
                 <div className="flex justify-center mt-12">
-                    <h1 className="text-3xl">Jolie Glanville - Web Designer</h1>
+                    <h1 className="text-lg sm:text-3xl">Jolie Glanville - Web Designer</h1>
                     <Link href='https://www.eport.site/jglanville' target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white ml-5 mt-[-3px]">Visit Site</Link>
                 </div>
                 <Slider slides={slides1}></Slider>   
             </div>
             
-            <div className="mb-20">
+            <div className="mb-10 sm:mb-20">
                 <div className="flex justify-center mt-12">
-                    <h1 className="text-3xl">Thane Tory - Information Security Analyst</h1>
+                    <h1 className="text-lg sm:text-3xl">Thane Tory - Information Security Analyst</h1>
                     <Link href='https://www.eport.site/ttory' target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white ml-5">Visit Site</Link>
                 </div>
                 <Slider slides={slides2}></Slider>
@@ -42,7 +42,7 @@ export default function ExamplesBasic() {
 
             <div className="mb-20">
                 <div className="flex justify-center mt-12">
-                    <h1 className="text-3xl">Lucille Rilla - Lawyer</h1>
+                    <h1 className="text-lg sm:text-3xl">Lucille Rilla - Lawyer</h1>
                     <Link href='https://www.eport.site/lrilla' target="_blank" className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white ml-5">Visit Site</Link>
                 </div>
                 <Slider slides={slides3}></Slider>

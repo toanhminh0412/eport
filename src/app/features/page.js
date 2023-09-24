@@ -3,6 +3,8 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 
 export const metadata = {
+    title: 'Eport - Features',
+    description: 'Eport is the easiest way for job seekers to build a website to show their works and information.',
     alternates: {
         canonical: 'https://eport.site/features',
     }

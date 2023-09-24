@@ -46,6 +46,7 @@ export async function GET(request) {
         await addDoc(collection(db, "sites"), {
             owner: user.uid,
             selectedTemplate: parseInt(selectedTemplate),
+            theme: "light",
             sections: sectionDemoData,
         })
     } else { 
@@ -53,6 +54,7 @@ export async function GET(request) {
         await addDoc(collection(db, "sites"), {
             owner: user.uid,
             selectedTemplate: parseInt(selectedTemplate),
+            theme: "light",
             sections: sectionData,
         })
     }

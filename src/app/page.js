@@ -53,6 +53,7 @@ export default async function Dashboard() {
     const site = await getSite(userId);
     const plan = user.plan ? user.plan : 'basic';
     const demo = false
+    // console.log(site.site.theme)
 
     return <Demo1 content={site.site} siteId={site.id} plan={plan} demo={demo} isLoggedIn={isLoggedIn}/>
 }

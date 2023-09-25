@@ -38,7 +38,7 @@ export async function GET(request) {
     const currentSite = sites[0].data();
     const publishedSite = publishedSites[0].data();
 
-    if (util.isDeepStrictEqual(currentSite.sections, publishedSite.sections) === false) {
+    if (util.isDeepStrictEqual(currentSite.sections, publishedSite.sections) === false || currentSite.theme !== publishedSite.theme) {
         return NextResponse.json({
             status: 200,
             isEqual: false

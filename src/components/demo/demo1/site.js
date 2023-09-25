@@ -689,7 +689,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
         <planContext.Provider value={plan}>
             <isLoggedInContext.Provider value={isLoggedIn}>
             <main className="bg-slate-100 w-screen h-full pt-40 lg:pt-24 pb-32 dark:bg-slate-700">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
+                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading} theme={site.theme}/>
                 <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
                 <AskLoginModal/>
                 <div className="mt-10 sm:mt-0">

@@ -66,6 +66,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     }, [site]);
     
     const theme = site.theme;
+
     useEffect(() => {
         if (theme === "dark") {
             window.document.body.classList.add('dark');
@@ -228,11 +229,11 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             let newServices = {};
             let servicesIndex = 0;
 
-        if (plan === "basic") {
-            newServices = site.sections.filter((section) => section.id === 4)[0];
-            servicesIndex = site.sections.findIndex((section) => section.id === 4);
-        // For premium plan, update services section based on what was written in the editor
-        } else {
+            if (plan === "basic") {
+                newServices = site.sections.filter((section) => section.id === 4)[0];
+                servicesIndex = site.sections.findIndex((section) => section.id === 4);
+            // For premium plan, update services section based on what was written in the editor
+            } else {
             let newServicesList = [];
             for (let i = 0; i < servicesRef.current.services.length; i++) {
                 if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
@@ -626,7 +627,10 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             newSections[testimonialsRef.current.index.dataset.index] = newTestimonials;
             newSections[referencesRef.current.index.dataset.index] = newReferences;
 
+            console.log('aaaa');
+            console.log(themeRef.current.value);
             const newSite = {
+                theme: themeRef.current.value,
                 sections: newSections
             };
             console.log(newSite);
@@ -660,7 +664,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
         return (
             <planContext.Provider value={plan}>
                 <isLoggedInContext.Provider value={isLoggedIn}>
-                    <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
+                    <main className="bg-slate-100 w-screen h-full pb-10 pt-24 dark:bg-slate-700">
                         <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
                         <AskLoginModal/>
                         <ContentEditor 
@@ -684,7 +688,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     return (
         <planContext.Provider value={plan}>
             <isLoggedInContext.Provider value={isLoggedIn}>
-            <main className="bg-slate-100 w-screen h-full pb-10 pt-40 lg:pt-24 mb-32 dark:bg-slate-700">
+            <main className="bg-slate-100 w-screen h-full pt-40 lg:pt-24 pb-32 dark:bg-slate-700">
                 <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
                 <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
                 <AskLoginModal/>

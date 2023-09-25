@@ -103,6 +103,7 @@ export async function GET(request) {
                     cookieStore.delete('eport-demoSite-' + i);
                 }
             }
+            cookieStore.delete('eport-theme');
         } else {
             success = false;
             message = "Google SignIn option is not available to this email. Please log in using your email and password!";

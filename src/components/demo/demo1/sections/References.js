@@ -12,7 +12,7 @@ export default function References({content}) {
                 <div className="text-xl font-bold mb-2">{reference.name} - <span className="text-lg font-normal">{reference.relationship}</span></div>
                 {reference.phone ? <div><strong className="mr-2 text-blue-500 dark:text-blue-400">Phone: </strong>{reference.phone}</div> : null}
                 {reference.email ? <div><strong className="mr-2 text-blue-500 dark:text-blue-400">Email: </strong>{reference.email}</div> : null}
-                {reference.linkedin ? <div><strong className="mr-2 text-blue-500 dark:text-blue-400">LinkedIn: </strong><Link href={convertToURL(reference.linkedin)} target="_blank" className="break-words text-slate-200">{reference.linkedin}</Link></div> : null}
+                {reference.linkedin ? <div><strong className="mr-2 text-blue-500 dark:text-blue-400">LinkedIn: </strong><Link href={convertToURL(reference.linkedin)} target="_blank" className="break-words dark:text-slate-200">{reference.linkedin}</Link></div> : null}
             </div>
             ))}
         </section>

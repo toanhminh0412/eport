@@ -29,10 +29,10 @@ export default function ExperienceEdit({
     return (
         <div 
         ref={el => (experienceRef.current['index'] = el)}
-        className="collapse collapse-arrow border border-slate-300"
+        className="collapse collapse-arrow border border-slate-300 dark:border-slate-600"
         data-index={index}>
             <input type="checkbox" name="my-accordion-2" /> 
-            <div className="collapse-title text-xl font-medium bg-white shadow-lg">
+            <div className="collapse-title text-xl dark:text-slate-200 font-medium bg-white dark:bg-slate-950 shadow-lg">
                 {experience.heading}
             </div>
 
@@ -45,12 +45,12 @@ export default function ExperienceEdit({
             </div>
 
             {/* Content */}
-            <div className="collapse-content bg-white">
+            <div className="collapse-content bg-white dark:bg-slate-900">
                 <div className="p-3 md:p-6">
                     <div className="form-control w-full max-w-lg">
                         {/* Section visibility */}
                         <label className="label">
-                            <span className="label-text">Hide section:</span>
+                            <span className="label-text dark:text-slate-200">Hide section:</span>
                         </label>
                         <input
                         ref={el => (experienceRef.current['hidden'] = el)}
@@ -59,53 +59,54 @@ export default function ExperienceEdit({
                         defaultChecked={experience.hidden}/>
 
                         {/* Heading */}
-                        <label className="label text-xs">
-                            <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                        <label className="label text-xs dark:text-slate-200">
+                            <span><strong className="dark:text-slate-100">Hint: </strong>Turn this on if you want this section to <strong className="dark:text-slate-100">not be visible</strong> on your page.</span>
                         </label>
                         <label className="label">
-                            <span className="label-text">Section heading  (recommend &apos;Experiences&apos;):</span>
+                            <span className="label-text dark:text-slate-200">Section heading  (recommend &apos;Experiences&apos;):</span>
                         </label>
-                        <input ref={el => (experienceRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Experience')" className="input border-black w-full" defaultValue={experience.heading} />
+                        <input ref={el => (experienceRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Experience')" className="input border-black dark:border-blue-400 w-full dark:bg-slate-700 dark:text-slate-200" defaultValue={experience.heading} />
                     </div>
-                    <div className="font-semibold mt-8">Experience list:</div>
+                    <div className="font-semibold mt-8 dark:text-slate-200">Experience list:</div>
                     <div className="form-control max-w-lg">
                         {experienceList.map((exp, index) => (
                         <div key={exp.id} className={`${index === 0 ? '' : 'mt-8'} w-full`}>
                             <label className="label">
-                                <span className="label-text">Job title:</span>
+                                <span className="label-text dark:text-slate-200">Job title:</span>
                                 <span className="text-md text-slate-300 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeExperience(index)}><i className="fa-solid fa-trash me-2"></i>Remove experience</span>
                             </label>
                             <input 
                             ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['jobTitle'] = el}}
                             type="text" 
                             placeholder="Your job title" 
-                            className="input border-black w-full" 
+                            className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full" 
                             defaultValue={exp.jobTitle} />
                             <label className="label">
-                                <span className="label-text">Company:</span>
+                                <span className="label-text dark:text-slate-200">Company:</span>
                             </label>
                             <input 
                             ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['company'] = el}}
                             type="text" 
                             placeholder="Company name" 
-                            className="input border-black w-full" 
+                            className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full" 
                             defaultValue={exp.company} />
                             <label className="label">
-                                <span className="label-text">Start year / End year:</span>
+                                <span className="label-text dark:text-slate-200">Start year / End year:</span>
                             </label>
                             <div className="join max-w-xl w-full">
-                                <input ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['startYear'] = el}} type="number" placeholder="Start year" className="input border-black w-full join-item" defaultValue={exp.startYear} />
-                                <input ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['endYear'] = el}} type="number" placeholder="End year" className="input border-black w-full join-item" defaultValue={exp.endYear} />
+                                <input ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['startYear'] = el}} type="number" placeholder="Start year" className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full join-item" defaultValue={exp.startYear} />
+                                <input ref={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['endYear'] = el}} type="number" placeholder="End year" className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full join-item" defaultValue={exp.endYear} />
                             </div>
-                            <label className="label text-xs">
-                                <span><strong>Hint: </strong>Leave the end year <strong>blank</strong> or <strong>0</strong> if you are still working at the company</span>
+                            <label className="label text-xs dark:text-slate-200">
+                                <span><strong className="dark:text-slate-100">Hint: </strong>Leave the end year <strong className="dark:text-slate-100">blank</strong> or <strong className="dark:text-slate-100">0</strong> if you are still working at the company</span>
                             </label>
                             <label className="label">
-                                <span className="label-text">Description:</span>
+                                <span className="label-text dark:text-slate-200">Description:</span>
                             </label>
                             <TextEditor 
                             paramRef={el => {experienceRef.current['experiences'][index] = experienceRef.current['experiences'][index] ? experienceRef.current['experiences'][index] : {}; experienceRef.current['experiences'][index]['description'] = el}}
-                            defaultValue={exp.description}/>
+                            defaultValue={exp.description}
+                            theme={site.theme}/>
                         </div>
                         ))}
 

@@ -60,9 +60,9 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
                 setMsgLoading(false);
             }
         }
-        // if (demo === false) {
-        //     compareSites();
-        // }
+        if (demo === false) {
+            compareSites();
+        }
     }, [site]);
     
     const theme = site.theme;

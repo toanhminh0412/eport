@@ -1,7 +1,7 @@
 import React from "react";
 import ReactJoyride, { STATUS } from "react-joyride";
 
-export default function Tour ({setRun, run, isLoggedIn}) {
+export default function Tour ({setRun, run, isLoggedIn, theme}) {
     // Need to set our running state to false, so we can restart if we click start again
     // Note: must use this function name to get data i.e. handleJoyrideCallback
     const handleJoyrideCallback = (data) => {
@@ -40,6 +40,37 @@ export default function Tour ({setRun, run, isLoggedIn}) {
         },
     ];
 
+    if (theme === "dark") {
+        return (
+            <>
+                <ReactJoyride
+                    callback={handleJoyrideCallback}
+                    run={run}
+                    steps={steps}
+                    continuous
+                    showSkipButton
+                    showProgress
+                    hideCloseButton
+                    styles={{
+                        tooltipContainer: {
+                            textAlign: "left"
+                            
+                        },
+                        buttonNext: {
+                            backgroundColor: "rgb(29, 78, 216)"
+                        },
+                        buttonBack: {
+                            marginRight: 10,
+                        },
+                        options: {
+                            backgroundColor: "rgb(30, 41, 59)",
+                            textColor: "rgb(226, 232, 240)",
+                        }
+                    }}
+                />
+            </>
+        )
+    }
     return (
         <>
             <ReactJoyride
@@ -60,7 +91,7 @@ export default function Tour ({setRun, run, isLoggedIn}) {
                     },
                     buttonBack: {
                         marginRight: 10,
-                    }
+                    },
                 }}
             />
         </>

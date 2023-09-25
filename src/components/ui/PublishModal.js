@@ -75,7 +75,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
 
     return (
         <dialog id="publish_modal" className="modal">
-            <form method="dialog" className="modal-box">
+            <form method="dialog" className="modal-box dark:bg-slate-800 dark:text-slate-200">
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 <h3 className="font-bold text-lg">Publish site</h3>
 
@@ -91,7 +91,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
                 <input 
                 type="text" 
                 placeholder="Site domain" 
-                className="input border-black w-full max-w-xs mt-3" 
+                className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full max-w-xs mt-3" 
                 value={domain}
                 onChange={e => setDomain(e.target.value)}/>
                 <p className="mt-3 text-sm"><strong>Note:</strong> You can change this later</p>
@@ -101,14 +101,14 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
                 <div className="form-control flex flex-row mt-2 w-fit">
                     <input 
                         type="checkbox" 
-                        className="checkbox" 
+                        className="checkbox dark:checkbox-info" 
                         checked={displayedOnEport}
                         onChange={e => setDisplayedOnEport(e.target.checked)}/>
                     <strong className="ml-2">Yes, I do</strong> 
                 </div>
 
                 <div className="modal-action">
-                    <button disabled={domain === '' || loading} className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white" onClick={publishSite}>
+                    <button disabled={domain === '' || loading} className="btn bg-blue-500 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-900 dark:border-blue-700 duration-200 text-white dark:text-white" onClick={publishSite}>
                     {loading ?
                     <>
                     <span className="loading loading-spinner"></span>

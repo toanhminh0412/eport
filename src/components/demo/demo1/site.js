@@ -36,6 +36,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     const testimonialsRef = useRef({'testimonials': []});
     const referencesRef = useRef({'references': []})
     const footerRef = useRef({'socials': []});
+    const themeRef = useRef(content.theme);
 
     // Compare current site and published site
     
@@ -217,11 +218,11 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             let newServices = {};
             let servicesIndex = 0;
 
-        if (plan === "basic") {
-            newServices = site.sections.filter((section) => section.id === 4)[0];
-            servicesIndex = site.sections.findIndex((section) => section.id === 4);
-        // For premium plan, update services section based on what was written in the editor
-        } else {
+            if (plan === "basic") {
+                newServices = site.sections.filter((section) => section.id === 4)[0];
+                servicesIndex = site.sections.findIndex((section) => section.id === 4);
+            // For premium plan, update services section based on what was written in the editor
+            } else {
             let newServicesList = [];
             for (let i = 0; i < servicesRef.current.services.length; i++) {
                 if (servicesRef.current.services[i] && servicesRef.current.services[i].title) {
@@ -388,6 +389,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             // Update site
             const newSite = {
                 ...site,
+                theme: themeRef.current.value,
                 sections: newSections
             }
             console.log(newSite);
@@ -614,7 +616,10 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             newSections[testimonialsRef.current.index.dataset.index] = newTestimonials;
             newSections[referencesRef.current.index.dataset.index] = newReferences;
 
-            const newSite = {sections: newSections};
+            const newSite = {
+                theme: themeRef.current.value,
+                sections: newSections
+            };
             console.log(newSite);
 
             // Save site to cookies
@@ -646,20 +651,23 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
         return (
             <planContext.Provider value={plan}>
                 <isLoggedInContext.Provider value={isLoggedIn}>
-                    <main className="bg-slate-100 w-screen h-full pb-10 pt-24">
-                        <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
-                        <AskLoginModal/>
-                        <ContentEditor 
-                        content={site} 
-                        profileRef={profileRef} 
-                        aboutMeRef={aboutMeRef} 
-                        skillsRef={skillsRef} 
-                        experienceRef={experienceRef}
-                        servicesRef={servicesRef}
-                        projectsRef={projectsRef}
-                        testimonialsRef={testimonialsRef}
-                        referencesRef={referencesRef}
-                        footerRef={footerRef}/>
+                    <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
+                        <div className="bg-slate-100 w-screen h-full pb-10 pt-24 dark:bg-slate-700">
+                            <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite}/>
+                            <AskLoginModal/>
+                            <ContentEditor 
+                            content={site} 
+                            profileRef={profileRef} 
+                            aboutMeRef={aboutMeRef} 
+                            skillsRef={skillsRef} 
+                            experienceRef={experienceRef}
+                            servicesRef={servicesRef}
+                            projectsRef={projectsRef}
+                            testimonialsRef={testimonialsRef}
+                            referencesRef={referencesRef}
+                            footerRef={footerRef}
+                            themeRef={themeRef}/>
+                        </div>
                     </main>
                 </isLoggedInContext.Provider>
             </planContext.Provider>
@@ -669,17 +677,19 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     return (
         <planContext.Provider value={plan}>
             <isLoggedInContext.Provider value={isLoggedIn}>
-            <main className="bg-slate-100 w-screen h-full pb-10 pt-40 lg:pt-24 mb-32">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
-                <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
-                <AskLoginModal/>
-                <div className="mt-10 sm:mt-0">
-                    {successMsg ? <SuccessToast message={successMsg}/> : null}
-                    {errorMsg ? <ErrorToast message={errorMsg}/> : null}
-                    <Section content={site.sections[0]} userPlan={plan}/>
-                    {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section} userPlan={plan}/>)}
-                    {/* Contact me */}
-                    <Footer content={site.sections[site.sections.length-1]}/>
+            <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
+                <div className="bg-slate-100 w-screen h-full pt-40 lg:pt-24 pb-32 dark:bg-slate-700">
+                    <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading} theme={site.theme}/>
+                    <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
+                    <AskLoginModal/>
+                    <div className="mt-10 sm:mt-0">
+                        {successMsg ? <SuccessToast message={successMsg}/> : null}
+                        {errorMsg ? <ErrorToast message={errorMsg}/> : null}
+                        <Section content={site.sections[0]} userPlan={plan}/>
+                        {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section} userPlan={plan}/>)}
+                        {/* Contact me */}
+                        <Footer content={site.sections[site.sections.length-1]}/>
+                    </div>
                 </div>
             </main>
             </isLoggedInContext.Provider>

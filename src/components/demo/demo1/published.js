@@ -3,7 +3,8 @@ import Footer from "./sections/Footer";
 
 export default function PublishedDemo1({site}) {
     return (
-            <main className="pt-20 pb-20">
+        <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
+            <div className="pt-20 pb-20 dark:bg-slate-700">
                 <div className="mt-10 sm:mt-0 mb-20">
                     {/* Profile section */}
                     <Section content={site.sections[0]}/>
@@ -14,6 +15,7 @@ export default function PublishedDemo1({site}) {
                     {/* Footer */}
                     <Footer content={site.sections[site.sections.length-1]}/>
                 </div>
-            </main>
+            </div>
+        </main>
     )
 }

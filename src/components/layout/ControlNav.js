@@ -11,7 +11,7 @@ const Tour = dynamic(
     { ssr:false }
 )
 
-export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading}) {
+export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
     const [domain, setDomain] = useState('');
@@ -48,7 +48,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                 {state === 'edit' ?
                     <>
                     <button className="btn btn-info btn-sm xs:btn xs:btn-info" onClick={() => setRun(true)}>Show Instructions</button>
-                        {run ? <Tour run={run} setRun={setRun} isLoggedIn={isLoggedIn}/> : null}
+                        {run ? <Tour run={run} setRun={setRun} isLoggedIn={isLoggedIn} theme={theme}/> : null}
                     </>
                 : null}
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>

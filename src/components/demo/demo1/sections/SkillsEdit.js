@@ -27,10 +27,10 @@ export default function SkillsEdit({
     return (
         <div 
         ref={el => (skillsRef.current['index'] = el)}
-        className="collapse collapse-arrow border border-slate-300"
+        className="collapse collapse-arrow border border-slate-300 dark:border-slate-600"
         data-index={index}>
             <input type="checkbox" name="my-accordion-2" /> 
-            <div className="collapse-title text-xl font-medium bg-white shadow-lg">
+            <div className="collapse-title text-xl dark:text-slate-200 font-medium bg-white dark:bg-slate-950 shadow-lg">
                 {skills.heading}
             </div>
 
@@ -43,27 +43,27 @@ export default function SkillsEdit({
             </div>
 
             {/* Content */}
-            <div className="collapse-content bg-white">
+            <div className="collapse-content bg-white dark:bg-slate-900">
                 <div className="p-3 md:p-6">
                     <div className="form-control w-full max-w-lg">
                         {/* Section visibility */}
                         <label className="label">
-                            <span className="label-text">Hide section:</span>
+                            <span className="label-text dark:text-slate-200">Hide section:</span>
                         </label>
                         <input
                         ref={el => (skillsRef.current['hidden'] = el)}
                         type="checkbox" 
                         className="toggle" 
                         defaultChecked={skills.hidden}/>
-                        <label className="label text-xs">
-                            <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                        <label className="label text-xs dark:text-slate-200">
+                            <span><strong className="dark:text-slate-100">Hint: </strong>Turn this on if you want this section to <strong className="dark:text-slate-100">not be visible</strong> on your page.</span>
                         </label>
 
                         {/* Section heading */}
                         <label className="label">
-                            <span className="label-text">Section heading  (recommend &apos;Skills&apos;):</span>
+                            <span className="label-text dark:text-slate-200">Section heading  (recommend &apos;Skills&apos;):</span>
                         </label>
-                        <input ref={el => (skillsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Skills')" className="input border-black w-full" defaultValue={skills.heading} />
+                        <input ref={el => (skillsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Skills')" className="input border-black dark:border-blue-400 w-full dark:bg-slate-700 dark:text-slate-200" defaultValue={skills.heading} />
                     </div>
 
                     {/* Skills */}
@@ -71,12 +71,12 @@ export default function SkillsEdit({
                         {skillsList.map((skill, index) => (
                         <div key={skill.id} className="mt-2 w-full">
                             <label className="label">
-                                <span className="label-text">Skill name/value (between 0 and 100):</span>
+                                <span className="label-text dark:text-slate-200">Skill name/value (between 0 and 100):</span>
                             </label>
                             <div className="flex flex-row gap-x-2">
                                 <div className="join max-w-xl w-full">
-                                    <input ref={el => (skillsRef.current['skills'][2*index] = el)} type="text" placeholder="Skill name" className="input border-black w-full join-item" defaultValue={skill.key} />
-                                    <input ref={el => (skillsRef.current['skills'][2*index + 1] = el)} type="number" min={0} max={100} placeholder="Skill value" className="input border-black w-full join-item" defaultValue={skill.value} />
+                                    <input ref={el => (skillsRef.current['skills'][2*index] = el)} type="text" placeholder="Skill name" className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full join-item" defaultValue={skill.key} />
+                                    <input ref={el => (skillsRef.current['skills'][2*index + 1] = el)} type="number" min={0} max={100} placeholder="Skill value" className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full join-item" defaultValue={skill.value} />
                                 </div>
                                 <i className="fa-solid fa-trash text-xl text-slate-300 hover:text-slate-700 duration-300 cursor-default my-auto ms-2" onClick={() => removeSkill(index)}></i>
                             </div>

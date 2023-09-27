@@ -16,13 +16,13 @@ export default function Profile({content}) {
                     style={{objectFit: "contain"}}
                     className="w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] absolute bottom-[-40px] xs:bottom-[-50px] left-0 right-0 mx-auto flex flex-row z-20"/>
             </div>
-            <div className="prose bg-white pt-16 pb-5 shadow-md max-w-none text-center rounded-b-lg">
-                <h1 className="mb-0">{section.fullName}</h1>
-                <h2 className="mb-0 mt-2 text-slate-700">{section.job}</h2>
+            <div className="prose bg-white dark:bg-slate-900 pt-16 pb-5 shadow-md max-w-none text-center rounded-b-lg">
+                <h1 className="mb-0 dark:text-slate-200">{section.fullName}</h1>
+                <h2 className="mb-0 mt-2 text-slate-700 dark:text-slate-200">{section.job}</h2>
                 {section.cvURL ? 
                 <Link
                     href={section.cvURL} 
-                    className="btn bg-blue-500 hover:bg-blue-700 duration-200 text-white mt-4 w-full max-w-xs mx-auto" 
+                    className="btn bg-blue-500 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-900 dark:border-blue-700 duration-200 text-white mt-4 w-full max-w-xs mx-auto" 
                     target="_blank"
                     prefetch={false}>View CV</Link> : null}
             </div>

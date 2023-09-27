@@ -87,10 +87,10 @@ export default function ProjectsEdit({
     return (
         <div 
         ref={el => (projectsRef.current['index'] = el)}
-        className="collapse collapse-arrow border border-slate-300"
+        className="collapse collapse-arrow border border-slate-300 dark:border-slate-600"
         data-index={index}>
             <input type="checkbox" name="my-accordion-2" /> 
-            <div className="collapse-title text-xl font-medium bg-white shadow-lg">
+            <div className="collapse-title text-xl dark:text-slate-200 font-medium bg-white dark:bg-slate-950 shadow-lg">
                 {projects.heading}
             </div>
 
@@ -103,56 +103,56 @@ export default function ProjectsEdit({
             </div>
 
             {/* Content */}
-            <div className="collapse-content bg-white">
+            <div className="collapse-content bg-white dark:bg-slate-900">
                 <div className="p-3 md:p-6">
                     <div className="form-control w-full max-w-lg">
                         {/* Section visibility */}
                         <label className="label">
-                            <span className="label-text">Hide section:</span>
+                            <span className="label-text dark:text-slate-200">Hide section:</span>
                         </label>
                         <input
                         ref={el => (projectsRef.current['hidden'] = el)}
                         type="checkbox" 
                         className="toggle" 
                         defaultChecked={projects.hidden}/>
-                        <label className="label text-xs">
-                            <span><strong>Hint: </strong>Turn this on if you want this section to <strong>not be visible</strong> on your page.</span>
+                        <label className="label text-xs dark:text-slate-200">
+                            <span><strong className="dark:text-slate-100">Hint: </strong>Turn this on if you want this section to <strong className="dark:text-slate-100">not be visible</strong> on your page.</span>
                         </label>
                         
                         {/* Section heading */}
                         <label className="label">
-                            <span className="label-text">Section heading  (recommend &apos;Projects&apos;):</span>
+                            <span className="label-text dark:text-slate-200">Section heading  (recommend &apos;Projects&apos;):</span>
                         </label>
-                        <input ref={el => (projectsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Projects')" className="input border-black w-full" defaultValue={projects.heading} />
+                        <input ref={el => (projectsRef.current['heading'] = el)} type="text" placeholder="Section heading (recommend 'Projects')" className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full" defaultValue={projects.heading} />
                     </div>
 
                     {/* Projects */}
-                    <div className="font-semibold mt-8">Project list:</div>
+                    <div className="font-semibold mt-8 dark:text-slate-200">Project list:</div>
                     <div className="form-control">
                         {projectsList.map((project, projIndex) => (
                         <div key={project.id} className={`${projIndex === 0 ? '' : 'mt-12'} w-full`}>
                             {/* Title */}
                             <label className="label max-w-lg">
-                                <span className="label-text">Project title:</span>
+                                <span className="label-text dark:text-slate-200">Project title:</span>
                                 <span className="text-md text-slate-400 hover:text-slate-700 duration-300 mt-2 cursor-default w-fit" onClick={() => removeProject(projIndex)}><i className="fa-solid fa-trash me-2"></i>Remove project</span>
                             </label>
                             <input 
                             ref={el => {projectsRef.current['projects'][projIndex] = projectsRef.current['projects'][projIndex] ? projectsRef.current['projects'][projIndex] : {}; projectsRef.current['projects'][projIndex]['title'] = el}}
                             type="text" 
                             placeholder="e.g. Paint company website" 
-                            className="input border-black w-full max-w-lg" 
+                            className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 w-full max-w-lg" 
                             defaultValue={project.title} />
                             
                             {/* Tags */}
                             <label className="label mt-2 max-w-lg">
-                                <span className="label-text">Project tags:</span>
+                                <span className="label-text dark:text-slate-200">Project tags:</span>
                             </label>
                             <form className="join max-w-lg" data-project-index={projIndex} onSubmit={addTag}>
                                 <input 
-                                className="input border-black join-item w-40 xs:w-auto" 
+                                className="input border-black dark:border-blue-400 dark:bg-slate-700 dark:text-slate-200 join-item w-40 xs:w-auto" 
                                 placeholder="Enter a tag"
                                 required/>
-                                <button className="btn btn-primary join-item">Add tag</button>
+                                <button className="btn btn-primary join-item dark:border-blue-400">Add tag</button>
                             </form>
                             <input 
                             ref={el => {projectsRef.current['projects'][projIndex] = projectsRef.current['projects'][projIndex] ? projectsRef.current['projects'][projIndex] : {}; projectsRef.current['projects'][projIndex]['tags'] = el}}
@@ -162,21 +162,21 @@ export default function ProjectsEdit({
                             defaultValue={project.tags.join(',')}/>
                             <div id={`project-${projIndex}-tags`} className="flex flex-row flex-wrap gap-3 mt-3">
                                 {project.tags.map((tag, index) => (
-                                <div key={`${tag}-${index}`} className="project-tag py-1 px-2 rounded-xl bg-slate-100 shadow-lg cursor-default">
+                                <div key={`${tag}-${index}`} className="project-tag py-1 px-2 rounded-xl bg-slate-100 dark:bg-slate-500 dark:text-white shadow-lg cursor-default">
                                     {tag}
-                                    <span className="ms-2 text-slate-700 hover:text-black hover:font-semibold" data-project-index={projIndex} data-tag={tag} onClick={removeTag}>✕</span>
+                                    <span className="ms-2 text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white hover:font-semibold" data-project-index={projIndex} data-tag={tag} onClick={removeTag}>✕</span>
                                 </div>  
                                 ))}
                             </div>
                             
                             {/* Images */}
                             <label className="label mt-2">
-                                <span className="label-text">Project images:</span>
+                                <span className="label-text dark:text-slate-200">Project images:</span>
                             </label>
                             <div className="flex flex-row flex-wrap gap-6 not-prose">
                                 {project.images.map((image, index) => (
-                                <div key={`${image}-${index}`} className="relative border border-slate-300">
-                                    <i className="fa-solid fa-xmark p-2 bg-white hover:bg-slate-400 duration-300 text-black rounded-full absolute top-[-10px] right-[-10px] border border-slate-600" onClick={e => {removeProjectImage(e, projIndex, index)}}></i>
+                                <div key={`${image}-${index}`} className="relative border border-slate-300 dark:border-slate-500">
+                                    <i className="fa-solid fa-xmark p-2 bg-white dark:bg-slate-500 hover:bg-slate-400 dark:hover:bg-slate-700 duration-300 text-black dark:text-slate-100 rounded-full absolute top-[-10px] right-[-10px] border border-slate-600" onClick={e => {removeProjectImage(e, projIndex, index)}}></i>
                                     <Image 
                                     ref={
                                         el => {
@@ -194,15 +194,15 @@ export default function ProjectsEdit({
                                     className="w-[250px] xs:w-[300px] h-[200px]"/>
                                 </div>
                                 ))}
-                                <div className="w-[250px] xs:w-[300px] h-[200px] bg-slate-200 hover:bg-slate-400 duration-300 text-center flex flex-col justify-center relative">
+                                <div className="w-[250px] xs:w-[300px] h-[200px] bg-slate-200 hover:bg-slate-400 dark:bg-slate-400 dark:hover:bg-slate-600 duration-300 text-center flex flex-col justify-center relative">
                                     {isLoggedIn ?
                                         <>
-                                            <div className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
+                                            <div className="text-center dark:text-slate-200"><i className="fa-solid fa-plus text-black dark:text-slate-100 text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
                                             <input type="file" accept="image/*" className="absolute top-0 left-0 w-full h-full opacity-0" onChange={(e) => {uploadProjectImage(e, projIndex)}}/>
                                         </>
                                     :
                                         <>
-                                            <div className="text-center"><i className="fa-solid fa-plus text-black text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
+                                            <div className="text-center dark:text-slate-200"><i className="fa-solid fa-plus text-black dark:text-slate-100 text-2xl me-2 my-auto"></i><span className="text-xl">Add image</span></div>
                                             <input type="button" className="absolute top-0 left-0 w-full h-full opacity-0" onClick={() => window.ask_login_modal.showModal()}/>
                                         </>
                                     }
@@ -217,6 +217,7 @@ export default function ProjectsEdit({
                             paramRef={el => {projectsRef.current['projects'][projIndex] = projectsRef.current['projects'][projIndex] ? projectsRef.current['projects'][projIndex] : {}; projectsRef.current['projects'][projIndex]['description'] = el}}
                             defaultValue={project.description}
                             placeholder="e.g. I built a 6-sections professional landing page with HTML, CSS and JavaScript."
+                            theme={site.theme}
                             />
                         </div>
                         ))}

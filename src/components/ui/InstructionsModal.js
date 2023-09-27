@@ -40,37 +40,6 @@ export default function Tour ({setRun, run, isLoggedIn, theme}) {
         },
     ];
 
-    if (theme === "dark") {
-        return (
-            <>
-                <ReactJoyride
-                    callback={handleJoyrideCallback}
-                    run={run}
-                    steps={steps}
-                    continuous
-                    showSkipButton
-                    showProgress
-                    hideCloseButton
-                    styles={{
-                        tooltipContainer: {
-                            textAlign: "left"
-                            
-                        },
-                        buttonNext: {
-                            backgroundColor: "rgb(29, 78, 216)"
-                        },
-                        buttonBack: {
-                            marginRight: 10,
-                        },
-                        options: {
-                            backgroundColor: "rgb(30, 41, 59)",
-                            textColor: "rgb(226, 232, 240)",
-                        }
-                    }}
-                />
-            </>
-        )
-    }
     return (
         <>
             <ReactJoyride
@@ -87,11 +56,15 @@ export default function Tour ({setRun, run, isLoggedIn, theme}) {
                         
                     },
                     buttonNext: {
-                        backgroundColor: "rgb(59, 130, 246)"
+                        backgroundColor: `${theme === 'dark' ? "rgb(29, 78, 216)" : "rgb(59, 130, 246)"}`
                     },
                     buttonBack: {
                         marginRight: 10,
                     },
+                    options: {
+                        backgroundColor: `${theme === 'dark' ? "rgb(30, 41, 59)" : '#fff'}`,
+                        textColor: `${theme === 'dark' ? "rgb(226, 232, 240)" : '#333'}`,
+                    }
                 }}
             />
         </>

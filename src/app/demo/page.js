@@ -35,7 +35,7 @@ function getDemoSite() {
 
     // return site
     const site = {
-        theme: JSON.parse(cookieStore.get('eport-theme').value),
+        theme: cookieStore.get('eport-theme').value,
         sections: sectionsData
     }
     return site

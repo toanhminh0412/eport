@@ -20,7 +20,7 @@ export async function POST(request) {
     }
 
     // Set theme to cookies
-    cookieStore.set('eport-theme', JSON.stringify(site.theme), cookieOptions);
+    cookieStore.set('eport-theme', site.theme, cookieOptions);
     
     // Return false if missing cookies
     // Return true if all cookies are set

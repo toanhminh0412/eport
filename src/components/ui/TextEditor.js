@@ -20,7 +20,7 @@ export default function TextEditor({ paramRef, defaultValue, placeholder, theme 
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | help' + ' | link',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-          selector: "textarea", // change this value according to your HTML
+          skin: theme === 'dark' ? 'oxide-dark' : 'oxide',
           content_css: theme === 'dark' ? 'dark' : 'default',
           placeholder: placeholder
         }}

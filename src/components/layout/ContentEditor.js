@@ -42,8 +42,8 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
                         className="select select-accent w-full max-w-xs mb-10 dark:bg-slate-950 dark:text-slate-200" 
                         defaultValue={content.theme}>
                         <option disabled>Choose between lightmode and darkmode? </option>
-                        <option value={"dark"}>Dark mode</option>
-                        <option value={"light"}>Light mode</option>
+                        <option value="dark">Dark mode</option>
+                        <option value="light">Light mode</option>
                         </select>
                     </div>
                     {site.sections.map((section, index) => (

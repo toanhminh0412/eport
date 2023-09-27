@@ -5,12 +5,12 @@ export default function Profile({content}) {
     const section = content;
 
     return (
-        <div className="w-11/12 mx-auto shadow-md">
+        <section className="w-11/12 mx-auto shadow-md">
             <div className="hero h-40 xs:h-60 lg:h-80 relative rounded-t-lg" style={{backgroundImage: `url(${section.coverPhoto ? section.coverPhoto : "/img/header-bg.jpg"})`}}>
                 <div className="hero-overlay bg-opacity-80 rounded-t-lg"></div>
                 <Image 
                     src={section.profilePic} 
-                    alt="Profile picture" 
+                    alt={`${section.fullName}'s profile picture`}
                     width={200} 
                     height={200} 
                     style={{objectFit: "contain"}}
@@ -26,6 +26,6 @@ export default function Profile({content}) {
                     target="_blank"
                     prefetch={false}>View CV</Link> : null}
             </div>
-        </div>
+        </section>
     )
 }

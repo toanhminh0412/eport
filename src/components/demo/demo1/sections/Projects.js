@@ -20,7 +20,7 @@ export default function Projects({content}) {
                         <div className="w-full lg:w-1/2">
                             <div className="relative aspect-video w-full h-fit not-prose">
                                 <Image 
-                                    alt="project pic" 
+                                    alt={`Project picture for ${project.title}`}
                                     src={project.images[0]} 
                                     fill 
                                     className="rounded-md" />
@@ -28,7 +28,7 @@ export default function Projects({content}) {
                         </div>
                         <div className="w-full lg:w-1/2 text-justify">
                             <h2 className="lg:mt-0">{project.title}</h2>
-                            <div dangerouslySetInnerHTML={{ __html: project.description.length > 500 ? project.description.slice(0, 500).concat(" ...") : project.description }}></div>
+                            <article dangerouslySetInnerHTML={{ __html: project.description.length > 500 ? project.description.slice(0, 500).concat(" ...") : project.description }}></article>
                             <div className="flex flex-row flex-wrap gap-3">
                                 {project.tags.map((tag, tagIndex) => (
                                 <div key={`${tag}-${tagIndex}`} className="py-1 px-2 rounded-xl bg-slate-100 hover:bg-slate-400 duration-300 shadow-lg cursor-default">

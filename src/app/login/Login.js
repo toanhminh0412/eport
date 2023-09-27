@@ -120,7 +120,7 @@ export default function Login() {
     }
 
     return (
-        <div>
+        <main>
             <div className="flex flex-row flex-wrap text-black pt-10 lg:pt-32 mb-32">
                 <div className="w-11/12 mx-auto md:mx-0 text-center md:text-left lg:w-1/2 md:pl-12 h-fit">
                     <h1 className="font-semibold text-3xl lg:text-4xl">Welcome to <span className="text-blue-400">Eport</span></h1>
@@ -159,6 +159,6 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }

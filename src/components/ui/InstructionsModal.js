@@ -1,7 +1,7 @@
 import React from "react";
 import ReactJoyride, { STATUS } from "react-joyride";
 
-export default function Tour ({setRun, run, isLoggedIn}) {
+export default function Tour ({setRun, run, isLoggedIn, theme}) {
     // Need to set our running state to false, so we can restart if we click start again
     // Note: must use this function name to get data i.e. handleJoyrideCallback
     const handleJoyrideCallback = (data) => {
@@ -56,10 +56,14 @@ export default function Tour ({setRun, run, isLoggedIn}) {
                         
                     },
                     buttonNext: {
-                        backgroundColor: "rgb(59, 130, 246)"
+                        backgroundColor: `${theme === 'dark' ? "rgb(29, 78, 216)" : "rgb(59, 130, 246)"}`
                     },
                     buttonBack: {
                         marginRight: 10,
+                    },
+                    options: {
+                        backgroundColor: `${theme === 'dark' ? "rgb(30, 41, 59)" : '#fff'}`,
+                        textColor: `${theme === 'dark' ? "rgb(226, 232, 240)" : '#333'}`,
                     }
                 }}
             />

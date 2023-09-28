@@ -29,7 +29,7 @@ export default function ManageSubscriptions({searchParams}) {
     }
 
     return (
-        <div className="pt-16 pl-5">
+        <main className="pt-16 pl-5">
             {message ? <InfoToast message={message}/> : null}
             <div className="prose max-w-none">
                 <h1 className="text-center">Manage subscriptions</h1>
@@ -38,6 +38,6 @@ export default function ManageSubscriptions({searchParams}) {
                     <PlansDisplay mode="manage" plan={plan} status={planStatus} expiredDate={planExpiredDate}/>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }

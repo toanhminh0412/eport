@@ -17,7 +17,9 @@ export async function GET(request) {
     const cookieStore = cookies();
     const userTokenCookie = cookieStore.get('eport-token');
     const siteDataLength = siteData.length;
-
+    const theme = cookieStore.get('eport-theme').value;
+    cookieStore.delete('eport-theme');
+    
     // Unauthenticated users can't visit this route
     if (!userTokenCookie) {
         redirect('/login');
@@ -41,11 +43,12 @@ export async function GET(request) {
     const selectedTemplate = searchParams.get('selectedTemplate');
 
     // if user edit demo section, add a demo site to database
-    if (count === siteDataLength) {
+    if (count === siteDataLength && cookieStore.get('eport-theme')) {
         // Create the new template same with deno in Firestore
         await addDoc(collection(db, "sites"), {
             owner: user.uid,
             selectedTemplate: parseInt(selectedTemplate),
+            theme: theme,
             sections: sectionDemoData,
         })
     } else { 
@@ -53,6 +56,7 @@ export async function GET(request) {
         await addDoc(collection(db, "sites"), {
             owner: user.uid,
             selectedTemplate: parseInt(selectedTemplate),
+            theme: "light",
             sections: sectionData,
         })
     }

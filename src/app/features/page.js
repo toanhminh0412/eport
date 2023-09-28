@@ -14,7 +14,7 @@ export default function Features() {
     const loggedIn = cookies().get('eport-token') ? true : false;
     
     return (
-        <div className="prose max-w-none scroll-smooth">
+        <main className="prose max-w-none scroll-smooth">
             <div className="hero h-220 bg-[url('/img/header-bg.jpg')]">
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
@@ -61,6 +61,6 @@ export default function Features() {
                 <h1 className="mt-12 text-3xl md:text-5xl text-center text-black">Pricing</h1>
                 <PlansDisplay mode="showcase" loggedIn={loggedIn}/>
             </div>
-        </div>
+        </main>
     )
 }

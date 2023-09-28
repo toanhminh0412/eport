@@ -19,6 +19,12 @@ export default function sitemap() {
         priority: 1,
       },
       {
+        url: 'https://eport.site/demo',
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 1,
+      },
+      {
         url: 'https://eport.site/examples_basic',
         lastModified: new Date(),
         changeFrequency: 'monthly',
@@ -29,6 +35,12 @@ export default function sitemap() {
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
+      },
+      {
+        url: 'https://eport.site/published_sites',
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.5,
       }
     ]
   }

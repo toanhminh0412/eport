@@ -12,6 +12,6 @@ export async function GET(request) {
     for (let i = 0; i < siteData.length; i++) {
         cookieStore.set('eport-demoSite-' + i, JSON.stringify(siteData[i]), cookieOptions);
     }
-
+    cookieStore.set('eport-theme', "light", cookieOptions)
     redirect('/demo')
 }

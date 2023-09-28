@@ -80,6 +80,7 @@ export async function GET(request) {
                             cookieStore.delete('eport-demoSite-' + i);
                         }
                     }
+                    cookieStore.delete('eport-theme');
                 }
             }
             break;

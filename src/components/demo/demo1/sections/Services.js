@@ -6,9 +6,9 @@ export default function Services({content}) {
                 {content.services.map((service, index) => (
                     <div key={index} className="card w-80 xs:w-96 border border-slate-300 dark:border-blue-400 shadow-lg text-center">
                         <div className="card-body">
-                            <h3 className="my-0">{service.title}</h3>
-                            <h2 className="mb-2">{service.price}</h2>
-                            <article dangerouslySetInnerHTML={{ __html: service.description }}></article>
+                            <h3 className="my-0 dark:text-slate-200">{service.title}</h3>
+                            <h2 className="mb-2 dark:text-slate-200">{service.price}</h2>
+                            <article className="dark:text-slate-200" dangerouslySetInnerHTML={{ __html: service.description }}></article>
                         </div>
                     </div>
                 ))}

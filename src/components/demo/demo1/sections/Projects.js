@@ -27,8 +27,8 @@ export default function Projects({content}) {
                             </div>
                         </div>
                         <div className="w-full lg:w-1/2 text-justify">
-                            <h2 className="lg:mt-0">{project.title}</h2>
-                            <article dangerouslySetInnerHTML={{ __html: project.description.length > 500 ? project.description.slice(0, 500).concat(" ...") : project.description }}></article>
+                            <h2 className="lg:mt-0 dark:text-slate-200">{project.title}</h2>
+                            <article className="dark:text-slate-200" dangerouslySetInnerHTML={{ __html: project.description.length > 500 ? project.description.slice(0, 500).concat(" ...") : project.description }}></article>
                             <div className="flex flex-row flex-wrap gap-3">
                                 {project.tags.map((tag, tagIndex) => (
                                 <div key={`${tag}-${tagIndex}`} className="py-1 px-2 rounded-xl bg-slate-100 dark:bg-slate-500 hover:bg-slate-400 dark:hover:bg-slate-700 dark:text-white duration-300 shadow-lg cursor-default">

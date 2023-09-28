@@ -36,7 +36,7 @@ export default function ImageUploadPreviewer({imageRef=null, demo=false, label, 
 
     return (
         <div>
-            <div>{label}</div>
+            <div className="dark:text-slate-200">{label}</div>
             <Image 
             src={imagePreview ? imagePreview : defaultImageSrc} 
             alt="Profile picture" 
@@ -48,11 +48,11 @@ export default function ImageUploadPreviewer({imageRef=null, demo=false, label, 
             :
                 <input disabled ref={imageRef} type="file" accept="image/*" className="file-input file-input-bordered file-input-sm file-input-primary w-full max-w-xs" onChange={uploadImage}/>
             }
-            <label className="label text-xs">
+            <label className="label text-xs dark:text-slate-200">
                 {!demo ?
-                    <span><strong>Hint: </strong>Upload a new picture will <strong>immediately</strong> replace the current picture</span>
+                    <span><strong className="dark:text-slate-100">Hint: </strong>Upload a new picture will <strong className="dark:text-slate-100">immediately</strong> replace the current picture</span>
                 :
-                    <span><strong>Hint: </strong>Please <strong>login to</strong> upload image!</span>
+                    <span><strong className="dark:text-slate-100">Hint: </strong>Please <strong className="dark:text-slate-100">login to</strong> upload image!</span>
                 }
             </label>
         </div>

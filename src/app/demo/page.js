@@ -29,12 +29,16 @@ function getDemoSite() {
     }
 
     // If missing cookies, recreate a new demo site
-    if (count !== siteDataLength) {
+    if (count !== siteDataLength || !cookieStore.get('eport-theme')) {
         redirect('/api/demo/new_site');
     }
 
     // return site
-    return {sections: sectionsData}
+    const site = {
+        theme: JSON.parse(cookieStore.get('eport-theme').value),
+        sections: sectionsData
+    }
+    return site
 }
 
 export default function Demo() {

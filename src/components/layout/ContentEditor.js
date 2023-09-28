@@ -33,15 +33,19 @@ export default function ContentEditor({content, profileRef, aboutMeRef, skillsRe
             <div className="min-h-screen dark:bg-slate-700">
                 <div className="px-2 md:px-20 py-10 prose max-w-none pb-40 md:pb-20">
                     <h1 className="dark:text-white">Site editor</h1>
-                    <select
-                    ref={el => {themeRef.current = el}}
-                    className="select select-accent w-full max-w-xs mb-10" 
-                    defaultValue={content.theme}
-                    >
-                      <option disabled>Choose between lightmode and darkmode?</option>
-                      <option value={"dark"}>Dark mode</option>
-                      <option value={"light"}>Light mode</option>
-                    </select>
+                    <div className="">
+                        <label className="label">
+                            <span className="label-text text-lg dark:text-slate-200">Choose your theme:</span>
+                        </label>
+                        <select
+                        ref={el => {themeRef.current = el}}
+                        className="select select-accent w-full max-w-xs mb-10 dark:bg-slate-950 dark:text-slate-200" 
+                        defaultValue={content.theme}>
+                        <option disabled>Choose between lightmode and darkmode? </option>
+                        <option value={"dark"}>Dark mode</option>
+                        <option value={"light"}>Light mode</option>
+                        </select>
+                    </div>
                     {site.sections.map((section, index) => (
                     <SectionEdit 
                     key={`${section.heading}-${index}`}

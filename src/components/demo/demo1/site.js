@@ -36,6 +36,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     const testimonialsRef = useRef({'testimonials': []});
     const referencesRef = useRef({'references': []})
     const footerRef = useRef({'socials': []});
+    const themeRef = useRef(content.theme);
 
     // Compare current site and published site
     
@@ -59,10 +60,20 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
                 setMsgLoading(false);
             }
         }
-        if (demo === false) {
-            compareSites();
-        }
+        // if (demo === false) {
+        //     compareSites();
+        // }
     }, [site]);
+    
+    const theme = site.theme;
+    useEffect(() => {
+        if (theme === "dark") {
+            window.document.body.classList.add('dark');
+        } else if (theme === "light") {
+            window.document.body.classList.remove('dark');
+        }
+    }, [theme]);
+    
 
     // Set message when publish site
     const setPublishMessage = () => {
@@ -388,6 +399,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             // Update site
             const newSite = {
                 ...site,
+                theme: themeRef.current.value,
                 sections: newSections
             }
             console.log(newSite);
@@ -614,7 +626,9 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
             newSections[testimonialsRef.current.index.dataset.index] = newTestimonials;
             newSections[referencesRef.current.index.dataset.index] = newReferences;
 
-            const newSite = {sections: newSections};
+            const newSite = {
+                sections: newSections
+            };
             console.log(newSite);
 
             // Save site to cookies
@@ -659,7 +673,8 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
                         projectsRef={projectsRef}
                         testimonialsRef={testimonialsRef}
                         referencesRef={referencesRef}
-                        footerRef={footerRef}/>
+                        footerRef={footerRef}
+                        themeRef={themeRef}/>
                     </main>
                 </isLoggedInContext.Provider>
             </planContext.Provider>
@@ -669,7 +684,7 @@ export default function Demo1({content, siteId, plan, demo, isLoggedIn}) {
     return (
         <planContext.Provider value={plan}>
             <isLoggedInContext.Provider value={isLoggedIn}>
-            <main className="bg-slate-100 w-screen h-full pb-10 pt-40 lg:pt-24 mb-32">
+            <main className="bg-slate-100 w-screen h-full pb-10 pt-40 lg:pt-24 mb-32 dark:bg-slate-700">
                 <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading}/>
                 <PublishModal site={site} showMessageToast={showMessageToast} setPublishMessage={setPublishMessage} plan={plan}/>
                 <AskLoginModal/>

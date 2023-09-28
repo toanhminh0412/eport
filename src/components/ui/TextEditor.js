@@ -1,6 +1,6 @@
 import { Editor } from '@tinymce/tinymce-react';
 
-export default function TextEditor({ paramRef, defaultValue, placeholder }) {
+export default function TextEditor({ paramRef, defaultValue, placeholder, theme }) {
   return (
     <>
       <Editor
@@ -20,6 +20,8 @@ export default function TextEditor({ paramRef, defaultValue, placeholder }) {
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | help' + ' | link',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+          selector: "textarea", // change this value according to your HTML
+          content_css: theme === 'dark' ? 'dark' : 'default',
           placeholder: placeholder
         }}
       />

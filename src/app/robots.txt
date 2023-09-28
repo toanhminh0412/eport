@@ -4,6 +4,6 @@ Disallow: /, /manage_subscriptions, /api/*
 
 # Allow all crawlers
 User-agent: *
-Allow: /*, /login, /signup, /features, /examples_basic, /examples_premium
+Allow: /*, /login, /signup, /features, /examples_basic, /examples_premium, /demo, /published_sites
 
 Sitemap: https://eport.site/sitemap.xml

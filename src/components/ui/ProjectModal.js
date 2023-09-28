@@ -22,7 +22,7 @@ export function ProjectModal({project, index}) {
                     </div>
                     <div className="w-full lg:w-1/2 text-justify lg:max-h-96 lg:pb-6 lg:overflow-auto mb-6">
                         <h2 className="mt-2 lg:mt-0">{project.title}</h2>
-                        <div dangerouslySetInnerHTML={{ __html: project.description }}></div>
+                        <article dangerouslySetInnerHTML={{ __html: project.description }}></article>
                         <div className="flex flex-row flex-wrap gap-3">
                             {project.tags.map((tag, tagIndex) => (
                             <div key={`${tag}-${tagIndex}`} className="py-1 px-2 rounded-xl bg-slate-100 hover:bg-slate-400 duration-300 shadow-lg cursor-default">
@@ -39,21 +39,3 @@ export function ProjectModal({project, index}) {
         </dialog>
     )
 }
-
-{/* <h3 className="font-bold text-lg mt-0">{project.title}</h3>
-                {project.images.length > 0 ?
-                    <Slider slides={project.images}></Slider>
-                : null}
-
-                {project.images.length > 0 ? 
-                    <div> {showMore ? <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
-                    : <div className="py-4" dangerouslySetInnerHTML={{ __html: project.description.length >= 500 && !showMore ? project.description.slice(0, 500).concat(" ...") : project.description }}></div>}
-                    </div>
-                :   <div>{showMore ? <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description }}></div>
-                    : <div className="pb-4" dangerouslySetInnerHTML={{ __html: project.description.length >= 500 && !showMore ? project.description.slice(0, 500).concat(" ...") : project.description }}></div>}
-                </div>}
-                {project.description.length >= 500 ?
-                    <div className="btn" onClick={() => setShowMore(!showMore)}>
-                        {showMore ? "Show less" : "Show more"}
-                    </div>
-                : null} */}

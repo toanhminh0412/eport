@@ -29,6 +29,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="shortcut icon" href="/favicon/favicon.ico"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
+        <meta name="keywords" content="eport, Eport, eport.site, website, website builder, simple, easy, simple website builder, easy website builder, the simplest website builder, the easiest website builder, job, job seekers, convenient, no-code, no design, no coding, no coding needed, no coding required, no design needed, no design required, portfolio, portfolio builder, simplest portfolio builder, easiest portfolio builder, simple portfolio builder, easy portfolio builder, personal website, personal porfolio, personal"/>
+        <meta name="generator" content="Eport - the easiest way for job seekers to build a website to show their works and information." />
+
         <meta name="google-site-verification" content="CcLS5kalq0t1-UtZAeY7oSQACSXROO0nmytbDpXz_kw" />
         
         {/* Open graph tags */}

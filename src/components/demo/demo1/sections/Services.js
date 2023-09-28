@@ -8,7 +8,7 @@ export default function Services({content}) {
                         <div className="card-body">
                             <h3 className="my-0 dark:text-slate-200">{service.title}</h3>
                             <h2 className="mb-2 dark:text-slate-200">{service.price}</h2>
-                            <div className="dark:text-slate-200" dangerouslySetInnerHTML={{ __html: service.description }}></div>
+                            <article className="dark:text-slate-200" dangerouslySetInnerHTML={{ __html: service.description }}></article>
                         </div>
                     </div>
                 ))}

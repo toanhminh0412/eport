@@ -29,7 +29,7 @@ export default function ExamplesPremium() {
                     '/img/mmiles_getintouch.png']
 
     return (
-        <div className="px-2 sm:px-10">
+        <main className="px-2 sm:px-10">
             <div className="mb-10 sm:mb-20">
                 <div className="flex justify-center mt-12">
                     <h1 className="text-lg sm:text-3xl">Crispian Kiki - Software Developer</h1>
@@ -53,6 +53,6 @@ export default function ExamplesPremium() {
                 </div>
                 <Slider slides={slides3}></Slider>
             </div>
-        </div>
+        </main>
     )
 }

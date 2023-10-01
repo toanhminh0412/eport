@@ -5,7 +5,7 @@ import secureLocalStorage from "react-secure-storage";
 import domainValidator from "@/helpers/helpers";
 import Link from "next/link";
 
-export default function PublishModal({site, showMessageToast, setPublishMessage, plan}) {
+export default function PublishModal({site, projectId, publishedSite=null, showMessageToast, setPublishMessage}) {
     const [url, setUrl] = useState('');
     const [domain, setDomain] = useState('');
     const [displayedOnEport, setDisplayedOnEport] = useState(false);
@@ -14,15 +14,16 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
 
     useEffect(() => {
         // Set default domain
-        if (secureLocalStorage.getItem('eport-domain', null)) {
-            setDomain(secureLocalStorage.getItem('eport-domain'));
+        if (publishedSite && publishedSite.domain) {
+            setDomain(publishedSite.domain);
         } else if (secureLocalStorage.getItem('eport-email', null)) {
             setDomain(secureLocalStorage.getItem('eport-email').split('@')[0].replace('.', '-'));
         } else {
             setDomain('');
         }
         setUrl(typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.hostname}` : '');
-    }, []);
+        setDisplayedOnEport(publishedSite && publishedSite.displayedOnEport ? publishedSite.displayedOnEport : false);
+    }, [publishedSite]);
 
     // Publish site
     const publishSite = async (e) => {
@@ -39,7 +40,6 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
 
         const publishedSite = {
             domain: domain,
-            plan: plan,
             displayedOnEport: displayedOnEport,
             publishedDate: new Date(),
             ...site
@@ -48,7 +48,7 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
         setLoading(true);
         console.log(publishedSite);
         // Post request to publish site
-        const res = await fetch('/api/site/publish', {
+        const res = await fetch(`/api/eresume/publish?projectId=${projectId}`, {
             method: 'POST',
             mode: "cors",
             cache: "no-cache",
@@ -71,6 +71,21 @@ export default function PublishModal({site, showMessageToast, setPublishMessage,
         }
         setLoading(false);
 
+    }
+
+    if (!publishedSite) {
+        return (
+            <dialog id="publish_modal" className="modal">
+                <form method="dialog" className="modal-box dark:bg-slate-800 dark:text-slate-200">
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    <h3 className="font-bold text-lg">Publish site</h3>
+                    <span className="loading loading-dots loading-lg h-fit"></span>
+                </form>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+        )
     }
 
     return (

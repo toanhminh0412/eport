@@ -1,4 +1,4 @@
-import PublishedDemo1 from "@/components/demo/demo1/published";
+import PublishedDemo1 from "@/components/eresume/template0/published";
 
 export const metadata = {
     title: 'Demo1',

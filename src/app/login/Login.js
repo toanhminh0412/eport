@@ -40,8 +40,7 @@ export default function Login() {
                 secureLocalStorage.setItem('eport-uid', data.uid);
                 secureLocalStorage.setItem('eport-email', data.email);
                 secureLocalStorage.setItem('eport-signInMethod', null);
-                secureLocalStorage.setItem('eport-domain', data.domain);
-                window.location.href = "/";
+                window.location.href = "/dashboard";
             } else {
                 setLoading(false);
                 setErrorMsg(data.message);
@@ -80,8 +79,7 @@ export default function Login() {
                     secureLocalStorage.setItem('eport-uid', data.uid);
                     secureLocalStorage.setItem('eport-email', data.email);
                     secureLocalStorage.setItem('eport-signInMethod', data.signInMethod);
-                    secureLocalStorage.setItem('eport-domain', data.domain);
-                    window.location.href = "/";
+                    window.location.href = "/dashboard";
                 } else {
                     setLoading(false);
                     setErrorMsg(data.message);

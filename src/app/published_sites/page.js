@@ -3,7 +3,7 @@ import Link from "next/link";
 
 // Local imports
 import { db } from "../../../public/libs/firebase";
-import PublishedDemo1 from "@/components/demo/demo1/published";
+import PublishedDemo1 from "@/components/eresume/template0/published";
 
 // 3rd party imports
 import { query, collection, getDocs, where, limit, orderBy } from "firebase/firestore";

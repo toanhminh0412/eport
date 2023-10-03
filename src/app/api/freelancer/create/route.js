@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server';
 // Local imports
 import { db } from '../../../../../public/libs/firebase';
 import { getTokenFromUser, getUserFromToken } from '@/helpers/authentication';
-import siteData from '@/data/eresume/template0';
 import cookieOptions from '@/data/cookieOptions';
 
 // 3rd party imports
@@ -33,22 +32,22 @@ export async function GET(request) {
 
     // Create the new eresume project in Firestore
     const projectId = nanoid();
-    await setDoc(doc(db, "eresume", projectId), {
+    await setDoc(doc(db, "freelancer", projectId), {
         owner: user.uid,
         templateId: parseInt(templateId),
         theme: "light",
-        sections: siteData,
+        sections: [],
     })
 
     // Update user profile to contain this eresume project
     if (!user.projects) {
         user.projects = {
-            eresume: [projectId]
+            freelancer: [projectId]
         };
-    } else if (!user.projects.eresume) {
-        user.projects.eresume = [projectId];
+    } else if (!user.projects.freelancer) {
+        user.projects.freelancer = [projectId];
     } else {
-        user.projects.eresume.push(projectId);
+        user.projects.freelancer.push(projectId);
     }
 
     await updateDoc(doc(db, "users", user.uid), { 
@@ -61,7 +60,7 @@ export async function GET(request) {
     
     return NextResponse.json({
         status: 201,
-        message: 'Create an eresume project successfully',
+        message: 'Create a freelancer project successfully',
         projectId: projectId
     })
 }

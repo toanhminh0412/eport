@@ -2,30 +2,27 @@
 
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-import secureLocalStorage from "react-secure-storage";
 import dynamic from "next/dynamic";
-import { isLoggedInContext } from "../demo/demo1/site";
 
 const Tour = dynamic(
     () => import("../ui/InstructionsModal"),
     { ssr:false }
 )
 
-export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme}) {
+export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme, type, projectDomain=""}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
     const [domain, setDomain] = useState('');
     const [run, setRun] = useState(false);
-    const isLoggedIn = useContext(isLoggedInContext);
 
     // Delay enabling Edit/Save button for 1 second when changing state
     const [delay, setDelay] = useState(false);
 
     useEffect(() => {
-        if (secureLocalStorage.getItem('eport-domain', null)) {
-            setDomain(secureLocalStorage.getItem('eport-domain'));
+        if (projectDomain) {
+            setDomain(projectDomain);
         };
-    }, [secureLocalStorage.getItem('eport-domain', null)]);
+    }, [projectDomain]);
     
     const stateControlFunc = async () => {
         if (state === 'save') {
@@ -48,22 +45,15 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                 {state === 'edit' ?
                     <>
                     <button className="btn btn-info btn-sm xs:btn xs:btn-info" onClick={() => setRun(true)}>Show Instructions</button>
-                        {run ? <Tour run={run} setRun={setRun} isLoggedIn={isLoggedIn} theme={theme}/> : null}
+                        {run ? <Tour run={run} setRun={setRun} theme={theme}/> : null}
                     </>
                 : null}
                 <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
                 {state === 'edit' ?
-                    <>
-                        {isLoggedIn ?
-                            <button className="btn btn-sm xs:btn tour-publishSiteButton" onClick={() => window.publish_modal.showModal()}>Publish site</button>
-                        :
-                            <button className="btn btn-sm xs:btn tour-publishSiteButton" onClick={() => window.ask_login_modal.showModal()}>Publish site</button>
-                        }
-                    </>
-                    
+                    <button className="btn btn-sm xs:btn tour-publishSiteButton" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
                 <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
-                {domain !== '' ? <Link href={`/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
+                {domain !== '' ? <Link href={`/${type}/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
                 {!isEqual ?
                 <div>
                     {messageLoading ? 

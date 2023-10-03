@@ -31,7 +31,6 @@ export async function POST(request) {
     let message = '';
     let responseUid = '';
     let responseEmail = '';
-    let responseDomain = '';
 
     // Create a new user
     const usersCollection = collection(db, 'users');
@@ -51,7 +50,6 @@ export async function POST(request) {
             password: password,
             signInMethod: '',
             emailVerified: false,
-            domain: '',
             stripeCustomerId: ''
         }
         
@@ -73,7 +71,6 @@ export async function POST(request) {
         success: success,
         message: message,
         email: responseEmail,
-        uid: responseUid,
-        domain: responseDomain,
+        uid: responseUid
     })
 }

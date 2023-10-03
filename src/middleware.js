@@ -2,27 +2,31 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
     /*** Authentication ***/
-    const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1', '/manage_subscriptions'];
+    const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1', '/manage_subscriptions', '/dashboard'];
 
-    // Get user from jwt token in cookie
-    const userResponse = await fetch(new URL('/api/authenticate/verifyToken', request.url), {
-        method: 'GET',
-        headers: {
-            'X-forward-token': request.cookies.get('eport-token') ? request.cookies.get('eport-token').value : null,
-        }
-    });
-    const data = await userResponse.json();
-    const user = data.user;
+    let user = null;
 
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
+        if (!request.cookies.get('eport-token')) {
+            return NextResponse.redirect(new URL('/features', request.url));
+        }
+
+        // Get user from jwt token in cookie
+        const userResponse = await fetch(new URL('/api/authenticate/verifyToken', request.url), {
+            method: 'GET',
+            headers: {
+                'X-forward-token': request.cookies.get('eport-token').value,
+            }
+        });
+        const data = await userResponse.json();
+        user = data.user;
+
         // Check if user is logged in, redirect to login page if not
         if (!user) {
             // Log user out if user is logged in with an invalid token
             if (request.cookies.get('eport-token')) {
                 return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
             }
-            // Otherwise redirect user to 'features' page
-            return NextResponse.redirect(new URL('/features', request.url));
         }
 
         if (user.emailVerified === undefined) {
@@ -58,5 +62,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/', '/confirm_email', '/demo/:path*', '/login', '/signup', '/manage_subscriptions'],
+    matcher: ['/', '/confirm_email', '/demo/:path*', '/login', '/signup', '/manage_subscriptions', '/dashboard'],
 }

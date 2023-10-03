@@ -2,10 +2,10 @@
 import { cookies } from "next/headers";
 import { nanoid } from "nanoid";
 import { redirect } from "next/navigation";
-import siteData from "@/data/demo1/newSite";
+import siteData from "@/data/eresume/template0";
 
 // Local imports
-import Demo1 from "@/components/demo/demo1/site";
+import Demo1 from "@/components/eresume/template0/site";
 
 export const metadata = {
     title: 'Demo',

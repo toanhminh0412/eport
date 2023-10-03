@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 
 // Local imports
 import { db } from '../../../../../public/libs/firebase';
-import { getUserFromToken, getTokenFromUser } from '@/helpers/authentication';
+import { getUserFromToken } from '@/helpers/authentication';
 
 // 3rd party imports
 import { collection, doc, query, setDoc, where, getDocs } from 'firebase/firestore';
@@ -28,6 +28,7 @@ export async function POST(request) {
     // Check if there is a site with the same domain
     const projectQuery = query(collection(db, 'published_eresume'), where('domain', '==', site.domain));
     const projectQuerySnapshot = await getDocs(projectQuery);
+
     if (projectQuerySnapshot.docs.length > 0 && projectQuerySnapshot.docs[0].id !== projectId) {
         return NextResponse.json({
             status: 400,
@@ -37,7 +38,7 @@ export async function POST(request) {
 
     // Store the site in the database
     await setDoc(doc(db, 'published_eresume', projectId), site);
-    await setDoc(doc(db, 'eresume', projectId), {published: true}, { merge: true });
+    await setDoc(doc(db, 'eresume', projectId), {published: true, domain: site.domain}, { merge: true });
 
     return NextResponse.json({
         status: 200,

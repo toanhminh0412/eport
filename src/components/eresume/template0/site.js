@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext, createContext } from "react";
 
 import ControlNav from "../../layout/ControlNav";
 import { ErrorToast, SuccessToast } from "../../ui/MessageToast";
@@ -15,6 +15,7 @@ import PublishModal from "../../ui/PublishModal";
 import Section from "./Section";
 import AskLoginModal from "@/components/ui/AskLoginModal";
 
+export const SetSiteFunctionContext = createContext();
 
 export default function Template0({content, projectId}) {
     const [site, setSite] = useState(content);
@@ -396,7 +397,7 @@ export default function Template0({content, projectId}) {
         return (
         <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
             <div className="bg-slate-100 w-screen h-full pb-10 pt-24 dark:bg-slate-700">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} type="eresume"/>
+                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} type="eresume" projectDomain={site.domain}/>
                 <AskLoginModal/>
                 <ContentEditor 
                 content={site} 
@@ -416,25 +417,27 @@ export default function Template0({content, projectId}) {
     }
 
     return (
-        <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
-            <div className="bg-slate-100 w-screen h-full pt-40 lg:pt-24 pb-32 dark:bg-slate-700">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading} theme={site.theme} type="eresume"/>
-                <PublishModal 
-                    site={site}
-                    projectId={projectId}
-                    showMessageToast={showMessageToast} 
-                    setPublishMessage={setPublishMessage}
-                    publishedSite={publishedSite}/>
-                <AskLoginModal/>
-                <div className="mt-10 sm:mt-0">
-                    {successMsg ? <SuccessToast message={successMsg}/> : null}
-                    {errorMsg ? <ErrorToast message={errorMsg}/> : null}
-                    <Section content={site.sections[0]}/>
-                    {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section}/>)}
-                    {/* Contact me */}
-                    <Footer content={site.sections[site.sections.length-1]}/>
+        <SetSiteFunctionContext.Provider value={setSite}>
+            <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
+                <div className="bg-slate-100 w-screen h-full pt-40 lg:pt-24 pb-32 dark:bg-slate-700">
+                    <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading} theme={site.theme} type="eresume" projectDomain={site.domain}/>
+                    <PublishModal 
+                        site={site}
+                        projectId={projectId}
+                        showMessageToast={showMessageToast} 
+                        setPublishMessage={setPublishMessage}
+                        publishedSite={publishedSite}/>
+                    <AskLoginModal/>
+                    <div className="mt-10 sm:mt-0">
+                        {successMsg ? <SuccessToast message={successMsg}/> : null}
+                        {errorMsg ? <ErrorToast message={errorMsg}/> : null}
+                        <Section content={site.sections[0]}/>
+                        {site.sections.slice(1, site.sections.length-1).map((section, index) => <Section key={`${section.heading}-${index}`} content={section}/>)}
+                        {/* Contact me */}
+                        <Footer content={site.sections[site.sections.length-1]}/>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </SetSiteFunctionContext.Provider>
     )
 }

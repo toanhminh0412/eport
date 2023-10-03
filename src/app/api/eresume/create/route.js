@@ -5,12 +5,14 @@ import { NextResponse } from 'next/server';
 
 // Local imports
 import { db } from '../../../../../public/libs/firebase';
-import { getUserFromToken } from '@/helpers/authentication';
+import { getTokenFromUser, getUserFromToken } from '@/helpers/authentication';
 import siteData from '@/data/eresume/template0';
+import cookieOptions from '@/data/cookieOptions';
 
 // 3rd party imports
 import { nanoid } from 'nanoid';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, updateDoc } from 'firebase/firestore';
+
 
 // Create a new eresume project for current user
 export async function GET(request) {
@@ -46,9 +48,14 @@ export async function GET(request) {
     } else {
         user.projects.eresume.push(projectId);
     }
-    await setDoc(doc(db, "users", user.uid), { 
+
+    await updateDoc(doc(db, "users", user.uid), { 
         projects: user.projects
-    }, { merge: true });
+    });
+
+    // Update user cookie
+    const newUserToken = getTokenFromUser(user);
+    cookieStore.set('eport-token', newUserToken, cookieOptions);
     
     return NextResponse.json({
         status: 201,

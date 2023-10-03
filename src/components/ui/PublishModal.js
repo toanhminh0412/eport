@@ -1,9 +1,15 @@
 'use client';
 
-import { useState, useEffect } from "react";
-import secureLocalStorage from "react-secure-storage";
+// React, Next imports
+import { useState, useEffect, useContext } from "react";
+
+// Local imports
 import domainValidator from "@/helpers/helpers";
 import Link from "next/link";
+import { SetSiteFunctionContext } from "../eresume/template0/site";
+
+// 3rd party imports
+import secureLocalStorage from "react-secure-storage";
 
 export default function PublishModal({site, projectId, publishedSite=null, showMessageToast, setPublishMessage}) {
     const [url, setUrl] = useState('');
@@ -11,6 +17,8 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
     const [displayedOnEport, setDisplayedOnEport] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    const setSite = useContext(SetSiteFunctionContext);
 
     useEffect(() => {
         // Set default domain
@@ -38,15 +46,14 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
             setError("");
         }
 
-        const publishedSite = {
+        const newPublishedSite = {
+            ...site,
             domain: domain,
             displayedOnEport: displayedOnEport,
-            publishedDate: new Date(),
-            ...site
+            publishedDate: new Date()
         }
-
         setLoading(true);
-        console.log(publishedSite);
+        
         // Post request to publish site
         const res = await fetch(`/api/eresume/publish?projectId=${projectId}`, {
             method: 'POST',
@@ -57,14 +64,19 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                site: publishedSite
+                site: newPublishedSite
             })
         })
         const data = await res.json();
+        console.log(data);
         if (data.status === 200) {
             showMessageToast(data.message, true);
             setPublishMessage();
-            secureLocalStorage.setItem('eport-domain', domain);
+            setSite({
+                ...site,
+                published: true,
+                domain: domain
+            })
             document.getElementById('publish_modal').close();
         } else {
             setError(data.message);

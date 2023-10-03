@@ -57,7 +57,7 @@ export default function TemplateSelector() {
                     </div>
                     
                     {/* Template image */}
-                    <Image src="/img/eresume-template1.png" 
+                    <Image src="/img/eresume-template0.png" 
                         fill 
                         className="rounded-lg"
                         alt="E-resume template 1"/>

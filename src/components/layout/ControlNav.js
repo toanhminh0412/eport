@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-import secureLocalStorage from "react-secure-storage";
 import dynamic from "next/dynamic";
 
 const Tour = dynamic(
@@ -10,7 +9,7 @@ const Tour = dynamic(
     { ssr:false }
 )
 
-export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme, type}) {
+export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme, type, projectDomain=""}) {
     const [state, setState] = useState('edit');
     const [loading, setLoading] = useState(false);
     const [domain, setDomain] = useState('');
@@ -20,10 +19,10 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
     const [delay, setDelay] = useState(false);
 
     useEffect(() => {
-        if (secureLocalStorage.getItem('eport-domain', null)) {
-            setDomain(secureLocalStorage.getItem('eport-domain'));
+        if (projectDomain) {
+            setDomain(projectDomain);
         };
-    }, [secureLocalStorage.getItem('eport-domain', null)]);
+    }, [projectDomain]);
     
     const stateControlFunc = async () => {
         if (state === 'save') {

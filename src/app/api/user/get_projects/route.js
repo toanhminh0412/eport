@@ -39,16 +39,6 @@ export async function GET(request) {
     // TODO: Implement fetching data ONLY once using getDocs, instead of running getDoc in each interation
     for (let projectTypeInd = 0; projectTypeInd < projectTypes.length; projectTypeInd++) {
         const projectType = projectTypes[projectTypeInd];
-        // const projectIds = user.projects[projectType];
-        // for (let projectInd = 0; projectInd < projectIds.length; projectInd++) {
-        //     const projectId = projectIds[projectInd];
-        //     const project = (await getDoc(doc(db, projectType, projectId))).data();
-        //     responseProjects.push({
-        //         type: projectType, 
-        //         content: project, 
-        //         id: projectId
-        //     });
-        // }
         const projectsQuery = query(collection(db, projectType), where("owner", "==", user.uid));
         const projectsSnap = await getDocs(projectsQuery);
         projectsSnap.forEach(doc => {

@@ -30,10 +30,10 @@ export async function GET(request) {
 
     const migrate = async() => {
         // await copyCollection('sites', 'eresume');
-        await attachEresumesToOwners();
+        // await attachEresumesToOwners();
     }
 
-    await migrate();
+    // await migrate();
     
 
     return NextResponse.json({

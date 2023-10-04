@@ -23,11 +23,20 @@ export async function GET(request) {
 
     const userToken = userTokenCookie.value;
     const user = getUserFromToken(userToken);
+    console.log(user);
+    if (!user.projects) {
+        return NextResponse.json({
+            status: 200,
+            projects: [],
+            message: "Get all projects for user successfully"
+        })
+    }
 
     // Make an array of project objects with 3 fields - type, content and id:
     let responseProjects = []
     const projectTypes = Object.keys(user.projects);
 
+    // TODO: Implement fetching data ONLY once using getDocs, instead of running getDoc in each interation
     for (let projectTypeInd = 0; projectTypeInd < projectTypes.length; projectTypeInd++) {
         const projectType = projectTypes[projectTypeInd];
         const projectIds = user.projects[projectType];

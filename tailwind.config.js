@@ -31,6 +31,11 @@ module.exports = {
       },
       height: {
         '128': '32rem',
+      },
+      minHeight: {
+        '128': '32rem',
+        '140': '35rem',
+        '200': '50rem',
       }
     },
     screens: {

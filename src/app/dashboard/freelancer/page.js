@@ -28,12 +28,26 @@ export default async function Page({searchParams}) {
         const project = projectSnap.data();
 
         // Return a 403 page if user is not the owner of the project
-        if (project.owner !== user.uid) {
+        if (!user || !user.uid || project.owner !== user.uid) {
             return <Page403 message="Sorry! You don't have permission to access this project."/>
         }
 
         // Return the project page
-        return <Template1 project={project}/>
+        return (
+            <>
+                <div className="sm:hidden flex flex-col justify-center h-[80vh]">
+                    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+                        <div className="card-body">
+                            <h2 className="card-title">Screen too small</h2>
+                            <p>Your browser resolution is too small to use the site editor. Please use a larger device.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden sm:block">
+                    <Template1 project={project}/>
+                </div>
+            </>
+        )
     } else {
         // Return 404 page if project is not found
         return <Page404 message="Sorry! This Eresume project doesn't exist."/>

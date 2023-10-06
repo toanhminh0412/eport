@@ -15,9 +15,11 @@ import { nanoid } from "nanoid";
 
 
 export const SectionsContext = createContext();
+export const EditModeContext = createContext();
 
 export default function Template1({project}) {
     const [sections, setSections] = useState(project.sections);
+    const [editMode, setEditMode] = useState(true);
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -38,44 +40,72 @@ export default function Template1({project}) {
         
     }
 
+    if (editMode) {
+        return (
+            <DragDropContext onDragEnd={onDragEnd}>
+                <SectionsContext.Provider value={{sections, setSections}}>
+                    <EditModeContext.Provider value={{ editMode, setEditMode }}>
+                        <main>
+                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                <PreviewControlNav/>
+                                <LeftContentEditor/>
+                                <div className="ml-72 lg:ml-96 mt-20">
+                                    <Droppable droppableId="site-blocks">
+                                        {(provided) => (
+                                            <div ref={provided.innerRef} {...provided.droppableProps}>
+                                                <Template1Site/>
+                                                {provided.placeholder}
+                                            </div>
+                                        )}
+                                    </Droppable>
+                                </div>
+                            </div>
+                        </main>
+                    </EditModeContext.Provider>
+                </SectionsContext.Provider>
+            </DragDropContext>
+        )
+    }
+
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <SectionsContext.Provider value={{sections, setSections}}>
+        <SectionsContext.Provider value={{sections, setSections}}>
+            <EditModeContext.Provider value={{ editMode, setEditMode }}>
                 <main>
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
                         <PreviewControlNav/>
-                        <LeftContentEditor/>
-                        <div className="ml-96 mt-20">
-                            <Droppable droppableId="site-blocks">
-                                {(provided) => (
-                                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                                        <Template1Site/>
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
+                        <div className="mt-20">
+                            <Template1Site/>
                         </div>
                     </div>
                 </main>
-            </SectionsContext.Provider>
-        </DragDropContext>
+            </EditModeContext.Provider>
+        </SectionsContext.Provider>
     )
 }
 
 function Template1Site() {
-    const {sections, _} = useContext(SectionsContext);
+    const {sections, _setSections} = useContext(SectionsContext);
+    const {editMode, _setEditMode} = useContext(EditModeContext);
+
+    if (editMode) {
+        return (
+            <div className="w-full relative">
+                {sections.map((section, sectionInd) => (
+                    <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
+                        {(provided) => (
+                            <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                <Section section={section}/>
+                            </div>
+                        )}
+                    </Draggable>
+                ))}
+            </div>
+        )
+    }
 
     return (
-        <main className="w-full relative">
-            {sections.map((section, sectionInd) => (
-                <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
-                    {(provided) => (
-                        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                            <Section section={section}/>
-                        </div>
-                    )}
-                </Draggable>
-            ))}
-        </main>
+        <div className="w-full relative">
+            {sections.map(section => <Section key={section.id} section={section}/>)}
+        </div>
     )
 }

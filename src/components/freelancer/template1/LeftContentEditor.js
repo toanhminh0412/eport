@@ -9,14 +9,14 @@ import sectionsData from "./sectionsData";
 import { SectionsContext } from "./site";
 
 // Third party imports
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
 
 export default function LeftContentEditor() {
     const [activeTab, setActiveTab] = useState("sections");
 
     return (
-        <div className="fixed z-40 top-36 left-0 bg-white w-72 lg:w-96 min-h-screen border-t border-r border-gray-600">
+        <div className="fixed z-40 top-36 bottom-0 left-0 bg-white w-72 lg:w-96 border-t border-r border-gray-600 overflow-y-scroll">
             <div>
                 <div className="prose border-b border-gray-600 p-4 m-0">
                     <h3 className="text-neutral m-0">Content Editor</h3>

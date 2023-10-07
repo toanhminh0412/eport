@@ -34,19 +34,9 @@ export default async function Page({searchParams}) {
 
         // Return the project page
         return (
-            <>
-                <div className="sm:hidden flex flex-col justify-center h-[80vh]">
-                    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
-                        <div className="card-body">
-                            <h2 className="card-title">Screen too small</h2>
-                            <p>Your browser resolution is too small to use the site editor. Please use a larger device.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="hidden sm:block">
-                    <Template1 project={project}/>
-                </div>
-            </>
+            <div className="mb-[-420px] xs:mb-[-360px]">
+                <Template1 project={project}/>;
+            </div>
         )
     } else {
         // Return 404 page if project is not found

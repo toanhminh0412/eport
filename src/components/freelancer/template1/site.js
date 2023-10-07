@@ -42,28 +42,40 @@ export default function Template1({project}) {
 
     if (editMode) {
         return (
-            <DragDropContext onDragEnd={onDragEnd}>
-                <SectionsContext.Provider value={{sections, setSections}}>
-                    <EditModeContext.Provider value={{ editMode, setEditMode }}>
-                        <main>
-                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                <PreviewControlNav/>
-                                <LeftContentEditor/>
-                                <div className="ml-72 lg:ml-96 mt-20">
-                                    <Droppable droppableId="site-blocks">
-                                        {(provided) => (
-                                            <div ref={provided.innerRef} {...provided.droppableProps}>
-                                                <Template1Site/>
-                                                {provided.placeholder}
-                                            </div>
-                                        )}
-                                    </Droppable>
-                                </div>
-                            </div>
-                        </main>
-                    </EditModeContext.Provider>
-                </SectionsContext.Provider>
-            </DragDropContext>
+            <>
+                <div className="sm:hidden flex flex-col justify-center h-[80vh]">
+                    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+                        <div className="card-body">
+                            <h2 className="card-title">Screen too small</h2>
+                            <p>Your browser resolution is too small to use the site editor. Please use a larger device.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="hidden sm:block">
+                    <DragDropContext onDragEnd={onDragEnd}>
+                        <SectionsContext.Provider value={{sections, setSections}}>
+                            <EditModeContext.Provider value={{ editMode, setEditMode }}>
+                                <main>
+                                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                        <PreviewControlNav/>
+                                        <LeftContentEditor/>
+                                        <div className="ml-72 lg:ml-96 mt-20">
+                                            <Droppable droppableId="site-blocks">
+                                                {(provided) => (
+                                                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                                                        <Template1Site/>
+                                                        {provided.placeholder}
+                                                    </div>
+                                                )}
+                                            </Droppable>
+                                        </div>
+                                    </div>
+                                </main>
+                            </EditModeContext.Provider>
+                        </SectionsContext.Provider>
+                    </DragDropContext>
+                </div>
+            </>
         )
     }
 

@@ -1,8 +1,16 @@
-'use client';
-
+// Next imports
 import Link from "next/link";
+import { headers } from "next/headers";
 
 export default function Footer({isLoggedIn = true}) {
+    const headersList = headers();
+    const activePath = headersList.get("x-invoke-path");
+
+    // Don't show footer on dashboard pages
+    if (activePath && activePath.includes("dashboard")) {
+        return null;
+    }
+
     return (
         <footer className="bg-gradient-to-r from-cyan-500 to-blue-500 box-border absolute bottom-0 w-full h-fit pt-2">
             <div className="max-w-screen-xl m-auto">
@@ -12,8 +20,6 @@ export default function Footer({isLoggedIn = true}) {
                         <ul className="list-none px-0 py-8">
                             <li className="mb-2"><Link href="/features" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Our Feature</Link></li>
                             <li className="mb-2"><Link href="/features#pricing" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Pricing</Link></li>
-                            <li className="mb-2"><Link href="/examples_premium" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Premium Examples</Link></li>
-                            <li className="mb"><Link href="/examples_basic" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Basic Examples</Link></li>
                         </ul>
                     </div>
                     

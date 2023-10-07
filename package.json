@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@hello-pangea/dnd": "^16.3.0",
     "@tinymce/tinymce-react": "^4.3.0",
     "@vercel/analytics": "^1.0.2",
     "autoprefixer": "10.4.14",

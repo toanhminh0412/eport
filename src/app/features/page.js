@@ -1,6 +1,5 @@
-import PlansDisplay from "@/components/ui/plans_display/PlansDisplay"
+// Next imports
 import Link from "next/link";
-import { cookies } from "next/headers";
 
 export const metadata = {
     title: 'Eport - Features',
@@ -11,7 +10,6 @@ export const metadata = {
 }
 
 export default function Features() {
-    const loggedIn = cookies().get('eport-token') ? true : false;
     
     return (
         <main className="prose max-w-none scroll-smooth">
@@ -21,8 +19,8 @@ export default function Features() {
                     <div className="max-w-xl">
                         <h1 className="mb-5 text-4xl md:text-6xl font-bold text-white">What is Eport?</h1>
                         <p className="mb-5 text-lg md:text-2xl"><strong className="text-blue-500">Eport</strong> is the easiest way for job seekers to build a website/portfolio to showcase their works and information.</p>
-                        <Link href="#pricing" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4 mr-4">Pricing</Link>
-                        <Link href="/demo" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4 ml-4">Demo</Link>
+                        {/* <Link href="#pricing" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4 mr-4">Pricing</Link>
+                        <Link href="/demo" className="inline-block py-4 px-[2.5rem] rounded-16 bg-blue-500 hover:bg-blue-600 hover:shadow-none shadow-blue-btn text-xl decoration-black tracking-widest font-semibold duration-500 no-underline mt-4 ml-4">Demo</Link> */}
                     </div>
                 </div>
             </div>
@@ -55,11 +53,6 @@ export default function Features() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="relative w-full flex flex-col justify-center bg-blue-100 pb-40 md:pb-12" id="pricing">
-                <h1 className="mt-12 text-3xl md:text-5xl text-center text-black">Pricing</h1>
-                <PlansDisplay mode="showcase" loggedIn={loggedIn}/>
             </div>
         </main>
     )

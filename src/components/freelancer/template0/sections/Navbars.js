@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function NavigationBar() {
+export function NavigationBar1() {
     return (
         <div className="sticky top-0 z-[1000] block bg-slate-900 py-3 lg:block">
             <div className="px-5 md:px-10">

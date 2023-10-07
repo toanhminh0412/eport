@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-export default function Contact() {
+export function Contact1() {
     return ( 
         <section className="prose max-w-none px-5 md:px-10">
             <div className="mx-auto w-full max-w-7xl">
@@ -12,9 +12,9 @@ export default function Contact() {
                                 <p className="text-lg sm:text-2xl"><i className="fa-solid fa-phone text-orange-500 mr-3"></i>1234567890</p>
                                 <p className="text-lg sm:text-2xl"><i className="fa-solid fa-envelope text-orange-500 mr-3"></i>support@eport.site</p>
                                 <div className="">
-                                    <Link href="facebook.com" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-blue-500 border-2 border-blue-500 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-blue-500 hover:text-white hover:shadow-blue-500"><i className="fa-brands fa-facebook"></i></Link>
-                                    <Link href="instagram.com" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-pink-400 border-2 border-pink-400 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-500 hover:text-white hover:shadow-pink-500"><i className="fa-brands fa-instagram"></i></Link>
-                                    <Link href="twitter.com" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-sky-500 border-2 border-sky-500 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-sky-500 hover:text-white hover:shadow-sky-500"><i className="fa-brands fa-twitter"></i></Link>
+                                    <Link href="#" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-blue-500 border-2 border-blue-500 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-blue-500 hover:text-white hover:shadow-blue-500"><i className="fa-brands fa-facebook"></i></Link>
+                                    <Link href="#" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-pink-400 border-2 border-pink-400 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-500 hover:text-white hover:shadow-pink-500"><i className="fa-brands fa-instagram"></i></Link>
+                                    <Link href="#" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-sky-500 border-2 border-sky-500 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-sky-500 hover:text-white hover:shadow-sky-500"><i className="fa-brands fa-twitter"></i></Link>
                                 </div>
                             </div>
                         </div>

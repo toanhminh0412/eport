@@ -4,7 +4,7 @@
 import { useState } from "react"
 import Image from "next/image";
 
-export default function AboutMe() {
+export function AboutMe1() {
     const [activeTab, setActiveTab] = useState(0);
     return (
         <section className="block">
@@ -13,7 +13,7 @@ export default function AboutMe() {
                     <div className="py-12 md:py-16 lg:py-20">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-5">
                             <div className="min-h-[400px] overflow-hidden">
-                                <Image src="/img/ava.jpg" alt="" width={400} height={800} className="rounded-2xl sm:ml-16" style={{objectFit: "contain"}}/>
+                                <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" width={400} height={800} className="rounded-2xl sm:ml-16" style={{objectFit: "contain"}}/>
                             </div>
                             <div className="flex-col flex items-start gap-2">
                                 <div className="">

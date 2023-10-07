@@ -6,7 +6,7 @@ import { createContext, useState, useContext } from "react"
 // Local imports
 import { getSectionInitialData } from "./helper";
 import PreviewControlNav from "@/components/layout/PreviewControlNav"
-import LeftContentEditor from "./LeftContentEditor"
+import LeftContentEditor from "../../layout/LeftContentEditor"
 import Section from "./Section";
 
 // Third party imports
@@ -59,8 +59,8 @@ export default function Template1({project}) {
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                                 <main>
                                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                        <PreviewControlNav/>
-                                        <LeftContentEditor/>
+                                        <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
+                                        <LeftContentEditor sections={sections} setSections={setSections} templateId={project.templateId}/>
                                         <div className="ml-72 lg:ml-96 mt-20">
                                             <Droppable droppableId="site-blocks">
                                                 {(provided) => (
@@ -86,7 +86,7 @@ export default function Template1({project}) {
             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                 <main>
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                        <PreviewControlNav/>
+                        <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
                         <div className="mt-20">
                             <Template1Site/>
                         </div>

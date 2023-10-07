@@ -5,14 +5,15 @@ import { useState, useContext } from "react";
 import Image from "next/image";
 
 // Local imports
-import sectionsData from "./sectionsData";
-import { SectionsContext } from "./site";
+import sectionsDataTemplate0 from "../freelancer/template0/sectionsData";
+import sectionsDataTemplate1 from "../freelancer/template1/sectionsData";
+// import { SectionsContext } from "../freelancer/template1/site";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
 
-export default function LeftContentEditor() {
+export default function LeftContentEditor({ sections, setSections, templateId }) {
     const [activeTab, setActiveTab] = useState("sections");
 
     return (
@@ -25,14 +26,15 @@ export default function LeftContentEditor() {
                     <li className={`tab hover:font-bold duration-200 ${activeTab === "sections" ? "font-semibold text-neutral" : "text-slate-700"}`} onClick={() => setActiveTab("sections")}>Sections</li> 
                     <li className={`tab hover:font-bold duration-200 ${activeTab === "content" ? "font-semibold text-neutral" : "text-slate-700"}`} onClick={() => setActiveTab("content")}>Content</li> 
                 </ul>
-                <SectionsTab/>
+                <SectionsTab sections={sections} setSections={setSections} templateId={templateId}/>
             </div>
         </div>
     )
 }
 
-function SectionsTab() {
-    const { sections, setSections } = useContext(SectionsContext);
+function SectionsTab({ sections, setSections, templateId}) {
+    // const { sections, setSections } = useContext(SectionsContext);
+    const sectionsData = templateId === 0 ? sectionsDataTemplate0 : sectionsDataTemplate1;
 
     return (
         <div>

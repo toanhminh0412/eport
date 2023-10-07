@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function Testimonials() {
+export function Testimonials1() {
     return (
         <section className="relative block">
             <div className="py-16 md:py-24 lg:py-32">
@@ -25,7 +25,7 @@ export default function Testimonials() {
                                 </div>
                                 <div className="text-slate-700">“Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
                                 <div className="flex-row flex items-start">
-                                    <Image src="/img/ava.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
+                                    <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
                                         <h6 className="text-base font-semibold">Harry Peter</h6>
                                         <p className="text-sm text-slate-700">Designer</p>
@@ -42,7 +42,7 @@ export default function Testimonials() {
                                 </div>
                                 <div className="text-slate-700">“Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
                                 <div className="flex-row flex items-start">
-                                <Image src="/img/ava.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
+                                <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
                                         <h6 className="text-base font-semibold">Harry Peter</h6>
                                         <p className="text-sm text-slate-700">Designer</p>
@@ -59,7 +59,7 @@ export default function Testimonials() {
                                 </div>
                                 <div className="text-slate-700">“Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
                                 <div className="flex-row flex items-start">
-                                <Image src="/img/ava.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
+                                <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
                                         <h6 className="text-base font-semibold">Harry Peter</h6>
                                         <p className="text-sm text-slate-700">Designer</p>

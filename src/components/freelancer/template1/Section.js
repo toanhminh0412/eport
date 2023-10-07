@@ -5,7 +5,7 @@ import { AboutMe1 } from "./sections/AboutMes";
 import { Service1 } from "./sections/Services";
 import { Portfolio1 } from "./sections/Portfolios";
 import { Testimonial1 } from "./sections/Testimonials";
-import { Contact1 } from "./sections/Contact";
+import { Contact1 } from "./sections/Contacts";
 
 export default function Section({ section }) {
     switch (section.sectionId) {

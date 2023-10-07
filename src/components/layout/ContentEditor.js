@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext } from "react";
 import SectionEdit from "../eresume/template0/SectionEdit";
 
 export const SiteContext = createContext();

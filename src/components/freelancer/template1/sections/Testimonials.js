@@ -18,7 +18,7 @@ export function Testimonial1() {
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
                     </div>
-                    <div className="text-[#636262]">“Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
+                    <div className="text-[#636262]">&quot;Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis&quot;</div>
                     <div className="flex-row flex items-start">
                         <Image width={16} height={16} style={{objectFit: "cover"}} src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a945e53e6cf8f_Ellipse%2011%20(1).svg" alt="" className="inline-block h-16 w-16 mr-4"/>
                         <div className="flex-col flex items-start">
@@ -35,7 +35,7 @@ export function Testimonial1() {
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
                     </div>
-                    <div className="text-[#636262]">“Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
+                    <div className="text-[#636262]">&quot;Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis&quot;</div>
                     <div className="flex-row flex items-start">
                         <Image width={16} height={16} style={{objectFit: "cover"}} src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a945e53e6cf8f_Ellipse%2011%20(1).svg" alt="" className="inline-block h-16 w-16 mr-4"/>
                         <div className="flex-col flex items-start">
@@ -52,7 +52,7 @@ export function Testimonial1() {
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
                     </div>
-                    <div className="text-[#636262]">“Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
+                    <div className="text-[#636262]">&quot;Lorem ipsum dolor sit amet, &nbsp;elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis&quot;</div>
                     <div className="flex-row flex items-start">
                         <Image width={16} height={16} style={{objectFit: "cover"}} src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a945e53e6cf8f_Ellipse%2011%20(1).svg" alt="" className="inline-block h-16 w-16 mr-4"/>
                         <div className="flex-col flex items-start">

@@ -15,6 +15,37 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "header1",
             }
+
+        // About me
+        case "aboutme1":
+            return {
+                sectionId: "aboutme1",
+            }
+
+        // Services
+        case "service1":
+            return {
+                sectionId: "service1",
+            }
+
+        // Portfolios
+        case "portfolio1":
+            return {
+                sectionId: "portfolio1",
+            }
+
+        // Testimonials
+        case "testimonial1":
+            return {
+                sectionId: "testimonial1",
+            }
+
+        // Contacts
+        case "contact1":
+            return {
+                sectionId: "contact1",
+            }
+
         default:
             return {}
     }

@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 
 export default function Footer({isLoggedIn = true}) {
     const headersList = headers();
-    const activePath = headersList.get("x-invoke-path");
+    const activePath = headersList.get("referer");
 
     // Don't show footer on dashboard pages
     if (activePath && activePath.includes("dashboard")) {

@@ -24,6 +24,8 @@ export default function Template1({project}) {
     const onDragEnd = (result) => {
         if (!result.destination) return;
 
+        console.log(result);
+
         if (result.draggableId.includes("site-block")) {
             const reorderedSections = Array.from(sections);
             const [reorderedSection] = reorderedSections.splice(result.source.index, 1);
@@ -62,7 +64,7 @@ export default function Template1({project}) {
                                         <div className="ml-72 lg:ml-96 mt-20">
                                             <Droppable droppableId="site-blocks">
                                                 {(provided) => (
-                                                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                                                    <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
                                                         <Template1Site/>
                                                         {provided.placeholder}
                                                     </div>

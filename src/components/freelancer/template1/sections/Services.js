@@ -23,7 +23,7 @@ export function Service1() {
                 </div>
 
                 <div className="card w-96 bg-base-100 shadow-2xl border border-orange-500">
-                    <h4 className="absolute text-orange-500 top-1 inset-x-0 mx-auto"><i class="fa-solid fa-star mr-2"></i>Recommended</h4>
+                    <h4 className="absolute text-orange-500 top-1 inset-x-0 mx-auto"><i className="fa-solid fa-star mr-2"></i>Recommended</h4>
                     <div className="card-body items-center text-center">
                         <h4 className="card-title">Basic package</h4>
                         {/* <h4 className="text-orange-500 mt-0"><i class="fa-solid fa-star mr-2"></i>Recommended</h4> */}

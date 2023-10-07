@@ -24,7 +24,8 @@ module.exports = {
         '16': '4rem',
       },
       boxShadow: {
-        'blue-btn': '0 0 1rem rgb(59, 130, 246)'
+        'blue-btn': '0 0 1rem rgb(59, 130, 246)',
+        'orange-btn': '0 0 1rem rgb(249, 115, 22)'
       },
       gridTemplateColumns: {
         'priceTable': 'repeat(auto, minmax(250px, 1fr))',

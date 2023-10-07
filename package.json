@@ -27,6 +27,7 @@
     "react-joyride": "^2.5.5",
     "react-secure-storage": "^1.2.2",
     "stripe": "^13.4.0",
+    "swiper": "^10.3.1",
     "tailwindcss": "3.3.2"
   },
   "devDependencies": {

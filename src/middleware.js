@@ -8,7 +8,7 @@ export async function middleware(request) {
 
     if (PROTECTED_PATHS.includes(request.nextUrl.pathname)) {
         if (!request.cookies.get('eport-token')) {
-            return NextResponse.redirect(new URL('/features', request.url));
+            return NextResponse.redirect(new URL('/api/authenticate/logout', request.url));
         }
 
         // Get user from jwt token in cookie

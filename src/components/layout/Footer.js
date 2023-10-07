@@ -7,7 +7,7 @@ export default function Footer({isLoggedIn = true}) {
     const activePath = headersList.get("x-invoke-path");
 
     // Don't show footer on dashboard pages
-    if (activePath.includes("dashboard")) {
+    if (activePath && activePath.includes("dashboard")) {
         return null;
     }
 

@@ -23,7 +23,7 @@ export function Testimonials1() {
                                     <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
                                     <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
                                 </div>
-                                <div className="text-slate-700">“Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
+                                <div className="text-slate-700"><span>&quot;</span>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis<span>&quot;</span></div>
                                 <div className="flex-row flex items-start">
                                     <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
@@ -40,7 +40,7 @@ export function Testimonials1() {
                                     <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
                                     <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
                                 </div>
-                                <div className="text-slate-700">“Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
+                                <div className="text-slate-700"><span>&quot;</span>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis<span>&quot;</span></div>
                                 <div className="flex-row flex items-start">
                                 <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
@@ -57,7 +57,7 @@ export function Testimonials1() {
                                     <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
                                     <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
                                 </div>
-                                <div className="text-slate-700">“Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis"</div>
+                                <div className="text-slate-700"><span>&quot;</span>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis<span>&quot;</span></div>
                                 <div className="flex-row flex items-start">
                                 <Image src="/img/freelancer-template0-aboutme1-avatar.jpg" alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">

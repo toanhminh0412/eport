@@ -4,10 +4,10 @@
 import { useContext } from "react";
 
 // Local imports
-import { EditModeContext } from "../freelancer/template1/site"
+// import { EditModeContext } from "../freelancer/template1/site"
 
-export default function PreviewControlNav() {
-    const {editMode, setEditMode} = useContext(EditModeContext);
+export default function PreviewControlNav({ editMode, setEditMode }) {
+    // const {editMode, setEditMode} = useContext(EditModeContext);
 
     return (
         <div className="navbar bg-neutral text-neutral-content py-3 fixed top-18 z-30">

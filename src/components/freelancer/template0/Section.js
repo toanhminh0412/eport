@@ -1,17 +1,16 @@
-// Local imports
-import { Navbar1 } from "./sections/Navbars";
+import { NavigationBar1 } from "./sections/Navbars";
 import { Header1 } from "./sections/Headers";
 import { AboutMe1 } from "./sections/AboutMes";
-import { Service1 } from "./sections/Services";
+import { Services1 } from "./sections/Services";
 import { Portfolio1 } from "./sections/Portfolios";
-import { Testimonial1 } from "./sections/Testimonials";
+import { Testimonials1 } from "./sections/Testimonials";
 import { Contact1 } from "./sections/Contacts";
 
 export default function Section({ section }) {
     switch (section.sectionId) {
         // Navigation bars
         case "navbar1":
-            return <Navbar1/>
+            return <NavigationBar1/>
         
         // Headers
         case "header1":
@@ -23,7 +22,7 @@ export default function Section({ section }) {
 
         // Services
         case "service1":
-            return <Service1/>
+            return <Services1/>
 
         // Portfolios
         case "portfolio1":
@@ -31,7 +30,7 @@ export default function Section({ section }) {
 
         // Testimonials
         case "testimonial1":
-            return <Testimonial1/>
+            return <Testimonials1/>
 
         // Contacts
         case "contact1":

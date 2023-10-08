@@ -6,6 +6,7 @@ import { db } from "../../../../public/libs/firebase";
 import { getUserFromToken } from "@/helpers/authentication";
 import { Page403, Page404 } from "@/components/pages/status_pages";
 import Template1 from "@/components/freelancer/template1/site";
+import Template0 from "@/components/freelancer/template0/site";
 
 // 3rd party imports
 import { doc, getDoc } from "firebase/firestore";
@@ -33,11 +34,21 @@ export default async function Page({searchParams}) {
         }
 
         // Return the project page
-        return (
-            <div className="mb-[-420px] xs:mb-[-360px]">
-                <Template1 project={project}/>;
-            </div>
-        )
+        if (project.templateId === 0) {
+            return (
+                <div className="mb-[-420px] xs:mb-[-360px]">
+                    <Template0 project={project}/>;
+                </div>
+            )
+        }
+
+        if (project.templateId === 1) {
+            return (
+                <div className="mb-[-420px] xs:mb-[-360px]">
+                    <Template1 project={project}/>;
+                </div>
+            )
+        }
     } else {
         // Return 404 page if project is not found
         return <Page404 message="Sorry! This Eresume project doesn't exist."/>

@@ -74,6 +74,8 @@ export default function Dashboard() {
 }
 
 function ProjectCard({project}) {
+    const freelancerThumbnail = project.content.templateId === 0 ? "/img/freelancer-template0-thumbnail.png" : "/img/freelancer-template1-thumbnail.png"
+
     if (project.type === "eresume" && project.content.templateId === 0) {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -98,14 +100,14 @@ function ProjectCard({project}) {
         )
     }
 
-    if (project.type === "freelancer" && project.content.templateId === 0) {
+    if (project.type === "freelancer") {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
                 {/* <Image src="/img/freelancer-template0.png"
                     fill 
                     className="rounded-lg"
                     alt="Freelancer template 1"/> */}
-                <figure><Image width={150} height={150} className="w-full aspect-video" src="/img/freelancer-template0.png" alt="Freelancer template thumbnail" /></figure>
+                <figure><Image width={150} height={150} className="w-full aspect-video" src={freelancerThumbnail} alt="Freelancer template thumbnail" /></figure>
                 <div className="card-body not-prose relative">
                     {/* Project dropdown menu */}
                     <ProjectMenuButton projectId={project.id}/>

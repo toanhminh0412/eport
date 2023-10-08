@@ -1,4 +1,4 @@
-const sectionsData = {
+const sectionsDataTemplate1 = {
     "Navbar": [
         {
             sectionId: "navbar1",
@@ -50,4 +50,4 @@ const sectionsData = {
     ]
 }
 
-export default sectionsData;
+export default sectionsDataTemplate1;

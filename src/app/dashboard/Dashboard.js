@@ -98,7 +98,7 @@ function ProjectCard({project}) {
         )
     }
 
-    if (project.type === "freelancer" && project.content.templateId === 0) {
+    if (project.type === "freelancer" && project.content.templateId === 1) {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
                 {/* <Image src="/img/freelancer-template0.png"

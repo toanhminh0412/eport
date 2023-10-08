@@ -6,14 +6,15 @@ import Image from "next/image";
 
 // Local imports
 import sectionsData from "./sectionsData";
-import { SectionsContext } from "./site";
+import { SectionsContext, ActiveTabContext } from "./site";
+import { getSectionInitialData } from "./helper";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
 
 export default function LeftContentEditor() {
-    const [activeTab, setActiveTab] = useState("sections");
+    const { activeTab, setActiveTab } = useContext(ActiveTabContext);
 
     return (
         <div className="fixed z-40 top-36 bottom-0 left-0 bg-white w-72 lg:w-96 border-t border-r border-gray-600 overflow-y-scroll">
@@ -25,7 +26,7 @@ export default function LeftContentEditor() {
                     <li className={`tab hover:font-bold duration-200 ${activeTab === "sections" ? "font-semibold text-neutral" : "text-slate-700"}`} onClick={() => setActiveTab("sections")}>Sections</li> 
                     <li className={`tab hover:font-bold duration-200 ${activeTab === "content" ? "font-semibold text-neutral" : "text-slate-700"}`} onClick={() => setActiveTab("content")}>Content</li> 
                 </ul>
-                <SectionsTab/>
+                {activeTab === "sections" ? <SectionsTab/> : <ContentTab/>}
             </div>
         </div>
     )
@@ -51,7 +52,7 @@ function SectionsTab() {
                                         <Draggable key={`build-block-${section.sectionId}`} draggableId={`build-block-${section.sectionId}`} index={sectionInd}>
                                             {(provided) => (
                                                 <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                    <div key={section.sectionId} onClick={() => setSections([...sections, {...section, id:nanoid()}])}>
+                                                    <div key={section.sectionId} onClick={() => setSections([...sections, {...getSectionInitialData(section.sectionId), id:nanoid()}])}>
                                                         <Image 
                                                             width={200} 
                                                             height={150} 
@@ -70,6 +71,14 @@ function SectionsTab() {
                     </div>
                 </div>
             ))}
+        </div>
+    )
+}
+
+function ContentTab() {
+    return (
+        <div>
+            <h1>Content tab</h1>
         </div>
     )
 }

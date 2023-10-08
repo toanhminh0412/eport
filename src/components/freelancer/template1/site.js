@@ -7,7 +7,7 @@ import { createContext, useState, useContext } from "react"
 import { getSectionInitialData } from "./helper";
 import PreviewControlNav from "@/components/layout/PreviewControlNav"
 import LeftContentEditor from "./LeftContentEditor"
-import Section from "./Section";
+import { Section, EditableSection } from "./Section";
 
 // Third party imports
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
@@ -16,10 +16,12 @@ import { nanoid } from "nanoid";
 
 export const SectionsContext = createContext();
 export const EditModeContext = createContext();
+export const ActiveTabContext = createContext();
 
 export default function Template1({project}) {
     const [sections, setSections] = useState(project.sections);
     const [editMode, setEditMode] = useState(true);
+    const [activeTab, setActiveTab] = useState("sections");
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -55,22 +57,24 @@ export default function Template1({project}) {
                     <DragDropContext onDragEnd={onDragEnd}>
                         <SectionsContext.Provider value={{sections, setSections}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
-                                <main>
-                                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                        <PreviewControlNav/>
-                                        <LeftContentEditor/>
-                                        <div className="ml-72 lg:ml-96 mt-20">
-                                            <Droppable droppableId="site-blocks">
-                                                {(provided) => (
-                                                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                                                        <Template1Site/>
-                                                        {provided.placeholder}
-                                                    </div>
-                                                )}
-                                            </Droppable>
+                                <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
+                                    <main>
+                                        <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                            <PreviewControlNav/>
+                                            <LeftContentEditor/>
+                                            <div className="ml-72 lg:ml-96 mt-20">
+                                                <Droppable droppableId="site-blocks">
+                                                    {(provided) => (
+                                                        <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
+                                                            <Template1Site/>
+                                                            {provided.placeholder}
+                                                        </div>
+                                                    )}
+                                                </Droppable>
+                                            </div>
                                         </div>
-                                    </div>
-                                </main>
+                                    </main>
+                                </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
                         </SectionsContext.Provider>
                     </DragDropContext>
@@ -106,7 +110,7 @@ function Template1Site() {
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <Section section={section}/>
+                                <EditableSection section={section}/>
                             </div>
                         )}
                     </Draggable>

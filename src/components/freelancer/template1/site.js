@@ -26,6 +26,8 @@ export default function Template1({project}) {
     const onDragEnd = (result) => {
         if (!result.destination) return;
 
+        console.log(result);
+
         if (result.draggableId.includes("site-block")) {
             const reorderedSections = Array.from(sections);
             const [reorderedSection] = reorderedSections.splice(result.source.index, 1);

@@ -48,7 +48,7 @@ function SectionsTab() {
                         <Droppable droppableId="build-blocks">
                             {(provided) => (
                                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                                    {sectionList.map((section, sectionInd) => {console.log(sectionInd); return (
+                                    {sectionList.map((section, sectionInd) => (
                                         <Draggable key={`build-block-${section.sectionId}`} draggableId={`build-block-${section.sectionId}`} index={sectionInd}>
                                             {(provided) => (
                                                 <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
@@ -63,7 +63,7 @@ function SectionsTab() {
                                                 </div>
                                             )}
                                         </Draggable>
-                                    )})}
+                                    ))}
                                     {provided.placeholder}
                                 </div>
                             )}    

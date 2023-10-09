@@ -1,13 +1,14 @@
+"use client";
+
 // Next imports
 import Link from "next/link";
-import { headers } from "next/headers";
+import { usePathname } from 'next/navigation'
 
 export default function Footer({isLoggedIn = true}) {
-    const headersList = headers();
-    const activePath = headersList.get("x-invoke-path");
+    const pathname = usePathname()
 
     // Don't show footer on dashboard pages
-    if (activePath.includes("dashboard")) {
+    if (pathname.includes("dashboard")) {
         return null;
     }
 

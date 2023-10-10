@@ -5,9 +5,9 @@ import { createContext, useState, useContext } from "react"
 
 // Local imports
 import { getSectionInitialData } from "./helper";
-import PreviewControlNav from "@/components/layout/PreviewControlNav";
-import LeftContentEditor from "../../layout/LeftContentEditor"
-import Section from "./Section";
+import PreviewControlNav from "./PreviewControlNav";
+import LeftContentEditor from "./LeftContentEditor";
+import { Section, EditableSection } from "./Section";
 
 // Third party imports
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
@@ -16,10 +16,13 @@ import { nanoid } from "nanoid";
 
 export const SectionsContext = createContext();
 export const EditModeContext = createContext();
+export const ActiveTabContext = createContext();
+export const DeleteSectionContext = createContext();
 
 export default function Template0({project}) {
     const [sections, setSections] = useState(project.sections);
     const [editMode, setEditMode] = useState(true);
+    const [activeTab, setActiveTab] = useState("sections");
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -42,6 +45,12 @@ export default function Template0({project}) {
         
     }
 
+    const deleteSection = (section) =>  {
+        const deleletedSectionId = section.id;
+        const newSections = sections.filter((section) => section.id !== deleletedSectionId);
+        setSections(newSections);
+    }
+
     if (editMode) {
         return (
             <>
@@ -57,22 +66,26 @@ export default function Template0({project}) {
                     <DragDropContext onDragEnd={onDragEnd}>
                         <SectionsContext.Provider value={{sections, setSections}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
-                                <main>
-                                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                        <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
-                                        <LeftContentEditor sections={sections} setSections={setSections} templateId={project.templateId}/>
-                                        <div className="ml-72 lg:ml-96 mt-20">
-                                            <Droppable droppableId="site-blocks">
-                                                {(provided) => (
-                                                    <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
-                                                        <Template0Site/>
-                                                        {provided.placeholder}
-                                                    </div>
-                                                )}
-                                            </Droppable>
-                                        </div>
-                                    </div>
-                                </main>
+                                <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
+                                    <DeleteSectionContext.Provider value={{ deleteSection}}>
+                                        <main>
+                                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                                <PreviewControlNav/>
+                                                <LeftContentEditor/>
+                                                <div className="ml-72 lg:ml-96 mt-20">
+                                                    <Droppable droppableId="site-blocks">
+                                                        {(provided) => (
+                                                            <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
+                                                                <Template0Site/>
+                                                                {provided.placeholder}
+                                                            </div>
+                                                        )}
+                                                    </Droppable>
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </DeleteSectionContext.Provider>
+                                </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
                         </SectionsContext.Provider>
                     </DragDropContext>
@@ -98,7 +111,7 @@ export default function Template0({project}) {
 }
 
 function Template0Site() {
-    const {sections, _setSections} = useContext(SectionsContext);
+    const {sections, setSections} = useContext(SectionsContext);
     const {editMode, _setEditMode} = useContext(EditModeContext);
 
     if (editMode) {
@@ -108,7 +121,7 @@ function Template0Site() {
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <Section section={section}/>
+                                <EditableSection section={section}/>
                             </div>
                         )}
                     </Draggable>

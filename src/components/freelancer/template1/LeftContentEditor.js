@@ -1,20 +1,22 @@
 "use client";
 
 // Next, React imports
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 
 // Local imports
-import sectionsDataTemplate0 from "../freelancer/template0/sectionsData";
-import sectionsDataTemplate1 from "../freelancer/template1/sectionsData";
-// import { SectionsContext } from "../freelancer/template1/site";
+import sectionsDataTemplate1 from "./sectionsData";
+import { SectionsContext } from "./site";
+import { getSectionInitialData } from "./helper";
+import { ActiveTabContext } from "./site";
+import { DeleteSectionContext } from "./site";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
 
-export default function LeftContentEditor({ sections, setSections, templateId }) {
-    const [activeTab, setActiveTab] = useState("sections");
+export default function LeftContentEditor() {
+    const { activeTab, setActiveTab } = useContext(ActiveTabContext);
 
     return (
         <div className="fixed z-40 top-36 bottom-0 left-0 bg-white w-72 lg:w-96 border-t border-r border-gray-600 overflow-y-scroll">
@@ -26,19 +28,20 @@ export default function LeftContentEditor({ sections, setSections, templateId })
                     <li className={`tab hover:font-bold duration-200 ${activeTab === "sections" ? "font-semibold text-neutral" : "text-slate-700"}`} onClick={() => setActiveTab("sections")}>Sections</li> 
                     <li className={`tab hover:font-bold duration-200 ${activeTab === "content" ? "font-semibold text-neutral" : "text-slate-700"}`} onClick={() => setActiveTab("content")}>Content</li> 
                 </ul>
-                <SectionsTab sections={sections} setSections={setSections} templateId={templateId}/>
+                {activeTab === 'sections'?
+                    <SectionsTab/>
+                : <ContentTab/>}
             </div>
         </div>
     )
 }
 
-function SectionsTab({ sections, setSections, templateId}) {
-    // const { sections, setSections } = useContext(SectionsContext);
-    const sectionsData = templateId === 0 ? sectionsDataTemplate0 : sectionsDataTemplate1;
+function SectionsTab() {
+    const { sections, setSections } = useContext(SectionsContext);
 
     return (
         <div>
-            {Object.entries(sectionsData).map(([sectionName, sectionList]) => (
+            {Object.entries(sectionsDataTemplate1).map(([sectionName, sectionList]) => (
                 <div key={sectionName} className="collapse collapse-arrow bg-slate-100 text-neutral rounded-sm border-b border-gray-600">
                     <input type="checkbox" name="section-accordion" /> 
                     <div className="collapse-title text-md font-medium">
@@ -53,7 +56,7 @@ function SectionsTab({ sections, setSections, templateId}) {
                                         <Draggable key={`build-block-${section.sectionId}`} draggableId={`build-block-${section.sectionId}`} index={sectionInd}>
                                             {(provided) => (
                                                 <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                    <div key={section.sectionId} onClick={() => setSections([...sections, {...section, id:nanoid()}])}>
+                                                    <div key={section.sectionId} onClick={() => setSections([...sections, {...getSectionInitialData(section.sectionId), id:nanoid()}])}>
                                                         <Image 
                                                             width={200} 
                                                             height={150} 
@@ -72,6 +75,16 @@ function SectionsTab({ sections, setSections, templateId}) {
                     </div>
                 </div>
             ))}
+        </div>
+    )
+}
+
+function ContentTab() {
+    const deleteSection = useContext(DeleteSectionContext);
+    
+    return(
+        <div className="text-center">
+            <button className="btn bg-blue-700 border-none hover:bg-blue-900 text-white mt-10">Delete Section</button>
         </div>
     )
 }

@@ -5,8 +5,8 @@ import { createContext, useState, useContext } from "react"
 
 // Local imports
 import { getSectionInitialData } from "./helper";
-import PreviewControlNav from "@/components/layout/PreviewControlNav"
-import LeftContentEditor from "./LeftContentEditor"
+import PreviewControlNav from "./PreviewControlNav";
+import LeftContentEditor from "./LeftContentEditor";
 import { Section, EditableSection } from "./Section";
 
 // Third party imports
@@ -17,6 +17,7 @@ import { nanoid } from "nanoid";
 export const SectionsContext = createContext();
 export const EditModeContext = createContext();
 export const ActiveTabContext = createContext();
+export const DeleteSectionContext = createContext();
 
 export default function Template1({project}) {
     const [sections, setSections] = useState(project.sections);
@@ -44,6 +45,12 @@ export default function Template1({project}) {
         
     }
 
+    const deleteSection = (section) =>  {
+        const deleletedSectionId = section.id;
+        const newSections = sections.filter((section) => section.id !== deleletedSectionId);
+        setSections(newSections);
+    }
+
     if (editMode) {
         return (
             <>
@@ -60,22 +67,24 @@ export default function Template1({project}) {
                         <SectionsContext.Provider value={{sections, setSections}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
-                                    <main>
-                                        <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                            <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
-                                            <LeftContentEditor sections={sections} setSections={setSections} templateId={project.templateId}/>
-                                            <div className="ml-72 lg:ml-96 mt-20">
-                                                <Droppable droppableId="site-blocks">
-                                                    {(provided) => (
-                                                        <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]" className="h-fit pb-[400px]">
-                                                            <Template1Site/>
-                                                            {provided.placeholder}
-                                                        </div>
-                                                    )}
-                                                </Droppable>
+                                    <DeleteSectionContext.Provider value={{deleteSection}}>
+                                        <main>
+                                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                                <PreviewControlNav/>
+                                                <LeftContentEditor/>
+                                                <div className="ml-72 lg:ml-96 mt-20">
+                                                    <Droppable droppableId="site-blocks">
+                                                        {(provided) => (
+                                                            <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
+                                                                <Template1Site/>
+                                                                {provided.placeholder}
+                                                            </div>
+                                                        )}
+                                                    </Droppable>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </main>
+                                        </main>
+                                    </DeleteSectionContext.Provider>
                                 </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
                         </SectionsContext.Provider>
@@ -102,7 +111,7 @@ export default function Template1({project}) {
 }
 
 function Template1Site() {
-    const {sections, _setSections} = useContext(SectionsContext);
+    const {sections, setSections} = useContext(SectionsContext);
     const {editMode, _setEditMode} = useContext(EditModeContext);
 
     if (editMode) {

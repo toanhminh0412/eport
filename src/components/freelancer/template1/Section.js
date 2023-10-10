@@ -7,7 +7,7 @@ import { AboutMe1 } from "./sections/display/AboutMes";
 import { Service1 } from "./sections/display/Services";
 import { Portfolio1 } from "./sections/display/Portfolios";
 import { Testimonial1 } from "./sections/display/Testimonials";
-import { Contact1 } from "./sections/display/Contact";
+import { Contact1 } from "./sections/display/Contacts";
 
 export function EditableSection({ section }) {
     switch (section.sectionId) {

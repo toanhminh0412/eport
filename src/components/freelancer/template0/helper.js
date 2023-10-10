@@ -8,6 +8,29 @@ export function getSectionInitialData(sectionId) {
         case "navbar1":
             return {
                 sectionId: "navbar1",
+                sectionType: "navbar",
+                navItems: [
+                    {
+                        id: 0,
+                        text: "About me",
+                        href: "#"
+                    },
+                    {
+                        id: 1,
+                        text: "Services",
+                        href: "#"
+                    },
+                    {
+                        id: 2,
+                        text: "Portfolios",
+                        href: "#"
+                    },
+                    {
+                        id: 3,
+                        text: "Testimonials",
+                        href: "#"
+                    },
+                ],
             }
         
         // Headers

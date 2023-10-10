@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
+import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabHeader() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -40,24 +41,27 @@ export default function ContentTabHeader() {
     }
 
     return (
-        <form className="prose max-w-none">
-            {/* Heading */}
-            <div className="px-3 pt-3 pb-1">
-                <h4 className="my-0">Heading</h4>
-                <ContentTabText content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
-            </div>
+        <div>
+            <DeleteSectionButton/>
+            <form className="prose max-w-none">
+                {/* Heading */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Heading</h4>
+                    <ContentTabText content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
+                </div>
 
-            {/* Slogan */}
-            <div className="px-3 py-1">
-                <h4 className="my-0">Slogan</h4>
-                <ContentTabText rows={2} content={sections[activeSectionInd].slogan} onChange={onSloganChange}/>
-            </div>
+                {/* Slogan */}
+                <div className="px-3 py-1">
+                    <h4 className="my-0">Slogan</h4>
+                    <ContentTabText rows={2} content={sections[activeSectionInd].slogan} onChange={onSloganChange}/>
+                </div>
 
-            {/* Action button */}
-            <div className="px-3 py-1">
-                <h4 className="my-0">Action buttons</h4>
-                {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}
-            </div>
-        </form>
+                {/* Action button */}
+                <div className="px-3 py-1">
+                    <h4 className="my-0">Action buttons</h4>
+                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}
+                </div>
+            </form>
+        </div>
     )
 }

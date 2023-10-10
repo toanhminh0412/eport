@@ -2,8 +2,9 @@
 import { useContext } from "react";
 
 // Local imports
-import { ActiveContentContext, SectionsContext } from "../../site";
+import { ActiveContentContext, SectionsContext, DeleteSectionContext } from "../../site";
 import ContentTabLink from "@/components/ui/content_tab/ContentTabLink";
+import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabNavbar() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -61,29 +62,32 @@ export default function ContentTabNavbar() {
     }
 
     return (
-        <form className="prose max-w-none">
-            {/* Heading */}
-            <div className="p-3">
-                <h4 className="my-0">Heading</h4>
-                <ContentTabLink content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
-            </div>
-            {/* Navbar items */}
-            <div className="p-3">
-                <h4 className="my-0">Navigation bar items</h4>
-                {sections[activeSectionInd].navItems.map((navItem, navItemInd) => (
-                    <ContentTabLink 
-                        key={navItem.id} 
-                        content={{text: navItem.text, href: navItem.href}}
-                        onChange={(e) => {onNavItemChange(e, navItemInd)}}
-                        onDelete={() => deleteNavItem(navItemInd)}/>
-                ))}
-                <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
-            </div>
+        <div>
+            <DeleteSectionButton/>
+            <form className="prose max-w-none">
+                {/* Heading */}
+                <div className="p-3">
+                    <h4 className="my-0">Heading</h4>
+                    <ContentTabLink content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
+                </div>
+                {/* Navbar items */}
+                <div className="p-3">
+                    <h4 className="my-0">Navigation bar items</h4>
+                    {sections[activeSectionInd].navItems.map((navItem, navItemInd) => (
+                        <ContentTabLink 
+                            key={navItem.id} 
+                            content={{text: navItem.text, href: navItem.href}}
+                            onChange={(e) => {onNavItemChange(e, navItemInd)}}
+                            onDelete={() => deleteNavItem(navItemInd)}/>
+                    ))}
+                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
+                </div>
 
-            <div className="p-3">
-                <h4 className="my-0">Action button</h4>
-                <ContentTabLink content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
-            </div>
-        </form>
+                <div className="p-3">
+                    <h4 className="my-0">Action button</h4>
+                    <ContentTabLink content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
+                </div>
+            </form>
+        </div>
     )
 }

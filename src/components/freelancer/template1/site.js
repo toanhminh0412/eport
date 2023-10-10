@@ -50,6 +50,7 @@ export default function Template1({project}) {
     const deleteSection = (section) =>  {
         const deleletedSectionId = section.id;
         const newSections = sections.filter((section) => section.id !== deleletedSectionId);
+        setActiveSectionInd(-1);
         setSections(newSections);
     }
 

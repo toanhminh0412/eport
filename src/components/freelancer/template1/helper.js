@@ -41,6 +41,24 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "header1",
                 sectionType: "header",
+                avatar: "/img/freelancer-template1-header-avatar.jpg",
+                backgroundImage: "/img/freelancer-template1-header-bg.png",
+                heading: "John Doe - Photographer",
+                slogan: "Need a quick photoshoot session? Let me help you!",
+                actionBtns: [
+                    {
+                        id: 0,
+                        text: "Services",
+                        href: "#",
+                        color: "warning"
+                    },
+                    {
+                        id: 1,
+                        text: "Contact me",
+                        href: "#",
+                        color: "warning"
+                    }
+                ]
             }
 
         // About me

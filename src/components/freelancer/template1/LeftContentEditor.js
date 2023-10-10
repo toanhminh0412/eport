@@ -6,14 +6,15 @@ import Image from "next/image";
 
 // Local imports
 import sectionsDataTemplate1 from "./sectionsData";
-import { SectionsContext } from "./site";
+import { SectionsContext, ActiveTabContext, ActiveContentContext, DeleteSectionContext } from "./site";
 import { getSectionInitialData } from "./helper";
-import { ActiveTabContext } from "./site";
-import { DeleteSectionContext } from "./site";
+import ContentTabNavbar from "./sections/content_tabs/ContentTabNavbar";
+import ContentTabHeader from "./sections/content_tabs/ContentTabHeader";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
+
 
 export default function LeftContentEditor() {
     const { activeTab, setActiveTab } = useContext(ActiveTabContext);
@@ -80,11 +81,17 @@ function SectionsTab() {
 }
 
 function ContentTab() {
-    const deleteSection = useContext(DeleteSectionContext);
-    
-    return(
-        <div className="text-center">
-            <button className="btn bg-blue-700 border-none hover:bg-blue-900 text-white mt-10">Delete Section</button>
-        </div>
-    )
+    const { sections, setSections } = useContext(SectionsContext);
+    const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
+
+    if (activeSectionInd === -1) {
+        return <p className="prose max-w-none text-center mt-60 p-4 text-slate-400">Click on a section to start editing</p>
+    }
+
+    switch (sections[activeSectionInd].sectionType) {
+        case "navbar":
+            return <ContentTabNavbar/>
+        case "header":
+            return <ContentTabHeader/>
+    }
 }

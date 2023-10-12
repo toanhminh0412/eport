@@ -1,6 +1,9 @@
 // Local imports
 import { EditableNavbar1 } from "./sections/editable/EditableNavbars";
 import { EditableHeader1 } from "./sections/editable/EditableHeaders";
+import { EditableAboutMe1 } from "./sections/editable/EditableAboutMes";
+import { EditableService1 } from "./sections/editable/EditableServices";
+import { EditablePortfolio1 } from "./sections/editable/EditablePortfolios";
 
 import { Navbar1 } from "./sections/display/Navbars";
 import { Header1 } from "./sections/display/Headers";
@@ -21,17 +24,17 @@ export function EditableSection({ section, sectionInd }) {
         case "header1":
             return <EditableHeader1 section={section} sectionInd={sectionInd}/>
 
-        // // About me
-        // case "aboutme1":
-        //     return <AboutMe1 section={section} sectionInd={sectionInd}/>
+        // About me
+        case "aboutme1":
+            return <EditableAboutMe1 section={section} sectionInd={sectionInd}/>
 
-        // // Services
-        // case "service1":
-        //     return <Service1 section={section} sectionInd={sectionInd}/>
+        // Services
+        case "service1":
+            return <EditableService1 section={section} sectionInd={sectionInd}/>
 
-        // // Portfolios
-        // case "portfolio1":
-        //     return <Portfolio1 section={section} sectionInd={sectionInd}/>
+        // Portfolios
+        case "portfolio1":
+            return <EditablePortfolio1 section={section} sectionInd={sectionInd}/>
 
         // // Testimonials
         // case "testimonial1":

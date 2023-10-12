@@ -6,10 +6,25 @@ import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import { DeleteSectionButton } from "./DeleteSectionButton";
+import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 
 export default function ContentTabHeader() {
     const { sections, setSections } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
+
+    // Change background image
+    const onBackgroundImageChange = imgSrc => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].backgroundImage = imgSrc;
+        setSections(newSections);
+    }
+
+    // Change avatar
+    const onAvatarChange = imgSrc => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].avatar = imgSrc;
+        setSections(newSections);
+    }
 
     // Change heading
     const onHeadingChange = (e) => {
@@ -40,10 +55,36 @@ export default function ContentTabHeader() {
         setSections(newSections);
     }
 
+    // Add action buttons
+    const addActionBtn = () => {
+        const newSections = [...sections];
+        const lastBtnId = newSections[activeSectionInd].actionBtns.length === 0 ? -1 : parseInt(newSections[activeSectionInd].actionBtns[newSections[activeSectionInd].actionBtns.length - 1].id);
+        newSections[activeSectionInd].actionBtns.push({id: lastBtnId + 1, text: "Button text", href: "#", color: "warning"});
+        setSections(newSections);
+    }
+
+    // Delete action buttons
+    const deleteActionBtn = actionBtnInd => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].actionBtns.splice(actionBtnInd, 1);
+        setSections(newSections);
+    }
+
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none">
+            <form className="prose max-w-none py-3">
+                {/* Background image */}
+                <div className="px-3 pb-1">
+                    <h4 className="my-0">Background Image</h4>
+                    <ContentTabImage content={sections[activeSectionInd].backgroundImage} onChange={onBackgroundImageChange} defaultImage="/img/freelancer-template1-header-bg.png"/>
+                </div>
+
+                {/* Avatar */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Avatar</h4>
+                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template1-header-avatar.jpg"/>
+                </div>
+
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>
@@ -59,8 +100,10 @@ export default function ContentTabHeader() {
                 {/* Action button */}
                 <div className="px-3 py-1">
                     <h4 className="my-0">Action buttons</h4>
-                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}
+                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)}/>)}
+                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
                 </div>
+                <DeleteSectionButton/>
             </form>
         </div>
     )

@@ -1,6 +1,9 @@
 // Next imports
 import Link from "next/link"
 
+// Local imports
+import { convertToURL } from "@/helpers/helpers"
+
 export function Header1({ section }) {
     return (
         <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full min-w-[450px] aspect-video flex flex-row bg-black bg-cover">
@@ -11,7 +14,7 @@ export function Header1({ section }) {
                     <h1 className="text-xl lg:text-3xl xl:text-4xl">{section.slogan}</h1>
                     <div>
                     <div>
-                        {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={actionBtn.href} className={`btn btn-sm ${actionBtn.color} lg:btn lg:btn-${actionBtn.color} mr-2`}>{actionBtn.text}</Link>)}
+                        {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={convertToURL(actionBtn.href)} className={`btn btn-sm ${actionBtn.color} lg:btn lg:btn-${actionBtn.color} mr-2`}>{actionBtn.text}</Link>)}
                     </div>
                     </div>
                 </div>

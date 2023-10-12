@@ -37,7 +37,7 @@ export default function ContentTabNavbar() {
     // Add a new navbar item
     const addNavItem = () => {
         const newSections = [...sections];
-        const lastItemId = newSections[activeSectionInd].navItems.length === 0 ? 1 : parseInt(newSections[activeSectionInd].navItems[newSections[activeSectionInd].navItems.length - 1].id);
+        const lastItemId = newSections[activeSectionInd].navItems.length === 0 ? -1 : parseInt(newSections[activeSectionInd].navItems[newSections[activeSectionInd].navItems.length - 1].id);
         newSections[activeSectionInd].navItems.push({id: lastItemId + 1, text: "Item text", href: "#"});
         setSections(newSections);
     }

@@ -14,7 +14,7 @@ export default function ContentTabLink({ content, onChange, onDelete=null }) {
                     placeholder="Heading text" 
                     className="input input-sm border border-neutral w-full" 
                     defaultValue={text}
-                    onChange={e => onChange(e, "text")}/>
+                    onChange={onChange}/>
             </div>
             <div className="form-control w-full">
                 <label className="mt-2">
@@ -26,7 +26,7 @@ export default function ContentTabLink({ content, onChange, onDelete=null }) {
                     placeholder="Heading link" 
                     className="input input-sm border border-neutral w-full" 
                     defaultValue={href}
-                    onChange={e => onChange(e, "link")}/>
+                    onChange={onChange}/>
             </div>
         </div>
     )

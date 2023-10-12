@@ -10,6 +10,8 @@ import { SectionsContext, ActiveTabContext, ActiveContentContext, DeleteSectionC
 import { getSectionInitialData } from "./helper";
 import ContentTabNavbar from "./sections/content_tabs/ContentTabNavbar";
 import ContentTabHeader from "./sections/content_tabs/ContentTabHeader";
+import ContentTabAboutMe from "./sections/content_tabs/ContentTabAboutMe";
+import ContentTabService from "./sections/content_tabs/ContentTabService";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
@@ -93,5 +95,9 @@ function ContentTab() {
             return <ContentTabNavbar/>
         case "header":
             return <ContentTabHeader/>
+        case "aboutme":
+            return <ContentTabAboutMe/>
+        case "service":
+            return <ContentTabService/>
     }
 }

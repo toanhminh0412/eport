@@ -3,7 +3,7 @@ export default function ContentTabBtn({ content, onChange, onDelete=null }) {
 
     return (
         <div className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
-            {onDelete ? <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2" onClick={onDelete}></i> : null}
+            {onDelete ? <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={onDelete}></i> : null}
             {/* Text */}
             <div className="form-control w-full">
                 <label className="pt-0">
@@ -34,15 +34,16 @@ export default function ContentTabBtn({ content, onChange, onDelete=null }) {
 
             {/* Color */}
             <div className="label-text text-slate-500 mt-2">Color</div>
-            <div className="flex flex-row flex-wrap mt-1">
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-primary ${color === 'primary' ? 'border-2 border-black' : ''}`} data-color="primary" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-secondary ${color === 'secondary' ? 'border-2 border-black' : ''}`} data-color="secondary" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-success ${color === 'success' ? 'border-2 border-black' : ''}`} data-color="success" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-accent ${color === 'accent' ? 'border-2 border-black' : ''}`} data-color="accent" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-error ${color === 'error' ? 'border-2 border-black' : ''}`} data-color="error" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-warning ${color === 'warning' ? 'border-2 border-black' : ''}`} data-color="warning" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-black bg-info ${color === 'info' ? 'border-2 border-black' : ''}`} data-color="info" onClick={onChange}></div>
-                <div className={`w-8 h-8 rounded-full mx-1 hover:border-2 hover:border-white bg-neutral ${color === 'neutral' ? 'border-2 border-white' : ''}`} data-color="neutral" onClick={onChange}></div>
+            <div className="flex flex-row flex-wrap mt-1 gap-2">
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-primary ${color === 'primary' ? 'border-2 border-black' : ''}`} data-color="primary" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-secondary ${color === 'secondary' ? 'border-2 border-black' : ''}`} data-color="secondary" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-success ${color === 'success' ? 'border-2 border-black' : ''}`} data-color="success" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-accent ${color === 'accent' ? 'border-2 border-black' : ''}`} data-color="accent" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-error ${color === 'error' ? 'border-2 border-black' : ''}`} data-color="error" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-warning ${color === 'warning' ? 'border-2 border-black' : ''}`} data-color="warning" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-orange-500 ${color === 'orange' ? 'border-2 border-black' : ''}`} data-color="orange" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-black bg-info ${color === 'info' ? 'border-2 border-black' : ''}`} data-color="info" onClick={onChange}></div>
+                <div className={`w-8 h-8 rounded-full hover:border-2 hover:border-white bg-neutral ${color === 'neutral' ? 'border-2 border-white' : ''}`} data-color="neutral" onClick={onChange}></div>
             </div>
         </div>
     )

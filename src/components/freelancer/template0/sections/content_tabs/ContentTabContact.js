@@ -88,7 +88,6 @@ export default function ContentTabContact() {
 
     return (
         <div>
-            <DeleteSectionButton/>
             <div className="prose max-w-none">
                 {/* Description */}
                 <div className="px-3 py-1">
@@ -137,6 +136,7 @@ export default function ContentTabContact() {
                     <h4 className="my-0">Action buttons</h4>
                     <ContentTabBtn content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
                 </div>
+                <DeleteSectionButton/>
             </div>
         </div>
     )

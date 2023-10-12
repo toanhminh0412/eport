@@ -72,7 +72,7 @@ export default function ContentTabHeader() {
 
     return (
         <div>
-            <form className="prose max-w-none py-3">
+            <div className="prose max-w-none py-3">
                 {/* Background image */}
                 <div className="px-3 pb-1">
                     <h4 className="my-0">Background Image</h4>
@@ -104,7 +104,7 @@ export default function ContentTabHeader() {
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
                 </div>
                 <DeleteSectionButton/>
-            </form>
+            </div>
         </div>
     )
 }

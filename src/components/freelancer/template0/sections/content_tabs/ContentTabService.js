@@ -75,7 +75,6 @@ export default function ContentTabService() {
 
     return (
         <div>
-            <DeleteSectionButton/>
             <div className="prose max-w-none">
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
@@ -115,6 +114,7 @@ export default function ContentTabService() {
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addServiceItem()}><i className="fa-solid fa-plus"></i> Add service item</div>
                 </div>
+                <DeleteSectionButton/>
             </div>
         </div>
     )

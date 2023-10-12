@@ -63,8 +63,7 @@ export default function ContentTabNavbar() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none">
+            <div className="prose max-w-none">
                 {/* Heading */}
                 <div className="p-3">
                     <h4 className="my-0">Heading</h4>
@@ -87,7 +86,8 @@ export default function ContentTabNavbar() {
                     <h4 className="my-0">Action button</h4>
                     <ContentTabLink content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
                 </div>
-            </form>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

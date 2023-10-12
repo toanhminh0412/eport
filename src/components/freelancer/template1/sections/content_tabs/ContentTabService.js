@@ -151,8 +151,7 @@ export default function ContentTabService() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none py-3">
+            <div className="prose max-w-none py-3">
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>
@@ -196,7 +195,8 @@ export default function ContentTabService() {
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addService}><i className="fa-solid fa-plus"></i> Add service</div>
                 </div>
-            </form>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

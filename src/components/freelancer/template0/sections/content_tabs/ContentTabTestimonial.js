@@ -77,8 +77,7 @@ export default function ContentTabTestimonial() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none">
+            <div className="prose max-w-none">
                 {/* Section Description */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>
@@ -113,7 +112,8 @@ export default function ContentTabTestimonial() {
                     <h4 className="my-0">Action buttons</h4>
                     <ContentTabBtn content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
                 </div>
-            </form>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

@@ -76,8 +76,7 @@ export default function ContentTabAboutMe() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none py-3">
+            <div className="prose max-w-none py-3">
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>
@@ -108,7 +107,8 @@ export default function ContentTabAboutMe() {
                     {sections[activeSectionInd].extraInfo.map((info, infoInd) => <ContentTabNameValue key={info.id} content={info} onChange={e => onInfoChange(e, infoInd)} onDelete={() => deleteInfo(infoInd)}/>)}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addInfo}><i className="fa-solid fa-plus"></i> Add info</div>
                 </div>
-            </form>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

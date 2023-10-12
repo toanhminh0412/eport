@@ -39,8 +39,7 @@ export default function ContentTabNavbar() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none">
+            <div className="prose max-w-none">
                 {/* Navbar items */}
                 <div className="p-3">
                     <h4 className="my-0">Navigation bar items</h4>
@@ -53,7 +52,8 @@ export default function ContentTabNavbar() {
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 my-3" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
                 </div>
-            </form>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

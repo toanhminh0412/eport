@@ -61,8 +61,7 @@ export default function ContentTabHeader() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none">
+            <div className="prose max-w-none">
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>
@@ -92,7 +91,8 @@ export default function ContentTabHeader() {
                     <h4 className="my-0">Action buttons</h4>
                     {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}
                 </div>
-            </form>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

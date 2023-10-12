@@ -2,13 +2,13 @@
 import { useContext } from "react";
 
 // Local imports
-import { ActiveTabContext, ActiveContentContext, DeleteSectionContext } from "../../site";
+import { ActiveTabContext, ActiveContentContext, SectionsContext } from "../../site";
 import { badgeColorOptions } from "@/data/colorOptions";
 
 export function EditableAboutMe1({ section, sectionInd }) {
     const { _activeTab, setActiveTab } = useContext(ActiveTabContext);
     const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
-    const { deleteSection } = useContext(DeleteSectionContext);
+    const { _sections, _setSections, deleteSection } = useContext(SectionsContext);
 
     const openContentTabEditor = () => {
         setActiveTab("content");

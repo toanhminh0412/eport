@@ -76,8 +76,7 @@ export default function ContentTabAboutMe() {
 
     return (
         <div>
-            <DeleteSectionButton/>
-            <form className="prose max-w-none">
+            <div className="prose max-w-none">
                 {/* Tag */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Tag</h4>
@@ -126,8 +125,9 @@ export default function ContentTabAboutMe() {
                             <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addTabContentItem(tabInd)}><i className="fa-solid fa-plus"></i> Add tab content item</div>
                         </div>
                     ))}
-                </div> 
-            </form>
+                </div>
+                <DeleteSectionButton/>
+            </div>
         </div>
     )
 }

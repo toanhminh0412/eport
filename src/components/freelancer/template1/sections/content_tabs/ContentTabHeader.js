@@ -9,7 +9,7 @@ import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 
 export default function ContentTabHeader() {
-    const { sections, setSections } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
 
     // Change background image

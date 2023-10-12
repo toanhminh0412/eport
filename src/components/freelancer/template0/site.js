@@ -17,12 +17,13 @@ import { nanoid } from "nanoid";
 export const SectionsContext = createContext();
 export const EditModeContext = createContext();
 export const ActiveTabContext = createContext();
-export const DeleteSectionContext = createContext();
+export const ActiveContentContext = createContext();
 
 export default function Template0({project}) {
     const [sections, setSections] = useState(project.sections);
     const [editMode, setEditMode] = useState(true);
     const [activeTab, setActiveTab] = useState("sections");
+    const [activeSectionInd, setActiveSectionInd] = useState(-1);
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -48,6 +49,7 @@ export default function Template0({project}) {
     const deleteSection = (section) =>  {
         const deleletedSectionId = section.id;
         const newSections = sections.filter((section) => section.id !== deleletedSectionId);
+        setActiveSectionInd(-1);
         setSections(newSections);
     }
 
@@ -64,10 +66,10 @@ export default function Template0({project}) {
                 </div>
                 <div className="hidden sm:block">
                     <DragDropContext onDragEnd={onDragEnd}>
-                        <SectionsContext.Provider value={{sections, setSections}}>
+                        <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
-                                    <DeleteSectionContext.Provider value={{ deleteSection}}>
+                                    <ActiveContentContext.Provider value ={{ activeSectionInd, setActiveSectionInd }}>
                                         <main>
                                             <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
                                                 <PreviewControlNav/>
@@ -84,7 +86,7 @@ export default function Template0({project}) {
                                                 </div>
                                             </div>
                                         </main>
-                                    </DeleteSectionContext.Provider>
+                                    </ActiveContentContext.Provider>
                                 </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
                         </SectionsContext.Provider>
@@ -95,7 +97,7 @@ export default function Template0({project}) {
     }
 
     return (
-        <SectionsContext.Provider value={{sections, setSections}}>
+        <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                 <main>
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
@@ -111,17 +113,17 @@ export default function Template0({project}) {
 }
 
 function Template0Site() {
-    const {sections, setSections} = useContext(SectionsContext);
+    const {sections, _setSections, _deleteSection} = useContext(SectionsContext);
     const {editMode, _setEditMode} = useContext(EditModeContext);
 
     if (editMode) {
         return (
-            <div className="w-full relative">
+            <div style={{zoom: "75%"}} className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <EditableSection section={section}/>
+                                <EditableSection section={section} sectionInd={sectionInd}/>
                             </div>
                         )}
                     </Draggable>
@@ -130,6 +132,7 @@ function Template0Site() {
         )
     }
 
+    console.log(sections)
     return (
         <div className="w-full relative">
             {sections.map(section => <Section key={section.id} section={section}/>)}

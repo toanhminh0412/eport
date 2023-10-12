@@ -11,18 +11,6 @@ export default function ContentTabNavbar() {
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
 
     // Field can only be "text" or "link"
-    // Change navbar heading
-    const onHeadingChange = (e) => {
-        const newSections = [...sections];
-        if (e.target.name === "text") {
-            newSections[activeSectionInd].heading.text = e.target.value;
-        } else {
-            newSections[activeSectionInd].heading.href = e.target.value;
-        }
-        setSections(newSections);
-    }
-
-    // Field can only be "text" or "link"
     // Change navbar item
     const onNavItemChange = (e, navItemInd) => {
         const newSections = [...sections];
@@ -49,27 +37,10 @@ export default function ContentTabNavbar() {
         setSections(newSections);
     }
 
-    // Field can only be "text" or "link"
-    // Change navbar action button
-    const onActionBtnChange = (e) => {
-        const newSections = [...sections];
-        if (e.target.name === "text") {
-            newSections[activeSectionInd].actionBtn.text = e.target.value;
-        } else {
-            newSections[activeSectionInd].actionBtn.href = e.target.value;
-        }
-        setSections(newSections);
-    }
-
     return (
         <div>
             <DeleteSectionButton/>
             <form className="prose max-w-none">
-                {/* Heading */}
-                <div className="p-3">
-                    <h4 className="my-0">Heading</h4>
-                    <ContentTabLink content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
-                </div>
                 {/* Navbar items */}
                 <div className="p-3">
                     <h4 className="my-0">Navigation bar items</h4>
@@ -80,12 +51,7 @@ export default function ContentTabNavbar() {
                             onChange={(e) => {onNavItemChange(e, navItemInd)}}
                             onDelete={() => deleteNavItem(navItemInd)}/>
                     ))}
-                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
-                </div>
-
-                <div className="p-3">
-                    <h4 className="my-0">Action button</h4>
-                    <ContentTabLink content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
+                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 my-3" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
                 </div>
             </form>
         </div>

@@ -50,13 +50,13 @@ export function getSectionInitialData(sectionId) {
                         id: 0,
                         text: "Services",
                         href: "#",
-                        color: "warning"
+                        color: "blue"
                     },
                     {
                         id: 1,
                         text: "Contact me",
                         href: "#",
-                        color: "warning"
+                        color: "blue"
                     }
                 ]
             }

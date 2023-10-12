@@ -6,7 +6,7 @@ import Image from "next/image";
 
 // Local imports
 import sectionsDataTemplate1 from "./sectionsData";
-import { SectionsContext, ActiveTabContext, ActiveContentContext, DeleteSectionContext } from "./site";
+import { SectionsContext, ActiveTabContext, ActiveContentContext } from "./site";
 import { getSectionInitialData } from "./helper";
 import ContentTabNavbar from "./sections/content_tabs/ContentTabNavbar";
 import ContentTabHeader from "./sections/content_tabs/ContentTabHeader";
@@ -38,7 +38,7 @@ export default function LeftContentEditor() {
 }
 
 function SectionsTab() {
-    const { sections, setSections } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
 
     return (
         <div>
@@ -81,7 +81,7 @@ function SectionsTab() {
 }
 
 function ContentTab() {
-    const { sections, setSections } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
     const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
 
     if (activeSectionInd === -1) {

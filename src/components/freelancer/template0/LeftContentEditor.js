@@ -6,9 +6,15 @@ import Image from "next/image";
 
 // Local imports
 import sectionsDataTemplate0 from "./sectionsData";
-import { DeleteSectionContext, SectionsContext } from "./site";
+import { SectionsContext, ActiveTabContext, ActiveContentContext } from "./site";
 import { getSectionInitialData } from "./helper";
-import { ActiveTabContext } from "./site";
+import ContentTabNavbar from "./sections/content_tabs/ContentTabNavbar";
+import ContentTabHeader from "./sections/content_tabs/ContentTabHeader";
+import ContentTabAboutMe from "./sections/content_tabs/ContentTabAboutMe";
+import ContentTabService from "./sections/content_tabs/ContentTabService";
+import ContentTabPortfolio from "./sections/content_tabs/ContentTabPortfolio";
+import ContentTabTestimonial from "./sections/content_tabs/ContentTabTestimonial";
+import ContentTabContact from "./sections/content_tabs/ContentTabContact";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
@@ -36,7 +42,7 @@ export default function LeftContentEditor() {
 }
 
 function SectionsTab() {
-    const { sections, setSections } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
 
     return (
         <div>
@@ -79,11 +85,27 @@ function SectionsTab() {
 }
 
 function ContentTab() {
-    const deleteSection = useContext(DeleteSectionContext);
+    const { sections, setSections, _deleteSection } = useContext(SectionsContext)
+    const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
+
+    if (activeSectionInd === -1) {
+        return <p className="prose max-w-none text-center mt-60 p-4 text-slate-400">Click on a section to start editing</p>
+    }
     
-    return(
-        <div className="text-center">
-            <button className="btn bg-blue-700 border-none hover:bg-blue-900 text-white mt-10">Delete Section</button>
-        </div>
-    )
+    switch (sections[activeSectionInd].sectionType) {
+        case "navbar":
+            return <ContentTabNavbar/>
+        case "header":
+            return <ContentTabHeader/>
+        case "aboutme":
+            return <ContentTabAboutMe/>
+        case "service":
+            return <ContentTabService/>
+        case "portfolio":
+            return <ContentTabPortfolio/>
+        case "testimonial":
+            return <ContentTabTestimonial/>
+        case "contact":
+            return <ContentTabContact/>
+    }
 }

@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
+import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabHeader() {
@@ -25,7 +26,25 @@ export default function ContentTabHeader() {
         setSections(newSections);
     }
 
-    // Chang action buttons
+    // Change description
+    const onDescriptionChange = (e) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].description = e.target.value;
+        setSections(newSections);
+    }
+
+    // Change social buttons
+    const onSocialBtnChange = (e, socialBtnInd) => {
+        const newSections = [...sections];
+        if (e.target.name === "option") {
+            newSections[activeSectionInd].socials[socialBtnInd].social = e.target.value;
+        } else {
+            newSections[activeSectionInd].socials[socialBtnInd].href = e.target.value;
+        }
+        setSections(newSections);
+    }
+
+    // Change action buttons
     const onActionBtnChange = (e, actionBtnInd) => {
         const newSections = [...sections];
         if (e.target.name === "text") {
@@ -54,6 +73,18 @@ export default function ContentTabHeader() {
                 <div className="px-3 py-1">
                     <h4 className="my-0">Slogan</h4>
                     <ContentTabText rows={2} content={sections[activeSectionInd].slogan} onChange={onSloganChange}/>
+                </div>
+
+                {/* Description */}
+                <div className="px-3 py-1">
+                    <h4 className="my-0">Description</h4>
+                    <ContentTabText rows={5} content={sections[activeSectionInd].description} onChange={onDescriptionChange}/>
+                </div>
+
+                {/* Socials button */}
+                <div className="px-3 py-1">
+                    <h4 className="my-0">Social buttons</h4>
+                    {sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}
                 </div>
 
                 {/* Action button */}

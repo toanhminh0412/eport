@@ -13,7 +13,7 @@ export default function ContentTabNameValue({ nameRows=1, valueRows=1, content, 
                     placeholder="Type some text" 
                     rows={nameRows}
                     className="textarea border border-neutral w-full" 
-                    defaultValue={name}
+                    value={name}
                     onChange={onChange}/>
             </div>
             <div className="form-control w-full">
@@ -25,7 +25,7 @@ export default function ContentTabNameValue({ nameRows=1, valueRows=1, content, 
                     placeholder="Type some text" 
                     rows={valueRows}
                     className="textarea border border-neutral w-full" 
-                    defaultValue={value}
+                    value={value}
                     onChange={onChange}/>
             </div>
         </div>

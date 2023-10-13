@@ -3,8 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 // Local imports
-import socialIconsStyle from "@/data/social-icons-style"
-import socialIcons from "@/data/social-icons"
+import { socialIcons, socialIconsStyle } from "@/data/social-icons"
 import { btnColorOptions } from "@/data/colorOptions"
 
 export function Header1({ section }) {
@@ -19,7 +18,7 @@ export function Header1({ section }) {
                         <p className="text-slate-700">{section.description}</p>
                     </div>
                     <div>
-                        {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={`${socialIconsStyle[socialBtn.social]}`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
+                        {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
                     </div>
                     <div>
                         {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={actionBtn.href} className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>)}

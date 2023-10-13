@@ -98,7 +98,7 @@ export default function ContentTabContact() {
                 {/* Slogan */}
                 <div className="px-3 py-1">
                     <h4 className="my-0">Slogan</h4>
-                    <ContentTabText rows={5} content={sections[activeSectionInd].slogan} onChange={onSloganChange}/>
+                    <ContentTabText rows={3} content={sections[activeSectionInd].slogan} onChange={onSloganChange}/>
                 </div>
 
                 {/* Contact Info */}

@@ -4,16 +4,32 @@ import { useContext } from "react";
 // Local imports
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
+import ContentTabBadge from "@/components/ui/content_tab/ContentTabBadge";
+import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
+import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabAboutMe() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
 
-    // Change tag name
-    const onTagChange = (e) => {
+    // Change avatar
+    const onAvatarChange = imgSrc => {
         const newSections = [...sections];
-        newSections[activeSectionInd].tag = e.target.value;
+        newSections[activeSectionInd].avatar = imgSrc;
+        setSections(newSections);
+    }
+
+    // Change status name
+    const onStatusChange = (e) => {
+        const newSections = [...sections];
+        if (e.target.name === "text") {
+            newSections[activeSectionInd].status.text = e.target.value;
+        } else {
+            if (e.target.dataset.color) {
+                newSections[activeSectionInd].status.color = e.target.dataset.color;
+            }
+        }
         setSections(newSections);
     }
 
@@ -32,9 +48,9 @@ export default function ContentTabAboutMe() {
     }
 
     // Change description
-    const onDescriptionChange = (e) => {
+    const onDescriptionChange = (value) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].description = e.target.value;
+        newSections[activeSectionInd].description = value;
         setSections(newSections);
     }
 
@@ -77,10 +93,16 @@ export default function ContentTabAboutMe() {
     return (
         <div>
             <div className="prose max-w-none">
-                {/* Tag */}
+                {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
-                    <h4 className="my-0">Tag</h4>
-                    <ContentTabText content={sections[activeSectionInd].tag} onChange={onTagChange}/>
+                    <h4 className="my-0">Avatar</h4>
+                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
+                </div>
+
+                {/* Status */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Status</h4>
+                    <ContentTabBadge content={{text: sections[activeSectionInd].status.text, color: sections[activeSectionInd].status.color}} onChange={onStatusChange}/>
                 </div>
 
                 {/* Job */}
@@ -98,7 +120,7 @@ export default function ContentTabAboutMe() {
                 {/* Description */}
                 <div className="px-3 py-1">
                     <h4 className="my-0">Description</h4>
-                    <ContentTabText rows={5} content={sections[activeSectionInd].description} onChange={onDescriptionChange}/>
+                    <ContentTabFormattedText content={sections[activeSectionInd].description} onChange={onDescriptionChange}/>
                 </div>
 
                 {/* Tab */}

@@ -6,11 +6,26 @@ import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
+import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabHeader() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
+
+    // Change background image
+    const onBackgroundImageChange = imgSrc => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].backgroundImage = imgSrc;
+        setSections(newSections);
+    }
+
+    // Change avatar
+    const onAvatarChange = imgSrc => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].avatar = imgSrc;
+        setSections(newSections);
+    }
 
     // Change heading
     const onHeadingChange = (e) => {
@@ -62,6 +77,18 @@ export default function ContentTabHeader() {
     return (
         <div>
             <div className="prose max-w-none">
+                {/* Background image */}
+                <div className="px-3 pb-1">
+                    <h4 className="my-0">Background Image</h4>
+                    <ContentTabImage content={sections[activeSectionInd].backgroundImage} onChange={onBackgroundImageChange} defaultImage="/img/freelancer-template0-header1-white-bg.png"/>
+                </div>
+
+                {/* Avatar */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Avatar</h4>
+                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
+                </div>
+
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>

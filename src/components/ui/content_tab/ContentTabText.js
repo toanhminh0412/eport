@@ -6,7 +6,7 @@ export default function ContentTabText({ rows=1, content, onChange, onDelete=nul
                 placeholder="Type some text" 
                 rows={rows}
                 className="textarea border border-neutral w-full" 
-                defaultValue={content}
+                value={content}
                 onChange={onChange}/>
             {onDelete ? <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg my-auto" onClick={onDelete}></i> : null}
         </div>

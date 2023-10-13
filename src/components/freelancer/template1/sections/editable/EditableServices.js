@@ -19,8 +19,8 @@ export function EditableService1({ section, sectionInd }) {
 
     return (
         <div className="group relative">
-            <button className="btn bg-blue-700 border-none z-40 absolute hover:bg-blue-900 top-[-35px] right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById('delete_modal_service1').showModal()}><i className="fa-solid fa-trash text-lg text-white"></i></button>
-            <dialog id="delete_modal_service1" className="modal modal-bottom sm:modal-middle">
+            <button className="btn bg-blue-700 border-none z-40 absolute hover:bg-blue-900 top-[-35px] right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white"></i></button>
+            <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Delete Section!</h3>
                     <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>

@@ -169,6 +169,39 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "portfolio1",
                 sectionType: "portfolio",
+                heading: "Portfolio",
+                tagline: "Check out my past works!",
+                projects: [
+                    {
+                        id: 0,
+                        name: "Project 1",
+                        company: "Microsoft (2020 - 2021)",
+                        projectUrl: {text: "Visit project", href: "microsoft.com"},
+                        description: "<p>Make sure you describe the project carefully and vividly to attract readers</p>",
+                        images: [
+                            {
+                                id: 0,
+                                src: "/img/eresume-template0.png"
+                            }, 
+                            {
+                                id: 1,
+                                src: "/img/freelancer-template0-thumbnail.png"
+                            }, 
+                            {
+                                id: 2,
+                                src: "/img/freelancer-template1-thumbnail.png"
+                            }
+                        ]
+                    },
+                    {
+                        id: 1,
+                        name: "Project 2",
+                        company: "Paypal (2021 - 2022)",
+                        projectUrl: {text: "Visit project", link: ""},
+                        description: "<p>Make sure you describe the project carefully and vividly to attract readers</p>",
+                        images: []
+                    }
+                ]
             }
 
         // Testimonials
@@ -176,6 +209,33 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "testimonial1",
                 sectionType: "testimonial",
+                heading: "What our clients are saying",
+                reviews: [
+                    {
+                        id: 1,
+                        reviewUrl: "",
+                        rating: 5,
+                        review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
+                        reviewerName: "Laila Bahar",
+                        reviewerJob: "Designer",
+                    },
+                    {
+                        id: 2,
+                        reviewUrl: "",
+                        rating: 5,
+                        review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
+                        reviewerName: "Laila Bahar",
+                        reviewerJob: "Designer",
+                    },
+                    {
+                        id: 3,
+                        reviewUrl: "",
+                        rating: 5,
+                        review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
+                        reviewerName: "Laila Bahar",
+                        reviewerJob: "Designer",
+                    }
+                ]
             }
 
         // Contacts
@@ -183,6 +243,14 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "contact1",
                 sectionType: "contact",
+                heading: "Let's build something exciting together!",
+                description: "Shoot me an email, describe your need. I'll start making your dream come true right away!",
+                formHeading: "Get a free quote",
+                formTagline: "Please leave as many details as possible. The more details you provide, the better I can understand your need and the more accurate the quote will be.",
+                formBtn: {
+                    text: "Get free quote",
+                    color: "orange"
+                }
             }
 
         default:

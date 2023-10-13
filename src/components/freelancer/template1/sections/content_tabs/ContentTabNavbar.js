@@ -73,11 +73,13 @@ export default function ContentTabNavbar() {
                 <div className="p-3">
                     <h4 className="my-0">Navigation bar items</h4>
                     {sections[activeSectionInd].navItems.map((navItem, navItemInd) => (
-                        <ContentTabLink 
-                            key={navItem.id} 
-                            content={{text: navItem.text, href: navItem.href}}
-                            onChange={(e) => {onNavItemChange(e, navItemInd)}}
-                            onDelete={() => deleteNavItem(navItemInd)}/>
+                        <div key={navItem.id}>
+                            <h4 className="my-0">Nav item #{navItemInd + 1}</h4>
+                            <ContentTabLink
+                                content={{text: navItem.text, href: navItem.href}}
+                                onChange={(e) => {onNavItemChange(e, navItemInd)}}
+                                onDelete={() => deleteNavItem(navItemInd)}/>
+                        </div>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
                 </div>

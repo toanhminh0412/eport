@@ -4,6 +4,8 @@ import { EditableHeader1 } from "./sections/editable/EditableHeaders";
 import { EditableAboutMe1 } from "./sections/editable/EditableAboutMes";
 import { EditableService1 } from "./sections/editable/EditableServices";
 import { EditablePortfolio1 } from "./sections/editable/EditablePortfolios";
+import { EditableTestimonial1 } from "./sections/editable/EditableTestimonials";
+import { EditableContact1 } from "./sections/editable/EditableContacts";
 
 import { Navbar1 } from "./sections/display/Navbars";
 import { Header1 } from "./sections/display/Headers";
@@ -36,13 +38,13 @@ export function EditableSection({ section, sectionInd }) {
         case "portfolio1":
             return <EditablePortfolio1 section={section} sectionInd={sectionInd}/>
 
-        // // Testimonials
-        // case "testimonial1":
-        //     return <Testimonial1 section={section} sectionInd={sectionInd}/>
+        // Testimonials
+        case "testimonial1":
+            return <EditableTestimonial1 section={section} sectionInd={sectionInd}/>
 
-        // // Contacts
-        // case "contact1":
-        //     return <Contact1 section={section} sectionInd={sectionInd}/>
+        // Contacts
+        case "contact1":
+            return <EditableContact1 section={section} sectionInd={sectionInd}/>
     }
 }
 

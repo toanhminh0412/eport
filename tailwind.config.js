@@ -30,6 +30,9 @@ module.exports = {
       gridTemplateColumns: {
         'priceTable': 'repeat(auto, minmax(250px, 1fr))',
       },
+      width: {
+        '128': '32rem',
+      },
       height: {
         '128': '32rem',
       },

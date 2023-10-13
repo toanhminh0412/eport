@@ -100,7 +100,12 @@ export default function ContentTabHeader() {
                 {/* Action button */}
                 <div className="px-3 py-1">
                     <h4 className="my-0">Action buttons</h4>
-                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)}/>)}
+                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => (
+                    <div key={btn.id}>
+                        <h4 className="my-0">Action button #{btnInd + 1}</h4>
+                        <ContentTabBtn content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)}/>
+                    </div>
+                    ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
                 </div>
                 <DeleteSectionButton/>

@@ -21,7 +21,7 @@ export default function ContentTabBtn({ content, onChange, onDelete=null }) {
             : null}
 
             {/* Link */}
-            {href !== null ?
+            {href !== null && href !== undefined ?
                 <div className="form-control w-full mt-2">
                     <label>
                         <span className="label-text text-slate-500">Link</span>

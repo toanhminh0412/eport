@@ -169,6 +169,7 @@ export default function ContentTabService() {
                     <h4 className="my-0">Services</h4>
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
                     <div key={service.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
+                        <h4 className="my-0">Service #{serviceInd + 1}</h4>
                         <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteService(serviceInd)}></i>
                         {/* Name */}
                         <label className="text-sm">Service name</label>

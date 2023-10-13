@@ -12,6 +12,9 @@ import ContentTabNavbar from "./sections/content_tabs/ContentTabNavbar";
 import ContentTabHeader from "./sections/content_tabs/ContentTabHeader";
 import ContentTabAboutMe from "./sections/content_tabs/ContentTabAboutMe";
 import ContentTabService from "./sections/content_tabs/ContentTabService";
+import ContentTabPortfolio from "./sections/content_tabs/ContentTabPortfolio";
+import ContentTabTestimonial from "./sections/content_tabs/ContentTabTestimonials";
+import ContentTabContact from "./sections/content_tabs/ContentTabContact";
 
 // Third party imports
 import { Droppable, Draggable } from "@hello-pangea/dnd";
@@ -99,5 +102,11 @@ function ContentTab() {
             return <ContentTabAboutMe/>
         case "service":
             return <ContentTabService/>
+        case "portfolio":
+            return <ContentTabPortfolio/>
+        case "testimonial":
+            return <ContentTabTestimonial/>
+        case "contact":
+            return <ContentTabContact/>
     }
 }

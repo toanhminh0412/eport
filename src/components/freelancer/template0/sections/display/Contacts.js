@@ -2,8 +2,7 @@
 import Link from "next/link"
 
 // Local imports
-import socialIconsStyle from "@/data/social-icons-style"
-import socialIcons from "@/data/social-icons"
+import { socialIcons, socialIconsStyle } from "@/data/social-icons"
 import { btnColorOptions } from "@/data/colorOptions"
 
 export function Contact1({ section }) {
@@ -19,11 +18,11 @@ export function Contact1({ section }) {
                                     <div key={contact.id} className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
                                 )}
                                 <div className="mt-10">
-                                    {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={socialIconsStyle[socialBtn.social]}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
+                                    {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
                                 </div>
                             </div>
                         </div>
-                        <div className="mx-auto max-w-[608px] bg-slate-200 px-8 max-[991px]:ml-0 max-[991px]:mr-0 pt-[2em] pb-8">
+                        <div className="mx-auto min-w-[450px] max-w-[608px] bg-slate-200 px-8 max-[991px]:ml-0 max-[991px]:mr-0 pt-[2em] pb-8">
                             <div className="text-center">
                                 <h1 className="font-bold text-3xl md:text-5xl">Contact <span className="text-orange-500">Us</span></h1>
                                 <div className="mx-auto mt-4 max-w-[480px] mb-5 md:mb-6 lg:mb-8">

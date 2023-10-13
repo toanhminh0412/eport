@@ -37,13 +37,14 @@ export function Testimonials1({ section }) {
                                     {section.testimonials.slice(0, 3).map(testimonial => (
                                         <div key={testimonial.id} className="relative grid-cols-1 grid flex-col justify-around gap-6 border border-solid border-black bg-white px-6 py-8 [box-shadow:rgb(0,_0,_0)_9px_9px]  max-[767px]:p-8 rounded-2xl mb-8 lg:mb-4">
                                             <div className="flex">
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
+                                                {[...Array(testimonial.ratingStars)].map((_, i) =>
+                                                    <div key={i} className="inline-block text-yellow-400 max-w-full flex-none mr-1 w-4 text-lg"><i className="fa-solid fa-star"></i></div>
+                                                )}
+                                                {[...Array(5 - testimonial.ratingStars)].map((_, i) =>
+                                                    <div key={i} className="inline-block text-slate-300 max-w-full flex-none mr-1 w-4 text-lg"><i className="fa-solid fa-star"></i></div>
+                                                )}
                                             </div>
-                                            <div className="text-slate-700"><span>&quot;</span>{testimonial.content}<span>&quot;</span></div>
+                                            <div className="text-slate-700" dangerouslySetInnerHTML={{ __html: testimonial.content}}></div>
                                             <div className="flex-row flex items-start">
                                                 <Image src={testimonial.image} alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                                 <div className="flex-col flex items-start">
@@ -59,13 +60,14 @@ export function Testimonials1({ section }) {
                                     {section.testimonials.map(testimonial => (
                                         <div key={testimonial.id} className="relative grid-cols-1 grid flex-col justify-around gap-6 border border-solid border-black bg-white px-6 py-8 [box-shadow:rgb(0,_0,_0)_9px_9px]  max-[767px]:p-8 rounded-2xl mb-8 lg:mb-4">
                                             <div className="flex">
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
-                                                <Image src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63904f663019b0ce62f8d5ba_Vector.svg" alt="" className="inline-block max-w-full flex-none mr-1 w-3.5" width={10} height={10}/>
+                                                {[...Array(testimonial.ratingStars)].map((_, i) =>
+                                                    <div key={i} className="inline-block text-yellow-400 max-w-full flex-none mr-1 w-4 text-lg"><i className="fa-solid fa-star"></i></div>
+                                                )}
+                                                {[...Array(5 - testimonial.ratingStars)].map((_, i) =>
+                                                    <div key={i} className="inline-block text-slate-300 max-w-full flex-none mr-1 w-4 text-lg"><i className="fa-solid fa-star"></i></div>
+                                                )}
                                             </div>
-                                            <div className="text-slate-700"><span>&quot;</span>{testimonial.content}<span>&quot;</span></div>
+                                            <div className="text-slate-700" dangerouslySetInnerHTML={{ __html: testimonial.content}}></div>
                                             <div className="flex-row flex items-start">
                                                 <Image src={testimonial.image} alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                                 <div className="flex-col flex items-start">

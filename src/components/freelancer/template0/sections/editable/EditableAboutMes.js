@@ -6,6 +6,7 @@ import Image from "next/image";
 
 // Local imports
 import { ActiveContentContext, ActiveTabContext, SectionsContext } from "../../site";
+import { badgeColorOptions } from "@/data/colorOptions";
 
 export function EditableAboutMe1({ section, sectionInd }) {
     const { _activeTab, setActiveTab } = useContext(ActiveTabContext);
@@ -20,23 +21,23 @@ export function EditableAboutMe1({ section, sectionInd }) {
 
     return (
         <section className="group">
-            <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById('delete_modal_aboutme1').showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
-            <dialog id="delete_modal_aboutme1" className="modal modal-bottom sm:modal-middle">
+            <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
+            <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Delete Section!</h3>
                     <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
                     <div className="modal-action">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
+                        {/* if there is a button in form, it will close the modal */}
+                        <form className="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
-                            <button className="btn mr-[-50px] bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
-                        </form>
-                        <form method="dialog" className="modal-backdrop">
-                            <button>close</button>
+                            <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
                         </form>
                     </div>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
             </dialog>
             <div className={`block border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="px-5 md:px-10">
@@ -50,13 +51,13 @@ export function EditableAboutMe1({ section, sectionInd }) {
                                     <div className="">
                                         <div className="flex-col flex items-start">
                                             <div className="flex-col flex items-start gap-2">
-                                                <div className="flex grid-cols-2 items-center bg-slate-300 px-3 py-1 rounded-md">
-                                                    <div className="h-2 w-2 min-w-[8px] bg-black rounded-full mr-2"></div>
-                                                    <div className="text-sm sm:text-sm">{section.tag}</div>
-                                                </div>
+                                                {section.status.text ? <div className={`flex grid-cols-2 items-center px-3 py-1 rounded-md ${badgeColorOptions[section.status.color]}`}>
+                                                    <div className={`h-2 w-2 min-w-[8px] ${section.status.color === 'slate' ? 'bg-black' : 'bg-white'} rounded-full`}></div>
+                                                    <div className="text-sm sm:text-sm ml-2">{section.status.text}</div>
+                                                </div> : null}
                                                 <p className="flex-col text-slate-600 text-sm sm:text-xl">{section.job}</p>
                                                 <h1 className="font-bold text-4xl md:text-6xl mb-5 md:mb-6 lg:mb-8">{section.name}</h1>
-                                                <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify">{section.description}</p>
+                                                <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify" dangerouslySetInnerHTML={{ __html: section.description }}></p>
                                             </div>
                                             <div className="tabs mt-7">
                                                 <div className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === 0 ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(0)}>{section.tab[0].tabHeading}</div> 

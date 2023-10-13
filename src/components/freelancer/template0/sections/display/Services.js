@@ -39,7 +39,7 @@ export function Services1({ section }) {
                                                 </div>
                                                 <h3 className="my-0 px-2 sm:px-5 text-3xl">{service.title}</h3>
                                                 <h2 className="mb-2 px-2 sm:px-5 text-xl">{service.price}</h2>
-                                                <article className="px-2 sm:px-5 mb-10">{service.content}</article>
+                                                <article className="px-2 sm:px-5 mb-10" dangerouslySetInnerHTML={{ __html: service.content }}></article>
                                             </div>
                                         </div>
                                     </SwiperSlide>

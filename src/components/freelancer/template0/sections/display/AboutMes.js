@@ -4,6 +4,9 @@
 import { useState } from "react"
 import Image from "next/image";
 
+// Local imports
+import { badgeColorOptions } from "@/data/colorOptions";
+
 export function AboutMe1({ section }) {
     const [activeTabAboutMe, setActiveTabAboutMe] = useState(0);
 
@@ -20,13 +23,13 @@ export function AboutMe1({ section }) {
                                 <div className="">
                                     <div className="flex-col flex items-start">
                                         <div className="flex-col flex items-start gap-2">
-                                            <div className="flex grid-cols-2 items-center bg-slate-300 px-3 py-1 rounded-md">
-                                                <div className="h-2 w-2 min-w-[8px] bg-black rounded-full mr-2"></div>
-                                                <div className="text-sm sm:text-sm">{section.tag}</div>
-                                            </div>
+                                            {section.status.text ? <div className={`flex grid-cols-2 items-center px-3 py-1 rounded-md ${badgeColorOptions[section.status.color]}`}>
+                                                <div className={`h-2 w-2 min-w-[8px] ${section.status.color === 'slate' ? 'bg-black' : 'bg-white'} rounded-full`}></div>
+                                                <div className="text-sm sm:text-sm ml-2">{section.status.text}</div>
+                                            </div> : null}
                                             <p className="flex-col text-slate-600 text-sm sm:text-xl">{section.job}</p>
                                             <h1 className="font-bold text-4xl md:text-6xl mb-5 md:mb-6 lg:mb-8">{section.name}</h1>
-                                            <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify">{section.description}</p>
+                                            <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify" dangerouslySetInnerHTML={{ __html: section.description }}></p>
                                         </div>
                                         <div className="tabs mt-7">
                                             <div className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === 0 ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(0)}>{section.tab[0].tabHeading}</div> 

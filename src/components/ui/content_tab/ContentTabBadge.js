@@ -14,7 +14,7 @@ export default function ContentTabBadge({ content, onChange, onDelete=null }) {
                     name="text" 
                     placeholder="Heading text" 
                     className="input input-sm border border-neutral w-full" 
-                    defaultValue={text}
+                    value={text}
                     onChange={onChange}/>
             </div>
 

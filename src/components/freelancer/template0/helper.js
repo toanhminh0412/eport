@@ -65,7 +65,7 @@ export function getSectionInitialData(sectionId) {
                         id: 0,
                         text: "Contact",
                         href: "#",
-                        color: "blue"
+                        color: "orange"
                     }
                 ]
             }
@@ -76,7 +76,7 @@ export function getSectionInitialData(sectionId) {
                 sectionId: "aboutme1",
                 sectionType: "aboutme",
                 avatar: "/img/freelancer-template0-aboutme1-avatar.jpg",
-                tag: "Available for work",
+                status: {text: "Available for work", color: "green"},
                 job: "Software Developer",
                 name: "Eport Website",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -173,13 +173,13 @@ export function getSectionInitialData(sectionId) {
                                 id: 0,
                                 text: "Learn more",
                                 href: null,
-                                color: "blue"
+                                color: "orange"
                             },
                             {
                                 id: 1,
                                 text: "See Docs",
                                 href: "#",
-                                color: "blue"
+                                color: "orange"
                             }
                         ]
                     },
@@ -198,13 +198,13 @@ export function getSectionInitialData(sectionId) {
                                 id: 0,
                                 text: "Learn more",
                                 href: null,
-                                color: "blue"
+                                color: "orange"
                             },
                             {
                                 id: 1,
                                 text: "See Docs",
                                 href: "#",
-                                color: "blue"
+                                color: "orange"
                             }
                         ]
                     },
@@ -223,13 +223,13 @@ export function getSectionInitialData(sectionId) {
                                 id: 0,
                                 text: "Learn more",
                                 href: null,
-                                color: "blue"
+                                color: "orange"
                             },
                             {
                                 id: 1,
                                 text: "See Docs",
                                 href: "#",
-                                color: "blue"
+                                color: "orange"
                             }
                         ]
                     },
@@ -248,13 +248,13 @@ export function getSectionInitialData(sectionId) {
                                 id: 0,
                                 text: "Learn more",
                                 href: null,
-                                color: "blue"
+                                color: "orange"
                             },
                             {
                                 id: 1,
                                 text: "See Docs",
                                 href: "#",
-                                color: "blue"
+                                color: "orange"
                             }
                         ]
                     }
@@ -270,6 +270,7 @@ export function getSectionInitialData(sectionId) {
                 testimonials: [
                     {
                         id: 0,
+                        ratingStars: 4,
                         content: "Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis",
                         image: "/img/freelancer-template0-aboutme1-avatar.jpg",
                         name: "Harry Peter",
@@ -277,6 +278,7 @@ export function getSectionInitialData(sectionId) {
                     },
                     {
                         id: 1,
+                        ratingStars: 4,
                         content: "Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis",
                         image: "/img/freelancer-template0-aboutme1-avatar.jpg",
                         name: "Harry Peter",
@@ -284,6 +286,7 @@ export function getSectionInitialData(sectionId) {
                     },
                     {
                         id: 2,
+                        ratingStars: 4,
                         content: "Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis",
                         image: "/img/freelancer-template0-aboutme1-avatar.jpg",
                         name: "Harry Peter",
@@ -291,6 +294,7 @@ export function getSectionInitialData(sectionId) {
                     },
                     {
                         id: 3,
+                        ratingStars: 4,
                         content: "Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis",
                         image: "/img/freelancer-template0-aboutme1-avatar.jpg",
                         name: "Harry Peter",
@@ -300,7 +304,7 @@ export function getSectionInitialData(sectionId) {
                 actionBtn: {
                     text: null,
                     href: null,
-                    color: "blue"
+                    color: "black"
                 }
             }
 
@@ -343,7 +347,7 @@ export function getSectionInitialData(sectionId) {
                 actionBtn: {
                     text: "Submit",
                     href: null,
-                    color: "blue"
+                    color: "orange"
                 }
             }
 

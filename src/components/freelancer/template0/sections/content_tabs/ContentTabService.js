@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabIconPicker from "@/components/ui/content_tab/ContentTabIconPicker";
+import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabService() {
@@ -47,9 +48,9 @@ export default function ContentTabService() {
     }
 
     // Change service content
-    const onServiceContentChange = (e, serviceInd) => {
+    const onServiceContentChange = (value, serviceInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].services[serviceInd].content = e.target.value;
+        newSections[activeSectionInd].services[serviceInd].content = value;
         setSections(newSections);
     }
 
@@ -94,22 +95,30 @@ export default function ContentTabService() {
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
                         <div key={service.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-3 px-3 mt-2 mb-4 relative">
                             <div onClick={() => deleteServiceItem(serviceInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
+                            <h5 className="font-semibold">Service Item {serviceInd + 1}</h5>
+                            {/* Icont */}
                             <label className="pt-0">
-                                <span className="label-text text-slate-500">Icon</span>
+                                <span className="label-text text-slate-700 font-medium">Icon</span>
                             </label>
                             <ContentTabIconPicker content={service} onIconChange={icon => onServiceIconChange(icon, serviceInd)}/>
+                            
+                            {/* Title */}
                             <label className="pt-0">
-                                <span className="label-text text-slate-500">Title</span>
+                                <span className="label-text text-slate-700 font-medium">Title</span>
                             </label>
                             <ContentTabText content={service.title} onChange={e => onServiceTitleChange(e, serviceInd)}/>
+                            
+                            {/* Price */}
                             <label className="pt-0">
-                                <span className="label-text text-slate-500">Price</span>
+                                <span className="label-text text-slate-700 font-medium">Price</span>
                             </label>
                             <ContentTabText content={service.price} onChange={e => onServicePriceChange(e, serviceInd)}/>
+                            
+                            {/* Content */}
                             <label className="pt-0">
-                                <span className="label-text text-slate-500">Content</span>
+                                <span className="label-text text-slate-700 font-medium">Content</span>
                             </label>
-                            <ContentTabText rows={5} content={service.content} onChange={e => onServiceContentChange(e, serviceInd)}/>
+                            <ContentTabFormattedText content={service.content} onChange={e => onServiceContentChange(e, serviceInd)}/>
                         </div>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addServiceItem()}><i className="fa-solid fa-plus"></i> Add service item</div>

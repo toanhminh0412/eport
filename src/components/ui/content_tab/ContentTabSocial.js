@@ -13,7 +13,7 @@ export default function ContentTabSocial({ content, onChange, onDelete=null }) {
                 </label>
                 <select className="select border border-neutral w-full max-w-xs"
                     name="option"
-                    defaultValue={social}
+                    value={social}
                     onChange={onChange}>
                     {Object.keys(socialIcons).map((key, socialIndex) => (
                         <option key={`${key}-${socialIndex}`} value={key}>{key}</option>
@@ -31,7 +31,7 @@ export default function ContentTabSocial({ content, onChange, onDelete=null }) {
                     name="link"
                     placeholder="Heading link" 
                     className="input input-sm border border-neutral w-full" 
-                    defaultValue={href}
+                    value={href}
                     onChange={onChange}/>
             </div>
         </div>

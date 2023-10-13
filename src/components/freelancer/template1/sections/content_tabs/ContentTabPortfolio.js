@@ -7,6 +7,7 @@ import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabLink from "@/components/ui/content_tab/ContentTabLink";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
+import ContentTabAddDeleteImage from "@/components/ui/content_tab/ContentTabAddDeleteImage";
 
 export default function ContentTabPortfolio() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -27,6 +28,27 @@ export default function ContentTabPortfolio() {
     }
 
     /*** Manage projects ***/
+    // Add project images
+    const addProjectImages = (e, projectInd) => {
+        const newSections = [...sections];
+        const projectImagesLength = newSections[activeSectionInd].projects[projectInd].images.length;
+        const lastId = projectImagesLength === 0 ? -1 : parseInt(newSections[activeSectionInd].projects[projectInd].images[projectImagesLength - 1].id);
+        for (let i = 0; i < e.target.files.length; i++) {
+            newSections[activeSectionInd].projects[projectInd].images.push({
+                id: lastId + 1 + i,
+                src: URL.createObjectURL(e.target.files[i])
+            });
+        }
+        setSections(newSections);
+    }
+
+    // Delete project images
+    const deleteProjectImages = (e, projectInd, imageInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].projects[projectInd].images.splice(imageInd, 1);
+        setSections(newSections);
+    }
+
     // Change project name
     const onProjectNameChange = (e, projectInd) => {
         const newSections = [...sections];
@@ -103,6 +125,9 @@ export default function ContentTabPortfolio() {
                     <div key={project.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
                         <h4 className="my-0">Project #{projectInd + 1}</h4>
                         <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteProject(projectInd)}></i>
+                        {/* Images */}
+                        <label className="text-sm">Project images</label>
+                        <ContentTabAddDeleteImage content={project} addImage={e => addProjectImages(e, projectInd)} deleteImage={(e, imageInd) => deleteProjectImages(e, projectInd, imageInd)}/>
                         {/* Name */}
                         <label className="text-sm">Project name</label>
                         <ContentTabText content={project.name} onChange={e => onProjectNameChange(e, projectInd)}/>

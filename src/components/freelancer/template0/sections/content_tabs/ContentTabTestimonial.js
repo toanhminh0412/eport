@@ -6,7 +6,7 @@ import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
-import ContentTabRating from "@/components/ui/content_tab/ContentTabRating";
+import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
@@ -113,7 +113,7 @@ export default function ContentTabTestimonial() {
                             <label className="pt-0">
                                 <span className="label-text text-slate-700 font-medium">Rating</span>
                             </label>
-                            <ContentTabRating content={testimonial.ratingStars} onChange={e => onRatingStarChange(e, testimonialInd)}/>
+                            <ContentTabNumber content={testimonial.ratingStars} min={1} max={5} onChange={e => onRatingStarChange(e, testimonialInd)}/>
 
                             {/* Content */}
                             <label className="pt-0">

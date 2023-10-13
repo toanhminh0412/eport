@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ActiveContentContext, SectionsContext } from "../../site";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
+import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
 
 export default function ContentTabTestimonial() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -18,6 +19,13 @@ export default function ContentTabTestimonial() {
     }
 
     /*** Manage reviews ***/
+    // Change review rating
+    const onReviewRatingChange = (e, reviewInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].reviews[reviewInd].rating = parseInt(e.target.value);
+        setSections(newSections);
+    }
+
     // Change reviewer's name
     const onReviewReviewerNameChange = (e, reviewInd) => {
         const newSections = [...sections];
@@ -87,7 +95,7 @@ export default function ContentTabTestimonial() {
                         <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteReview(reviewInd)}></i>
                         {/* Rating */}
                         <label className="text-sm">Rating</label>
-                        <div></div>
+                        <ContentTabNumber content={review.rating} min={1} max={5} onChange={e => onReviewRatingChange(e, reviewInd)}/>
                         {/* Reviewer's name */}
                         <label className="text-sm">Reviewer&apos;s name</label>
                         <ContentTabText content={review.reviewerName} onChange={e => onReviewReviewerNameChange(e, reviewInd)}/>

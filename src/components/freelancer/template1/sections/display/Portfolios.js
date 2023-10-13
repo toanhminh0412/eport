@@ -3,8 +3,15 @@ import Image from "next/image"
 import Link from "next/link"
 
 // Local imports
-import Swiper from "@/components/ui/Swiper"
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { convertToURL } from "@/helpers/helpers"
+
+// Third party imports
+import 'swiper/css';
+import 'swiper/css/effect-flip';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { EffectFlip, Pagination, Navigation } from 'swiper/modules';
 
 export function Portfolio1({ section }) {
     return (
@@ -27,8 +34,12 @@ export function Portfolio1({ section }) {
                                 <label htmlFor={`project_modal_${project.id}`} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">x</label>
                                 <h3 className="font-bold text-lg">{project.name}</h3>
                                 {project.images.length > 0 ? <div className="my-4">
-                                <Swiper>
-                                    {project.images.map(image => <swiper-slide key={image.id}><Image width={200} height={200} src={image.src} alt="" className="h-full w-full object-contain brightness-75"/></swiper-slide>)}
+                                <Swiper 
+                                    modules={[Navigation, Pagination]}
+                                    pagination={{ clickable: true }}
+                                    navigation
+                                    spaceBetween={50}>
+                                    {project.images.map(image => <SwiperSlide key={image.id}><Image width={200} height={200} src={image.src} alt="" className="h-full w-full object-contain brightness-75"/></SwiperSlide>)}
                                 </Swiper>
                                 </div> : null}
                                 <p className="py-4" dangerouslySetInnerHTML={{__html: project.description}}></p>

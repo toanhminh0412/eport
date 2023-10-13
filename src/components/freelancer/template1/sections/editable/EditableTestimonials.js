@@ -45,12 +45,10 @@ export function EditableTestimonial1({ section, sectionInd }) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-4 lg:gap-6 justify-items-center sm:justify-items-stretch mb-5 md:mb-6 lg:mb-8">
                         {section.reviews.map(review => (
                         <div key={review.id} className="grid-cols-1 flex flex-col border border-solid border-[#cdcdcd] bg-white rounded-md p-8 md:p-10">
-                            <div className="rating">
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked={section.rating === 1} />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked={section.rating === 2} />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked={section.rating === 3} />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked={section.rating === 4} />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked={section.rating === 5} />
+                            <div className="flex flex-row">
+                            {[...Array(review.rating)].map((_, i) => (
+                                <i key={i} className="fa-solid fa-star text-orange-500"></i>
+                            ))}
                             </div>
                             <div className="flex flex-col gap-6 justify-between mt-6 flex-grow">
                                 <div className="text-[#636262] flex-grow">&quot;{review.review}&quot;</div>

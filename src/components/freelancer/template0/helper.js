@@ -163,9 +163,18 @@ export function getSectionInitialData(sectionId) {
                         title: "Project Name",
                         description: "The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.",
                         images: [
-                            "/img/freelancer-template0-portfolio1-bg.jpg",
-                            "/img/freelancer-template1-portfolio1-photo1.jpg",
-                            "/img/header-bg.jpg",
+                            {
+                                id: 0,
+                                src: "/img/freelancer-template0-portfolio1-bg.jpg"
+                            },
+                            {
+                                id: 1,
+                                src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                            },
+                            {
+                                id: 2,
+                                src: "/img/header-bg.jpg"
+                            }
                         ],
                         tags: ["Development", "Website", "Portfolio"],
                         actionBtns: [
@@ -188,9 +197,18 @@ export function getSectionInitialData(sectionId) {
                         title: "Project Name",
                         description: "The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.",
                         images: [
-                            "/img/freelancer-template0-portfolio1-bg.jpg",
-                            "/img/freelancer-template1-portfolio1-photo1.jpg",
-                            "/img/header-bg.jpg",
+                            {
+                                id: 0,
+                                src: "/img/freelancer-template0-portfolio1-bg.jpg"
+                            },
+                            {
+                                id: 1,
+                                src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                            },
+                            {
+                                id: 2,
+                                src: "/img/header-bg.jpg"
+                            }
                         ],
                         tags: ["Development", "Website", "Portfolio"],
                         actionBtns: [
@@ -213,9 +231,18 @@ export function getSectionInitialData(sectionId) {
                         title: "Project Name",
                         description: "The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.",
                         images: [
-                            "/img/freelancer-template0-portfolio1-bg.jpg",
-                            "/img/freelancer-template1-portfolio1-photo1.jpg",
-                            "/img/header-bg.jpg",
+                            {
+                                id: 0,
+                                src: "/img/freelancer-template0-portfolio1-bg.jpg"
+                            },
+                            {
+                                id: 1,
+                                src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                            },
+                            {
+                                id: 2,
+                                src: "/img/header-bg.jpg"
+                            }
                         ],
                         tags: ["Development", "Website", "Portfolio"],
                         actionBtns: [
@@ -238,9 +265,18 @@ export function getSectionInitialData(sectionId) {
                         title: "Project Name",
                         description: "The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.",
                         images: [
-                            "/img/freelancer-template0-portfolio1-bg.jpg",
-                            "/img/freelancer-template1-portfolio1-photo1.jpg",
-                            "/img/header-bg.jpg",
+                            {
+                                id: 0,
+                                src: "/img/freelancer-template0-portfolio1-bg.jpg"
+                            },
+                            {
+                                id: 1,
+                                src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                            },
+                            {
+                                id: 2,
+                                src: "/img/header-bg.jpg"
+                            }
                         ],
                         tags: ["Development", "Website", "Portfolio"],
                         actionBtns: [

@@ -6,6 +6,7 @@ import { ActiveContentContext, SectionsContext } from "../../site";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 
 export default function ContentTabTestimonial() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -90,25 +91,32 @@ export default function ContentTabTestimonial() {
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Reviews</h4>
                     {sections[activeSectionInd].reviews.map((review, reviewInd) => (
-                    <div key={review.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
-                        <h4 className="my-0">Review #{reviewInd + 1}</h4>
-                        <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteReview(reviewInd)}></i>
-                        {/* Rating */}
-                        <label className="text-sm">Rating</label>
-                        <ContentTabNumber content={review.rating} min={1} max={5} onChange={e => onReviewRatingChange(e, reviewInd)}/>
-                        {/* Reviewer's name */}
-                        <label className="text-sm">Reviewer&apos;s name</label>
-                        <ContentTabText content={review.reviewerName} onChange={e => onReviewReviewerNameChange(e, reviewInd)}/>
-                        {/* Reviewer job */}
-                        <label className="text-sm">Reviewer&apos;s job</label>
-                        <ContentTabText content={review.reviewerJob} onChange={e => onReviewReviewerJobChange(e, reviewInd)}/>
-                        {/* Review */}
-                        <label className="text-sm">Review</label>
-                        <ContentTabText rows={5} content={review.review} onChange={e => onReviewChange(e, reviewInd)}/>
-                        {/* Review Link */}
-                        <label className="text-sm">Review link</label>
-                        <ContentTabText content={review.reviewUrl} onChange={e => onReviewUrlChange(e, reviewInd)}/>
-                    </div>
+                        <ContentTabAccordion
+                            key={review.id}
+                            childrenHeading={
+                                <h4 className="my-0">Review #{reviewInd + 1}</h4>
+                            }
+                            childrenBody={
+                                <div>
+                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteReview(reviewInd)}></i>
+                                    {/* Rating */}
+                                    <label className="text-sm">Rating</label>
+                                    <ContentTabNumber content={review.rating} min={1} max={5} onChange={e => onReviewRatingChange(e, reviewInd)}/>
+                                    {/* Reviewer's name */}
+                                    <label className="text-sm">Reviewer&apos;s name</label>
+                                    <ContentTabText content={review.reviewerName} onChange={e => onReviewReviewerNameChange(e, reviewInd)}/>
+                                    {/* Reviewer job */}
+                                    <label className="text-sm">Reviewer&apos;s job</label>
+                                    <ContentTabText content={review.reviewerJob} onChange={e => onReviewReviewerJobChange(e, reviewInd)}/>
+                                    {/* Review */}
+                                    <label className="text-sm">Review</label>
+                                    <ContentTabText rows={5} content={review.review} onChange={e => onReviewChange(e, reviewInd)}/>
+                                    {/* Review Link */}
+                                    <label className="text-sm">Review link</label>
+                                    <ContentTabText content={review.reviewUrl} onChange={e => onReviewUrlChange(e, reviewInd)}/>
+                                </div>
+                            }
+                        />
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addReview}><i className="fa-solid fa-plus"></i> Add review</div>
                 </div>

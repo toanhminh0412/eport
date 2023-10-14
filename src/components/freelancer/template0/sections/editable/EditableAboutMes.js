@@ -19,16 +19,21 @@ export function EditableAboutMe1({ section, sectionInd }) {
         setActiveSectionInd(sectionInd);
     }
 
+    const delButton = (e) => {
+        if (e.key === "Delete") {
+            document.getElementById(`delete_modal_${section.id}`).showModal()
+        }
+    }
+
     return (
         <section className="group">
-            <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
+            <button className="btn bg-blue-700 border-none z-40 absolute hover:bg-blue-900 top-[-35px] right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white"></i></button>
             <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Delete Section!</h3>
                     <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
                     <div className="modal-action">
-                        {/* if there is a button in form, it will close the modal */}
-                        <form className="dialog">
+                        <form method="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
                             <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>

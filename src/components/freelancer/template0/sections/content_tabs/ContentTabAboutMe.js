@@ -7,6 +7,7 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBadge from "@/components/ui/content_tab/ContentTabBadge";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabAboutMe() {
@@ -125,27 +126,35 @@ export default function ContentTabAboutMe() {
 
                 {/* Tab */}
                 <div className="px-3 py-1">
-                    <h4 className="my-0">Extra Information</h4>
+                    <h4 className="my-1">Extra Information</h4>
                     {sections[activeSectionInd].tab.map((tab, tabInd) => (
-                        <div key={tab.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-3 px-3 my-2 relative">
-                            <h5 className="my-0 font-semibold">Tab Heading</h5>
-                            <ContentTabText rows={1} content={tab.tabHeading} onChange={e => onTabNameChange(e, tabInd)}/>
-                            <h5 className="mt-2 font-semibold">Tab Content</h5>
-                            {tab.tabContent.map((content, contentInd) => (
-                                <div key={content.id} className="bg-slate-100 rounded-md shadow-lg border border-slate-300 px-3 my-3 relative">
-                                    <div onClick={() => deleteTabContentItem(tabInd, contentInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
-                                    <label className="pt-0">
-                                        <span className="label-text text-slate-500">Key</span>
-                                    </label>
-                                    <ContentTabText rows={1} content={content.key} onChange={e => onTabContentKeyChange(e, tabInd, contentInd)}/>
-                                    <label className="pt-0">
-                                        <span className="label-text text-slate-500">Value</span>
-                                    </label>
-                                    <ContentTabText rows={1} content={content.value} onChange={e => onTabContentValueChange(e, tabInd, contentInd)}/>
+                        <ContentTabAccordion
+                            key={tab.id}
+                            childrenHeading={
+                                <h4 className="my-0">Tab {tab.id + 1}</h4>
+                            }
+                            childrenBody={
+                                <div>
+                                    <h5 className="my-0 font-semibold">Tab Heading</h5>
+                                        <ContentTabText rows={1} content={tab.tabHeading} onChange={e => onTabNameChange(e, tabInd)}/>
+                                    <h5 className="mt-2 font-semibold">Tab Content</h5>
+                                    {tab.tabContent.map((content, contentInd) => (
+                                        <div key={content.id} className="bg-slate-100 rounded-md shadow-lg border border-slate-300 px-3 my-3 relative">
+                                            <div onClick={() => deleteTabContentItem(tabInd, contentInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
+                                            <label className="pt-0">
+                                                <span className="label-text text-slate-500">Key</span>
+                                            </label>
+                                            <ContentTabText rows={1} content={content.key} onChange={e => onTabContentKeyChange(e, tabInd, contentInd)}/>
+                                            <label className="pt-0">
+                                                <span className="label-text text-slate-500">Value</span>
+                                            </label>
+                                            <ContentTabText rows={1} content={content.value} onChange={e => onTabContentValueChange(e, tabInd, contentInd)}/>
+                                        </div>
+                                    ))}
+                                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addTabContentItem(tabInd)}><i className="fa-solid fa-plus"></i> Add tab content item</div>
                                 </div>
-                            ))}
-                            <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addTabContentItem(tabInd)}><i className="fa-solid fa-plus"></i> Add tab content item</div>
-                        </div>
+                            }
+                        />
                     ))}
                 </div>
                 <DeleteSectionButton/>

@@ -41,7 +41,7 @@ export default function ContentTabNavbar() {
         <div>
             <div className="prose max-w-none">
                 {/* Navbar items */}
-                <div className="p-3">
+                <div className="py-3 px-2">
                     <h4 className="my-0">Navigation bar items</h4>
                     {sections[activeSectionInd].navItems.map((navItem, navItemInd) => (
                         <ContentTabLink 

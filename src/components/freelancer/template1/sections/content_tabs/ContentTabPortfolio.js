@@ -8,6 +8,8 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabLink from "@/components/ui/content_tab/ContentTabLink";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabAddDeleteImage from "@/components/ui/content_tab/ContentTabAddDeleteImage";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
+import { Content } from "next/font/google";
 
 export default function ContentTabPortfolio() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -122,26 +124,32 @@ export default function ContentTabPortfolio() {
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Projects</h4>
                     {sections[activeSectionInd].projects.map((project, projectInd) => (
-                    <div key={project.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
-                        <h4 className="my-0">Project #{projectInd + 1}</h4>
-                        <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteProject(projectInd)}></i>
-                        {/* Images */}
-                        <label className="text-sm">Project images</label>
-                        <ContentTabAddDeleteImage content={project} addImage={e => addProjectImages(e, projectInd)} deleteImage={(e, imageInd) => deleteProjectImages(e, projectInd, imageInd)}/>
-                        {/* Name */}
-                        <label className="text-sm">Project name</label>
-                        <ContentTabText content={project.name} onChange={e => onProjectNameChange(e, projectInd)}/>
-                        {/* Company/time period */}
-                        <label className="text-sm">Company/time period</label>
-                        <ContentTabText content={project.company} onChange={e => onProjectCompanyChange(e, projectInd)}/>
-                        {/* Project URL */}
-                        <label className="text-sm">Project link</label>
-                        <ContentTabLink content={project.projectUrl} onChange={e => onProjectURLChange(e, projectInd)}/>
-                        {/* Project description */}
-                        <label className="text-sm">Project description</label>
-                        <ContentTabFormattedText content={project.description} onChange={e => onProjectDescriptionChange(e, projectInd)}/>
-                        {/* Project images */}
-                    </div>
+                        <ContentTabAccordion
+                            key={project.id}
+                            childrenHeading={
+                                <h4 className="my-0">Project #{projectInd + 1}</h4>
+                            }
+                            childrenBody={
+                                <div>
+                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteProject(projectInd)}></i>
+                                    {/* Images */}
+                                    <label className="text-sm">Project images</label>
+                                    <ContentTabAddDeleteImage content={project} addImage={e => addProjectImages(e, projectInd)} deleteImage={(e, imageInd) => deleteProjectImages(e, projectInd, imageInd)}/>
+                                    {/* Name */}
+                                    <label className="text-sm">Project name</label>
+                                    <ContentTabText content={project.name} onChange={e => onProjectNameChange(e, projectInd)}/>
+                                    {/* Company/time period */}
+                                    <label className="text-sm">Company/time period</label>
+                                    <ContentTabText content={project.company} onChange={e => onProjectCompanyChange(e, projectInd)}/>
+                                    {/* Project URL */}
+                                    <label className="text-sm">Project link</label>
+                                    <ContentTabLink content={project.projectUrl} onChange={e => onProjectURLChange(e, projectInd)}/>
+                                    {/* Project description */}
+                                    <label className="text-sm">Project description</label>
+                                    <ContentTabFormattedText content={project.description} onChange={e => onProjectDescriptionChange(e, projectInd)}/>
+                                </div>
+                            }
+                        />
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addProject}><i className="fa-solid fa-plus"></i> Add project</div>
                 </div>

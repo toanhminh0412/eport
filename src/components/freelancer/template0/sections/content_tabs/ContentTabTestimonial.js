@@ -8,6 +8,7 @@ import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabTestimonial() {
@@ -106,39 +107,46 @@ export default function ContentTabTestimonial() {
                 <div className="px-3 py-1">
                     <h4 className="my-0">Testimonials</h4>
                     {sections[activeSectionInd].testimonials.map((testimonial, testimonialInd) => (
-                        <div key={testimonial.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-3 px-3 mt-2 mb-4 relative">
-                            <div onClick={() => deleteTestimonialItem(testimonialInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
-                            <h5 className="font-semibold">Testimonial Item {testimonialInd + 1}</h5>
-                            {/* Rating */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Rating</span>
-                            </label>
-                            <ContentTabNumber content={testimonial.ratingStars} min={1} max={5} onChange={e => onRatingStarChange(e, testimonialInd)}/>
+                        <ContentTabAccordion
+                            key={testimonial.id}
+                            childrenHeading={
+                                <h5 className="font-semibold">Testimonial Item {testimonialInd + 1}</h5>
+                            }
+                            childrenBody={
+                                <div>
+                                    <div onClick={() => deleteTestimonialItem(testimonialInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
+                                    {/* Rating */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Rating</span>
+                                    </label>
+                                    <ContentTabNumber content={testimonial.ratingStars} min={1} max={5} onChange={e => onRatingStarChange(e, testimonialInd)}/>
 
-                            {/* Content */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Content</span>
-                            </label>
-                            <ContentTabFormattedText content={testimonial.content} onChange={e => onTestimonialContentChange(e, testimonialInd)}/>
-                            
-                            {/* Image */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Image</span>
-                            </label>
-                            <ContentTabImage content={testimonial.image} onChange={e => onTestinomialImageChange(e, testimonialInd)} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
+                                    {/* Content */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Content</span>
+                                    </label>
+                                    <ContentTabFormattedText content={testimonial.content} onChange={e => onTestimonialContentChange(e, testimonialInd)}/>
+                                    
+                                    {/* Image */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Image</span>
+                                    </label>
+                                    <ContentTabImage content={testimonial.image} onChange={e => onTestinomialImageChange(e, testimonialInd)} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
 
-                            {/* Name */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Name</span>
-                            </label>
-                            <ContentTabText content={testimonial.name} onChange={e => onTestimonialNameChange(e, testimonialInd)}/>
+                                    {/* Name */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Name</span>
+                                    </label>
+                                    <ContentTabText content={testimonial.name} onChange={e => onTestimonialNameChange(e, testimonialInd)}/>
 
-                            {/* Job */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Job</span>
-                            </label>
-                            <ContentTabText content={testimonial.job} onChange={e => onTestimonialJobChange(e, testimonialInd)}/>
-                        </div>
+                                    {/* Job */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Job</span>
+                                    </label>
+                                    <ContentTabText content={testimonial.job} onChange={e => onTestimonialJobChange(e, testimonialInd)}/>
+                                </div>
+                            }
+                        />
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addTestimonialItem()}><i className="fa-solid fa-plus"></i> Add testimonial item</div>
                 </div>

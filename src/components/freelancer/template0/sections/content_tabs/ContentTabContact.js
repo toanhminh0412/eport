@@ -7,6 +7,7 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabIconPicker from "@/components/ui/content_tab/ContentTabIconPicker";
 import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabContact() {
@@ -105,22 +106,28 @@ export default function ContentTabContact() {
                 <div className="px-3 py-1">
                     <h4 className="my-0">Contact Information</h4>
                     {sections[activeSectionInd].contactInfo.map((contact, contactInd) => (
-                        <div key={contact.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-3 px-3 mt-2 mb-4 relative">
-                            <div onClick={() => removeContactInformation(contactInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
-                            <h5 className="font-semibold">Contact Item {contactInd + 1}</h5>
+                        <ContentTabAccordion
+                            key={contact.id}
+                            childrenHeading={
+                                <h5 className="font-semibold">Contact Item {contactInd + 1}</h5>
+                            }
+                            childrenBody={
+                                <div>
+                                    <div onClick={() => removeContactInformation(contactInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
+                                    {/* Contact icon */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-500">Icon</span>
+                                    </label>
+                                    <ContentTabIconPicker content={contact} onIconChange={icon => onContactInformationIconChange(icon, contactInd)}/>
 
-                            {/* Contact icon */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-500">Icon</span>
-                            </label>
-                            <ContentTabIconPicker content={contact} onIconChange={icon => onContactInformationIconChange(icon, contactInd)}/>
-
-                            {/* Contact content */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-500">Contact content</span>
-                            </label>
-                            <ContentTabText content={contact.content} onChange={e => onContactInformationContentChange(e, contactInd)}/>
-                        </div>
+                                    {/* Contact content */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-500">Contact content</span>
+                                    </label>
+                                    <ContentTabText content={contact.content} onChange={e => onContactInformationContentChange(e, contactInd)}/>
+                                </div>
+                            }
+                        />
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addContactInformation()}><i className="fa-solid fa-plus"></i> Add contact information</div>
                 </div>
@@ -128,7 +135,14 @@ export default function ContentTabContact() {
                 {/* Socials button */}
                 <div className="px-3 py-1">
                     <h4 className="my-0">Social buttons</h4>
-                    {sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}
+                    <ContentTabAccordion
+                        childrenHeading={
+                            <h5 className="font-semibold">Social button item</h5>
+                        }
+                        childrenBody={
+                            <div>{sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}</div>
+                        }
+                    />  
                 </div>
 
                 {/* Action button */}

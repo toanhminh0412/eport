@@ -6,6 +6,7 @@ import { useContext } from "react"
 import { socialIcons, socialIconsStyle } from "@/data/social-icons"
 import { ActiveContentContext, ActiveTabContext, SectionsContext } from "../../site"
 import { btnColorOptions } from "@/data/colorOptions"
+import { convertToURL } from "@/helpers/helpers"
 
 export function EditableContact1({ section, sectionInd }) {
     const {_activeTab, setActiveTab } = useContext(ActiveTabContext);
@@ -25,8 +26,7 @@ export function EditableContact1({ section, sectionInd }) {
                     <h3 className="font-bold text-lg">Delete Section!</h3>
                     <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
                     <div className="modal-action">
-                        {/* if there is a button in form, it will close the modal */}
-                        <form className="dialog">
+                        <form method="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
                             <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
@@ -48,7 +48,7 @@ export function EditableContact1({ section, sectionInd }) {
                                         <div key={contact.id} className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
                                     )}
                                     <div className="mt-10">
-                                        {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
+                                        {section.socials.map(socialBtn => <Link key={socialBtn.id} href={convertToURL(socialBtn.href)} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
                                     </div>
                                 </div>
                             </div>

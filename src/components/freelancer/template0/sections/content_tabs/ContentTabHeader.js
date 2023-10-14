@@ -7,6 +7,7 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabHeader() {
@@ -78,7 +79,7 @@ export default function ContentTabHeader() {
         <div>
             <div className="prose max-w-none">
                 {/* Background image */}
-                <div className="px-3 pb-1">
+                <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Background Image</h4>
                     <ContentTabImage content={sections[activeSectionInd].backgroundImage} onChange={onBackgroundImageChange} defaultImage="/img/freelancer-template0-header1-white-bg.png"/>
                 </div>
@@ -108,15 +109,27 @@ export default function ContentTabHeader() {
                 </div>
 
                 {/* Socials button */}
-                <div className="px-3 py-1">
-                    <h4 className="my-0">Social buttons</h4>
-                    {sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}
+                <div className="px-3 py-2">
+                    <ContentTabAccordion
+                        childrenHeading={
+                            <h4 className="my-0">Social buttons</h4>
+                        }
+                        childrenBody={
+                            <div>{sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}</div>
+                        }
+                    />
                 </div>
 
                 {/* Action button */}
-                <div className="px-3 py-1">
-                    <h4 className="my-0">Action buttons</h4>
-                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}
+                <div className="px-3 py-2">
+                    <ContentTabAccordion
+                        childrenHeading={
+                            <h4 className="my-0">Action buttons</h4>
+                        }
+                        childrenBody={
+                            <div>{sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}</div>
+                        }
+                    />
                 </div>
                 <DeleteSectionButton/>
             </div>

@@ -8,6 +8,7 @@ import ContentTabAddTag from "@/components/ui/content_tab/ContentTabAddTag";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabAddDeleteImage from "@/components/ui/content_tab/ContentTabAddDeleteImage";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabPortfolio() {
@@ -52,16 +53,22 @@ export default function ContentTabPortfolio() {
 
     // Add portfolio image
     const addPortfolioImage = (e, portfolioInd) => {
-        const file = e.target.files[0];
         const newSections = [...sections];
-        newSections[activeSectionInd].portfolios[portfolioInd].images.push(URL.createObjectURL(file));
+        const porfolioImagesLength = newSections[activeSectionInd].portfolios[portfolioInd].images.length;
+        const lastId = porfolioImagesLength === 0 ? -1 : parseInt(newSections[activeSectionInd].portfolios[portfolioInd].images[porfolioImagesLength - 1].id);
+        for (let i = 0; i < e.target.files.length; i++) {
+            newSections[activeSectionInd].portfolios[portfolioInd].images.push({
+                id: lastId + 1 + i,
+                src: URL.createObjectURL(e.target.files[i])
+            });
+        }
         setSections(newSections);
     }
 
     // Delete portfolio image
     const deletePortfolioImage = (e, portfolioInd, imageInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].portfolios[portfolioInd].images.splice(imageInd, 1)
+        newSections[activeSectionInd].portfolios[portfolioInd].images.splice(imageInd, 1);
         setSections(newSections);
     }
 
@@ -95,16 +102,34 @@ export default function ContentTabPortfolio() {
             title: "Project Name",
             description: "The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section. The Projects section serves as a portfolio of your work and a testament to your skills and expertise. It is an opportunity to make a strong impression on potential clients, employers, or collaborators. Be sure to include a variety of projects that showcase your versatility and abilities, and ensure that your descriptions are clear, concise, and engaging. To edit this section, go to Edit Site and find Projects section.",
             images: [
-                "/img/freelancer-template0-portfolio1-bg.jpg",
-                "/img/freelancer-template1-portfolio1-photo1.jpg",
-                "/img/header-bg.jpg",
+                {
+                    id: 0,
+                    src: "/img/freelancer-template0-portfolio1-bg.jpg"
+                },
+                {
+                    id: 1,
+                    src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                },
+                {
+                    id: 2,
+                    src: "/img/header-bg.jpg"
+                }
             ],
             tags: ["Development", "Website", "Portfolio"],
-            actionBtn: {
-                text: "See Docs",
-                href: "#",
-                color: "blue"
-            }
+            actionBtns: [
+                {
+                    id: 0,
+                    text: "Learn more",
+                    href: null,
+                    color: "orange"
+                },
+                {
+                    id: 1,
+                    text: "See Docs",
+                    href: "#",
+                    color: "orange"
+                }
+            ]
         });
         setSections(newSections);
     }
@@ -135,45 +160,53 @@ export default function ContentTabPortfolio() {
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Portfolios</h4>
                     {sections[activeSectionInd].portfolios.map((portfolio, portfolioInd) => (
-                        <div key={portfolio.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-3 px-3 mt-2 mb-4 relative">
-                            <div onClick={() => deletePorfolioItem(portfolioInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
-                            <h5 className="font-semibold">Portolio Item {portfolioInd + 1}</h5>
-                            {/* Title */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Title</span>
-                            </label>
-                            <ContentTabText content={portfolio.title} onChange={e => onPortfolioTitleChange(e, portfolioInd)}/>
+                        <ContentTabAccordion
+                            key={portfolio.id}
+                            childrenHeading={
+                                <h5 className="font-semibold">Portolio Item {portfolioInd + 1}</h5>
+                            }
+                            childrenBody={
+                                <div>
+                                    <div onClick={() => deletePorfolioItem(portfolioInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
+                                    
+                                    {/* Title */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Title</span>
+                                    </label>
+                                    <ContentTabText content={portfolio.title} onChange={e => onPortfolioTitleChange(e, portfolioInd)}/>
 
-                            {/* Action button */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Action button</span>
-                            </label>
-                            <div className="px-1 py-1">
-                                {portfolio.actionBtns.map((actionBtn, actionBtnInd) => (
-                                    <div key={actionBtn.id}>
-                                        <ContentTabBtn content={actionBtn} onChange={e => onActionBtnChange(e, portfolioInd, actionBtnInd)}/>
+                                    {/* Action button */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Action button</span>
+                                    </label>
+                                    <div className="px-1 py-1">
+                                        {portfolio.actionBtns.map((actionBtn, actionBtnInd) => (
+                                            <div key={actionBtn.id}>
+                                                <ContentTabBtn content={actionBtn} onChange={e => onActionBtnChange(e, portfolioInd, actionBtnInd)}/>
+                                            </div>
+                                        ))} 
                                     </div>
-                                ))} 
-                            </div>
-                            
-                            {/* Add Delete Images */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Add delete images</span>
-                            </label>
-                            <ContentTabAddDeleteImage content={portfolio} addImage={e => addPortfolioImage(e, portfolioInd)} deleteImage={(e, imageInd) => deletePortfolioImage(e, portfolioInd, imageInd)}/>
+                                    
+                                    {/* Add Delete Images */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Add delete images</span>
+                                    </label>
+                                    <ContentTabAddDeleteImage content={portfolio} addImage={e => addPortfolioImage(e, portfolioInd)} deleteImage={(e, imageInd) => deletePortfolioImage(e, portfolioInd, imageInd)}/>
 
-                            {/* Description */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Description</span>
-                            </label>
-                            <ContentTabFormattedText content={portfolio.description} onChange={e => onPortfolioDescriptionChange(e, portfolioInd)}/>
+                                    {/* Description */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Description</span>
+                                    </label>
+                                    <ContentTabFormattedText content={portfolio.description} onChange={e => onPortfolioDescriptionChange(e, portfolioInd)}/>
 
-                            {/* Tags */}
-                            <label className="pt-0">
-                                <span className="label-text text-slate-700 font-medium">Tags</span>
-                            </label>
-                            <ContentTabAddTag portfolio={portfolio} addTag={tag => addPortfolioTag(portfolioInd, tag)} removeTag={(tagInd) => removePortfolioTag(portfolioInd, tagInd)}/>
-                        </div>
+                                    {/* Tags */}
+                                    <label className="pt-0">
+                                        <span className="label-text text-slate-700 font-medium">Tags</span>
+                                    </label>
+                                    <ContentTabAddTag portfolio={portfolio} addTag={tag => addPortfolioTag(portfolioInd, tag)} removeTag={(tagInd) => removePortfolioTag(portfolioInd, tagInd)}/>
+                                </div>
+                            }
+                        />      
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addPortfolioItem()}><i className="fa-solid fa-plus"></i> Add portfolio item</div>
                 </div>

@@ -9,6 +9,7 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabNameValue from "@/components/ui/content_tab/ContentTabNameValue";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 
 export default function ContentTabAboutMe() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -103,14 +104,22 @@ export default function ContentTabAboutMe() {
 
                 {/* Extra info */}
                 <div className="px-3 py-1">
-                    <h4 className="my-0">Extra info</h4>
-                    {sections[activeSectionInd].extraInfo.map((info, infoInd) => (
-                    <div key={info.id}>
-                        <h4 className="my-0">Extra info #{infoInd + 1}</h4>
-                        <ContentTabNameValue content={info} onChange={e => onInfoChange(e, infoInd)} onDelete={() => deleteInfo(infoInd)}/>
-                    </div>
-                    ))}
-                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addInfo}><i className="fa-solid fa-plus"></i> Add info</div>
+                    <ContentTabAccordion
+                        childrenHeading={
+                            <h4 className="my-0">Extra info</h4>
+                        }
+                        childrenBody={
+                            <div>
+                                {sections[activeSectionInd].extraInfo.map((info, infoInd) => (
+                                <div key={info.id}>
+                                    <h4 className="my-0">Extra info #{infoInd + 1}</h4>
+                                    <ContentTabNameValue content={info} onChange={e => onInfoChange(e, infoInd)} onDelete={() => deleteInfo(infoInd)}/>
+                                </div>
+                                ))}
+                                <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addInfo}><i className="fa-solid fa-plus"></i> Add info</div>
+                            </div>
+                        }
+                    />
                 </div>
                 <DeleteSectionButton/>
             </div>

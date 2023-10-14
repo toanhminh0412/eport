@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { ActiveContentContext, ActiveTabContext, SectionsContext } from "../../site";
 import { btnColorOptions } from "@/data/colorOptions";
 import { socialIconsStyle, socialIcons } from "@/data/social-icons";
+import { convertToURL } from "@/helpers/helpers";
 
 export function EditableHeader1({ section, sectionInd }) {
     const { _activeTab, setActiveTab } = useContext(ActiveTabContext);
@@ -26,8 +27,7 @@ export function EditableHeader1({ section, sectionInd }) {
                     <h3 className="font-bold text-lg">Delete Section!</h3>
                     <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
                     <div className="modal-action">
-                        {/* if there is a button in form, it will close the modal */}
-                        <form className="dialog">
+                        <form method="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
                             <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
@@ -48,10 +48,7 @@ export function EditableHeader1({ section, sectionInd }) {
                             <p className="text-slate-700">{section.description}</p>
                         </div>
                         <div className="">
-                            {/* <Link href="#" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-blue-500 border-2 border-blue-500 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-blue-500 hover:text-white hover:shadow-blue-500"><i className="fa-brands fa-facebook"></i></Link>
-                            <Link href="#" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-pink-400 border-2 border-pink-400 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-500 hover:text-white hover:shadow-pink-500"><i className="fa-brands fa-instagram"></i></Link>
-                            <Link href="#" target="_blank" className="inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full text-sky-500 border-2 border-sky-500 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline duration-200 hover:bg-sky-500 hover:text-white hover:shadow-sky-500"><i className="fa-brands fa-twitter"></i></Link> */}
-                            {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
+                            {section.socials.map(socialBtn => <Link key={socialBtn.id} href={convertToURL(socialBtn.href)} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
                         </div>
                         <div>
                             {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={actionBtn.href} className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl decoration-black tracking-widest font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>)}

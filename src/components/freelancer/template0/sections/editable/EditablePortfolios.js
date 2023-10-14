@@ -5,8 +5,9 @@ import { useContext } from "react"
 
 // Local imports
 import { ActiveContentContext, ActiveTabContext, SectionsContext } from "../../site"
-import { ProjectModal } from "@/components/ui/ProjectModal"
 import { btnColorOptions } from "@/data/colorOptions"
+import { convertToURL } from "@/helpers/helpers"
+import { PortfolioModal } from "@/components/ui/PortfolioModal";
 
 export function EditablePortfolio1({ section, sectionInd }) {
     const { _activeTab, setActiveTab } = useContext(ActiveTabContext);
@@ -26,8 +27,7 @@ export function EditablePortfolio1({ section, sectionInd }) {
                     <h3 className="font-bold text-lg">Delete Section!</h3>
                     <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
                     <div className="modal-action">
-                        {/* if there is a button in form, it will close the modal */}
-                        <form className="dialog">
+                        <form method="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
                             <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
@@ -52,13 +52,13 @@ export function EditablePortfolio1({ section, sectionInd }) {
                                 <div className="mx-auto grid max-w-[1240px] grid-cols-1 md:grid-cols-2 gap-5 md:gap-4 lg:gap-6 justify-items-center sm:justify-items-stretch bg-slate-300 p-10 lg:p-20 rounded-md">
                                     {section.portfolios.map((portfolio, portfolioInd) => 
                                         <div key={portfolio.id} className="relative flex h-[480px] max-w-full flex-col items-center justify-center object-cover text-black">
-                                            <ProjectModal project={portfolio} index={portfolioInd}/>
-                                            <Image src={portfolio.images[0]} alt="Portfolio background image" className="inline-block h-full w-full max-w-full object-cover brightness-50 rounded-md" width={500} height={400}/>
+                                            <PortfolioModal portfolio={portfolio} portfolioInd={portfolioInd}/>
+                                            <Image src={portfolio.images[0].src} alt="Portfolio background image" className="inline-block h-full w-full max-w-full object-cover brightness-50 rounded-md" width={500} height={400}/>
                                             <div className="prose absolute flex flex-col items-center justify-center px-8 py-4 text-center rounded-sm">
                                                 <p className="font-medium text-3xl sm:text-5xl text-white mb-20">{portfolio.title}</p>
                                                 <div>
-                                                    <button className={`inline-block py-3 px-3 rounded-lg ${btnColorOptions[portfolio.actionBtns[0].color]} text-lg font-semibold no-underline mt-4 mr-4 cursor-pointer`} onClick={() => {document.getElementById(`project-${portfolioInd}`).showModal()}}>{portfolio.actionBtns[0].text}</button>
-                                                    <Link href={portfolio.actionBtns[1].href} className={`inline-block py-3 px-3 rounded-lg ${btnColorOptions[portfolio.actionBtns[1].color]} text-lg font-semibold no-underline mt-4 mr-4 cursor-pointer`}>{portfolio.actionBtns[1].text}</Link>
+                                                    <button className={`inline-block py-3 px-3 rounded-lg ${btnColorOptions[portfolio.actionBtns[0].color]} text-lg font-semibold no-underline mt-4 mr-4 cursor-pointer`} onClick={() => {document.getElementById(`portfolio-${portfolioInd}`).showModal()}}>{portfolio.actionBtns[0].text}</button>
+                                                    <Link href={convertToURL(portfolio.actionBtns[1].href)} target="_blank" className={`inline-block py-3 px-3 rounded-lg ${btnColorOptions[portfolio.actionBtns[1].color]} text-lg font-semibold no-underline mt-4 mr-4 cursor-pointer`}>{portfolio.actionBtns[1].text}</Link>
                                                 </div>
                                             </div>
                                         </div>

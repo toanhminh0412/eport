@@ -28,13 +28,13 @@ export function EditableService1({ section, sectionInd }) {
                         <form method="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
-                            <button className="btn mr-[-50px] bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
-                        </form>
-                        <form method="dialog" className="modal-backdrop">
-                            <button>close</button>
+                            <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
                         </form>
                     </div>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
             </dialog>
             <section className={`prose max-w-none bg-white py-16 px-8 text-center box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <h1 className="mb-4">{section.heading}</h1>

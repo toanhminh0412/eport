@@ -7,6 +7,7 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 
 export default function ContentTabHeader() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
@@ -99,14 +100,22 @@ export default function ContentTabHeader() {
 
                 {/* Action button */}
                 <div className="px-3 py-1">
-                    <h4 className="my-0">Action buttons</h4>
-                    {sections[activeSectionInd].actionBtns.map((btn, btnInd) => (
-                    <div key={btn.id}>
-                        <h4 className="my-0">Action button #{btnInd + 1}</h4>
-                        <ContentTabBtn content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)}/>
-                    </div>
-                    ))}
-                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
+                    <ContentTabAccordion
+                        childrenHeading={
+                            <h4 className="my-0">Action buttons</h4>
+                        }
+                        childrenBody={
+                            <div>
+                                {sections[activeSectionInd].actionBtns.map((btn, btnInd) => (
+                                <div key={btn.id}>
+                                    <h4 className="my-0">Action button #{btnInd + 1}</h4>
+                                    <ContentTabBtn content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)}/>
+                                </div>
+                                ))}
+                                <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
+                            </div>
+                        }
+                    />
                 </div>
                 <DeleteSectionButton/>
             </div>

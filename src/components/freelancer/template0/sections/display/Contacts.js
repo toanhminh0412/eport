@@ -4,6 +4,7 @@ import Link from "next/link"
 // Local imports
 import { socialIcons, socialIconsStyle } from "@/data/social-icons"
 import { btnColorOptions } from "@/data/colorOptions"
+import { convertToURL } from "@/helpers/helpers"
 
 export function Contact1({ section }) {
     return ( 
@@ -18,7 +19,7 @@ export function Contact1({ section }) {
                                     <div key={contact.id} className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
                                 )}
                                 <div className="mt-10">
-                                    {section.socials.map(socialBtn => <Link key={socialBtn.id} href={socialBtn.href} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
+                                    {section.socials.map(socialBtn => <Link key={socialBtn.id} href={convertToURL(socialBtn.href)} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
                                 </div>
                             </div>
                         </div>

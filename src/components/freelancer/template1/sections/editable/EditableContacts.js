@@ -28,13 +28,13 @@ export function EditableContact1({ section, sectionInd }) {
                             {/* if there is a button in form, it will close the modal */}
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
-                            <button className="btn mr-[-50px] bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
-                        </form>
-                        <form method="dialog" className="modal-backdrop">
-                            <button>close</button>
+                            <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
                         </form>
                     </div>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
             </dialog>
             <section className={`block bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">

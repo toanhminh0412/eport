@@ -6,6 +6,7 @@ import { ActiveContentContext, SectionsContext } from "../../site";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
+import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 
 export default function ContentTabService() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -168,31 +169,38 @@ export default function ContentTabService() {
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Services</h4>
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
-                    <div key={service.id} className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
-                        <h4 className="my-0">Service #{serviceInd + 1}</h4>
-                        <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteService(serviceInd)}></i>
-                        {/* Name */}
-                        <label className="text-sm">Service name</label>
-                        <ContentTabText content={service.name} onChange={e => onServiceNameChange(e, serviceInd)}/>
-                        {/* Price */}
-                        <label className="text-sm">Service price</label>
-                        <ContentTabText content={service.price} onChange={e => onServicePriceChange(e, serviceInd)}/>
-                        {/* Action button */}
-                        <label className="text-sm">Action button</label>
-                        <ContentTabBtn content={service.actionBtn} onChange={e => onServiceActionBtnChange(e, serviceInd)}/>
-                        {/* Pros */}
-                        <label className="text-sm">Pros</label>
-                        {service.pros.map((pro, proInd) => (
-                        <div key={`pro-${pro.id}`} className="flex flex-row"><i className="fa-solid fa-check text-green-500 text-xl mr-2 my-auto"></i><span className="flex-grow"><ContentTabText content={pro.text} onChange={e => onServiceProsChange(e, serviceInd, proInd)} onDelete={() => deleteServicePros(serviceInd, proInd)}/></span></div>
-                        ))}
-                        <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addServicePros(serviceInd)}><i className="fa-solid fa-plus"></i> Add pro</div>
-                        {/* Cons */}
-                        <label className="text-sm">Cons</label>
-                        {service.cons.map((con, conInd) => (
-                        <div key={`con-${con.id}`} className="flex flex-row"><i className="fa-solid fa-xmark text-red-500 text-xl mr-2 my-auto"></i><span className="flex-grow"><ContentTabText content={con.text} onChange={e => onServiceConsChange(e, serviceInd, conInd)} onDelete={() => deleteServiceCons(serviceInd, conInd)}/></span></div>
-                        ))}
-                        <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addServiceCons(serviceInd)}><i className="fa-solid fa-plus"></i> Add con</div>
-                    </div>
+                        <ContentTabAccordion
+                            key={service.id}
+                            childrenHeading={
+                                <h4 className="my-0">Service #{serviceInd + 1}</h4>
+                            }
+                            childrenBody={
+                                <div>
+                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteService(serviceInd)}></i>
+                                    {/* Name */}
+                                    <label className="text-sm">Service name</label>
+                                    <ContentTabText content={service.name} onChange={e => onServiceNameChange(e, serviceInd)}/>
+                                    {/* Price */}
+                                    <label className="text-sm">Service price</label>
+                                    <ContentTabText content={service.price} onChange={e => onServicePriceChange(e, serviceInd)}/>
+                                    {/* Action button */}
+                                    <label className="text-sm">Action button</label>
+                                    <ContentTabBtn content={service.actionBtn} onChange={e => onServiceActionBtnChange(e, serviceInd)}/>
+                                    {/* Pros */}
+                                    <label className="text-sm">Pros</label>
+                                    {service.pros.map((pro, proInd) => (
+                                    <div key={`pro-${pro.id}`} className="flex flex-row"><i className="fa-solid fa-check text-green-500 text-xl mr-2 my-auto"></i><span className="flex-grow"><ContentTabText content={pro.text} onChange={e => onServiceProsChange(e, serviceInd, proInd)} onDelete={() => deleteServicePros(serviceInd, proInd)}/></span></div>
+                                    ))}
+                                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addServicePros(serviceInd)}><i className="fa-solid fa-plus"></i> Add pro</div>
+                                    {/* Cons */}
+                                    <label className="text-sm">Cons</label>
+                                    {service.cons.map((con, conInd) => (
+                                    <div key={`con-${con.id}`} className="flex flex-row"><i className="fa-solid fa-xmark text-red-500 text-xl mr-2 my-auto"></i><span className="flex-grow"><ContentTabText content={con.text} onChange={e => onServiceConsChange(e, serviceInd, conInd)} onDelete={() => deleteServiceCons(serviceInd, conInd)}/></span></div>
+                                    ))}
+                                    <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addServiceCons(serviceInd)}><i className="fa-solid fa-plus"></i> Add con</div>
+                                </div>
+                            }
+                        />
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addService}><i className="fa-solid fa-plus"></i> Add service</div>
                 </div>

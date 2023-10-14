@@ -28,13 +28,13 @@ export function EditableNavbar1({ section, sectionInd }) {
                             {/* if there is a button in form, it will close the modal */}
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
-                            <button className="btn mr-[-50px] bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
-                        </form>
-                        <form method="dialog" className="modal-backdrop">
-                            <button>close</button>
+                            <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
                         </form>
                     </div>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
             </dialog>
             <div className={`navbar bg-black/50 z-10 w-full min-w-[450px] border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="navbar-start">

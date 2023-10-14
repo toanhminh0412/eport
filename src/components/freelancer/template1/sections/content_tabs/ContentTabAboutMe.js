@@ -109,7 +109,7 @@ export default function ContentTabAboutMe() {
                             <div>
                                 {sections[activeSectionInd].extraInfo.map((info, infoInd) => (
                                 <div key={info.id}>
-                                    <h4 className="my-0">Extra info #{infoInd + 1}</h4>
+                                    <h4 className="my-0">{info.name}</h4>
                                     <ContentTabNameValue content={info} onChange={e => onInfoChange(e, infoInd)} onDelete={() => deleteInfo(infoInd)}/>
                                 </div>
                                 ))}

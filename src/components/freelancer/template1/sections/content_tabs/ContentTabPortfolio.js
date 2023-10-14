@@ -116,7 +116,7 @@ export default function ContentTabPortfolio() {
                 {/* Tagline */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Tagline</h4>
-                    <ContentTabText content={sections[activeSectionInd].tagline} onChange={onTaglineChange}/>
+                    <ContentTabText rows={3} content={sections[activeSectionInd].tagline} onChange={onTaglineChange}/>
                 </div>
 
                 {/* Projects */}
@@ -125,9 +125,9 @@ export default function ContentTabPortfolio() {
                     {sections[activeSectionInd].projects.map((project, projectInd) => (
                         <ContentTabAccordion
                             key={project.id}
-                            heading={`Project #${projectInd + 1}`}>
+                            heading={project.name}>
                                 <div>
-                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteProject(projectInd)}></i>
+                                <span className="text-slate-300 hover:text-slate-700 duration-100 absolute top-15 right-4 cursor-default text-sm"><i className="fa-solid fa-trash text-lg mr-1" onClick={() => deleteProject(projectInd)}></i>Delete project</span>
                                     {/* Images */}
                                     <label className="text-sm">Project images</label>
                                     <ContentTabAddDeleteImage content={project} addImage={e => addProjectImages(e, projectInd)} deleteImage={(e, imageInd) => deleteProjectImages(e, projectInd, imageInd)}/>

@@ -41,7 +41,8 @@ export function EditableService1({ section, sectionInd }) {
                 <h4 className="mt-0 mb-8">{section.tagline}</h4>
                 <div className="flex flex-row flex-wrap gap-4 justify-center">
                     {section.services.map(service => (
-                    <div key={service.id} className="card w-96 bg-base-100 shadow-xl border border-slate-200">
+                    <div key={service.id} className={`card w-96 bg-base-100 shadow-xl border ${service.recommended ? "border-orange-500" : "border-slate-200"}`}>
+                        {service.recommended ? <h4 className="text-orange-500 absolute top-2 inset-x-0 mx-auto"><i className="fa-solid fa-star mr-2"></i>Recommended</h4> : null}
                         <div className="card-body">
                             <h4 className="card-title w-fit mx-auto">{service.name}</h4>
                             <h1 className="my-4">{service.price}</h1>

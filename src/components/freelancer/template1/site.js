@@ -88,7 +88,7 @@ export default function Template1({project}) {
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
                                     <ActiveContentContext.Provider value={{ activeSectionInd, setActiveSectionInd }}>
                                         <main>
-                                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                            <div className="bg-slate-100 w-full min-h-screen h-full dark:bg-slate-700">
                                                 <PreviewControlNav/>
                                                 <LeftContentEditor/>
                                                 <div className="ml-72 lg:ml-96 mt-20">
@@ -150,7 +150,7 @@ function Template1Site() {
     }
 
     return (
-        <div className="w-full relative">
+        <div className={`w-full relative pt-16 bg-white`}>
             {sections.map(section => <Section key={section.id} section={section}/>)}
         </div>
     )

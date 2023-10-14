@@ -106,6 +106,7 @@ export function getSectionInitialData(sectionId) {
                         id: 0,
                         name: "Basic package",
                         price: "20 USD",
+                        recommended: false,
                         actionBtn: {
                             text: "Get started",
                             href: "#",
@@ -136,6 +137,7 @@ export function getSectionInitialData(sectionId) {
                         id: 1,
                         name: "Premium package",
                         price: "40 USD",
+                        recommended: true,
                         actionBtn: {
                             text: "Get started",
                             href: "#",

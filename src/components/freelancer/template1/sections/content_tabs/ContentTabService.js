@@ -7,6 +7,7 @@ import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
+import ContentTabCheckbox from "@/components/ui/content_tab/ContentTabCheckbox";
 
 export default function ContentTabService() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -38,6 +39,13 @@ export default function ContentTabService() {
     const onServicePriceChange = (e, serviceInd) => {
         const newSections = [...sections];
         newSections[activeSectionInd].services[serviceInd].price = e.target.value;
+        setSections(newSections);
+    }
+
+    // Change service recommendation
+    const changeServiceRecommendation = (e, serviceInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].services[serviceInd].recommended = e.target.checked;
         setSections(newSections);
     }
 
@@ -114,6 +122,7 @@ export default function ContentTabService() {
             id: lastId + 1,
             name: "Service name",
             price: "20 USD",
+            recommended: false,
             actionBtn: {
                 text: "Get started",
                 href: "#",
@@ -162,7 +171,7 @@ export default function ContentTabService() {
                 {/* Tagline */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Tagline</h4>
-                    <ContentTabText content={sections[activeSectionInd].tagline} onChange={onTaglineChange}/>
+                    <ContentTabText rows={3} content={sections[activeSectionInd].tagline} onChange={onTaglineChange}/>
                 </div>
 
                 {/* Services */}
@@ -171,15 +180,17 @@ export default function ContentTabService() {
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
                         <ContentTabAccordion
                             key={service.id}
-                            heading={`Service #${serviceInd + 1}`}>
+                            heading={service.name}>
                                 <div>
-                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteService(serviceInd)}></i>
+                                    <span className="text-slate-300 hover:text-slate-700 duration-100 absolute top-15 right-4 cursor-default text-sm"><i className="fa-solid fa-trash text-lg mr-1" onClick={() => deleteService(serviceInd)}></i>Delete service</span>
                                     {/* Name */}
                                     <label className="text-sm">Service name</label>
                                     <ContentTabText content={service.name} onChange={e => onServiceNameChange(e, serviceInd)}/>
                                     {/* Price */}
                                     <label className="text-sm">Service price</label>
                                     <ContentTabText content={service.price} onChange={e => onServicePriceChange(e, serviceInd)}/>
+                                    {/* Recommend service? */}
+                                    <ContentTabCheckbox label="Save this service as <strong>Recommended</strong>" content={service.recommended} onChange={e => changeServiceRecommendation(e, serviceInd)}/>
                                     {/* Action button */}
                                     <label className="text-sm">Action button</label>
                                     <ContentTabBtn content={service.actionBtn} onChange={e => onServiceActionBtnChange(e, serviceInd)}/>

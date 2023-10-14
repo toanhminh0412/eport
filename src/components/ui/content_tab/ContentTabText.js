@@ -1,5 +1,4 @@
 export default function ContentTabText({ rows=1, content, onChange, onDelete=null }) {
-
     return (
         <div className="form-control w-full flex flex-row gap-x-2 py-2">
             <textarea 

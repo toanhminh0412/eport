@@ -6,7 +6,7 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Navbar1({ section }) {
     return (
-        <div className="navbar bg-black/50 z-10 lg:absolute w-full min-w-[450px]">
+        <div className="navbar bg-black/50 z-10 fixed top-36 left-0 w-full min-w-[450px] min-h-[4rem]">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">

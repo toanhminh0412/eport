@@ -38,7 +38,8 @@ export function Portfolio1({ section }) {
                                     modules={[Navigation, Pagination]}
                                     pagination={{ clickable: true }}
                                     navigation
-                                    spaceBetween={50}>
+                                    spaceBetween={50}
+                                    loop={true}>
                                     {project.images.map(image => <SwiperSlide key={image.id}><Image width={200} height={200} src={image.src} alt="" className="h-full w-full object-contain brightness-75"/></SwiperSlide>)}
                                 </Swiper>
                                 </div> : null}

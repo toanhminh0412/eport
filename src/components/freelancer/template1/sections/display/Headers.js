@@ -15,7 +15,7 @@ export function Header1({ section }) {
                     <h1 className="text-xl lg:text-3xl xl:text-4xl">{section.slogan}</h1>
                     <div>
                     <div>
-                    {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={convertToURL(actionBtn.href)} className={`btn ${btnColorOptions[actionBtn.color]} mr-2`}>{actionBtn.text}</Link>)}
+                    {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={convertToURL(actionBtn.href)} className={`btn max-sm:btn-sm ${btnColorOptions[actionBtn.color]} mr-2`}>{actionBtn.text}</Link>)}
                     </div>
                     </div>
                 </div>

@@ -130,10 +130,7 @@ export default function ContentTabAboutMe() {
                     {sections[activeSectionInd].tab.map((tab, tabInd) => (
                         <ContentTabAccordion
                             key={tab.id}
-                            childrenHeading={
-                                <h4 className="my-0">Tab {tab.id + 1}</h4>
-                            }
-                            childrenBody={
+                            heading={`Tab ${tab.id + 1}`}>
                                 <div>
                                     <h5 className="my-0 font-semibold">Tab Heading</h5>
                                         <ContentTabText rows={1} content={tab.tabHeading} onChange={e => onTabNameChange(e, tabInd)}/>
@@ -153,8 +150,7 @@ export default function ContentTabAboutMe() {
                                     ))}
                                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addTabContentItem(tabInd)}><i className="fa-solid fa-plus"></i> Add tab content item</div>
                                 </div>
-                            }
-                        />
+                        </ContentTabAccordion>
                     ))}
                 </div>
                 <DeleteSectionButton/>

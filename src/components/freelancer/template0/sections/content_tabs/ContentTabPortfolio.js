@@ -162,10 +162,7 @@ export default function ContentTabPortfolio() {
                     {sections[activeSectionInd].portfolios.map((portfolio, portfolioInd) => (
                         <ContentTabAccordion
                             key={portfolio.id}
-                            childrenHeading={
-                                <h5 className="font-semibold">Portolio Item {portfolioInd + 1}</h5>
-                            }
-                            childrenBody={
+                            heading={`Portfolio Item ${portfolioInd + 1}`}>
                                 <div>
                                     <div onClick={() => deletePorfolioItem(portfolioInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     
@@ -205,8 +202,7 @@ export default function ContentTabPortfolio() {
                                     </label>
                                     <ContentTabAddTag portfolio={portfolio} addTag={tag => addPortfolioTag(portfolioInd, tag)} removeTag={(tagInd) => removePortfolioTag(portfolioInd, tagInd)}/>
                                 </div>
-                            }
-                        />      
+                        </ContentTabAccordion>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addPortfolioItem()}><i className="fa-solid fa-plus"></i> Add portfolio item</div>
                 </div>

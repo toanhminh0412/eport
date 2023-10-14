@@ -105,10 +105,7 @@ export default function ContentTabAboutMe() {
                 {/* Extra info */}
                 <div className="px-3 py-1">
                     <ContentTabAccordion
-                        childrenHeading={
-                            <h4 className="my-0">Extra info</h4>
-                        }
-                        childrenBody={
+                        heading={"Extra info"}>
                             <div>
                                 {sections[activeSectionInd].extraInfo.map((info, infoInd) => (
                                 <div key={info.id}>
@@ -118,8 +115,7 @@ export default function ContentTabAboutMe() {
                                 ))}
                                 <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addInfo}><i className="fa-solid fa-plus"></i> Add info</div>
                             </div>
-                        }
-                    />
+                    </ContentTabAccordion>
                 </div>
                 <DeleteSectionButton/>
             </div>

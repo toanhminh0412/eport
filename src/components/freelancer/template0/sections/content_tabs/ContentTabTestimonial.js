@@ -25,7 +25,10 @@ export default function ContentTabTestimonial() {
     // Change rating star
     const onRatingStarChange = (e, testimonialInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].testimonials[testimonialInd].ratingStars = parseInt(e.target.value);
+        if (e.target.value === '' || e.target.value > 5) {
+            e.target.value = 0;
+        }
+        newSections[activeSectionInd].testimonials[testimonialInd].ratingStars = parseInt(e.target.value);  
         setSections(newSections);
     }
 
@@ -109,17 +112,14 @@ export default function ContentTabTestimonial() {
                     {sections[activeSectionInd].testimonials.map((testimonial, testimonialInd) => (
                         <ContentTabAccordion
                             key={testimonial.id}
-                            childrenHeading={
-                                <h5 className="font-semibold">Testimonial Item {testimonialInd + 1}</h5>
-                            }
-                            childrenBody={
+                            heading={`Testimonial Item ${testimonialInd + 1}`}>
                                 <div>
                                     <div onClick={() => deleteTestimonialItem(testimonialInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     {/* Rating */}
                                     <label className="pt-0">
                                         <span className="label-text text-slate-700 font-medium">Rating</span>
                                     </label>
-                                    <ContentTabNumber content={testimonial.ratingStars} min={1} max={5} onChange={e => onRatingStarChange(e, testimonialInd)}/>
+                                    <ContentTabNumber content={testimonial.ratingStars} min={0} max={5} onChange={e => onRatingStarChange(e, testimonialInd)}/>
 
                                     {/* Content */}
                                     <label className="pt-0">
@@ -145,8 +145,7 @@ export default function ContentTabTestimonial() {
                                     </label>
                                     <ContentTabText content={testimonial.job} onChange={e => onTestimonialJobChange(e, testimonialInd)}/>
                                 </div>
-                            }
-                        />
+                        </ContentTabAccordion>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addTestimonialItem()}><i className="fa-solid fa-plus"></i> Add testimonial item</div>
                 </div>

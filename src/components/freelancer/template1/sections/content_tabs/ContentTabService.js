@@ -171,12 +171,9 @@ export default function ContentTabService() {
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
                         <ContentTabAccordion
                             key={service.id}
-                            childrenHeading={
-                                <h4 className="my-0">Service #{serviceInd + 1}</h4>
-                            }
-                            childrenBody={
+                            heading={`Service #${serviceInd + 1}`}>
                                 <div>
-                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={() => deleteService(serviceInd)}></i>
+                                    <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteService(serviceInd)}></i>
                                     {/* Name */}
                                     <label className="text-sm">Service name</label>
                                     <ContentTabText content={service.name} onChange={e => onServiceNameChange(e, serviceInd)}/>
@@ -199,8 +196,7 @@ export default function ContentTabService() {
                                     ))}
                                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={() => addServiceCons(serviceInd)}><i className="fa-solid fa-plus"></i> Add con</div>
                                 </div>
-                            }
-                        />
+                        </ContentTabAccordion>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addService}><i className="fa-solid fa-plus"></i> Add service</div>
                 </div>

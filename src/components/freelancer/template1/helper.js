@@ -100,7 +100,7 @@ export function getSectionInitialData(sectionId) {
                 sectionId: "service1",
                 sectionType: "service",
                 heading: "Services",
-                tagline: "You aren't happy with my work? Money back guranteed",
+                tagline: "You aren't happy with my work? Money back guaranteed",
                 services: [
                     {
                         id: 0,

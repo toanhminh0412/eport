@@ -23,6 +23,9 @@ export default function ContentTabTestimonial() {
     // Change review rating
     const onReviewRatingChange = (e, reviewInd) => {
         const newSections = [...sections];
+        if (e.target.value === '' || e.target.value > 5) {
+            e.target.value = 0;
+        }
         newSections[activeSectionInd].reviews[reviewInd].rating = parseInt(e.target.value);
         setSections(newSections);
     }
@@ -93,10 +96,7 @@ export default function ContentTabTestimonial() {
                     {sections[activeSectionInd].reviews.map((review, reviewInd) => (
                         <ContentTabAccordion
                             key={review.id}
-                            childrenHeading={
-                                <h4 className="my-0">Review #{reviewInd + 1}</h4>
-                            }
-                            childrenBody={
+                            heading={`Review #${reviewInd + 1}`}>
                                 <div>
                                     <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteReview(reviewInd)}></i>
                                     {/* Rating */}
@@ -115,8 +115,7 @@ export default function ContentTabTestimonial() {
                                     <label className="text-sm">Review link</label>
                                     <ContentTabText content={review.reviewUrl} onChange={e => onReviewUrlChange(e, reviewInd)}/>
                                 </div>
-                            }
-                        />
+                        </ContentTabAccordion>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addReview}><i className="fa-solid fa-plus"></i> Add review</div>
                 </div>

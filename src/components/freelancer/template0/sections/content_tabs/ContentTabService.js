@@ -61,6 +61,7 @@ export default function ContentTabService() {
         const lastServiceItem = newSections[activeSectionInd].services.length === 0 ? 1 : parseInt(newSections[activeSectionInd].services[newSections[activeSectionInd].services.length - 1].id);
         newSections[activeSectionInd].services.push({
             id: lastServiceItem + 1,
+            icon: "fa-solid fa-cloud",
             title: "Portfolio Design",
             price: "200 CAD / month",
             content: "Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section."
@@ -96,10 +97,7 @@ export default function ContentTabService() {
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
                         <ContentTabAccordion
                             key={service.id} 
-                            childrenHeading = {
-                                <h5 className="font-semibold">Service Item {serviceInd + 1}</h5>
-                            }
-                            childrenBody = {
+                            heading = {`Service Item ${serviceInd + 1}`}>
                                 <div>
                                     <div onClick={() => deleteServiceItem(serviceInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     {/* Icont */}
@@ -126,8 +124,7 @@ export default function ContentTabService() {
                                     </label>
                                     <ContentTabFormattedText content={service.content} onChange={e => onServiceContentChange(e, serviceInd)}/>
                                 </div>
-                            }
-                        />
+                        </ContentTabAccordion>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100 mb-2" onClick={() => addServiceItem()}><i className="fa-solid fa-plus"></i> Add service item</div>
                 </div>

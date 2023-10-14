@@ -9,7 +9,6 @@ import ContentTabLink from "@/components/ui/content_tab/ContentTabLink";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabAddDeleteImage from "@/components/ui/content_tab/ContentTabAddDeleteImage";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
-import { Content } from "next/font/google";
 
 export default function ContentTabPortfolio() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -126,10 +125,7 @@ export default function ContentTabPortfolio() {
                     {sections[activeSectionInd].projects.map((project, projectInd) => (
                         <ContentTabAccordion
                             key={project.id}
-                            childrenHeading={
-                                <h4 className="my-0">Project #{projectInd + 1}</h4>
-                            }
-                            childrenBody={
+                            heading={`Project #${projectInd + 1}`}>
                                 <div>
                                     <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4" onClick={() => deleteProject(projectInd)}></i>
                                     {/* Images */}
@@ -148,8 +144,7 @@ export default function ContentTabPortfolio() {
                                     <label className="text-sm">Project description</label>
                                     <ContentTabFormattedText content={project.description} onChange={e => onProjectDescriptionChange(e, projectInd)}/>
                                 </div>
-                            }
-                        />
+                        </ContentTabAccordion>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addProject}><i className="fa-solid fa-plus"></i> Add project</div>
                 </div>

@@ -111,25 +111,17 @@ export default function ContentTabHeader() {
                 {/* Socials button */}
                 <div className="px-3 py-2">
                     <ContentTabAccordion
-                        childrenHeading={
-                            <h4 className="my-0">Social buttons</h4>
-                        }
-                        childrenBody={
+                        heading={"Social buttons"}>
                             <div>{sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}</div>
-                        }
-                    />
+                    </ContentTabAccordion>
                 </div>
 
                 {/* Action button */}
                 <div className="px-3 py-2">
                     <ContentTabAccordion
-                        childrenHeading={
-                            <h4 className="my-0">Action buttons</h4>
-                        }
-                        childrenBody={
+                        heading={"Action buttons"}>
                             <div>{sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}</div>
-                        }
-                    />
+                    </ContentTabAccordion>
                 </div>
                 <DeleteSectionButton/>
             </div>

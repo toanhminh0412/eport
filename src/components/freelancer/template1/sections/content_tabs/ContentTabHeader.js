@@ -101,10 +101,7 @@ export default function ContentTabHeader() {
                 {/* Action button */}
                 <div className="px-3 py-1">
                     <ContentTabAccordion
-                        childrenHeading={
-                            <h4 className="my-0">Action buttons</h4>
-                        }
-                        childrenBody={
+                        heading={"Action buttons"}>
                             <div>
                                 {sections[activeSectionInd].actionBtns.map((btn, btnInd) => (
                                 <div key={btn.id}>
@@ -114,8 +111,7 @@ export default function ContentTabHeader() {
                                 ))}
                                 <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
                             </div>
-                        }
-                    />
+                    </ContentTabAccordion>
                 </div>
                 <DeleteSectionButton/>
             </div>

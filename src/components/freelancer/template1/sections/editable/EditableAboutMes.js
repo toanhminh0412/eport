@@ -47,7 +47,7 @@ export function EditableAboutMe1({ section, sectionInd }) {
                                     <div className="text-sm sm:text-sm ml-2">{section.status.text}</div>
                                 </div> : null}
                                 <h1 className="font-bold text-4xl md:text-6xl mb-5 md:mb-6 lg:mb-8">{section.heading}</h1>
-                                <p className="flex-col text-[#808080] font-light text-sm sm:text-lg" dangerouslySetInnerHTML={{ __html: section.bio }}></p>
+                                <div className="flex-col text-[#808080] font-light text-sm sm:text-lg" dangerouslySetInnerHTML={{ __html: section.bio }}></div>
                                 </div>
                                 <div className="mb-8 mt-8 h-px w-full bg-black">
                                 </div>

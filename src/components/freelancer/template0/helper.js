@@ -186,7 +186,7 @@ export function getSectionInitialData(sectionId) {
                             },
                             {
                                 id: 1,
-                                text: "See Docs",
+                                text: "Visit project",
                                 href: "#",
                                 color: "orange"
                             }
@@ -220,7 +220,7 @@ export function getSectionInitialData(sectionId) {
                             },
                             {
                                 id: 1,
-                                text: "See Docs",
+                                text: "Visit project",
                                 href: "#",
                                 color: "orange"
                             }
@@ -254,7 +254,7 @@ export function getSectionInitialData(sectionId) {
                             },
                             {
                                 id: 1,
-                                text: "See Docs",
+                                text: "Visit project",
                                 href: "#",
                                 color: "orange"
                             }
@@ -288,7 +288,7 @@ export function getSectionInitialData(sectionId) {
                             },
                             {
                                 id: 1,
-                                text: "See Docs",
+                                text: "Visit project",
                                 href: "#",
                                 color: "orange"
                             }

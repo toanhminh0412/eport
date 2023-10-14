@@ -130,7 +130,7 @@ export default function ContentTabAboutMe() {
                     {sections[activeSectionInd].tab.map((tab, tabInd) => (
                         <ContentTabAccordion
                             key={tab.id}
-                            heading={`Tab ${tab.id + 1}`}>
+                            heading={tab.tabHeading}>
                                 <div>
                                     <h5 className="my-0 font-semibold">Tab Heading</h5>
                                         <ContentTabText rows={1} content={tab.tabHeading} onChange={e => onTabNameChange(e, tabInd)}/>
@@ -139,7 +139,7 @@ export default function ContentTabAboutMe() {
                                         <div key={content.id} className="bg-slate-100 rounded-md shadow-lg border border-slate-300 px-3 my-3 relative">
                                             <div onClick={() => deleteTabContentItem(tabInd, contentInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-2 right-2"></i></div>
                                             <label className="pt-0">
-                                                <span className="label-text text-slate-500">Key</span>
+                                                <span className="label-text text-slate-500">Name</span>
                                             </label>
                                             <ContentTabText rows={1} content={content.key} onChange={e => onTabContentKeyChange(e, tabInd, contentInd)}/>
                                             <label className="pt-0">

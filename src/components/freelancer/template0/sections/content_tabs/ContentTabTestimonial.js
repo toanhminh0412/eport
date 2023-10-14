@@ -112,7 +112,7 @@ export default function ContentTabTestimonial() {
                     {sections[activeSectionInd].testimonials.map((testimonial, testimonialInd) => (
                         <ContentTabAccordion
                             key={testimonial.id}
-                            heading={`Testimonial Item ${testimonialInd + 1}`}>
+                            heading={`Testimonial #${testimonialInd + 1}`}>
                                 <div>
                                     <div onClick={() => deleteTestimonialItem(testimonialInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     {/* Rating */}

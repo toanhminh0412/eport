@@ -162,7 +162,7 @@ export default function ContentTabPortfolio() {
                     {sections[activeSectionInd].portfolios.map((portfolio, portfolioInd) => (
                         <ContentTabAccordion
                             key={portfolio.id}
-                            heading={`Portfolio Item ${portfolioInd + 1}`}>
+                            heading={portfolio.title}>
                                 <div>
                                     <div onClick={() => deletePorfolioItem(portfolioInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     
@@ -174,7 +174,7 @@ export default function ContentTabPortfolio() {
 
                                     {/* Action button */}
                                     <label className="pt-0">
-                                        <span className="label-text text-slate-700 font-medium">Action button</span>
+                                        <span className="label-text text-slate-700 font-medium">Action buttons</span>
                                     </label>
                                     <div className="px-1 py-1">
                                         {portfolio.actionBtns.map((actionBtn, actionBtnInd) => (
@@ -186,7 +186,7 @@ export default function ContentTabPortfolio() {
                                     
                                     {/* Add Delete Images */}
                                     <label className="pt-0">
-                                        <span className="label-text text-slate-700 font-medium">Add delete images</span>
+                                        <span className="label-text text-slate-700 font-medium">Project images</span>
                                     </label>
                                     <ContentTabAddDeleteImage content={portfolio} addImage={e => addPortfolioImage(e, portfolioInd)} deleteImage={(e, imageInd) => deletePortfolioImage(e, portfolioInd, imageInd)}/>
 

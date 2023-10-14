@@ -97,7 +97,7 @@ export default function ContentTabService() {
                     {sections[activeSectionInd].services.map((service, serviceInd) => (
                         <ContentTabAccordion
                             key={service.id} 
-                            heading = {`Service Item ${serviceInd + 1}`}>
+                            heading = {service.title}>
                                 <div>
                                     <div onClick={() => deleteServiceItem(serviceInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     {/* Icont */}

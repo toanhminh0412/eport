@@ -23,7 +23,30 @@ export default function ContentTabHeader() {
     // Change avatar
     const onAvatarChange = imgSrc => {
         const newSections = [...sections];
-        newSections[activeSectionInd].avatar = imgSrc;
+        newSections[activeSectionInd].avatar.src = imgSrc;
+        setSections(newSections);
+    }
+
+    // Crop avatar
+    const onAvatarCrop = (croppedArea, cropper) => {
+        console.log(croppedArea);
+        const scale = 100 / croppedArea.width;
+        const transform = {
+            x: `${-croppedArea.x * scale}%`,
+            y: `${-croppedArea.y * scale}%`,
+            scale,
+            width: "calc(100% + 0.5px)",
+            height: "auto"
+        };
+
+        const imageStyle = {
+            transform: `translate3d(${transform.x}, ${transform.y}, 0) scale3d(${transform.scale},${transform.scale},1)`,
+            width: transform.width,
+            height: transform.height
+        };
+        const newSections = [...sections];
+        newSections[activeSectionInd].avatar.cropper = cropper;
+        newSections[activeSectionInd].avatar.style = imageStyle;
         setSections(newSections);
     }
 
@@ -83,7 +106,13 @@ export default function ContentTabHeader() {
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>
-                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template1-header-avatar.jpg"/>
+                    <ContentTabImage 
+                        content={sections[activeSectionInd].avatar.src} 
+                        onChange={onAvatarChange} 
+                        defaultImage="/img/freelancer-template1-header-avatar.jpg"
+                        croppable
+                        cropper={sections[activeSectionInd].avatar.cropper}
+                        onCropAreaChange={onAvatarCrop}/>
                 </div>
 
                 {/* Heading */}

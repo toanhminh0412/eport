@@ -9,6 +9,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "navbar1",
                 sectionType: "navbar",
+                sectionTitle: "Navigation bar",
                 heading: {
                     text: "John Doe",
                     href: "#"
@@ -41,7 +42,15 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "header1",
                 sectionType: "header",
-                avatar: "/img/freelancer-template1-header-avatar.jpg",
+                sectionTitle: "Header",
+                avatar: {
+                    src: "/img/freelancer-template1-header-avatar.jpg",
+                    cropper: {
+                        crop: { x: 0, y: 0 },
+                        zoom: 1
+                    },
+                    style: {}
+                },
                 backgroundImage: "/img/freelancer-template1-header-bg.png",
                 heading: "John Doe - Photographer",
                 slogan: "Need a quick photoshoot session? Let me help you!",
@@ -66,6 +75,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "aboutme1",
                 sectionType: "aboutme",
+                sectionTitle: "About me",
                 avatar: "/img/freelancer-template1-aboutme1-avatar.jpg",
                 status: {text: "Available for work", color: "green"},
                 heading: "John Doe",
@@ -99,6 +109,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "service1",
                 sectionType: "service",
+                sectionTitle: "Services",
                 heading: "Services",
                 tagline: "You aren't happy with my work? Money back guaranteed",
                 services: [
@@ -171,6 +182,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "portfolio1",
                 sectionType: "portfolio",
+                sectionTitle: "Portfolio",
                 heading: "Portfolio",
                 tagline: "Check out my past works!",
                 projects: [
@@ -211,6 +223,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "testimonial1",
                 sectionType: "testimonial",
+                sectionTitle: "Testimonials",
                 heading: "What our clients are saying",
                 reviews: [
                     {
@@ -245,6 +258,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "contact1",
                 sectionType: "contact",
+                sectionTitle: "Contact me",
                 heading: "Let's build something exciting together!",
                 description: "Shoot me an email, describe your need. I'll start making your dream come true right away!",
                 formHeading: "Get a free quote",

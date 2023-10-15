@@ -81,7 +81,10 @@ export default function ContentTabAboutMe() {
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>
-                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template1-aboutme1-avatar.jpg"/>
+                    <ContentTabImage 
+                        content={sections[activeSectionInd].avatar} 
+                        onChange={onAvatarChange} 
+                        defaultImage="/img/freelancer-template1-aboutme1-avatar.jpg"/>
                 </div>
 
                 {/* Status */}

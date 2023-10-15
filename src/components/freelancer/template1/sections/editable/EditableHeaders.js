@@ -1,5 +1,6 @@
 // Next imports
 import Link from "next/link";
+import Image from "next/image";
 import { useContext } from "react";
 
 // Local imports
@@ -38,7 +39,16 @@ export function EditableHeader1({ section, sectionInd }) {
                 </form>
             </dialog>
             <section style={{backgroundImage: `url(${section.backgroundImage})`}} className={`w-full min-w-[450px] aspect-video flex flex-row bg-black bg-cover box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
-                <div style={{backgroundImage: `url(${section.avatar})`}} className={`w-5/12 h-full brightness-75 bg-cover`}></div>
+                <div className="relative w-5/12 h-full brightness-75 overflow-hidden">
+                    <Image 
+                        src={section.avatar.src}
+                        // width={section.avatar.style.width ? section.avatar.style.width : 300}
+                        // height={section.avatar.style.height ? section.avatar.style.height : 400}
+                        fill
+                        alt="Header avatar"
+                        style={{ transform: section.avatar.style.transform }}
+                        className={`absolute left-0 top-0 origin-top-left w-[${section.avatar.style.width}] h-[${section.avatar.style.height}]`}/>
+                </div>
                 <div className="w-7/12 prose max-w-none p-0 flex flex-col justify-center">
                     <div className="w-11/12 md:w-10/12 mx-auto">
                         <h3 className="text-md lg:text-xl mt-0 lg:mt-12">{section.heading}</h3>

@@ -25,6 +25,7 @@
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-easy-crop": "^5.0.2",
     "react-joyride": "^2.5.5",
     "react-secure-storage": "^1.2.2",
     "stripe": "^13.4.0",

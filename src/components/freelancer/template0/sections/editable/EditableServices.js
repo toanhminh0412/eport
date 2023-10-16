@@ -1,5 +1,3 @@
-'use client';
-
 // Next imports
 import { useContext } from 'react';
 

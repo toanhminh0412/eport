@@ -1,5 +1,3 @@
-"use client";
-
 // React, Next import
 import { useState, useContext } from "react"
 import Image from "next/image";

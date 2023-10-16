@@ -1,5 +1,3 @@
-'use client';
-
 // Next imports
 import Image from "next/image"
 import { useContext, useState } from "react"

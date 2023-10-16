@@ -44,7 +44,7 @@ export default function ContentTabNavbar() {
                 <div className="py-3 px-2">
                     <h4 className="my-0">Navigation bar items</h4>
                     {sections[activeSectionInd].navItems.map((navItem, navItemInd) => (
-                        <div>
+                        <div key={navItem.id}>
                             <h4>Nav item #{navItemInd + 1}</h4>
                             <ContentTabLink 
                                 key={navItem.id} 

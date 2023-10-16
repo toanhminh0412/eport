@@ -17,7 +17,7 @@ export async function GET(request) {
     const cookieStore = cookies();
     const userTokenCookie = cookieStore.get('eport-token');
     const siteDataLength = siteData.length;
-    const theme = cookieStore.get('eport-theme').value;
+    const theme = cookieStore.get('eport-theme') ? cookieStore.get('eport-theme').value : 'light';
     cookieStore.delete('eport-theme');
     
     // Unauthenticated users can't visit this route

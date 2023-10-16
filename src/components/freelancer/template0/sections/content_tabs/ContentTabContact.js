@@ -45,7 +45,7 @@ export default function ContentTabContact() {
     // Add contact information
     const addContactInformation = () => {
         const newSections = [...sections];
-        const lastContactInformationItem = newSections[activeSectionInd].contactInfo.length === 0 ? 1 : parseInt(newSections[activeSectionInd].contactInfo[newSections[activeSectionInd].contactInfo.length - 1].id);
+        const lastContactInformationItem = newSections[activeSectionInd].contactInfo.length === 0 ? -1 : parseInt(newSections[activeSectionInd].contactInfo[newSections[activeSectionInd].contactInfo.length - 1].id);
         newSections[activeSectionInd].contactInfo.push({
             id: lastContactInformationItem + 1,
             icon: "fa-solid fa-phone",
@@ -69,6 +69,25 @@ export default function ContentTabContact() {
         } else {
             newSections[activeSectionInd].socials[socialBtnInd].href = e.target.value;
         }
+        setSections(newSections);
+    }
+
+    // Add social button
+    const addSocialButton = () => {
+        const newSections = [...sections];
+        const lastSocialButtonId = newSections[activeSectionInd].socials.length === 0 ? -1 : parseInt(newSections[activeSectionInd].socials[newSections[activeSectionInd].socials.length - 1].id);
+        newSections[activeSectionInd].socials.push({
+            id: lastSocialButtonId + 1,
+            social: "facebook",
+            href:  "#"
+        });
+        setSections(newSections);
+    }
+
+    // Delete social button
+    const deleteSocialButton = (socialBtnInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].socials.splice(socialBtnInd, 1);
         setSections(newSections);
     }
 
@@ -108,7 +127,7 @@ export default function ContentTabContact() {
                     {sections[activeSectionInd].contactInfo.map((contact, contactInd) => (
                         <ContentTabAccordion
                             key={contact.id}
-                            heading={`Contact Item ${contactInd + 1}`}>
+                            heading={`Contact Item #${contactInd + 1}`}>
                                 <div>
                                     <div onClick={() => removeContactInformation(contactInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     {/* Contact icon */}
@@ -129,12 +148,19 @@ export default function ContentTabContact() {
                 </div>
 
                 {/* Socials button */}
-                <div className="px-3 py-1">
-                    <h4 className="my-0">Social buttons</h4>
-                    <ContentTabAccordion
-                        heading={"Social button item"}>
-                            <div>{sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}</div>
-                    </ContentTabAccordion>  
+                <div className="px-3 py-2">
+                    <h4 className="my-0">Social Buttons</h4>
+                    <div>
+                        {sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => (
+                            <ContentTabAccordion
+                                key={socialBtn.id}
+                                heading={`Social button #${socialBtnInd + 1}`}>
+                                <div onClick={() => deleteSocialButton(socialBtnInd)}><i className="fa-solid fa-trash z-[1000] text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-12 right-4"></i></div>
+                                <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>
+                            </ContentTabAccordion>
+                        ))}
+                        <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addSocialButton}><i className="fa-solid fa-plus"></i> Add social button</div>
+                    </div>
                 </div>
 
                 {/* Action button */}

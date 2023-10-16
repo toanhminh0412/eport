@@ -60,7 +60,7 @@ export function EditableContact1({ section, sectionInd }) {
                                     </div>
                                     <div className="mx-auto w-full max-w-[400px]">
                                         <div className="mx-auto max-w-[400px] text-left mb-4">
-                                            <form name="wf-form-password" method="get">
+                                            <form name="wf-form-password" method="get" disabled>
                                                 <div className="relative">
                                                     <label className="mb-1 font-medium">Your Name</label>
                                                     <input type="text" className="m-0 mb-4 block w-full bg-white align-middle text-black text-sm px-3 h-9 py-6 pl-4" maxLength="256" name="name-2" placeholder="" required=""/>

@@ -30,17 +30,19 @@ export default function ContentTabHeader() {
     // Crop avatar
     const onAvatarCrop = (croppedArea, cropper) => {
         console.log(croppedArea);
-        const scale = 100 / croppedArea.width;
+        const scaleX = 100 / croppedArea.width;
+        const scaleY = 100 / croppedArea.height;
         const transform = {
-            x: `${-croppedArea.x * scale}%`,
-            y: `${-croppedArea.y * scale}%`,
-            scale,
-            width: "calc(100% + 0.5px)",
+            x: `${-croppedArea.x * scaleX}%`,
+            y: `${-croppedArea.y * scaleY}%`,
+            scaleX,
+            scaleY,
+            width: `calc(100% + 0.5px)`,
             height: "auto"
         };
 
         const imageStyle = {
-            transform: `translate3d(${transform.x}, ${transform.y}, 0) scale3d(${transform.scale},${transform.scale},1)`,
+            transform: `translate3d(${transform.x}, ${transform.y}, 0) scale3d(${transform.scaleX},${transform.scaleY}, 1)`,
             width: transform.width,
             height: transform.height
         };

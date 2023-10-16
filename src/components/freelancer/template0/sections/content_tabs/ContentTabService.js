@@ -58,7 +58,7 @@ export default function ContentTabService() {
     // Add service item
     const addServiceItem = () => {
         const newSections = [...sections];
-        const lastServiceItem = newSections[activeSectionInd].services.length === 0 ? 1 : parseInt(newSections[activeSectionInd].services[newSections[activeSectionInd].services.length - 1].id);
+        const lastServiceItem = newSections[activeSectionInd].services.length === 0 ? -1 : parseInt(newSections[activeSectionInd].services[newSections[activeSectionInd].services.length - 1].id);
         newSections[activeSectionInd].services.push({
             id: lastServiceItem + 1,
             icon: "fa-solid fa-cloud",

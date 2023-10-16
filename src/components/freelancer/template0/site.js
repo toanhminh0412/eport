@@ -150,9 +150,10 @@ function Template0Site() {
         )
     }
 
-    console.log(sections)
+    const isNavarUsed = sections.some(section => section.sectionType === "navbar");
+
     return (
-        <div className="w-full relative">
+        <div className={`w-full relative ${isNavarUsed ? "pt-16" : ""}`}>
             {sections.map(section => <Section key={section.id} section={section}/>)}
         </div>
     )

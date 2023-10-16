@@ -17,7 +17,28 @@ export default function ContentTabAboutMe() {
     // Change avatar
     const onAvatarChange = imgSrc => {
         const newSections = [...sections];
-        newSections[activeSectionInd].avatar = imgSrc;
+        newSections[activeSectionInd].avatar.src = imgSrc;
+        setSections(newSections);
+    }
+
+    // Crop avatar
+    const onAvatarCrop = (croppedArea, cropper) => {
+        const scaleX = 100 / croppedArea.width;
+        const scaleY = 100 / croppedArea.height;
+        const transform = {
+            x: `${-croppedArea.x * scaleX}%`,
+            y: `${-croppedArea.y * scaleY}%`,
+            scaleX,
+            scaleY,
+        };
+
+        const imageStyle = {
+            transform: `translate3d(${transform.x}, ${transform.y}, 0) scale3d(${transform.scaleX},${transform.scaleY}, 1)`
+        }
+        
+        const newSections = [...sections];
+        newSections[activeSectionInd].avatar.cropper = cropper;
+        newSections[activeSectionInd].avatar.style = imageStyle;
         setSections(newSections);
     }
 
@@ -58,36 +79,59 @@ export default function ContentTabAboutMe() {
     // Change tab name
     const onTabNameChange = (e, tabInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].tab[tabInd].tabHeading = e.target.value;
+        newSections[activeSectionInd].tabs[tabInd].tabHeading = e.target.value;
         setSections(newSections);
     }
 
     // Change tab content key
     const onTabContentKeyChange = (e, tabInd, contentInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].tab[tabInd].tabContent[contentInd].key = e.target.value;
+        newSections[activeSectionInd].tabs[tabInd].tabContent[contentInd].key = e.target.value;
         setSections(newSections);
     }
 
     // Change tab content value
     const onTabContentValueChange = (e, tabInd, contentInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].tab[tabInd].tabContent[contentInd].value = e.target.value;
+        newSections[activeSectionInd].tabs[tabInd].tabContent[contentInd].value = e.target.value;
         setSections(newSections);
     }
 
     // Add tab content item
     const addTabContentItem = (tabInd) => {
         const newSections = [...sections];
-        const lastTabContentItemId = newSections[activeSectionInd].tab[tabInd].tabContent.length === 0 ? 1 : parseInt(newSections[activeSectionInd].tab[tabInd].tabContent[newSections[activeSectionInd].tab[tabInd].tabContent.length - 1].id);
-        newSections[activeSectionInd].tab[tabInd].tabContent.push({id: lastTabContentItemId + 1, key: "Key text", value: "Value text"});
+        const lastTabContentItemId = newSections[activeSectionInd].tabs[tabInd].tabContent.length === 0 ? -1 : parseInt(newSections[activeSectionInd].tabs[tabInd].tabContent[newSections[activeSectionInd].tabs[tabInd].tabContent.length - 1].id);
+        newSections[activeSectionInd].tabs[tabInd].tabContent.push({id: lastTabContentItemId + 1, key: "Key text", value: "Value text"});
         setSections(newSections);
     }
 
     // Delete tab content item
     const deleteTabContentItem = (tabInd, contentInd) => {
         const newSections = [...sections];
-        newSections[activeSectionInd].tab[tabInd].tabContent.splice(contentInd, 1);
+        newSections[activeSectionInd].tabs[tabInd].tabContent.splice(contentInd, 1);
+        setSections(newSections);
+    }
+
+    // Add tab item (max 3)
+    const addTabItem = () => {
+        const newSections = [...sections];
+        const lastTabItemId = newSections[activeSectionInd].tabs.length === 0 ? -1 : parseInt(newSections[activeSectionInd].tabs[newSections[activeSectionInd].tabs.length - 1].id);
+        newSections[activeSectionInd].tabs.push({
+            id: lastTabItemId + 1,
+            tabHeading: "Tab Name",
+            tabContent: [
+                {id: 0, key: "Key", value: "Value"},
+                {id: 1, key: "Key", value: "Value"},
+                {id: 2, key: "Key", value: "Value"},
+            ]
+        });
+        setSections(newSections);
+    }
+
+    // Delete tab item
+    const deleteTabItem = (tabInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].tabs.splice(tabInd, 1);
         setSections(newSections);
     }
 
@@ -97,7 +141,14 @@ export default function ContentTabAboutMe() {
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>
-                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
+                    <ContentTabImage 
+                        content={sections[activeSectionInd].avatar.src} 
+                        onChange={onAvatarChange} 
+                        defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"
+                        croppable
+                        cropper={sections[activeSectionInd].avatar.cropper}
+                        onCropAreaChange={onAvatarCrop}
+                        aspectRatio={3/4}/>
                 </div>
 
                 {/* Status */}
@@ -127,11 +178,12 @@ export default function ContentTabAboutMe() {
                 {/* Tab */}
                 <div className="px-3 py-1">
                     <h4 className="my-1">Extra Information</h4>
-                    {sections[activeSectionInd].tab.map((tab, tabInd) => (
+                    {sections[activeSectionInd].tabs.map((tab, tabInd) => (
                         <ContentTabAccordion
                             key={tab.id}
                             heading={tab.tabHeading}>
                                 <div>
+                                    <div onClick={() => deleteTabItem(tabInd)}><i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-15 right-4"></i></div>
                                     <h5 className="my-0 font-semibold">Tab Heading</h5>
                                         <ContentTabText rows={1} content={tab.tabHeading} onChange={e => onTabNameChange(e, tabInd)}/>
                                     <h5 className="mt-2 font-semibold">Tab Content</h5>
@@ -152,6 +204,11 @@ export default function ContentTabAboutMe() {
                                 </div>
                         </ContentTabAccordion>
                     ))}
+                    {sections[activeSectionInd].tabs.length < 3 ?
+                        <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addTabItem}><i className="fa-solid fa-plus"></i> Add tab</div>
+                    :
+                        <div className="text-base text-slate-400">You can only add up to 3 tabs in total</div>
+                    }
                 </div>
                 <DeleteSectionButton/>
             </div>

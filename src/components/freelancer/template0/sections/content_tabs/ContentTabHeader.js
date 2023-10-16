@@ -24,7 +24,28 @@ export default function ContentTabHeader() {
     // Change avatar
     const onAvatarChange = imgSrc => {
         const newSections = [...sections];
-        newSections[activeSectionInd].avatar = imgSrc;
+        newSections[activeSectionInd].avatar.src = imgSrc;
+        setSections(newSections);
+    }
+
+    // Crop avatar
+    const onAvatarCrop = (croppedArea, cropper) => {
+        const scaleX = 100 / croppedArea.width;
+        const scaleY = 100 / croppedArea.height;
+        const transform = {
+            x: `${-croppedArea.x * scaleX}%`,
+            y: `${-croppedArea.y * scaleY}%`,
+            scaleX,
+            scaleY,
+        };
+
+        const imageStyle = {
+            transform: `translate3d(${transform.x}, ${transform.y}, 0) scale3d(${transform.scaleX},${transform.scaleY}, 1)`
+        }
+        
+        const newSections = [...sections];
+        newSections[activeSectionInd].avatar.cropper = cropper;
+        newSections[activeSectionInd].avatar.style = imageStyle;
         setSections(newSections);
     }
 
@@ -75,6 +96,25 @@ export default function ContentTabHeader() {
         setSections(newSections);
     }
 
+    // Add social button
+    const addSocialButton = () => {
+        const newSections = [...sections];
+        const lastSocialButtonId = newSections[activeSectionInd].socials.length === 0 ? -1 : parseInt(newSections[activeSectionInd].socials[newSections[activeSectionInd].socials.length - 1].id);
+        newSections[activeSectionInd].socials.push({
+            id: lastSocialButtonId + 1,
+            social: "facebook",
+            href:  "#"
+        });
+        setSections(newSections);
+    }
+
+    // Delete social button
+    const deleteSocialButton = (socialBtnInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].socials.splice(socialBtnInd, 1);
+        setSections(newSections);
+    }
+
     return (
         <div>
             <div className="prose max-w-none">
@@ -87,7 +127,14 @@ export default function ContentTabHeader() {
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>
-                    <ContentTabImage content={sections[activeSectionInd].avatar} onChange={onAvatarChange} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
+                    <ContentTabImage 
+                        content={sections[activeSectionInd].avatar.src} 
+                        onChange={onAvatarChange} 
+                        defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"
+                        croppable
+                        cropper={sections[activeSectionInd].avatar.cropper}
+                        onCropAreaChange={onAvatarCrop}
+                        aspectRatio={3/4}/>
                 </div>
 
                 {/* Heading */}
@@ -110,10 +157,18 @@ export default function ContentTabHeader() {
 
                 {/* Socials button */}
                 <div className="px-3 py-2">
-                    <ContentTabAccordion
-                        heading={"Social buttons"}>
-                            <div>{sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>)}</div>
-                    </ContentTabAccordion>
+                    <h4 className="my-0">Social Buttons</h4>
+                    <div>
+                        {sections[activeSectionInd].socials.map((socialBtn, socialBtnInd) => (
+                            <ContentTabAccordion
+                                key={socialBtn.id}
+                                heading={`Social button #${socialBtnInd + 1}`}>
+                                <div onClick={() => deleteSocialButton(socialBtnInd)}><i className="fa-solid fa-trash z-[1000] text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-12 right-4"></i></div>
+                                <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>
+                            </ContentTabAccordion>
+                        ))}
+                        <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addSocialButton}><i className="fa-solid fa-plus"></i> Add social button</div>
+                    </div>
                 </div>
 
                 {/* Action button */}

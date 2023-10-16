@@ -149,8 +149,10 @@ function Template1Site() {
         )
     }
 
+    const isNavarUsed = sections.some(section => section.sectionType === "navbar");
+
     return (
-        <div className={`w-full relative pt-16 bg-white`}>
+        <div className={`w-full relative bg-white ${isNavarUsed ? "pt-[68px]" : ""}`}>
             {sections.map(section => <Section key={section.id} section={section}/>)}
         </div>
     )

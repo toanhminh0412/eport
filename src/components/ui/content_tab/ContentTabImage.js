@@ -7,7 +7,7 @@ import { useState, useEffect, useCallback } from "react";
 // Third party imports
 import Cropper from "react-easy-crop";
 
-export default function ContentTabImage({ content, onChange, defaultImage, croppable=false, cropper, onCropAreaChange }) {
+export default function ContentTabImage({ content, onChange, defaultImage, croppable=false, cropper, onCropAreaChange, aspectRatio=3/4 }) {
     const [imageFile, setImageFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(content);
 
@@ -53,19 +53,12 @@ export default function ContentTabImage({ content, onChange, defaultImage, cropp
     if (croppable) {
         return (
             <div>
-                {/* <Image 
-                src={imagePreview} 
-                alt="Profile picture" 
-                width={250} 
-                height={250} 
-                style={{objectFit: "contain"}}
-                className="mx-auto border border-slate-300"/> */}
                 <div className="relative w-full h-[300px] my-2">
                     <Cropper
                         image={imagePreview}
                         crop={crop}
                         zoom={zoom}
-                        aspect={3/4}
+                        aspect={aspectRatio}
                         onCropChange={setCrop}
                         onCropAreaChange={croppedArea => onCropAreaChange(croppedArea, {crop: crop, zoom: zoom})}
                         onZoomChange={setZoom}/>

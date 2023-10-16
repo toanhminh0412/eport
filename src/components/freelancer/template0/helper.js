@@ -38,7 +38,14 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "header1",
                 sectionType: "header",
-                avatar: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                avatar: {
+                    src: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                    cropper: {
+                        crop: {x: 0, y: 0},
+                        zoom: 1
+                    },
+                    style:  {}
+                },
                 backgroundImage: "/img/freelancer-template0-header1-white-bg.png",
                 heading: "Best caption here",
                 slogan: "Build your website really fast with Eport. No code needed!",
@@ -75,12 +82,19 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "aboutme1",
                 sectionType: "aboutme",
-                avatar: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                avatar: {
+                    src: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                    cropper: {
+                        crop: {x: 0, y: 0},
+                        zoom: 1
+                    },
+                    style:  {}
+                },
                 status: {text: "Available for work", color: "green"},
                 job: "Software Developer",
                 name: "Eport Website",
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                tab: [
+                tabs: [
                     {
                         id: 0,
                         tabHeading: "Basic Information",

@@ -27,7 +27,7 @@ export function EditableAboutMe1({ section, sectionInd }) {
 
     return (
         <section className="group">
-            <button className="btn bg-blue-700 border-none z-40 absolute hover:bg-blue-900 top-[-35px] right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white"></i></button>
+            <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
             <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Delete Section!</h3>
@@ -49,8 +49,13 @@ export function EditableAboutMe1({ section, sectionInd }) {
                     <div className="mx-auto w-full max-w-7xl">
                         <div className="py-12 md:py-16 lg:py-20">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-5">
-                                <div className="min-h-[400px] overflow-hidden">
-                                    <Image src={section.avatar} alt="Avatar" width={400} height={800} className="rounded-2xl sm:ml-16" style={{objectFit: "contain"}}/>
+                                <div className="relative min-h-[400px] w-3/4 overflow-hidden rounded-2xl aspect-[3/4]">
+                                    <Image 
+                                        src={section.avatar.src}
+                                        fill
+                                        alt="Header avatar"
+                                        style={{ transform: section.avatar.style.transform}}
+                                        className={`absolute left-0 top-0 origin-top-left w-full h-full`}/>
                                 </div>
                                 <div className="flex-col flex items-start gap-2">
                                     <div className="">
@@ -65,28 +70,18 @@ export function EditableAboutMe1({ section, sectionInd }) {
                                                 <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify" dangerouslySetInnerHTML={{ __html: section.description }}></p>
                                             </div>
                                             <div className="tabs mt-7">
-                                                <div className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === 0 ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(0)}>{section.tab[0].tabHeading}</div> 
-                                                <div className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === 1 ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(1)}>{section.tab[1].tabHeading}</div> 
-                                                <div className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === 2 ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(2)}>{section.tab[2].tabHeading}</div>
+                                                {section.tabs.map((tab, tabInd) => (
+                                                    <div key={tab.id} className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === tabInd ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(tabInd)}>{tab.tabHeading}</div> 
+                                                ))}
                                             </div>
-
-                                            <div className={`${activeTabAboutMe !== 0 ? "hidden" : ""}`}>
-                                                <ul>
-                                                    {section.tab[0].tabContent.map((tab, index) => <li key={index} className="my-4 text-sm sm:text-xl"><span className="text-orange-500">{tab.key}: </span>{tab.value}</li>)}
-                                                </ul>
-                                            </div>
-
-                                            <div className={`${activeTabAboutMe !== 1 ? "hidden" : ""}`}>
-                                                <ul>
-                                                    {section.tab[1].tabContent.map((tab, index) => <li key={index} className="my-4 text-sm sm:text-xl"><span className="text-orange-500">{tab.key}: </span>{tab.value}</li>)}
-                                                </ul>
-                                            </div>
-
-                                            <div className={`${activeTabAboutMe !== 2 ? "hidden" : ""}`}>
-                                                <ul>
-                                                    {section.tab[2].tabContent.map((tab, index) => <li key={index} className="my-4 text-sm sm:text-xl"><span className="text-orange-500">{tab.key}: </span>{tab.value}</li>)}
-                                                </ul>
-                                            </div>
+                                            
+                                            {section.tabs.map((tab, tabInd) => 
+                                                <div key={tab.id} className={`${activeTabAboutMe !== tabInd ? "hidden" : ""}`}>
+                                                    <ul>
+                                                        {tab.tabContent.map(tabContent => <li key={tabContent.id} className="my-4 text-sm sm:text-xl"><span className="text-orange-500">{tabContent.key}: </span>{tabContent.value}</li>)}
+                                                    </ul>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

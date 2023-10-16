@@ -42,12 +42,10 @@ export function EditableHeader1({ section, sectionInd }) {
                 <div className="relative w-5/12 h-full brightness-75 overflow-hidden">
                     <Image 
                         src={section.avatar.src}
-                        // width={section.avatar.style.width ? section.avatar.style.width : 300}
-                        // height={section.avatar.style.height ? section.avatar.style.height : 400}
                         fill
                         alt="Header avatar"
-                        style={{ transform: section.avatar.style.transform }}
-                        className={`absolute left-0 top-0 origin-top-left w-[${section.avatar.style.width}] h-[${section.avatar.style.height}]`}/>
+                        style={{ transform: section.avatar.style.transform}}
+                        className={`absolute left-0 top-0 origin-top-left w-full h-full`}/>
                 </div>
                 <div className="w-7/12 prose max-w-none p-0 flex flex-col justify-center">
                     <div className="w-11/12 md:w-10/12 mx-auto">

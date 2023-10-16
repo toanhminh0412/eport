@@ -78,7 +78,7 @@ export default function ContentTabTestimonial() {
     // Add testimonial item
     const addTestimonialItem = () => {
         const newSections = [...sections];
-        const lastTestimonialItem = newSections[activeSectionInd].testimonials.length === 0 ? 1 : parseInt(newSections[activeSectionInd].testimonials[newSections[activeSectionInd].testimonials.length - 1].id);
+        const lastTestimonialItem = newSections[activeSectionInd].testimonials.length === 0 ? -1 : parseInt(newSections[activeSectionInd].testimonials[newSections[activeSectionInd].testimonials.length - 1].id);
         newSections[activeSectionInd].testimonials.push({
             id: lastTestimonialItem + 1,
             ratingStars: 4,

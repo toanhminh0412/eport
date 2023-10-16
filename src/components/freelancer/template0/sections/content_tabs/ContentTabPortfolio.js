@@ -96,7 +96,7 @@ export default function ContentTabPortfolio() {
     // Add portfolio item
     const addPortfolioItem = () => {
         const newSections = [...sections];
-        const lastPortfolioItem = newSections[activeSectionInd].portfolios.length === 0 ? 1 : parseInt(newSections[activeSectionInd].portfolios[newSections[activeSectionInd].portfolios.length - 1].id);
+        const lastPortfolioItem = newSections[activeSectionInd].portfolios.length === 0 ? -1 : parseInt(newSections[activeSectionInd].portfolios[newSections[activeSectionInd].portfolios.length - 1].id);
         newSections[activeSectionInd].portfolios.push({
             id: lastPortfolioItem + 1,
             title: "Project Name",

@@ -4,6 +4,7 @@ import { useContext } from "react";
 // Local imports
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabLink from "@/components/ui/content_tab/ContentTabLink";
+import ContentTabInternalLink from "@/components/ui/content_tab/ContentTabInternalLink";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabNavbar() {
@@ -28,8 +29,14 @@ export default function ContentTabNavbar() {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].navItems[navItemInd].text = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            console.log('Changing internal link');
+            console.log(e.target.value);
+            newSections[activeSectionInd].navItems[navItemInd].internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].navItems[navItemInd].externalHref = e.target.value;
         } else {
-            newSections[activeSectionInd].navItems[navItemInd].href = e.target.value;
+            newSections[activeSectionInd].navItems[navItemInd].isExternal = e.target.checked;
         }
         setSections(newSections);
     }
@@ -75,8 +82,8 @@ export default function ContentTabNavbar() {
                     {sections[activeSectionInd].navItems.map((navItem, navItemInd) => (
                         <div key={navItem.id}>
                             <h4 className="my-0">Nav item #{navItemInd + 1}</h4>
-                            <ContentTabLink
-                                content={{text: navItem.text, href: navItem.href}}
+                            <ContentTabInternalLink
+                                content={navItem}
                                 onChange={(e) => {onNavItemChange(e, navItemInd)}}
                                 onDelete={() => deleteNavItem(navItemInd)}/>
                         </div>

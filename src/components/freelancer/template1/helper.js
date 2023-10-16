@@ -18,17 +18,23 @@ export function getSectionInitialData(sectionId) {
                     {
                         id: 0,
                         text: "About me",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     },
                     {
                         id: 1,
                         text: "Services",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     },
                     {
                         id: 2,
                         text: "Portfolio",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     }
                 ],
                 actionBtn: {

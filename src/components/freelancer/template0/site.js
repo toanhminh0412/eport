@@ -5,9 +5,9 @@ import { createContext, useState, useContext } from "react"
 
 // Local imports
 import { getSectionInitialData } from "./helper";
-import PreviewControlNav from "@/components/layout/PreviewControlNav";
-import LeftContentEditor from "../../layout/LeftContentEditor"
-import Section from "./Section";
+import PreviewControlNav from "./PreviewControlNav";
+import LeftContentEditor from "./LeftContentEditor";
+import { Section, EditableSection } from "./Section";
 
 // Third party imports
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
@@ -16,10 +16,14 @@ import { nanoid } from "nanoid";
 
 export const SectionsContext = createContext();
 export const EditModeContext = createContext();
+export const ActiveTabContext = createContext();
+export const ActiveContentContext = createContext();
 
 export default function Template0({project}) {
     const [sections, setSections] = useState(project.sections);
     const [editMode, setEditMode] = useState(true);
+    const [activeTab, setActiveTab] = useState("sections");
+    const [activeSectionInd, setActiveSectionInd] = useState(-1);
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -42,9 +46,34 @@ export default function Template0({project}) {
         
     }
 
+    const deleteSection = (section) =>  {
+        const deleletedSectionId = section.id;
+        const newSections = sections.filter((section) => section.id !== deleletedSectionId);
+        setActiveSectionInd(-1);
+        setSections(newSections);
+    }
+
     if (editMode) {
         return (
             <>
+                {/* Section delete modal */}
+                {activeSectionInd !== -1 ? <dialog id="delete_modal" className="modal modal-bottom sm:modal-middle">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Delete Section!</h3>
+                        <p className="py-4">Are you sure you want to delete this {sections[activeSectionInd].sectionType}?</p>
+                        <div className="modal-action">
+                            <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(sections[activeSectionInd])}>Yes</button>
+                                <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
+                            </form>
+                        </div>
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog> : null}
                 <div className="sm:hidden flex flex-col justify-center h-[80vh]">
                     <div className="card w-96 bg-base-100 shadow-xl mx-auto">
                         <div className="card-body">
@@ -55,24 +84,28 @@ export default function Template0({project}) {
                 </div>
                 <div className="hidden sm:block">
                     <DragDropContext onDragEnd={onDragEnd}>
-                        <SectionsContext.Provider value={{sections, setSections}}>
+                        <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
-                                <main>
-                                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                        <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
-                                        <LeftContentEditor sections={sections} setSections={setSections} templateId={project.templateId}/>
-                                        <div className="ml-72 lg:ml-96 mt-20">
-                                            <Droppable droppableId="site-blocks">
-                                                {(provided) => (
-                                                    <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
-                                                        <Template0Site/>
-                                                        {provided.placeholder}
-                                                    </div>
-                                                )}
-                                            </Droppable>
-                                        </div>
-                                    </div>
-                                </main>
+                                <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
+                                    <ActiveContentContext.Provider value ={{ activeSectionInd, setActiveSectionInd }}>
+                                        <main>
+                                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                                <PreviewControlNav/>
+                                                <LeftContentEditor/>
+                                                <div className="ml-72 lg:ml-96 mt-20">
+                                                    <Droppable droppableId="site-blocks">
+                                                        {(provided) => (
+                                                            <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
+                                                                <Template0Site/>
+                                                                {provided.placeholder}
+                                                            </div>
+                                                        )}
+                                                    </Droppable>
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </ActiveContentContext.Provider>
+                                </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
                         </SectionsContext.Provider>
                     </DragDropContext>
@@ -82,7 +115,7 @@ export default function Template0({project}) {
     }
 
     return (
-        <SectionsContext.Provider value={{sections, setSections}}>
+        <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                 <main>
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
@@ -98,17 +131,17 @@ export default function Template0({project}) {
 }
 
 function Template0Site() {
-    const {sections, _setSections} = useContext(SectionsContext);
+    const {sections, _setSections, _deleteSection} = useContext(SectionsContext);
     const {editMode, _setEditMode} = useContext(EditModeContext);
 
     if (editMode) {
         return (
-            <div className="w-full relative">
+            <div style={{zoom: "75%"}} className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <Section section={section}/>
+                                <EditableSection section={section} sectionInd={sectionInd}/>
                             </div>
                         )}
                     </Draggable>
@@ -117,8 +150,10 @@ function Template0Site() {
         )
     }
 
+    const isNavarUsed = sections.some(section => section.sectionType === "navbar");
+
     return (
-        <div className="w-full relative">
+        <div className={`w-full relative ${isNavarUsed ? "pt-16" : ""}`}>
             {sections.map(section => <Section key={section.id} section={section}/>)}
         </div>
     )

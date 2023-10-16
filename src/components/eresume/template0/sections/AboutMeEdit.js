@@ -71,7 +71,6 @@ export default function AboutMeEdit({
                             <label className="label">
                                 <span className="label-text dark:text-slate-200">Bio:</span>
                             </label>
-                            {/* <textarea ref={el => (aboutMeRef.current[1] = el)} type="text" rows="5" placeholder="Your bio" className="textarea border-black w-full" defaultValue={aboutMe.bio} /> */}
                             <TextEditor
                             paramRef={el => (aboutMeRef.current[1] = el)}
                             placeholder="Your bio"

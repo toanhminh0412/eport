@@ -22,7 +22,6 @@ export const SectionsContext = createContext();
 export const EditModeContext = createContext();
 export const ActiveTabContext = createContext();
 export const ActiveContentContext = createContext();
-export const SaveSiteContext = createContext();
 
 export default function Template0({project, projectId}) {
     const [sections, setSections] = useState(project.sections ? project.sections : []);
@@ -266,6 +265,8 @@ export default function Template0({project, projectId}) {
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
                         <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
                         <div className="mt-20">
+                            {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                            {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
                             <Template0Site/>
                         </div>
                     </div>

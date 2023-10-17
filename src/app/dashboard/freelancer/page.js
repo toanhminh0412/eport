@@ -27,7 +27,7 @@ export default async function Page({searchParams}) {
     
     if (projectSnap.exists()) {
         const project = projectSnap.data();
-
+        console.log(project);
         // Return a 403 page if user is not the owner of the project
         if (!user || !user.uid || project.owner !== user.uid) {
             return <Page403 message="Sorry! You don't have permission to access this project."/>
@@ -37,7 +37,7 @@ export default async function Page({searchParams}) {
         if (project.templateId === 0) {
             return (
                 <div className="mb-[-420px] xs:mb-[-360px] min-w-[360px]">
-                    <Template0 project={project}/>;
+                    <Template0 project={project} projectId={projectId}/>;
                 </div>
             )
         }

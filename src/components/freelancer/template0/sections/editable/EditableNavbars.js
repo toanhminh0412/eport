@@ -9,7 +9,7 @@ import { ActiveTabContext, ActiveContentContext, SectionsContext } from "../../s
 export function EditableNavbar1({ section, sectionInd }) {
     const { activeTab, setActiveTab } = useContext(ActiveTabContext);
     const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
-    const { _sections, _setSections, deleteSection } = useContext(SectionsContext);
+    const { _sections, _setSections, deleteSection, _saveSite } = useContext(SectionsContext);
 
     const openContentTabEditor = () => {
         setActiveTab("content");

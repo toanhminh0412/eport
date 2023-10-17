@@ -1,12 +1,11 @@
 // React, Next import
-import { useState } from "react"
 import Image from "next/image";
 
 // Local imports
 import { badgeColorOptions } from "@/data/colorOptions";
+import AboutMeTabsShowcase from "../../AboutMeTabsShowcase";
 
 export function AboutMe1({ section }) {
-    const [activeTabAboutMe, setActiveTabAboutMe] = useState(0);
 
     return (
         <section className="block">
@@ -34,19 +33,7 @@ export function AboutMe1({ section }) {
                                             <h1 className="font-bold text-4xl md:text-6xl mb-5 md:mb-6 lg:mb-8">{section.name}</h1>
                                             <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify" dangerouslySetInnerHTML={{ __html: section.description }}></p>
                                         </div>
-                                        <div className="tabs mt-7">
-                                            {section.tabs.map((tab, tabInd) => (
-                                                <div key={tab.id} className={`tab tab-bordered text-sm sm:text-lg lg:text-xl mr-10 mb-6 font-bold no-underline text-orange-500 ${activeTabAboutMe === tabInd ? "tab-active" : ""}`} onClick={() => setActiveTabAboutMe(tabInd)}>{tab.tabHeading}</div> 
-                                            ))}
-                                        </div>
-
-                                        {section.tabs.map((tab, tabInd) => 
-                                            <div key={tab.id} className={`${activeTabAboutMe !== tabInd ? "hidden" : ""}`}>
-                                                <ul>
-                                                    {tab.tabContent.map(tabContent => <li key={tabContent.id} className="my-4 text-sm sm:text-xl"><span className="text-orange-500">{tabContent.key}: </span>{tabContent.value}</li>)}
-                                                </ul>
-                                            </div>
-                                        )}
+                                        <AboutMeTabsShowcase section={section}/>
                                     </div>
                                 </div>
                             </div>

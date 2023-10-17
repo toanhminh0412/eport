@@ -12,7 +12,7 @@ import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabPortfolio() {
-    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
 
     // Change heading

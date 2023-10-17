@@ -361,6 +361,7 @@ export default function Template0({content, projectId}) {
         newSections[testimonialsIndex] = newTestimonials;
         newSections[referencesRef.current.index.dataset.index] = newReferences;
         
+        console.log(site)
         // Update site
         const newSite = {
             ...site,

@@ -7,7 +7,7 @@ import ContentTabLink from "@/components/ui/content_tab/ContentTabLink";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabNavbar() {
-    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
 
     // Field can only be "text" or "link"

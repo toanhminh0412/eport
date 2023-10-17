@@ -8,10 +8,14 @@ import { getSectionInitialData } from "./helper";
 import PreviewControlNav from "./PreviewControlNav";
 import LeftContentEditor from "./LeftContentEditor";
 import { Section, EditableSection } from "./Section";
+import { SuccessToast, ErrorToast } from "@/components/ui/MessageToast";
+import { compressImageSize } from "@/helpers/files";
+import { storage } from "../../../../public/libs/firebase";
 
 // Third party imports
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 
 export const SectionsContext = createContext();
@@ -19,11 +23,13 @@ export const EditModeContext = createContext();
 export const ActiveTabContext = createContext();
 export const ActiveContentContext = createContext();
 
-export default function Template1({project}) {
+export default function Template1({project, projectId}) {
     const [sections, setSections] = useState(project.sections);
     const [editMode, setEditMode] = useState(true);
     const [activeTab, setActiveTab] = useState("sections");
     const [activeSectionInd, setActiveSectionInd] = useState(-1);
+    const [successMsg, setSuccessMsg] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -49,6 +55,124 @@ export default function Template1({project}) {
         const newSections = sections.filter((section) => section.id !== deleletedSectionId);
         setActiveSectionInd(-1);
         setSections(newSections);
+    }
+
+    // Show a message on project edit page for 5 seconds after taking an action
+    const showMessageToast = (message, success=true) => {
+        if (success) {
+            setSuccessMsg(message);
+            setTimeout(() => {
+                setSuccessMsg('');
+            }, 5000);
+        } else {
+            setErrorMsg(message);
+            setTimeout(() => {
+                setErrorMsg('');
+            }, 5000);
+        }
+    }
+
+    // Save site to database
+    const saveSite = async() => {
+        for (let i = 0; i < sections.length; i++) {
+            // Upload header1 and aboutme1 avatar
+            if (sections[i].sectionId === "header1") {
+                let newAvatarURL = '';
+                const fileSrc = sections[i].avatar.src
+                if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                    let newFile = await fetch(fileSrc).then(r => r.blob());
+                    newFile = await compressImageSize(newFile, 0.4);
+                    const avatarRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
+                    const avatarSnap = await uploadBytes(avatarRef, newFile);
+                    newAvatarURL = await getDownloadURL(avatarSnap.ref);
+
+                    const newSections = [...sections];
+                    newSections[i].avatar.src = newAvatarURL;
+                    setSections(newSections);
+                }
+            }
+
+            // Upload header1 background image
+            if (sections[i].sectionId === "header1") {
+                let newBackgroundImgURL = '';
+                const fileSrc = sections[i].backgroundImage
+                if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                    let newFile = await fetch(fileSrc).then(r => r.blob());
+                    newFile = await compressImageSize(newFile, 0.4);
+                    const backgroundImgRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
+                    const backgroundImgSnap = await uploadBytes(backgroundImgRef, newFile);
+                    newBackgroundImgURL = await getDownloadURL(backgroundImgSnap.ref);
+
+                    const newSections = [...sections];
+                    newSections[i].backgroundImage = newBackgroundImgURL;
+                    setSections(newSections);
+                }       
+            }
+
+            if (sections[i].sectionId === "aboutme1") {
+                let newAvatarURL = '';
+                const fileSrc = sections[i].avatar;
+                if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                    let newFile = await fetch(fileSrc).then(r => r.blob());
+                    newFile = await compressImageSize(newFile, 0.4);
+                    const avatarRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
+                    const avatarSnap = await uploadBytes(avatarRef, newFile);
+                    newAvatarURL = await getDownloadURL(avatarSnap.ref);
+
+                    const newSections = [...sections];
+                    newSections[i].avatar = newAvatarURL;
+                    setSections(newSections);
+                }
+            }
+
+            if (sections[i].sectionId === "portfolio1") {
+                for (let j = 0; j < sections[i].projects.length; j++) {
+                    for (let k = 0; k < sections[i].projects[j].images.length; k++) {
+                        let newPortfolioImgURL = '';
+                        const fileSrc = sections[i].projects[j].images[k].src;
+                        if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                            let newFile = await fetch(fileSrc).then(r => r.blob());
+                            newFile = await compressImageSize(newFile, 0.4);
+                            const portfolioImgRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
+                            const portfolioImgSnap = await uploadBytes(portfolioImgRef, newFile);
+                            newPortfolioImgURL = await getDownloadURL(portfolioImgSnap.ref);
+
+                            const newSections = [...sections];
+                            newSections[i].projects[j].images[k].src = newPortfolioImgURL;
+                            setSections(newSections);
+                        }
+                    }
+                }
+            }
+        }
+
+        const newProject = {
+            ...project,
+            sections: sections
+        }
+
+        console.log(newProject)
+
+        // Save new sections to database
+        const response = await fetch(`/api/freelancer/update?projectId=${projectId}`, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                project: newProject
+            })
+        })
+        const data = await response.json();
+        console.log(data);
+        if (data.status === 200) {
+            showMessageToast(data.message, true);
+        } else {
+            showMessageToast(data.message, false);
+        }
     }
 
     if (editMode) {
@@ -83,7 +207,7 @@ export default function Template1({project}) {
                 </div>
                 <div className="hidden sm:block">
                     <DragDropContext onDragEnd={onDragEnd}>
-                        <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
+                        <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode }}>
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
                                     <ActiveContentContext.Provider value={{ activeSectionInd, setActiveSectionInd }}>
@@ -91,6 +215,10 @@ export default function Template1({project}) {
                                             <div className="bg-slate-100 w-full min-h-screen h-full dark:bg-slate-700">
                                                 <PreviewControlNav/>
                                                 <LeftContentEditor/>
+                                                <div className="mt-20">
+                                                    {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                                                    {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                                </div>
                                                 <div className="ml-72 lg:ml-96 mt-20">
                                                     <Droppable droppableId="site-blocks">
                                                         {(provided) => (
@@ -120,6 +248,8 @@ export default function Template1({project}) {
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
                         <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
                         <div className="mt-20">
+                            {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                            {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
                             <Template1Site/>
                         </div>
                     </div>

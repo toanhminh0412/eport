@@ -42,7 +42,7 @@ export default function LeftContentEditor() {
 }
 
 function SectionsTab() {
-    const { sections, setSections, _deleteSection } = useContext(SectionsContext);
+    const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
 
     return (
         <div>
@@ -85,7 +85,7 @@ function SectionsTab() {
 }
 
 function ContentTab() {
-    const { sections, setSections, _deleteSection } = useContext(SectionsContext)
+    const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext)
     const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
 
     if (activeSectionInd === -1) {

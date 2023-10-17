@@ -9,7 +9,7 @@ import { btnColorOptions } from "@/data/colorOptions";
 export function EditableTestimonial1({ section, sectionInd }) {
     const {_activeTab, setActiveTab } = useContext(ActiveTabContext);
     const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
-    const { _sections, _setSections, deleteSection } = useContext(SectionsContext);
+    const { _sections, _setSections, deleteSection, _saveSite } = useContext(SectionsContext);
     const [viewMore, setViewMore] = useState(true);
 
     const openContentTabEditor = () => {

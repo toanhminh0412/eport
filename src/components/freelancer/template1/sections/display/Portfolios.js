@@ -43,7 +43,7 @@ export function Portfolio1({ section }) {
                                     {project.images.map(image => <SwiperSlide key={image.id}><Image width={200} height={200} src={image.src} alt="" className="h-full w-full object-contain brightness-75"/></SwiperSlide>)}
                                 </Swiper>
                                 </div> : null}
-                                <p className="py-4" dangerouslySetInnerHTML={{__html: project.description}}></p>
+                                <div className="py-4" dangerouslySetInnerHTML={{__html: project.description}}></div>
                                 {project.projectUrl.href ? <div className="modal-action">
                                     <Link href={convertToURL(project.projectUrl.href)} target="_blank" className="btn bg-blue-700 hover:bg-blue-900 duration-200 text-white">{project.projectUrl.text}</Link>
                                 </div> : null}

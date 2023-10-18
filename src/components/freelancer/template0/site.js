@@ -10,13 +10,13 @@ import LeftContentEditor from "./LeftContentEditor";
 import { Section, EditableSection } from "./Section";
 import { SuccessToast, ErrorToast } from "@/components/ui/MessageToast";
 import PublishModal from "@/components/ui/PublishModal";
+import { compressImageSize } from "@/helpers/files";
+import { storage } from "../../../../public/libs/firebase";
 
 // Third party imports
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import { nanoid } from "nanoid";
-import { compressImageSize } from "@/helpers/files";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { storage } from "../../../../public/libs/firebase";
 
 
 export const SectionsContext = createContext();
@@ -66,6 +66,7 @@ export default function Template0({project, projectId}) {
         setSections(newSections);
     }
 
+    // Show a message on project edit page for 5 seconds after taking an action
     const showMessageToast = (message, success=true) => {
         if (success) {
             setSuccessMsg(message);
@@ -112,6 +113,7 @@ export default function Template0({project, projectId}) {
         setMessage('Your published site is up-to-date');
     }
 
+    // Save site to database
     const saveSite = async() => {
         for (let i = 0; i < sections.length; i++) {
             // Upload header1 and aboutme1 avatar

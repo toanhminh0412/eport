@@ -7,7 +7,8 @@ import { useState, useEffect, useContext } from "react";
 import domainValidator from "@/helpers/helpers";
 import Link from "next/link";
 import { SetSiteFunctionContext } from "../eresume/template0/site";
-import { ProjectContext } from "../freelancer/template0/site";
+import { ProjectContext as ProjectContext0 } from "../freelancer/template0/site";
+import { ProjectContext as ProjectContext1 } from "../freelancer/template1/site";
 
 // 3rd party imports
 import secureLocalStorage from "react-secure-storage";
@@ -20,7 +21,8 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
     const [error, setError] = useState('');
 
     const setSite = useContext(SetSiteFunctionContext);
-    const setProjectTemplate0 = useContext(ProjectContext);
+    const setProjectTemplate0 = useContext(ProjectContext0);
+    const setProjectTemplate1 = useContext(ProjectContext1);
 
     useEffect(() => {
         // Set default domain
@@ -104,11 +106,19 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
             console.log(data);
             if (data.status === 200) {
                 showMessageToast(data.message, true);
-                setProjectTemplate0({
-                    ...site,
-                    published: true,
-                    domain: domain
-                })
+                if (site.templateId === 0) {
+                    setProjectTemplate0({
+                        ...site,
+                        published: true,
+                        domain: domain
+                    })
+                } else if (site.templateId === 1) {
+                    setProjectTemplate1({
+                        ...site,
+                        published: true,
+                        domain: domain
+                    })
+                }
                 document.getElementById('publish_modal').close();
             } else {
                 setError(data.message);
@@ -116,8 +126,6 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
             setLoading(false);
         }
     }
-
-    console.log(publishedSite)
 
     if (!publishedSite) {
         return (

@@ -1,6 +1,6 @@
-import { Section } from "./Section"
+import { Section } from "./Section";
 
-export default function PublishedTemplate0({project}) {
+export default function PublishedTemplate1({project}) {
     const publish = true;
     return (
         <main>

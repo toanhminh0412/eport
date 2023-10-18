@@ -1,7 +1,7 @@
 "use client";
 
 // Next, React imports
-import { createContext, useState, useContext } from "react"
+import { createContext, useState, useContext, useEffect} from "react"
 
 // Local imports
 import { getSectionInitialData } from "./helper";
@@ -9,6 +9,7 @@ import PreviewControlNav from "./PreviewControlNav";
 import LeftContentEditor from "./LeftContentEditor";
 import { Section, EditableSection } from "./Section";
 import { SuccessToast, ErrorToast } from "@/components/ui/MessageToast";
+import PublishModal from "@/components/ui/PublishModal";
 import { compressImageSize } from "@/helpers/files";
 import { storage } from "../../../../public/libs/firebase";
 
@@ -22,14 +23,20 @@ export const SectionsContext = createContext();
 export const EditModeContext = createContext();
 export const ActiveTabContext = createContext();
 export const ActiveContentContext = createContext();
+export const ProjectContext = createContext();
 
 export default function Template1({project, projectId}) {
+    const [projectTemplate1, setProjectTemplate1] = useState(project);
     const [sections, setSections] = useState(project.sections);
     const [editMode, setEditMode] = useState(true);
     const [activeTab, setActiveTab] = useState("sections");
     const [activeSectionInd, setActiveSectionInd] = useState(-1);
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    const [isEqual, setIsEqual] = useState(false);
+    const [message, setMessage] = useState('Click "Publish" to publish your site!');
+    const [msgLoading, setMsgLoading] = useState(false);
+    const [publishedSite, setPublishedSite] = useState(null);
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -70,6 +77,38 @@ export default function Template1({project, projectId}) {
                 setErrorMsg('');
             }, 5000);
         }
+    }
+
+    // Compare current project and published project
+    useEffect(() => {
+        async function compareSites() {
+            setMsgLoading(true);
+            const response = await fetch(`/api/freelancer/compare?projectId=${projectId}`);
+            const data = await response.json();
+            
+            if (data.status === 200 && data.isEqual === false) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is not up-to-date!');
+                setMsgLoading(false)
+            } else if (data.status === 200 && data.isEqual === true) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 404) {
+                setIsEqual(data.isEqual);
+                setMessage('Click "Publish" to publish your site!');
+                setMsgLoading(false);
+            }
+            setPublishedSite(data.publishedProject);
+        }
+
+        compareSites();
+    }, [projectTemplate1]);
+
+    // Set message when publish site
+    const setPublishMessage = () => {
+        setIsEqual(true);
+        setMessage('Your published site is up-to-date');
     }
 
     // Save site to database
@@ -169,6 +208,7 @@ export default function Template1({project, projectId}) {
         const data = await response.json();
         console.log(data);
         if (data.status === 200) {
+            setProjectTemplate1(newProject);
             showMessageToast(data.message, true);
         } else {
             showMessageToast(data.message, false);
@@ -208,29 +248,38 @@ export default function Template1({project, projectId}) {
                 <div className="hidden sm:block">
                     <DragDropContext onDragEnd={onDragEnd}>
                         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
-                            <EditModeContext.Provider value={{ editMode, setEditMode }}>
+                            <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
                                     <ActiveContentContext.Provider value={{ activeSectionInd, setActiveSectionInd }}>
-                                        <main>
-                                            <div className="bg-slate-100 w-full min-h-screen h-full dark:bg-slate-700">
-                                                <PreviewControlNav/>
-                                                <LeftContentEditor/>
-                                                <div className="mt-20">
-                                                    {successMsg ? <SuccessToast message={successMsg}/>  : null}
-                                                    {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                        <ProjectContext.Provider value={setProjectTemplate1}>
+                                            <main>
+                                                <div className="bg-slate-100 w-full min-h-screen h-full dark:bg-slate-700">
+                                                    <PreviewControlNav projectDomain={projectTemplate1.domain} type='freelancer'/>
+                                                    <LeftContentEditor/>
+                                                    <PublishModal
+                                                        site={projectTemplate1}
+                                                        projectId={projectId}
+                                                        showMessageToast={showMessageToast}
+                                                        setPublishMessage={setPublishMessage}
+                                                        publishedSite={publishedSite}
+                                                        projectType="freelancer"/>
+                                                    <div className="mt-20">
+                                                        {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                                                        {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                                    </div>
+                                                    <div className="ml-72 lg:ml-96 mt-20">
+                                                        <Droppable droppableId="site-blocks">
+                                                            {(provided) => (
+                                                                <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
+                                                                    <Template1Site/>
+                                                                    {provided.placeholder}
+                                                                </div>
+                                                            )}
+                                                        </Droppable>
+                                                    </div>
                                                 </div>
-                                                <div className="ml-72 lg:ml-96 mt-20">
-                                                    <Droppable droppableId="site-blocks">
-                                                        {(provided) => (
-                                                            <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
-                                                                <Template1Site/>
-                                                                {provided.placeholder}
-                                                            </div>
-                                                        )}
-                                                    </Droppable>
-                                                </div>
-                                            </div>
-                                        </main>
+                                            </main>
+                                        </ProjectContext.Provider>
                                     </ActiveContentContext.Provider>
                                 </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
@@ -243,10 +292,17 @@ export default function Template1({project, projectId}) {
 
     return (
         <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
-            <EditModeContext.Provider value={{ editMode, setEditMode }}>
+            <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
                 <main>
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
                         <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
+                        <PublishModal
+                            site={projectTemplate1}
+                            projectId={projectId}
+                            showMessageToast={showMessageToast}
+                            setPublishMessage={setPublishMessage}
+                            publishedSite={publishedSite}
+                            projectType="freelancer"/>
                         <div className="mt-20">
                             {successMsg ? <SuccessToast message={successMsg}/>  : null}
                             {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
@@ -261,7 +317,7 @@ export default function Template1({project, projectId}) {
 
 function Template1Site() {
     const {sections, _setSections, _deleteSection} = useContext(SectionsContext);
-    const {editMode, _setEditMode} = useContext(EditModeContext);
+    const {editMode, _setEditMode, _isEqual, _message, _msgLoading} = useContext(EditModeContext);
 
     if (editMode) {
         return (
@@ -279,10 +335,8 @@ function Template1Site() {
         )
     }
 
-    const isNavarUsed = sections.some(section => section.sectionType === "navbar");
-
     return (
-        <div className={`w-full relative bg-white ${isNavarUsed ? "pt-[68px]" : ""}`}>
+        <div className={`w-full relative bg-white`}>
             {sections.map(section => <div key={section.id} id={section.id}><Section section={section}/></div>)}
         </div>
     )

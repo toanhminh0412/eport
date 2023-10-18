@@ -26,7 +26,7 @@ export const ActiveContentContext = createContext();
 export const ProjectContext = createContext();
 
 export default function Template0({project, projectId}) {
-    const [projectSite, setProjectSite] = useState(project);
+    const [projectTemplate0, setProjectTemplate0] = useState(project);
     const [sections, setSections] = useState(project.sections ? project.sections : []);
     const [editMode, setEditMode] = useState(true);
     const [activeTab, setActiveTab] = useState("sections");
@@ -34,7 +34,7 @@ export default function Template0({project, projectId}) {
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
     const [isEqual, setIsEqual] = useState(false);
-    const [message, setMessage] = useState('Click "Publish Site" to publish your site!');
+    const [message, setMessage] = useState('Click "Publish" to publish your site!');
     const [msgLoading, setMsgLoading] = useState(false);
     const [publishedSite, setPublishedSite] = useState(null);
 
@@ -105,7 +105,7 @@ export default function Template0({project, projectId}) {
         }
 
         compareSites();
-    }, [projectSite]);
+    }, [projectTemplate0]);
 
     // Set message when publish site
     const setPublishMessage = () => {
@@ -228,7 +228,7 @@ export default function Template0({project, projectId}) {
         const data = await response.json();
         console.log(data);
         if (data.status === 200) {
-            setProjectSite(newProject);
+            setProjectTemplate0(newProject);
             showMessageToast(data.message, true);
         } else {
             showMessageToast(data.message, false);
@@ -270,13 +270,13 @@ export default function Template0({project, projectId}) {
                             <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
                                     <ActiveContentContext.Provider value ={{ activeSectionInd, setActiveSectionInd }}>
-                                        <ProjectContext.Provider value={setProjectSite}>
+                                        <ProjectContext.Provider value={setProjectTemplate0}>
                                             <main>
                                                 <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                                    <PreviewControlNav projectDomain={projectSite.domain} type='freelancer'/>
+                                                    <PreviewControlNav projectDomain={projectTemplate0.domain} type='freelancer'/>
                                                     <LeftContentEditor/>
                                                     <PublishModal
-                                                        site={projectSite}
+                                                        site={projectTemplate0}
                                                         projectId={projectId}
                                                         showMessageToast={showMessageToast}
                                                         setPublishMessage={setPublishMessage}
@@ -316,7 +316,7 @@ export default function Template0({project, projectId}) {
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
                         <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
                         <PublishModal
-                            site={projectSite}
+                            site={projectTemplate0}
                             projectId={projectId}
                             showMessageToast={showMessageToast}
                             setPublishMessage={setPublishMessage}
@@ -354,10 +354,10 @@ function Template0Site() {
         )
     }
 
-    const isNavarUsed = sections.some(section => section.sectionType === "navbar");
+    const isNavbarUsed = sections.some(section => section.sectionType === "navbar");
 
     return (
-        <div className={`w-full relative ${isNavarUsed ? "pt-[72px]" : ""}`}>
+        <div className={`w-full relative ${isNavbarUsed ? "pt-[72px]" : ""}`}>
             {sections.map(section => <Section key={section.id} section={section}/>)}
         </div>
     )

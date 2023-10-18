@@ -48,11 +48,11 @@ export function EditableSection({ section, sectionInd }) {
     }
 }
 
-export function Section({ section }) {
+export function Section({ section, publish=false }) {
     switch (section.sectionId) {
         // Navigation bars
         case "navbar1":
-            return <Navbar1 section={section}/>
+            return <Navbar1 section={section} publish={publish}/>
         
         // Headers
         case "header1":

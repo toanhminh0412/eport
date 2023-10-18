@@ -1,5 +1,6 @@
 // Local imports
 import PublishedTemplate0 from "@/components/freelancer/template0/published";
+import PublishedTemplate1 from "@/components/freelancer/template1/published";
 import { Page404 } from "@/components/pages/status_pages";
 
 // Third party imports
@@ -63,7 +64,12 @@ export default async function PublishedFreelancer({params}) {
     const project = await getProject(params.domain);
 
     if (project) {
-        return <PublishedTemplate0 project={project}/>
+        if (project.templateId === 0) {
+            return <PublishedTemplate0 project={project}/>
+        } else if (project.templateId === 1) {
+            return <PublishedTemplate1 project={project}/>
+        }
+        
     } else {
         return <Page404 message="Sorry! This project doesn't exist."/>
     }

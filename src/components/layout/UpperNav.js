@@ -9,7 +9,12 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
   const [currentPath, setCurrentPath] = useState();
   const [loggedIn, setLoggedIn] = useState(isLoggedIn);
   const pathname = usePathname();
-
+  
+  // Don't show UpperNav on published site
+  if (pathname.includes("/freelancer/")) {
+    return null;
+  }
+  
   useEffect(() => {
     setCurrentPath(pathname);
   }, [pathname]);

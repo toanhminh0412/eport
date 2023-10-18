@@ -7,11 +7,12 @@ import { useState, useEffect, useContext } from "react";
 import domainValidator from "@/helpers/helpers";
 import Link from "next/link";
 import { SetSiteFunctionContext } from "../eresume/template0/site";
+import { ProjectContext } from "../freelancer/template0/site";
 
 // 3rd party imports
 import secureLocalStorage from "react-secure-storage";
 
-export default function PublishModal({site, projectId, publishedSite=null, showMessageToast, setPublishMessage}) {
+export default function PublishModal({site, projectId, publishedSite=null, showMessageToast, setPublishMessage=null, projectType}) {
     const [url, setUrl] = useState('');
     const [domain, setDomain] = useState('');
     const [displayedOnEport, setDisplayedOnEport] = useState(false);
@@ -19,6 +20,7 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
     const [error, setError] = useState('');
 
     const setSite = useContext(SetSiteFunctionContext);
+    const setProjectTemplate0 = useContext(ProjectContext);
 
     useEffect(() => {
         // Set default domain
@@ -29,7 +31,7 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
         } else {
             setDomain('');
         }
-        setUrl(typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.hostname}` : '');
+        setUrl(typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.hostname}/${projectType}` : '');
         setDisplayedOnEport(publishedSite && publishedSite.displayedOnEport ? publishedSite.displayedOnEport : false);
     }, [publishedSite]);
 
@@ -52,38 +54,70 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
             displayedOnEport: displayedOnEport,
             publishedDate: new Date()
         }
-        setLoading(true);
-        
-        // Post request to publish site
-        const res = await fetch(`/api/eresume/publish?projectId=${projectId}`, {
-            method: 'POST',
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                site: newPublishedSite
-            })
-        })
-        const data = await res.json();
-        console.log(data);
-        if (data.status === 200) {
-            showMessageToast(data.message, true);
-            setPublishMessage();
-            setSite({
-                ...site,
-                published: true,
-                domain: domain
-            })
-            document.getElementById('publish_modal').close();
-        } else {
-            setError(data.message);
-        }
-        setLoading(false);
 
+        setLoading(true);
+
+        // Post request to publish site
+        if (projectType === 'eresume') {
+            const res = await fetch(`/api/eresume/publish?projectId=${projectId}`, {
+                method: 'POST',
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    site: newPublishedSite
+                })
+            })
+            const data = await res.json();
+            console.log(data);
+            if (data.status === 200) {
+                showMessageToast(data.message, true);
+                setPublishMessage();
+                setSite({
+                    ...site,
+                    published: true,
+                    domain: domain
+                })
+                document.getElementById('publish_modal').close();
+            } else {
+                setError(data.message);
+            }
+            setLoading(false);
+
+        } else if (projectType === 'freelancer') {
+            const res = await fetch(`/api/freelancer/publish?projectId=${projectId}`, {
+                method: 'POST',
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    project: newPublishedSite
+                })
+            })
+            const data = await res.json();
+            console.log(data);
+            if (data.status === 200) {
+                showMessageToast(data.message, true);
+                setProjectTemplate0({
+                    ...site,
+                    published: true,
+                    domain: domain
+                })
+                document.getElementById('publish_modal').close();
+            } else {
+                setError(data.message);
+            }
+            setLoading(false);
+        }
     }
+
+    console.log(publishedSite)
 
     if (!publishedSite) {
         return (

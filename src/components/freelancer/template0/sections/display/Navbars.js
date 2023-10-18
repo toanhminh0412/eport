@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 
-export function NavBar1({ section }) {
+export function NavBar1({ section, publish }) {
     return (
-        <div className="fixed top-36 w-full z-[1000] block bg-slate-900 py-3 lg:block">
+        <div className={`fixed ${publish ? "top-16" : "top-36"} w-full z-[1000] block bg-slate-900 py-3 lg:block`}>
             <div className="px-5 md:px-10">
                 <div className="mx-auto grid w-full max-w-7xl auto-cols-auto grid-cols-[auto_max-content] items-center justify-stretch gap-[0px] lg:grid-cols-[176px_auto]">
                     <div href="" target="_blank" className="relative float-left max-[991px]:mr-auto max-[767px]:pl-0">

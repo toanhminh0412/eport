@@ -24,12 +24,11 @@ export function Portfolio1({ section }) {
                                 {section.portfolios.map((portfolio, portfolioInd) =>
                                     <div key={portfolio.id}>
                                         <div className="relative flex h-[480px] max-w-full flex-col items-center justify-center object-cover text-black">
-                                            <PortfolioModal portfolio={portfolio} portfolioInd={portfolioInd}/>
                                             <Image src={portfolio.images[0].src} alt="Portfolio background image" className="inline-block h-full w-full max-w-full object-cover brightness-50 rounded-md" width={500} height={400}/>
                                             <div className="prose absolute flex flex-col items-center justify-center px-8 py-4 text-center rounded-sm">
                                                 <p className="font-medium text-3xl sm:text-5xl text-white mb-20">{portfolio.title}</p>
                                                 <div className="flex flex-row gap-4">
-                                                    <button className={`inline-block py-3 px-3 rounded-lg ${btnColorOptions[portfolio.actionBtns[0].color]} text-lg font-semibold no-underline mt-4 cursor-pointer`} onClick={() => {document.getElementById(`portfolio-${portfolioInd}`).showModal()}}>{portfolio.actionBtns[0].text}</button>
+                                                    <PortfolioModal portfolio={portfolio} portfolioInd={portfolioInd}/>
                                                     {portfolio.actionBtns[1].text && portfolio.actionBtns[1].href ? <Link href={convertToURL(portfolio.actionBtns[1].href)} target="_blank" className={`inline-block py-3 px-3 rounded-lg ${btnColorOptions[portfolio.actionBtns[1].color]} text-lg font-semibold no-underline mt-4 mr-4 cursor-pointer`}>{portfolio.actionBtns[1].text}</Link> : null}
                                                 </div>
                                             </div>

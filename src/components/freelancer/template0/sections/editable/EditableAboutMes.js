@@ -65,7 +65,7 @@ export function EditableAboutMe1({ section, sectionInd }) {
                                                 </div> : null}
                                                 <p className="flex-col text-slate-600 text-sm sm:text-xl">{section.job}</p>
                                                 <h1 className="font-bold text-4xl md:text-6xl mb-5 md:mb-6 lg:mb-8">{section.name}</h1>
-                                                <p className="flex-col text-slate-600 text-sm sm:text-xl text-justify" dangerouslySetInnerHTML={{ __html: section.description }}></p>
+                                                <div className="flex-col text-slate-600 text-sm sm:text-xl text-justify" dangerouslySetInnerHTML={{ __html: section.description }}></div>
                                             </div>
                                             <AboutMeTabsShowcase section={section}/>
                                         </div>

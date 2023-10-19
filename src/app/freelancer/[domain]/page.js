@@ -25,17 +25,27 @@ export async function generateMetadata({ params }) {
     let description = '';
     let openGraphImage = '';
 
-    for (let i = 0; i < project.sections.length; i++) {
-        if (project.sections[i].sectionType === 'header') {
-            const section = project.sections[i];
-            fullName = section.heading;
-            description = section.description;
-            openGraphImage = section.avatar.src;
+    if (project.templateId === 0) {
+        for (let i = 0; i < project.sections.length; i++) {
+            if (project.sections[i].sectionType === 'header') {
+                const section = project.sections[i];
+                fullName = section.heading;
+                description = section.description;
+                openGraphImage = section.avatar.src;
+            }
+        }
+    } else if (project.templateId === 1) {
+        for (let i = 0; i < project.sections.length; i++) {
+            if (project.sections[i].sectionType === 'header') {
+                const section = project.sections[i];
+                fullName = section.heading;
+                description = section.slogan;
+                openGraphImage = section.avatar.src;
+            }
         }
     }
    
     // optionally access and extend (rather than replace) parent metadata
-   
     return {
       title: `${fullName} - Freelancer`,
       description: description,

@@ -37,7 +37,7 @@ export function FreelancerThumbnail({ content, templateId }) {
                                 <div>
                                     {headerSection !== undefined ?
                                         <>
-                                            {headerSection.actionBtns.map(actionBtn => <div key={actionBtn.id} className="inline-block mt-1"><div className={`py-1 px-2 rounded-16 ${btnColorOptions[actionBtn.color]} text-[8px] font-semibold no-underline mr-2 cursor-pointer`}>{actionBtn.hrefLink.text}</div></div>)}
+                                            {headerSection.actionBtns.map(actionBtn => actionBtn.hrefLink && actionBtn.hrefLink.text ? <div key={actionBtn.id} className="inline-block mt-1"><div className={`py-1 px-2 rounded-16 ${btnColorOptions[actionBtn.color]} text-[8px] font-semibold no-underline mr-2 cursor-pointer`}>{actionBtn.hrefLink.text}</div></div> : null)}
                                         </>
                                     :
                                         <div className={`inline py-1 px-2 rounded-16 border-none bg-orange-500 hover:bg-orange-600 duration-200 text-white text-[8px] font-semibold no-underline mr-2 cursor-pointer`}>Contact</div>

@@ -26,6 +26,7 @@ export async function POST(request) {
 
     // Store the freelancer project in database
     await setDoc(doc(db, 'published_freelancer', projectId), project);
+    console.log(project);
     await setDoc(doc(db, 'freelancer', projectId), {
         published: true,
         domain: project.domain

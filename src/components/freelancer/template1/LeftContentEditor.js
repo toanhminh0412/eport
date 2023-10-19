@@ -45,6 +45,14 @@ export default function LeftContentEditor() {
 function SectionsTab() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
 
+    const addSection = section => {
+        if (section.sectionType === "navbar") {
+            setSections([{...getSectionInitialData(section.sectionId), id:nanoid()}, ...sections]);
+        } else {
+            setSections([...sections, {...getSectionInitialData(section.sectionId), id:nanoid()}]);
+        }
+    }
+
     return (
         <div>
             {Object.entries(sectionsDataTemplate1).map(([sectionName, sectionList]) => (
@@ -62,7 +70,7 @@ function SectionsTab() {
                                         <Draggable key={`build-block-${section.sectionId}`} draggableId={`build-block-${section.sectionId}`} index={sectionInd}>
                                             {(provided) => (
                                                 <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                    <div key={section.sectionId} onClick={() => setSections([...sections, {...getSectionInitialData(section.sectionId), id:nanoid()}])}>
+                                                    <div key={section.sectionId} onClick={() => {addSection(section)}}>
                                                         <Image 
                                                             width={200} 
                                                             height={150} 

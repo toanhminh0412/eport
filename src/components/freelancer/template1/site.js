@@ -187,7 +187,8 @@ export default function Template1({project, projectId}) {
 
         const newProject = {
             ...project,
-            sections: sections
+            sections: sections,
+            lastEdited: new Date(),
         }
 
         console.log(newProject)

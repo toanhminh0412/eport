@@ -85,7 +85,9 @@ export default function ContentTabNavbar() {
                             <ContentTabInternalLink
                                 content={navItem}
                                 onChange={(e) => {onNavItemChange(e, navItemInd)}}
-                                onDelete={() => deleteNavItem(navItemInd)}/>
+                                onDelete={() => deleteNavItem(navItemInd)}
+                                sections={sections}
+                                activeSectionInd={activeSectionInd}/>
                         </div>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>

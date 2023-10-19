@@ -1,5 +1,8 @@
 "use client";
 
+// Next imports
+import Image from 'next/image';
+
 // Local imports
 import { Swiper, SwiperSlide } from 'swiper/react';
 

@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
-import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
@@ -36,13 +35,6 @@ export default function ContentTabTestimonial() {
     const onTestimonialContentChange = (value, testimonialInd) => {
         const newSections = [...sections];
         newSections[activeSectionInd].testimonials[testimonialInd].content = value;
-        setSections(newSections);
-    }
-
-    // Change testimonial image
-    const onTestinomialImageChange = (imgSrc, testimonialInd) => {
-        const newSections = [...sections];
-        newSections[activeSectionInd].testimonials[testimonialInd].image = imgSrc;
         setSections(newSections);
     }
 
@@ -82,8 +74,7 @@ export default function ContentTabTestimonial() {
         newSections[activeSectionInd].testimonials.push({
             id: lastTestimonialItem + 1,
             ratingStars: 4,
-            content: "Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis",
-            image: "/img/freelancer-template0-aboutme1-avatar.jpg",
+            content: "<p>The Testimonials section serves as a social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience.</p>",
             name: "Harry Peter",
             job: "Designer"
         });
@@ -126,22 +117,16 @@ export default function ContentTabTestimonial() {
                                         <span className="label-text text-slate-700 font-medium">Content</span>
                                     </label>
                                     <ContentTabFormattedText content={testimonial.content} onChange={e => onTestimonialContentChange(e, testimonialInd)}/>
-                                    
-                                    {/* Image */}
-                                    <label className="pt-0">
-                                        <span className="label-text text-slate-700 font-medium">Image</span>
-                                    </label>
-                                    <ContentTabImage content={testimonial.image} onChange={e => onTestinomialImageChange(e, testimonialInd)} defaultImage="/img/freelancer-template0-aboutme1-avatar.jpg"/>
 
                                     {/* Name */}
                                     <label className="pt-0">
-                                        <span className="label-text text-slate-700 font-medium">Name</span>
+                                        <span className="label-text text-slate-700 font-medium">Reviewer Name</span>
                                     </label>
                                     <ContentTabText content={testimonial.name} onChange={e => onTestimonialNameChange(e, testimonialInd)}/>
 
                                     {/* Job */}
                                     <label className="pt-0">
-                                        <span className="label-text text-slate-700 font-medium">Job</span>
+                                        <span className="label-text text-slate-700 font-medium">Reviewer Job</span>
                                     </label>
                                     <ContentTabText content={testimonial.job} onChange={e => onTestimonialJobChange(e, testimonialInd)}/>
                                 </div>

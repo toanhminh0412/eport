@@ -8,6 +8,8 @@ import Link from "next/link";
 // Local imports
 import TemplateSelector from "./TemplateSelector";
 import { Template0Thumbnail } from "@/components/eresume/thumbnails";
+import { FreelancerThumbnail } from "@/components/freelancer/thumbnails";
+import { orderBy } from "firebase/firestore";
 
 const ProjectsContext = createContext();
 
@@ -60,9 +62,7 @@ export default function Dashboard() {
                 <h1 className="flex flex-row justify-between">Projects<button className="btn bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => document.getElementById('create_new_project_modal').showModal()}>&#43; Create new project</button></h1>
                 {/* Render all current projects */}
                 {projects.length !== 0 ? 
-                    <div className="flex flex-row flex-wrap gap-6">
-                        {projects.map(project => <ProjectCard key={project.id} project={project}/>)}
-                    </div>
+                    <ProjectSort projects={projects}/>
                 
                 // Render text if there are no projects
                 : <p className="text-center mt-40">
@@ -73,9 +73,19 @@ export default function Dashboard() {
     )
 }
 
-function ProjectCard({project}) {
-    const freelancerThumbnail = project.content.templateId === 0 ? "/img/freelancer-template0-thumbnail.png" : "/img/freelancer-template1-thumbnail.png"
+function ProjectSort({projects}) {
+    projects.sort((a, b) => 
+        (a.content.lastEdited > b.content.lastEdited) ? -1 : (a.content.lastEdited < b.content.lastEdited) ? 1 : 0
+    )
 
+    return (
+        <div className="flex flex-row flex-wrap gap-6">
+            {projects.map(project => <ProjectCard key={project.id} project={project}/>)}
+        </div>
+    )
+}
+
+function ProjectCard({project}) {
     if (project.type === "eresume" && project.content.templateId === 0) {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -103,11 +113,7 @@ function ProjectCard({project}) {
     if (project.type === "freelancer") {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
-                {/* <Image src="/img/freelancer-template0.png"
-                    fill 
-                    className="rounded-lg"
-                    alt="Freelancer template 1"/> */}
-                <figure><Image width={150} height={150} className="w-full aspect-video" src={freelancerThumbnail} alt="Freelancer template thumbnail" /></figure>
+                <FreelancerThumbnail content={project.content} templateId={project.content.templateId}/>
                 <div className="card-body not-prose relative">
                     {/* Project dropdown menu */}
                     <ProjectMenuButton projectId={project.id}/>

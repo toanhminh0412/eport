@@ -37,12 +37,12 @@ export function EditableTestimonial1({ section, sectionInd }) {
             <div className={`relative block border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="py-16 md:py-24 lg:py-32">
                     <div className="px-5 md:px-10">
-                        <div className="mx-auto w-full max-w-7xl">
+                        <div className="mx-auto w-full max-w-[1400px]">
                             <div className="mx-auto w-full max-w-3xl">
                                 <div className="text-center">
                                     <h2 className="font-semibold text-3xl md:text-5xl">What <span className="bg-contain bg-center bg-no-repeat text-orange-500">our clients</span> are saying</h2>
                                     <div className="mx-auto mt-4 max-w-[528px] mb-8 md:mb-12 lg:mb-16">
-                                        <p className="text-slate-700 text-lg">{section.description}</p>
+                                        <p className="text-slate-700 text-xl max-[479px]:text-lg">{section.description}</p>
                                     </div>
                                 </div>
                             </div>

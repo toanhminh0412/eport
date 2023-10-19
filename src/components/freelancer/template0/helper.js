@@ -9,26 +9,36 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "navbar1",
                 sectionType: "navbar",
+                sectionTitle: "Navigation bar",
+                logo: "/img/eport-logo-color.png",
                 navItems: [
                     {
                         id: 0,
                         text: "About me",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     },
                     {
                         id: 1,
                         text: "Services",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     },
                     {
                         id: 2,
                         text: "Portfolios",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     },
                     {
                         id: 3,
                         text: "Testimonials",
-                        href: "#"
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false
                     },
                 ],
             }
@@ -38,6 +48,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "header1",
                 sectionType: "header",
+                sectionTitle: "Header",
                 avatar: {
                     src: "/img/freelancer-template0-aboutme1-avatar.jpg",
                     cropper: {
@@ -47,9 +58,9 @@ export function getSectionInitialData(sectionId) {
                     style:  {}
                 },
                 backgroundImage: "/img/freelancer-template0-header1-white-bg.png",
-                heading: "Best caption here",
+                heading: "Eport Website",
                 slogan: "Build your website really fast with Eport. No code needed!",
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                description: "Eport is a versatile online platform that allows individuals, businesses, and organizations to create, customize, and publish websites without the need for advanced technical knowledge or coding skills.",
                 socials: [
                     {
                         id: 0,
@@ -70,8 +81,12 @@ export function getSectionInitialData(sectionId) {
                 actionBtns: [
                     {
                         id: 0,
-                        text: "Contact",
-                        href: "#",
+                        hrefLink: {
+                            text: "Contact",
+                            internalHref: "#",
+                            externalHref: "#",
+                            isExternal: false,
+                        },
                         color: "orange"
                     }
                 ]
@@ -82,6 +97,7 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "aboutme1",
                 sectionType: "aboutme",
+                sectionTitle: "About me",
                 avatar: {
                     src: "/img/freelancer-template0-aboutme1-avatar.jpg",
                     cropper: {
@@ -93,7 +109,7 @@ export function getSectionInitialData(sectionId) {
                 status: {text: "Available for work", color: "green"},
                 job: "Software Developer",
                 name: "Eport Website",
-                description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+                description: "<p>This is a simple bio with concrete facts that goes a long way. Remember that your About Me section serves as a first impression for many people who encounter your onlne presence. It should leave a memorable and positive impression while giving readers a glimpse into your personality, values, and professional background.</p>",
                 tabs: [
                     {
                         id: 0,
@@ -101,25 +117,25 @@ export function getSectionInitialData(sectionId) {
                         tabContent: [
                             {id: 0, key: "Name", value: "Eport Website"},
                             {id: 1, key: "Jobs", value: "Website Builder"},
-                            {id: 2, key: "Age", value: "22"},
+                            {id: 2, key: "Since", value: "2023"},
                         ]
                     },
                     {
                         id: 1,
-                        tabHeading: "Education",
+                        tabHeading: "Tab Heading",
                         tabContent: [
-                            {id: 0, key: "Graduated from", value: "University of Alberta"},
-                            {id: 1, key: "Major", value: "Computer Science"},
-                            {id: 2, key: "GPA", value: "4.0 / 4.0"},
+                            {id: 0, key: "Tab key", value: "Tab value"},
+                            {id: 1, key: "Tab key", value: "Tab value"},
+                            {id: 2, key: "Tab key", value: "Tab value"},
                         ]
                     },
                     {
                         id: 2,
-                        tabHeading: "Experience",
+                        tabHeading: "Tab Heading",
                         tabContent: [
-                            {id: 0, key: "Company", value: "Eport"},
-                            {id: 1, key: "Position", value: "Fullstack Developer"},
-                            {id: 2, key: "From", value: "August, 2023"},
+                            {id: 0, key: "Tab key", value: "Tab value"},
+                            {id: 1, key: "Tab key", value: "Tab value"},
+                            {id: 2, key: "Tab key", value: "Tab value"},
                         ]
                     }
                 ]
@@ -130,36 +146,37 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "service1",
                 sectionType: "service",
+                sectionTitle: "Services",
                 heading: "Service",
-                description: "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam,purus sit amet luctus magna fringilla urna",
+                description: "The Services section of our website is your gateway to discovering the comprehensive range of solutions we offer.",
                 services: [
                     {
                         id: 0,
                         icon: "fa-solid fa-cloud",
                         title: "Portfolio Design",
                         price: "200 CAD / month",
-                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section.</p>"
+                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services.</p>"
                     },
                     {
                         id: 1,
                         icon: "fa-solid fa-cloud",
                         title: "Portfolio Design",
                         price: "200 CAD / month",
-                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section.</p>"
+                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services.</p>"
                     },
                     {
                         id: 2,
                         icon: "fa-solid fa-cloud",
                         title: "Portfolio Design",
                         price: "200 CAD / month",
-                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section.</p>"
+                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services.</p>"
                     },
                     {
                         id: 3,
                         icon: "fa-solid fa-cloud",
                         title: "Portfolio Design",
                         price: "200 CAD / month",
-                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section.</p>"
+                        content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services.</p>"
                     }
                 ]
             }
@@ -169,8 +186,9 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "portfolio1",
                 sectionType: "portfolio",
+                sectionTitle: "Portfolio",
                 heading: "Project",
-                sectionDescription: "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam,purus sit amet luctus magna fringilla urna",
+                sectionDescription: "Welcome to our Portfolio section, where we proudly present a visual and insightful journey through our body of work. ",
                 portfolios: [
                     {
                         id: 0,
@@ -316,37 +334,34 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "testimonial1",
                 sectionType: "testimonial",
-                description: "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam,purus sit amet luctus magna fringilla urna",
+                sectionTitle: "Testimonials",
+                description: "Welcome to our Testimonial section, a place where the voices of our satisfied clients, customers, and collaborators take center stage.",
                 testimonials: [
                     {
                         id: 0,
                         ratingStars: 4,
-                        content: "<p>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis</p>",
-                        image: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                        content: "<p>The Testimonials section serves as a social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience.</p>",
                         name: "Harry Peter",
                         job: "Designer"
                     },
                     {
                         id: 1,
                         ratingStars: 4,
-                        content: "<p>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis</p>",
-                        image: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                        content: "<p>The Testimonials section serves as a social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience.</p>",
                         name: "Harry Peter",
                         job: "Designer"
                     },
                     {
                         id: 2,
                         ratingStars: 4,
-                        content: "<p>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis</p>",
-                        image: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                        content: "<p>The Testimonials section serves as a social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience.</p>",
                         name: "Harry Peter",
                         job: "Designer"
                     },
                     {
                         id: 3,
                         ratingStars: 4,
-                        content: "<p>Lorem ipsum dolor sit amet,  elit ut aliquam, purus sit amet luctus venenatis elit ut aliquam, purus sit amet luctus venenatis</p>",
-                        image: "/img/freelancer-template0-aboutme1-avatar.jpg",
+                        content: "<p>The Testimonials section serves as a social proof and validation of your work or services. It can greatly influence potential clients or customers in their decision-making process. Make sure the testimonials you feature are genuine, compelling, and relevant to your target audience.</p>",
                         name: "Harry Peter",
                         job: "Designer"
                     }
@@ -363,7 +378,8 @@ export function getSectionInitialData(sectionId) {
             return {
                 sectionId: "contact1",
                 sectionType: "contact",
-                description: "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam,purus sit amet luctus magna fringilla urna",
+                sectionTitle: "Contact me",
+                description: "Welcome to our Contact Us section, the open door to connect, communicate, and collaborate with us.",
                 slogan: "Let's build something exciting together!",
                 contactInfo: [
                     {
@@ -380,17 +396,17 @@ export function getSectionInitialData(sectionId) {
                 socials: [
                     {
                         id: 0,
-                        social: "facebook",
+                        social: "linkedin",
                         href:  "#"
                     },
                     {
                         id: 1,
-                        social: "instagram",
+                        social: "github",
                         href:  "#"
                     },
                     {
                         id: 2,
-                        social: "twitter",
+                        social: "gmail",
                         href:  "#"
                     }
                 ],

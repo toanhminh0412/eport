@@ -366,7 +366,8 @@ export default function Template0({content, projectId}) {
         const newSite = {
             ...site,
             theme: themeRef.current.value,
-            sections: newSections
+            sections: newSections,
+            lastEdited: new Date()
         }
         console.log(newSite);
         

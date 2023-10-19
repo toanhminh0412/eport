@@ -8,7 +8,7 @@ export function Template0Thumbnail({content, theme}) {
     return (
         <div className={theme === "dark" ? "dark" : null}>
             <div className="w-full aspect-video">
-                <div className="hero h-24 relative rounded-t-lg not-prose" style={{backgroundImage: `url(${section.coverPhoto ? section.coverPhoto : "/img/header-bg.jpg"})`}}>
+                <div className="hero h-[108px] relative rounded-t-lg not-prose" style={{backgroundImage: `url(${section.coverPhoto ? section.coverPhoto : "/img/header-bg.jpg"})`}}>
                     <div className="hero-overlay bg-opacity-80 rounded-t-lg"></div>
                     <Image 
                         src={section.profilePic} 

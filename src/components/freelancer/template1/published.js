@@ -5,7 +5,7 @@ export default function PublishedTemplate1({project}) {
     return (
         <main>
             <div className={`w-full relative`}>
-                {project.sections.map(section => <Section key={section.id} section={section} publish={publish}/>)}
+                {project.sections.map(section => <div key={section.id} id={section.id}><Section section={section} publish={publish}/></div>)}
             </div>
         </main>
     )

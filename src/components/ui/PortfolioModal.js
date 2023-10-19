@@ -21,12 +21,12 @@ export function PortfolioModal({portfolio, portfolioInd}) {
                 <form method="dialog" className="modal-box w-11/12 max-w-7xl overflow-auto">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     <div className="lg:flex lg:flex-row lg:gap-3">
-                        <div className="w-full lg:w-1/2">
-                            {portfolio.images.length > 0 ?
-                                <SwiperGallery portfolio={portfolio}/>
-                            : null}
-                        </div>
-                        <div className="w-full lg:w-1/2 text-justify lg:max-h-[500px] lg:pb-6 lg:overflow-auto mb-6">
+                        {portfolio.images.length > 0 ?
+                            <div className="w-full lg:w-1/2">
+                                    <SwiperGallery portfolio={portfolio}/>  
+                            </div>
+                        : null}
+                        <div className={`w-full ${portfolio.images.length > 0 ? "lg:w-1/2" : ""} text-justify lg:max-h-[500px] lg:pb-6 lg:overflow-auto mb-6`}>
                             <h2 className="mt-2 lg:mt-0">{portfolio.title}</h2>
                             <article dangerouslySetInnerHTML={{ __html: portfolio.description }}></article>
                             <div className="flex flex-row flex-wrap gap-3 mt-5">

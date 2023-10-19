@@ -185,29 +185,12 @@ export default function Template0({project, projectId}) {
                     }
                 }
             }
-
-            if (sections[i].sectionId === "testimonial1") {
-                for (let j = 0; j < sections[i].testimonials.length; j++) {
-                    let newTestimonialImgURL = '';
-                    const fileSrc = sections[i].testimonials[j].image;
-                    if (!fileSrc.includes('firebasestorage.googleapis.com')) {
-                        let newFile = await fetch(fileSrc).then(r => r.blob());
-                        newFile = await compressImageSize(newFile, 0.4);
-                        const testimonialImgRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
-                        const testimonialImgSnap = await uploadBytes(testimonialImgRef, newFile);
-                        newTestimonialImgURL = await getDownloadURL(testimonialImgSnap.ref);
-
-                        const newSections = [...sections];
-                        newSections[i].testimonials[j].image = newTestimonialImgURL;
-                        setSections(newSections);
-                    }
-                }
-            }
         }
 
         const newProject = {
             ...project,
-            sections: sections
+            sections: sections,
+            lastEdited: new Date()
         }
 
         console.log(newProject)
@@ -345,7 +328,7 @@ function Template0Site() {
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <EditableSection section={section} sectionInd={sectionInd}/>
+                                <div id={section.id}><EditableSection section={section} sectionInd={sectionInd}/></div>
                             </div>
                         )}
                     </Draggable>
@@ -358,7 +341,7 @@ function Template0Site() {
 
     return (
         <div className={`w-full relative ${isNavbarUsed ? "pt-[72px]" : ""}`}>
-            {sections.map(section => <Section key={section.id} section={section}/>)}
+            {sections.map(section => <div key={section.id} id={section.id}><Section section={section}/></div>)}
         </div>
     )
 }

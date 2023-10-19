@@ -9,8 +9,8 @@ import { convertToURL } from "@/helpers/helpers"
 export function Contact1({ section }) {
     return ( 
         <section className="prose max-w-none px-5 md:px-10">
-            <div className="mx-auto w-full max-w-7xl">
-                <div className="py-16 md:py-24 lg:py-32">
+            <div className="mx-auto w-full max-w-[1400px]">
+                <div className="pt-40 pb-12">
                     <div className="grid items-center max-[991px]:justify-items-start grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                         <div className="flex flex-col items-start max-[991px]:max-w-[720px]">
                             <h2 className="font-bold mb-2 text-3xl md:text-5xl">{section.slogan}</h2>
@@ -27,7 +27,7 @@ export function Contact1({ section }) {
                             <div className="text-center">
                                 <h1 className="font-bold text-3xl md:text-5xl">Contact <span className="text-orange-500">Us</span></h1>
                                 <div className="mx-auto mt-4 max-w-[480px] mb-5 md:mb-6 lg:mb-8">
-                                    <div className="text-sm text-slate-700">{section.description}</div>
+                                    <div className="text-lg max-[479px]:text-md text-slate-700">{section.description}</div>
                                 </div>
                                 <div className="mx-auto w-full max-w-[400px]">
                                     <div className="mx-auto max-w-[400px] text-left mb-4">

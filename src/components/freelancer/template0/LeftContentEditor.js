@@ -45,8 +45,12 @@ function SectionsTab() {
     const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
 
     const addSection = section => {
+        // Navbar has to be the first section
         if (section.sectionType === "navbar") {
-            setSections([{...getSectionInitialData(section.sectionId), id:nanoid()}, ...sections]);
+            const isNavbarUsed = sections.some(section => section.sectionType === "navbar");
+            if (!isNavbarUsed) {
+                setSections([{...getSectionInitialData(section.sectionId), id:nanoid()}, ...sections]);
+            }
         } else {
             setSections([...sections, {...getSectionInitialData(section.sectionId), id:nanoid()}]);
         }

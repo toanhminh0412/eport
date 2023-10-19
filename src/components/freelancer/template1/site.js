@@ -42,6 +42,8 @@ export default function Template1({project, projectId}) {
         if (!result.destination) return;
 
         if (result.draggableId.includes("site-block")) {
+            // Can't move navbar section
+            if ((result.source.index === 0 || result.destination.index === 0) && sections[0].sectionType === "navbar") return;
             const reorderedSections = Array.from(sections);
             const [reorderedSection] = reorderedSections.splice(result.source.index, 1);
             reorderedSections.splice(result.destination.index, 0, reorderedSection);
@@ -51,7 +53,15 @@ export default function Template1({project, projectId}) {
             const sectionId = result.draggableId.split("-")[2];
             const section = getSectionInitialData(sectionId);
             let reorderedSections = Array.from(sections);
-            reorderedSections.splice(result.destination.index, 0, {...section, id: nanoid()});
+            // Can't move navbar section
+            if (section.sectionType === "navbar") {
+                const isNavbarUsed = sections.some(section => section.sectionType === "navbar");
+                if (!isNavbarUsed) {
+                    reorderedSections.splice(0, 0, {...section, id: nanoid()});
+                }
+            } else {
+                reorderedSections.splice(result.destination.index, 0, {...section, id: nanoid()});
+            }
             setSections(reorderedSections);
         }
         

@@ -1,6 +1,9 @@
 'use client';
 
+// Local imports
 import { useState, useEffect } from "react";
+
+// Third party imports
 import emailjs from "@emailjs/browser";
 
 export default function EmailConfirmForm({email}) {

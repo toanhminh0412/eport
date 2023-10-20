@@ -12,7 +12,7 @@ import { convertMilliseconds } from "@/helpers/helpers";
 
 const ProjectsContext = createContext();
 
-export default function Dashboard() {
+export default function Dashboard({ user }) {
     const [projects, setProjects] = useState(null);
 
     useEffect(() => {
@@ -59,6 +59,12 @@ export default function Dashboard() {
                 </dialog>
                 
                 <h1 className="flex flex-row justify-between">Projects<button className="btn bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => document.getElementById('create_new_project_modal').showModal()}>&#43; Create new project</button></h1>
+                <h4 className="mb-4">Email quota: {user.emailQuota} remaining
+                    <div className="tooltip" data-tip="Number of emails customers can send you using the form on your published websites. This number is renewed at the beginning of each month">
+                        <label tabIndex={0} className="btn btn-circle btn-ghost btn-xs text-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </label>
+                    </div></h4>
                 {/* Render all current projects */}
                 {projects.length !== 0 ? 
                     <ProjectSort projects={projects}/>
@@ -72,6 +78,7 @@ export default function Dashboard() {
     )
 }
 
+// Sort projects by last edited time
 function ProjectSort({projects}) {
     projects.sort((a, b) => 
         (a.content.lastEdited > b.content.lastEdited) ? -1 : (a.content.lastEdited < b.content.lastEdited) ? 1 : 0
@@ -84,6 +91,7 @@ function ProjectSort({projects}) {
     )
 }
 
+// Render project card
 function ProjectCard({project}) {
     if (project.type === "eresume" && project.content.templateId === 0) {
         return (

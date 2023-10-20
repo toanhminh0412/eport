@@ -1,8 +1,8 @@
 // Local imports
-import { btnColorOptions } from "@/data/colorOptions"
+import { ContactForm1 } from "./ContactForm"
 
 
-export function Contact1({ section }) {
+export function Contact1({ section, publish, ownerEmail }) {
     return (
         <section className="block bg-white">
             <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
@@ -13,33 +13,7 @@ export function Contact1({ section }) {
                             <p className="text-[#636262] max-[479px]:text-sm">{section.description}</p>
                         </div>
                     </div>
-                    <div className="mx-auto max-w-[608px] bg-[#f2f2f7] px-8 max-[991px]:ml-0 max-[991px]:mr-0 pt-[2em] pb-8">
-                        <div className="text-center">
-                            <h3 className="font-bold text-2xl md:text-3xl">{section.formHeading}</h3>
-                            <div className="mx-auto mt-4 max-w-[480px] mb-5 md:mb-6 lg:mb-8">
-                                <div className="text-[#636262] text-sm sm:text-sm">{section.formTagline}</div>
-                            </div>
-                            <div className="mx-auto w-full max-w-[400px]">
-                                <div className="mx-auto max-w-[400px] text-left mb-4">
-                                    <form name="wf-form-password" method="get">
-                                        <div className="relative">
-                                            <label htmlFor="name" className="mb-1 font-medium">Name</label>
-                                            <input type="text" className="m-0 mb-4 block w-full border border-solid border-black align-middle text-[#333333] focus:border-[#3898ec] text-sm px-3 rounded-md h-9 py-6 pl-4" maxLength="256" name="name" placeholder="Your name" required/>
-                                        </div>
-                                        <div className="relative mb-2">
-                                            <label htmlFor="email" className="mb-1 font-medium">Email Address</label>
-                                            <input type="email" className="m-0 mb-4 block w-full border border-solid border-black align-middle text-[#333333] focus:border-[#3898ec] text-sm px-3 rounded-md h-9 py-6 pl-4" maxLength="256" name="email" placeholder="Your email" required/>
-                                        </div>
-                                        <div className="relative mb-5 md:mb-6 lg:mb-8">
-                                            <label htmlFor="details" className="mb-1 font-medium">Details</label>
-                                            <textarea placeholder="Let me know how I can help" maxLength="5000" name="details" className="m-0 block h-auto min-h-[128px] w-full overflow-auto border border-solid border-black bg-white align-middle text-[#333333] focus:border-[#3898ec] text-sm mb-2.5 px-3 py-2 rounded-md pl-4" required></textarea>
-                                        </div>
-                                        <input type="submit" value={section.formBtn.text} className={`${section.formBtn && section.formBtn.color ? btnColorOptions[section.formBtn.color] : btnColorOptions['orange']} m-0 inline-block w-full cursor-pointer items-center px-6 py-3 text-center font-semibold`}/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ContactForm1 section={section} publish={publish} ownerEmail={ownerEmail}/>
                 </div>
             </div>
         </section>

@@ -36,6 +36,7 @@ export async function GET(request) {
 
     await setDoc(doc(db, "freelancer", projectId), {
         owner: user.uid,
+        ownerEmail: user.email,
         templateId: parseInt(templateId),
         theme: "light",
         sections: [],

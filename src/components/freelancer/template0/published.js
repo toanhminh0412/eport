@@ -5,7 +5,7 @@ export default function PublishedTemplate0({project}) {
     const isNavbarUsed = project.sections.some(section => section.sectionType === "navbar");
     return (
         <main className={`w-full relative ${isNavbarUsed ? "" : "mt-[-65px]"}`}>
-            {project.sections.map(section => <div key={section.id} id={section.id}><Section section={section} publish={publish}/></div>)}
+            {project.sections.map(section => <div key={section.id} id={section.id}><Section section={section} publish={publish} ownerEmail={project.ownerEmail}/></div>)}
         </main>
     )
 }

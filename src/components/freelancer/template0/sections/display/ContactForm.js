@@ -21,15 +21,22 @@ export function ContactForm1({section, publish=false, ownerEmail=null}) {
     const [disabled, setDisabled] = useState(false);
 
     // Send email to website owner when user submits contact form
-    const submitForm = (e) => {
+    const submitForm = async(e) => {
         e.preventDefault();
-        console.log("submitting form");
-        console.log(publish)
         if (!publish) return;
 
         setSuccessMessage('');
         setErrorMessage('');
         setLoading(true);
+
+        // Check if site owner has any email quota remaining
+        const response = await fetch(`/api/freelancer/submit_contact_form?ownerEmail=${ownerEmail}`);
+        const data = await response.json();
+        if (data.status !== 200) {
+            setLoading(false);
+            setErrorMessage(data.message);
+            return;
+        }
 
         const templateParams = {
             from_name: name.current.value,

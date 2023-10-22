@@ -6,13 +6,18 @@ import { usePathname } from "next/navigation";
 import secureLocalStorage from "react-secure-storage";
 
 export default function UpperNav({isLoggedIn = true, email=null}) {
-  const [currentPath, setCurrentPath] = useState();
+  const [currentPath, setCurrentPath] = useState('');
   const [loggedIn, setLoggedIn] = useState(isLoggedIn);
   const pathname = usePathname();
-
+  
   useEffect(() => {
     setCurrentPath(pathname);
   }, [pathname]);
+
+  // Don't show UpperNav on published site
+  if (pathname.includes("/freelancer/")) {
+    return null;
+  }
 
   return (
     <div className="fixed top-0 z-40 navbar bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg text-white">

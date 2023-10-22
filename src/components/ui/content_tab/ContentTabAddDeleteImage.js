@@ -13,20 +13,28 @@ import { btnColorOptions } from "@/data/colorOptions";
 export default function ContentTabAddDeleteImage({ content, addImage, deleteImage }) {
     return (
         <div>
-            <Swiper
-            effect={'flip'}
-            grabCursor={true}
-            pagination={true}
-            navigation={true}
-            modules={[EffectFlip, Pagination, Navigation]}
-            className="w-[300px] h-[300px] p-[50px]"
-            >
-                {content.images.map(image => (
-                    <SwiperSlide key={image.id} className="bg-center">
-                        <Image src={image.src} className="block w-[300px] h-[200px]" width={300} height={300} alt="Swiper image" style={{objectFit: "contain"}}/>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            {content.images.length > 0 ?
+                <Swiper
+                    effect={'flip'}
+                    grabCursor={true}
+                    pagination={true}
+                    navigation={true}
+                    modules={[EffectFlip, Pagination, Navigation]}
+                    className="w-[200px] lg:w-[300px] h-[300px] p-[50px]"
+                    >
+                        {content.images.map(image => (
+                            <SwiperSlide key={image.id} className="bg-center">
+                                <Image src={image.src} className="block w-[300px] h-[200px]" width={300} height={300} alt="Swiper image" style={{objectFit: "contain"}}/>
+                            </SwiperSlide>
+                        ))}
+                </Swiper>
+            :
+                <div className="p-1">
+                    <div className="w-full h-[300px] p-[50px] bg-slate-200 rounded-lg">
+                        <p className="text-center text-lg">No image uploaded!</p>
+                    </div>
+                </div>
+            }
                     
             <div className="text-center">
                 <button className={`btn ${btnColorOptions['blue']} my-5`} onClick={()=>document.getElementById(content.id).showModal()}>Manage images</button>

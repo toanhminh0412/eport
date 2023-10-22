@@ -10,7 +10,7 @@ import { convertToURL } from "@/helpers/helpers"
 export function Header1({ section }) {
     return (
         <section className="prose max-w-none bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${section.backgroundImage})`}}>
-            <div className="mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20">
+            <div className="mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-40">
                 <div className="grid grid-cols-1 items-center gap-8 sm:gap-20 lg:grid-cols-2">
                     <div className="max-w-[720px] lg:max-w-lg">
                         <h2 className="mb-4 text-3xl font-bold md:text-5xl text-orange-400">{section.heading}</h2>
@@ -22,10 +22,18 @@ export function Header1({ section }) {
                             {section.socials.map(socialBtn => <Link key={socialBtn.id} href={convertToURL(socialBtn.href)} target="_blank" className={`${socialIconsStyle[socialBtn.social]} inline-flex justify-center items-center w-12 h-12 md:w-16 md:h-16 bg-transparent rounded-full border-2 border-solid mr-6 mb-6 md:mb-12 ml-0 text-2xl md:text-4xl no-underline`}><i className={`${socialIcons[socialBtn.social]}`}></i></Link>)}
                         </div>
                         <div>
-                            {section.actionBtns.map(actionBtn => <Link key={actionBtn.id} href={actionBtn.href} className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>)}
+                            {section.actionBtns.map(actionBtn => 
+                                <div key={actionBtn.id}>
+                                    {actionBtn.hrefLink.isExternal ?
+                                        <Link href={convertToURL(actionBtn.hrefLink.externalHref)} target="_blank" className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.hrefLink.text}</Link>
+                                    :
+                                        <Link href={actionBtn.hrefLink.internalHref} scroll={false} className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.hrefLink.text}</Link>
+                                    }      
+                                </div>
+                            )}
                         </div>
                     </div>
-                    <div className="relative w-full overflow-hidden rounded-full aspect-[3/4] not-prose">
+                    <div className="relative w-7/12 lg:w-full overflow-hidden rounded-full aspect-[3/4] not-prose">
                         <Image 
                             src={section.avatar.src}
                             fill

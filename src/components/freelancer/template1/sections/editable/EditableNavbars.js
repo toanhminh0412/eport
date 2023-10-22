@@ -46,15 +46,15 @@ export function EditableNavbar1({ section, sectionInd }) {
                         {section.navItems.map(navItem => <li key={navItem.id}>{navItem.isExternal ? <Link href={convertToURL(navItem.externalHref)} target="_blank">{navItem.text}</Link> : <Link href={navItem.internalHref} scroll={false}>{navItem.text}</Link>}</li>)}
                     </ul>
                     </div>
-                    <Link href={convertToURL(section.heading.href)} className="btn btn-ghost normal-case text-xl text-white">{section.heading.text}</Link>
+                    {section.heading.isExternal ? <Link href={section.heading.externalHref ? convertToURL(section.heading.externalHref) : "#"} className="btn btn-ghost normal-case text-xl text-white" target="_blank">{section.heading.text}</Link> : <Link href={section.heading.internalHref ? section.heading.internalHref : "#"} className="btn btn-ghost normal-case text-xl text-white" scroll={false}>{section.heading.text}</Link>}
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-white">
-                        {section.navItems.map(navItem => <li key={navItem.id}>{navItem.isExternal ? <Link href={convertToURL(navItem.externalHref)} target="_blank">{navItem.text}</Link> : <Link href={navItem.internalHref} scroll={false}>{navItem.text}</Link>}</li>)}
+                        {section.navItems.map(navItem => <li key={navItem.id}>{navItem.isExternal ? <Link href={navItem.externalHref ? convertToURL(navItem.externalHref) : "#"} target="_blank">{navItem.text}</Link> : <Link href={navItem.internalHref ? navItem.internalHref : "#"} scroll={false}>{navItem.text}</Link>}</li>)}
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link href={convertToURL(section.actionBtn.href)} className="btn">{section.actionBtn.text}</Link>
+                    {section.actionBtn.isExternal ? <Link href={section.actionBtn.externalHref ? convertToURL(section.actionBtn.externalHref) : "#"} className="btn" target="_blank">{section.actionBtn.text}</Link> : <Link href={section.actionBtn.internalHref ? section.actionBtn.internalHref : "#"} className="btn" scroll={false}>{section.actionBtn.text}</Link>}
                 </div>
             </div>
         </div>

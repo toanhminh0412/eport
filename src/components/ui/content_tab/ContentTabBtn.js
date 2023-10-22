@@ -5,7 +5,7 @@ export default function ContentTabBtn({ content, onChange, onDelete=null }) {
         <div className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">
             {onDelete ? <i className="fa-solid fa-trash text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-4 right-2" onClick={onDelete}></i> : null}
             {/* Text */}
-            {text !== null ?
+            {text !== null && text != undefined ?
                 <div className="form-control w-full">
                     <label className="pt-0">
                         <span className="label-text text-slate-500">Text</span>

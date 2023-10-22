@@ -12,7 +12,9 @@ export function getSectionInitialData(sectionId) {
                 sectionTitle: "Navigation bar",
                 heading: {
                     text: "John Doe",
-                    href: "#"
+                    internalHref: "#",
+                    externalHref: "#",
+                    isExternal: false
                 },
                 navItems: [
                     {
@@ -39,7 +41,9 @@ export function getSectionInitialData(sectionId) {
                 ],
                 actionBtn: {
                     text: "Contact me",
-                    href: "#"
+                    internalHref: "#",
+                    externalHref: "#",
+                    isExternal: false
                 }
             }
         
@@ -64,13 +68,17 @@ export function getSectionInitialData(sectionId) {
                     {
                         id: 0,
                         text: "Services",
-                        href: "#",
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false,
                         color: "yellow"
                     },
                     {
                         id: 1,
                         text: "Contact me",
-                        href: "#",
+                        internalHref: "#",
+                        externalHref: "#",
+                        isExternal: false,
                         color: "yellow"
                     }
                 ]
@@ -126,7 +134,9 @@ export function getSectionInitialData(sectionId) {
                         recommended: false,
                         actionBtn: {
                             text: "Get started",
-                            href: "#",
+                            internalHref: "#",
+                            externalHref: "#",
+                            isExternal: false,
                             color: "orange"
                         },
                         pros: [
@@ -157,7 +167,9 @@ export function getSectionInitialData(sectionId) {
                         recommended: true,
                         actionBtn: {
                             text: "Get started",
-                            href: "#",
+                            internalHref: "#",
+                            externalHref: "#",
+                            isExternal: false,
                             color: "orange"
                         },
                         pros: [

@@ -2,16 +2,17 @@
 
 // React, Next imports
 import { useEffect, useState, useContext, createContext } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 // Local imports
 import TemplateSelector from "./TemplateSelector";
 import { Template0Thumbnail } from "@/components/eresume/thumbnails";
+import { FreelancerThumbnail } from "@/components/freelancer/thumbnails";
+import { convertMilliseconds } from "@/helpers/helpers";
 
 const ProjectsContext = createContext();
 
-export default function Dashboard() {
+export default function Dashboard({ user }) {
     const [projects, setProjects] = useState(null);
 
     useEffect(() => {
@@ -58,11 +59,15 @@ export default function Dashboard() {
                 </dialog>
                 
                 <h1 className="flex flex-row justify-between">Projects<button className="btn bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => document.getElementById('create_new_project_modal').showModal()}>&#43; Create new project</button></h1>
+                <h4 className="mb-4">Email quota: {user.emailQuota} remaining
+                    <div className="tooltip" data-tip="Number of emails customers can send you using the form on your published websites. This number is renewed at the beginning of each month">
+                        <label tabIndex={0} className="btn btn-circle btn-ghost btn-xs text-info">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-4 h-4 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </label>
+                    </div></h4>
                 {/* Render all current projects */}
                 {projects.length !== 0 ? 
-                    <div className="flex flex-row flex-wrap gap-6">
-                        {projects.map(project => <ProjectCard key={project.id} project={project}/>)}
-                    </div>
+                    <ProjectSort projects={projects}/>
                 
                 // Render text if there are no projects
                 : <p className="text-center mt-40">
@@ -73,9 +78,21 @@ export default function Dashboard() {
     )
 }
 
-function ProjectCard({project}) {
-    const freelancerThumbnail = project.content.templateId === 0 ? "/img/freelancer-template0-thumbnail.png" : "/img/freelancer-template1-thumbnail.png"
+// Sort projects by last edited time
+function ProjectSort({projects}) {
+    projects.sort((a, b) => 
+        (a.content.lastEdited > b.content.lastEdited) ? -1 : (a.content.lastEdited < b.content.lastEdited) ? 1 : 0
+    )
 
+    return (
+        <div className="flex flex-row flex-wrap gap-6">
+            {projects.map(project => <ProjectCard key={project.id} project={project}/>)}
+        </div>
+    )
+}
+
+// Render project card
+function ProjectCard({project}) {
     if (project.type === "eresume" && project.content.templateId === 0) {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -91,6 +108,7 @@ function ProjectCard({project}) {
                     <p><strong>E-resume</strong> | 
                         {project.content.published ? <span className="text-green-500"> Published <i className="fa-solid fa-check"></i></span> : <span className="text-red-500"> Not published <i className="fa-solid fa-xmark"></i></span>}
                     </p>
+                    {project.content.lastEdited ? <p><strong>Last edited: </strong>{convertMilliseconds(new Date().getTime() - new Date(project.content.lastEdited).getTime()) + " ago"}</p> : null}
                     <div className="card-actions justify-end mt-3">
                         {project.content.published ? <Link href={`${project.type}/${project.content.domain}`} target="_blank" className="btn bg-orange-600 hover:bg-orange-800 duration-200 text-white">Visit site</Link> : null}
                         <Link href={`/dashboard/${project.type}?projectId=${project.id}`} className="btn bg-blue-700 hover:bg-blue-900 duration-200 text-white">Open project</Link>
@@ -103,11 +121,7 @@ function ProjectCard({project}) {
     if (project.type === "freelancer") {
         return (
             <div className="card w-96 bg-base-100 shadow-xl">
-                {/* <Image src="/img/freelancer-template0.png"
-                    fill 
-                    className="rounded-lg"
-                    alt="Freelancer template 1"/> */}
-                <figure><Image width={150} height={150} className="w-full aspect-video" src={freelancerThumbnail} alt="Freelancer template thumbnail" /></figure>
+                <FreelancerThumbnail content={project.content} templateId={project.content.templateId}/>
                 <div className="card-body not-prose relative">
                     {/* Project dropdown menu */}
                     <ProjectMenuButton projectId={project.id}/>
@@ -119,6 +133,7 @@ function ProjectCard({project}) {
                     <p><strong>Freelancer</strong> | 
                         {project.content && project.content.published ? <span className="text-green-500"> Published <i className="fa-solid fa-check"></i></span> : <span className="text-red-500"> Not published <i className="fa-solid fa-xmark"></i></span>}
                     </p>
+                    {project.content.lastEdited ? <p><strong>Last edited: </strong>{convertMilliseconds(new Date().getTime() - new Date(project.content.lastEdited).getTime()) + " ago"}</p> : null}
                     <div className="card-actions justify-end mt-3">
                         {project.content && project.content.published ? <Link href={`${project.type}/${project.content.domain}`} target="_blank" className="btn bg-orange-600 hover:bg-orange-800 duration-200 text-white">Visit site</Link> : null}
                         <Link href={`/dashboard/${project.type}?projectId=${project.id}`} className="btn bg-blue-700 hover:bg-blue-900 duration-200 text-white">Open project</Link>

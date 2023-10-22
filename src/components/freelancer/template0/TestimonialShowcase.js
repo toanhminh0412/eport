@@ -2,7 +2,6 @@
 
 // Next imports
 import { useState } from "react";
-import Image from "next/image";
 
 // Local imports
 import { btnColorOptions } from "@/data/colorOptions";
@@ -34,7 +33,6 @@ export default function TestimonialShowcase({section}) {
                                 </div>
                                 <div className="text-slate-700" dangerouslySetInnerHTML={{ __html: testimonial.content}}></div>
                                 <div className="flex-row flex items-start">
-                                    <Image src={testimonial.image} alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
                                         <h6 className="text-base font-semibold">{testimonial.name}</h6>
                                         <p className="text-sm text-slate-700">{testimonial.job}</p>
@@ -57,7 +55,6 @@ export default function TestimonialShowcase({section}) {
                                 </div>
                                 <div className="text-slate-700" dangerouslySetInnerHTML={{ __html: testimonial.content}}></div>
                                 <div className="flex-row flex items-start">
-                                    <Image src={testimonial.image} alt="" className="inline-block h-16 w-16 max-w-full object-cover rounded-full mr-4" width={50} height={50}/>
                                     <div className="flex-col flex items-start">
                                         <h6 className="text-base font-semibold">{testimonial.name}</h6>
                                         <p className="text-sm text-slate-700">{testimonial.job}</p>

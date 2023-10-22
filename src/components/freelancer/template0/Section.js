@@ -47,11 +47,11 @@ export function EditableSection({ section, sectionInd }) {
     }
 }
 
-export function Section({ section }) {
+export function Section({ section, publish=false, ownerEmail=null }) {
     switch (section.sectionId) {
         // Navigation bars
         case "navbar1":
-            return <NavBar1 section={section}/>
+            return <NavBar1 section={section} publish={publish}/>
         
         // Headers
         case "header1":
@@ -75,6 +75,6 @@ export function Section({ section }) {
 
         // Contacts
         case "contact1":
-            return <Contact1 section={section}/>
+            return <Contact1 section={section} publish={publish} ownerEmail={ownerEmail}/>
     }
 }

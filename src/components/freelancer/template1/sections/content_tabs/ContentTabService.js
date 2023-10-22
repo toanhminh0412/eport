@@ -8,6 +8,7 @@ import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import ContentTabCheckbox from "@/components/ui/content_tab/ContentTabCheckbox";
+import ContentTabInternalBtn from "@/components/ui/content_tab/ContentTabInternalBtn";
 
 export default function ContentTabService() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -54,8 +55,12 @@ export default function ContentTabService() {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].services[serviceInd].actionBtn.text = e.target.value;
-        } else if (e.target.name === "link") {
-            newSections[activeSectionInd].services[serviceInd].actionBtn.href = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            newSections[activeSectionInd].services[serviceInd].actionBtn.internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].services[serviceInd].actionBtn.externalHref = e.target.value;
+        } else if (e.target.name === "isExternal") {
+            newSections[activeSectionInd].services[serviceInd].actionBtn.isExternal = e.target.checked;
         } else {
             if (e.target.dataset.color) {
                 newSections[activeSectionInd].services[serviceInd].actionBtn.color = e.target.dataset.color;
@@ -193,7 +198,7 @@ export default function ContentTabService() {
                                     <ContentTabCheckbox label="Save this service as <strong>Recommended</strong>" content={service.recommended} onChange={e => changeServiceRecommendation(e, serviceInd)}/>
                                     {/* Action button */}
                                     <label className="text-sm">Action button</label>
-                                    <ContentTabBtn content={service.actionBtn} onChange={e => onServiceActionBtnChange(e, serviceInd)}/>
+                                    <ContentTabInternalBtn content={service.actionBtn} onChange={e => onServiceActionBtnChange(e, serviceInd)} sections={sections} activeSectionInd={activeSectionInd}/>
                                     {/* Pros */}
                                     <label className="text-sm">Pros</label>
                                     {service.pros.map((pro, proInd) => (

@@ -366,7 +366,8 @@ export default function Template0({content, projectId}) {
         const newSite = {
             ...site,
             theme: themeRef.current.value,
-            sections: newSections
+            sections: newSections,
+            lastEdited: new Date()
         }
         console.log(newSite);
         
@@ -427,7 +428,8 @@ export default function Template0({content, projectId}) {
                         projectId={projectId}
                         showMessageToast={showMessageToast} 
                         setPublishMessage={setPublishMessage}
-                        publishedSite={publishedSite}/>
+                        publishedSite={publishedSite}
+                        projectType="eresume"/>
                     <AskLoginModal/>
                     <div className="mt-10 sm:mt-0">
                         {successMsg ? <SuccessToast message={successMsg}/> : null}

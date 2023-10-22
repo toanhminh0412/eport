@@ -11,27 +11,27 @@ export default function ContentTabNavbar() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
 
-    // Field can only be "text" or "link"
     // Change navbar heading
     const onHeadingChange = (e) => {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].heading.text = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            newSections[activeSectionInd].heading.internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].heading.externalHref = e.target.value;
         } else {
-            newSections[activeSectionInd].heading.href = e.target.value;
+            newSections[activeSectionInd].heading.isExternal = e.target.checked;
         }
         setSections(newSections);
     }
 
-    // Field can only be "text" or "link"
     // Change navbar item
     const onNavItemChange = (e, navItemInd) => {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].navItems[navItemInd].text = e.target.value;
         } else if (e.target.name === "internalLink") {
-            console.log('Changing internal link');
-            console.log(e.target.value);
             newSections[activeSectionInd].navItems[navItemInd].internalHref = e.target.value;
         } else if (e.target.name === "externalLink") {
             newSections[activeSectionInd].navItems[navItemInd].externalHref = e.target.value;
@@ -56,14 +56,17 @@ export default function ContentTabNavbar() {
         setSections(newSections);
     }
 
-    // Field can only be "text" or "link"
     // Change navbar action button
     const onActionBtnChange = (e) => {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].actionBtn.text = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            newSections[activeSectionInd].actionBtn.internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].actionBtn.externalHref = e.target.value;
         } else {
-            newSections[activeSectionInd].actionBtn.href = e.target.value;
+            newSections[activeSectionInd].actionBtn.isExternal = e.target.checked;
         }
         setSections(newSections);
     }
@@ -74,7 +77,11 @@ export default function ContentTabNavbar() {
                 {/* Heading */}
                 <div className="p-3">
                     <h4 className="my-0">Heading</h4>
-                    <ContentTabLink content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
+                    <ContentTabInternalLink
+                        content={sections[activeSectionInd].heading}
+                        onChange={onHeadingChange}
+                        sections={sections}
+                        activeSectionInd={activeSectionInd}/>
                 </div>
                 {/* Navbar items */}
                 <div className="p-3">
@@ -85,7 +92,9 @@ export default function ContentTabNavbar() {
                             <ContentTabInternalLink
                                 content={navItem}
                                 onChange={(e) => {onNavItemChange(e, navItemInd)}}
-                                onDelete={() => deleteNavItem(navItemInd)}/>
+                                onDelete={() => deleteNavItem(navItemInd)}
+                                sections={sections}
+                                activeSectionInd={activeSectionInd}/>
                         </div>
                     ))}
                     <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addNavItem}><i className="fa-solid fa-plus"></i> Add nav item</div>
@@ -93,7 +102,11 @@ export default function ContentTabNavbar() {
 
                 <div className="p-3">
                     <h4 className="my-0">Action button</h4>
-                    <ContentTabLink content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
+                    <ContentTabInternalLink
+                        content={sections[activeSectionInd].actionBtn}
+                        onChange={onActionBtnChange}
+                        sections={sections}
+                        activeSectionInd={activeSectionInd}/>
                 </div>
                 <DeleteSectionButton/>
             </div>

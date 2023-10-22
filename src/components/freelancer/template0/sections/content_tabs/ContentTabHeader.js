@@ -8,6 +8,7 @@ import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
+import ContentTabInternalLink from "@/components/ui/content_tab/ContentTabInternalLink";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 
 export default function ContentTabHeader() {
@@ -81,21 +82,6 @@ export default function ContentTabHeader() {
         setSections(newSections);
     }
 
-    // Change action buttons
-    const onActionBtnChange = (e, actionBtnInd) => {
-        const newSections = [...sections];
-        if (e.target.name === "text") {
-            newSections[activeSectionInd].actionBtns[actionBtnInd].text = e.target.value;
-        } else {
-            if (e.target.dataset.color) {
-                newSections[activeSectionInd].actionBtns[actionBtnInd].color = e.target.dataset.color;
-            } else {
-                newSections[activeSectionInd].actionBtns[actionBtnInd].href = e.target.value;
-            }
-        }
-        setSections(newSections);
-    }
-
     // Add social button
     const addSocialButton = () => {
         const newSections = [...sections];
@@ -112,6 +98,60 @@ export default function ContentTabHeader() {
     const deleteSocialButton = (socialBtnInd) => {
         const newSections = [...sections];
         newSections[activeSectionInd].socials.splice(socialBtnInd, 1);
+        setSections(newSections);
+    }
+
+    // Change action buttons color
+    const onActionBtnColorChange = (e, actionBtnInd) => {
+        const newSections = [...sections];
+        if (e.target.name === "text") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].text = e.target.value;
+        } else {
+            if (e.target.dataset.color) {
+                newSections[activeSectionInd].actionBtns[actionBtnInd].color = e.target.dataset.color;
+            } else {
+                newSections[activeSectionInd].actionBtns[actionBtnInd].href = e.target.value;
+            }
+        }
+        setSections(newSections);
+    }
+
+    // Change action buttons text and href
+    const onActionBtnChange = (e, btnInd) => {
+        const newSections = [...sections];
+        if (e.target.name === "text") {
+            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.text = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.externalHref = e.target.value;
+        } else {
+            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.isExternal = e.target.checked;
+        }
+        setSections(newSections);
+    }
+
+    // Add action buttons
+    const addActionBtn = () => {
+        const newSections = [...sections];
+        const lastActionBtnId = newSections[activeSectionInd].actionBtns.length === 0 ? -1 : parseInt(newSections[activeSectionInd].actionBtns[newSections[activeSectionInd].actionBtns.length - 1].id);
+        newSections[activeSectionInd].actionBtns.push({
+            id: lastActionBtnId + 1,
+            hrefLink: {
+                text: "Text",
+                internalHref: "#",
+                externalHref: "#",
+                isExternal: false,
+            },
+            color: "orange"
+        });
+        setSections(newSections);
+    }
+
+    // Delete action buttons
+    const deleteActionBtn = (btnInd) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].actionBtns.splice(btnInd, 1);
         setSections(newSections);
     }
 
@@ -164,7 +204,7 @@ export default function ContentTabHeader() {
                                 key={socialBtn.id}
                                 heading={`Social button #${socialBtnInd + 1}`}>
                                 <div onClick={() => deleteSocialButton(socialBtnInd)}><i className="fa-solid fa-trash z-[1000] text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-12 right-4"></i></div>
-                                <ContentTabSocial key={socialBtn.id} content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>
+                                <ContentTabSocial content={socialBtn} onChange={e => onSocialBtnChange(e, socialBtnInd)}/>
                             </ContentTabAccordion>
                         ))}
                         <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addSocialButton}><i className="fa-solid fa-plus"></i> Add social button</div>
@@ -173,10 +213,19 @@ export default function ContentTabHeader() {
 
                 {/* Action button */}
                 <div className="px-3 py-2">
-                    <ContentTabAccordion
-                        heading={"Action buttons"}>
-                            <div>{sections[activeSectionInd].actionBtns.map((btn, btnInd) => <ContentTabBtn key={btn.id} content={btn} onChange={e => onActionBtnChange(e, btnInd)}/>)}</div>
-                    </ContentTabAccordion>
+                    <h4 className="my-0">Action Buttons</h4>
+                    <div>
+                        {sections[activeSectionInd].actionBtns.map((btn, btnInd) => 
+                            <ContentTabAccordion
+                                key={btn.id}
+                                heading={`Action button #${btnInd + 1}`}>
+                                    <div onClick={() => deleteActionBtn(btnInd)}><i className="fa-solid fa-trash z-[1000] text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-12 right-4"></i></div>
+                                    <ContentTabInternalLink content={btn.hrefLink} onChange={(e) => onActionBtnChange(e, btnInd)} sections={sections} activeSectionInd={activeSectionInd}/>
+                                    <ContentTabBtn content={btn} onChange={e => onActionBtnColorChange(e, btnInd)}/>
+                            </ContentTabAccordion>
+                        )}
+                        <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>
+                    </div>
                 </div>
                 <DeleteSectionButton/>
             </div>

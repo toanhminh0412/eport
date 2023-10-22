@@ -12,6 +12,11 @@ export default function Footer({isLoggedIn = true}) {
         return null;
     }
 
+    // Don't show footer on published site
+    if (pathname.includes("/freelancer/")) {
+        return null;
+    }
+
     return (
         <footer className="bg-gradient-to-r from-cyan-500 to-blue-500 box-border absolute bottom-0 w-full h-fit pt-2">
             <div className="max-w-screen-xl m-auto">

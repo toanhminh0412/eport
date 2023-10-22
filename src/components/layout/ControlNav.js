@@ -36,7 +36,8 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
         setTimeout(() => {
             setDelay(false);
         }, 2000);
-        setState(state==='edit' ? 'save' : 'edit');
+        const newState = state === "edit" ? "save" : "edit";  
+        setState(newState);
     }
 
     return (
@@ -91,6 +92,8 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
 }
 
 function ControlBtn({state, loading, onClick, delay}) {
+    console.log(state)
+    console.log(loading);
     if (state === 'edit' && !loading) {
         return (
             <button className="btn btn-sm xs:btn tour-editSiteButton" onClick={onClick} disabled={delay}>Edit site</button>

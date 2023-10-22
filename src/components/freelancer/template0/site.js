@@ -1,7 +1,7 @@
 "use client";
 
 // Next, React imports
-import { createContext, useState, useContext } from "react"
+import { createContext, useState, useContext, useEffect } from "react"
 
 // Local imports
 import { getSectionInitialData } from "./helper";
@@ -9,6 +9,7 @@ import PreviewControlNav from "./PreviewControlNav";
 import LeftContentEditor from "./LeftContentEditor";
 import { Section, EditableSection } from "./Section";
 import { SuccessToast, ErrorToast } from "@/components/ui/MessageToast";
+import PublishModal from "@/components/ui/PublishModal";
 import { compressImageSize } from "@/helpers/files";
 import { storage } from "../../../../public/libs/firebase";
 
@@ -22,14 +23,20 @@ export const SectionsContext = createContext();
 export const EditModeContext = createContext();
 export const ActiveTabContext = createContext();
 export const ActiveContentContext = createContext();
+export const ProjectContext = createContext();
 
 export default function Template0({project, projectId}) {
+    const [projectTemplate0, setProjectTemplate0] = useState(project);
     const [sections, setSections] = useState(project.sections ? project.sections : []);
     const [editMode, setEditMode] = useState(true);
     const [activeTab, setActiveTab] = useState("sections");
     const [activeSectionInd, setActiveSectionInd] = useState(-1);
     const [successMsg, setSuccessMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+    const [isEqual, setIsEqual] = useState(false);
+    const [message, setMessage] = useState('Click "Publish" to publish your site!');
+    const [msgLoading, setMsgLoading] = useState(false);
+    const [publishedSite, setPublishedSite] = useState(null);
 
     const onDragEnd = (result) => {
         if (!result.destination) return;
@@ -37,6 +44,8 @@ export default function Template0({project, projectId}) {
         console.log(result);
 
         if (result.draggableId.includes("site-block")) {
+            // Can't move navbar section
+            if ((result.source.index === 0 || result.destination.index === 0) && sections[0].sectionType === "navbar") return;
             const reorderedSections = Array.from(sections);
             const [reorderedSection] = reorderedSections.splice(result.source.index, 1);
             reorderedSections.splice(result.destination.index, 0, reorderedSection);
@@ -46,7 +55,15 @@ export default function Template0({project, projectId}) {
             const sectionId = result.draggableId.split("-")[2];
             const section = getSectionInitialData(sectionId);
             let reorderedSections = Array.from(sections);
-            reorderedSections.splice(result.destination.index, 0, {...section, id: nanoid()});
+            // Can't move navbar section
+            if (section.sectionType === "navbar") {
+                const isNavbarUsed = sections.some(section => section.sectionType === "navbar");
+                if (!isNavbarUsed) {
+                    reorderedSections.splice(0, 0, {...section, id: nanoid()});
+                }
+            } else {
+                reorderedSections.splice(result.destination.index, 0, {...section, id: nanoid()});
+            }
             setSections(reorderedSections);
         }
         
@@ -72,6 +89,38 @@ export default function Template0({project, projectId}) {
                 setErrorMsg('');
             }, 5000);
         }
+    }
+
+    // Compare current project and published project
+    useEffect(() => {
+        async function compareSites() {
+            setMsgLoading(true);
+            const response = await fetch(`/api/freelancer/compare?projectId=${projectId}`);
+            const data = await response.json();
+            
+            if (data.status === 200 && data.isEqual === false) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is not up-to-date!');
+                setMsgLoading(false)
+            } else if (data.status === 200 && data.isEqual === true) {
+                setIsEqual(data.isEqual);
+                setMessage('Your published site is up-to-date!');
+                setMsgLoading(false);
+            } else if (data.status === 404) {
+                setIsEqual(data.isEqual);
+                setMessage('Click "Publish" to publish your site!');
+                setMsgLoading(false);
+            }
+            setPublishedSite(data.publishedProject);
+        }
+
+        compareSites();
+    }, [projectTemplate0]);
+
+    // Set message when publish site
+    const setPublishMessage = () => {
+        setIsEqual(true);
+        setMessage('Your published site is up-to-date');
     }
 
     // Save site to database
@@ -146,29 +195,12 @@ export default function Template0({project, projectId}) {
                     }
                 }
             }
-
-            if (sections[i].sectionId === "testimonial1") {
-                for (let j = 0; j < sections[i].testimonials.length; j++) {
-                    let newTestimonialImgURL = '';
-                    const fileSrc = sections[i].testimonials[j].image;
-                    if (!fileSrc.includes('firebasestorage.googleapis.com')) {
-                        let newFile = await fetch(fileSrc).then(r => r.blob());
-                        newFile = await compressImageSize(newFile, 0.4);
-                        const testimonialImgRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
-                        const testimonialImgSnap = await uploadBytes(testimonialImgRef, newFile);
-                        newTestimonialImgURL = await getDownloadURL(testimonialImgSnap.ref);
-
-                        const newSections = [...sections];
-                        newSections[i].testimonials[j].image = newTestimonialImgURL;
-                        setSections(newSections);
-                    }
-                }
-            }
         }
 
         const newProject = {
             ...project,
-            sections: sections
+            sections: sections,
+            lastEdited: new Date()
         }
 
         console.log(newProject)
@@ -189,6 +221,7 @@ export default function Template0({project, projectId}) {
         const data = await response.json();
         console.log(data);
         if (data.status === 200) {
+            setProjectTemplate0(newProject);
             showMessageToast(data.message, true);
         } else {
             showMessageToast(data.message, false);
@@ -227,29 +260,38 @@ export default function Template0({project, projectId}) {
                 <div className="hidden sm:block">
                     <DragDropContext onDragEnd={onDragEnd}>
                         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
-                            <EditModeContext.Provider value={{ editMode, setEditMode }}>
+                            <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
                                 <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
                                     <ActiveContentContext.Provider value ={{ activeSectionInd, setActiveSectionInd }}>
-                                        <main>
-                                            <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                                                <PreviewControlNav/>
-                                                <LeftContentEditor/>
-                                                <div className="mt-20">
-                                                    {successMsg ? <SuccessToast message={successMsg}/>  : null}
-                                                    {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                        <ProjectContext.Provider value={setProjectTemplate0}>
+                                            <main>
+                                                <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                                                    <PreviewControlNav projectDomain={projectTemplate0.domain} type='freelancer'/>
+                                                    <LeftContentEditor/>
+                                                    <PublishModal
+                                                        site={projectTemplate0}
+                                                        projectId={projectId}
+                                                        showMessageToast={showMessageToast}
+                                                        setPublishMessage={setPublishMessage}
+                                                        publishedSite={publishedSite}
+                                                        projectType="freelancer"/>
+                                                    <div className="mt-20">
+                                                        {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                                                        {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                                    </div>
+                                                    <div className="ml-72 lg:ml-96 mt-20">
+                                                        <Droppable droppableId="site-blocks">
+                                                            {(provided) => (
+                                                                <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
+                                                                    <Template0Site/>
+                                                                    {provided.placeholder}
+                                                                </div>
+                                                            )}
+                                                        </Droppable>
+                                                    </div>
                                                 </div>
-                                                <div className="ml-72 lg:ml-96 mt-20">
-                                                    <Droppable droppableId="site-blocks">
-                                                        {(provided) => (
-                                                            <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
-                                                                <Template0Site/>
-                                                                {provided.placeholder}
-                                                            </div>
-                                                        )}
-                                                    </Droppable>
-                                                </div>
-                                            </div>
-                                        </main>
+                                            </main>
+                                        </ProjectContext.Provider>
                                     </ActiveContentContext.Provider>
                                 </ActiveTabContext.Provider>
                             </EditModeContext.Provider>
@@ -262,10 +304,17 @@ export default function Template0({project, projectId}) {
 
     return (
         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
-            <EditModeContext.Provider value={{ editMode, setEditMode }}>
+            <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
                 <main>
                     <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                        <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
+                        <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
+                        <PublishModal
+                            site={projectTemplate0}
+                            projectId={projectId}
+                            showMessageToast={showMessageToast}
+                            setPublishMessage={setPublishMessage}
+                            publishedSite={publishedSite}
+                            projectType="freelancer"/>
                         <div className="mt-20">
                             {successMsg ? <SuccessToast message={successMsg}/>  : null}
                             {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
@@ -280,7 +329,7 @@ export default function Template0({project, projectId}) {
 
 function Template0Site() {
     const {sections, _setSections, _deleteSection, _saveSite} = useContext(SectionsContext);
-    const {editMode, _setEditMode} = useContext(EditModeContext);
+    const {editMode, _setEditMode, _isEqual, _message, _msgLoading} = useContext(EditModeContext);
 
     if (editMode) {
         return (
@@ -289,7 +338,7 @@ function Template0Site() {
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <EditableSection section={section} sectionInd={sectionInd}/>
+                                <div id={section.id}><EditableSection section={section} sectionInd={sectionInd}/></div>
                             </div>
                         )}
                     </Draggable>
@@ -298,11 +347,11 @@ function Template0Site() {
         )
     }
 
-    const isNavarUsed = sections.some(section => section.sectionType === "navbar");
+    const isNavbarUsed = sections.some(section => section.sectionType === "navbar");
 
     return (
-        <div className={`w-full relative ${isNavarUsed ? "pt-16" : ""}`}>
-            {sections.map(section => <Section key={section.id} section={section}/>)}
+        <div className={`w-full relative ${isNavbarUsed ? "pt-[72px]" : ""}`}>
+            {sections.map(section => <div key={section.id} id={section.id}><Section section={section}/></div>)}
         </div>
     )
 }

@@ -32,11 +32,15 @@ export async function GET(request) {
 
     // Create the new eresume project in Firestore
     const projectId = nanoid();
+    const date = new Date();
+
     await setDoc(doc(db, "freelancer", projectId), {
         owner: user.uid,
+        ownerEmail: user.email,
         templateId: parseInt(templateId),
         theme: "light",
         sections: [],
+        lastEdited: date.toISOString(),
     })
 
     // Update user profile to contain this eresume project

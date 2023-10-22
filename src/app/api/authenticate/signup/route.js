@@ -50,7 +50,8 @@ export async function POST(request) {
             password: password,
             signInMethod: '',
             emailVerified: false,
-            stripeCustomerId: ''
+            stripeCustomerId: '',
+            emailQuota: 20
         }
         
         // Save user in 'users' collection in Firestore

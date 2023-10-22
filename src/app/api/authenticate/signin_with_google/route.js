@@ -39,6 +39,7 @@ export async function GET(request) {
             signInMethod: 'Google',
             emailVerified: true,
             stripeCustomerId: '',
+            emailQuota: 20
         }
         
         // Save user in 'users' collection in Firestore

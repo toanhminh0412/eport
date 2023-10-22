@@ -101,7 +101,7 @@ export default function ContentTabAboutMe() {
     const addTabContentItem = (tabInd) => {
         const newSections = [...sections];
         const lastTabContentItemId = newSections[activeSectionInd].tabs[tabInd].tabContent.length === 0 ? -1 : parseInt(newSections[activeSectionInd].tabs[tabInd].tabContent[newSections[activeSectionInd].tabs[tabInd].tabContent.length - 1].id);
-        newSections[activeSectionInd].tabs[tabInd].tabContent.push({id: lastTabContentItemId + 1, key: "Key text", value: "Value text"});
+        newSections[activeSectionInd].tabs[tabInd].tabContent.push({id: lastTabContentItemId + 1, key: "Tab key", value: "Tab value"});
         setSections(newSections);
     }
 
@@ -118,11 +118,11 @@ export default function ContentTabAboutMe() {
         const lastTabItemId = newSections[activeSectionInd].tabs.length === 0 ? -1 : parseInt(newSections[activeSectionInd].tabs[newSections[activeSectionInd].tabs.length - 1].id);
         newSections[activeSectionInd].tabs.push({
             id: lastTabItemId + 1,
-            tabHeading: "Tab Name",
+            tabHeading: "Tab Heading",
             tabContent: [
-                {id: 0, key: "Key", value: "Value"},
-                {id: 1, key: "Key", value: "Value"},
-                {id: 2, key: "Key", value: "Value"},
+                {id: 0, key: "Tab key", value: "Tab value"},
+                {id: 1, key: "Tab key", value: "Tab value"},
+                {id: 2, key: "Tab key", value: "Tab value"},
             ]
         });
         setSections(newSections);

@@ -64,7 +64,7 @@ export default function ContentTabService() {
             icon: "fa-solid fa-cloud",
             title: "Portfolio Design",
             price: "200 CAD / month",
-            content: "Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services. To edit this section, go to Edit Site and find Services section."
+            content: "<p>Remember that the goal of your Services section is to inform potential clients about what you offer, build trust, and persuade them to take action. Be clear, concise, and persuasive in your descriptions, and provide easy-to-follow steps for visitors to engage with your services.</p>"
         });
         setSections(newSections);
     }

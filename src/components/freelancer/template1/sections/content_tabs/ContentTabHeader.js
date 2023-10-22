@@ -8,6 +8,7 @@ import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
+import ContentTabInternalBtn from "@/components/ui/content_tab/ContentTabInternalBtn";
 
 export default function ContentTabHeader() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
@@ -71,11 +72,15 @@ export default function ContentTabHeader() {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].actionBtns[actionBtnInd].text = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].externalHref = e.target.value;
+        } else if (e.target.name === "isExternal") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].isExternal = e.target.checked;
         } else {
             if (e.target.dataset.color) {
                 newSections[activeSectionInd].actionBtns[actionBtnInd].color = e.target.dataset.color;
-            } else {
-                newSections[activeSectionInd].actionBtns[actionBtnInd].href = e.target.value;
             }
         }
         setSections(newSections);
@@ -85,7 +90,7 @@ export default function ContentTabHeader() {
     const addActionBtn = () => {
         const newSections = [...sections];
         const lastBtnId = newSections[activeSectionInd].actionBtns.length === 0 ? -1 : parseInt(newSections[activeSectionInd].actionBtns[newSections[activeSectionInd].actionBtns.length - 1].id);
-        newSections[activeSectionInd].actionBtns.push({id: lastBtnId + 1, text: "Button text", href: "#", color: "warning"});
+        newSections[activeSectionInd].actionBtns.push({id: lastBtnId + 1, text: "Button text", internalHref: "#", externalHref: "#", isExternal: false, color: "yellow"});
         setSections(newSections);
     }
 
@@ -137,7 +142,7 @@ export default function ContentTabHeader() {
                                 {sections[activeSectionInd].actionBtns.map((btn, btnInd) => (
                                 <div key={btn.id}>
                                     <h4 className="my-0">Action button #{btnInd + 1}</h4>
-                                    <ContentTabBtn content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)}/>
+                                    <ContentTabInternalBtn content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)} sections={sections} activeSectionInd={activeSectionInd}/>
                                 </div>
                                 ))}
                                 <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>

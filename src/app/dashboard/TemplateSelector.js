@@ -52,7 +52,7 @@ export default function TemplateSelector() {
                     {/* Template image */}
                     <Image src={template.thumbnail}
                         fill 
-                        className="rounded-lg"
+                        className="rounded-lg border-slate-200 border-[1px] border-solid shadow-lg"
                         alt="Freelancer template 1"/>
                 </div>  
                 ))}

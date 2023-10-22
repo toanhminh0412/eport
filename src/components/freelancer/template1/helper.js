@@ -134,7 +134,9 @@ export function getSectionInitialData(sectionId) {
                         recommended: false,
                         actionBtn: {
                             text: "Get started",
-                            href: "#",
+                            internalHref: "#",
+                            externalHref: "#",
+                            isExternal: false,
                             color: "orange"
                         },
                         pros: [
@@ -165,7 +167,9 @@ export function getSectionInitialData(sectionId) {
                         recommended: true,
                         actionBtn: {
                             text: "Get started",
-                            href: "#",
+                            internalHref: "#",
+                            externalHref: "#",
+                            isExternal: false,
                             color: "orange"
                         },
                         pros: [

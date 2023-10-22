@@ -17,7 +17,7 @@ export function Service1({ section }) {
                         <div className="card-body">
                             <h4 className="card-title w-fit mx-auto">{service.name}</h4>
                             <h1 className="my-4">{service.price}</h1>
-                            <Link href={convertToURL(service.actionBtn.href)} className={`btn btn-lg btn-wide mx-auto ${btnColorOptions[service.actionBtn.color]}`}>{service.actionBtn.text}</Link>
+                            {service.actionBtn.isExternal ? <Link href={service.actionBtn.externalHref ? convertToURL(service.actionBtn.externalHref) : "#"} className={`btn btn-lg btn-wide mx-auto ${btnColorOptions[service.actionBtn.color]}`} target="_blank">{service.actionBtn.text}</Link> : <Link href={service.actionBtn.internalHref ? service.actionBtn.internalHref : "#"} className={`btn btn-lg btn-wide mx-auto ${btnColorOptions[service.actionBtn.color]}`} scroll={false}>{service.actionBtn.text}</Link>}
                             <ul className="text-left list-none mt-2">
                                 {service.pros.map(pro => (
                                 <li key={pro.id}><i className="fa-solid fa-check text-green-500 text-xl mr-2"></i>{pro.text}</li>

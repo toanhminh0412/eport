@@ -1,13 +1,5 @@
-// React imports
-import { useContext } from "react";
-
-// Local imports
-// import { ActiveContentContext, SectionsContext } from "@/components/freelancer/template1/site";
-
 export default function ContentTabInternalLink({ content, onChange, onDelete=null, sections, activeSectionInd }) {
     const {text, internalHref, externalHref, isExternal} = content;
-    // const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
-    // const { sections, _setSections, _deleteSection } = useContext(SectionsContext);
 
     return (
         <div className="bg-white rounded-md shadow-lg border border-slate-300 duration-150 py-4 px-3 my-3 relative">

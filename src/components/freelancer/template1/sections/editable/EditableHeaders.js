@@ -52,7 +52,7 @@ export function EditableHeader1({ section, sectionInd }) {
                         <h3 className="text-md lg:text-xl mt-0 lg:mt-12">{section.heading}</h3>
                         <h1 className="text-xl lg:text-3xl xl:text-4xl">{section.slogan}</h1>
                         <div>
-                            {section.actionBtns.map(actionBtn => actionBtn.isExternal ? <Link href={actionBtn.externalHref ? convertToURL(actionBtn.externalHref) : "#"} className={`btn ${btnColorOptions[actionBtn.color]} mr-2`} target="_blank">{actionBtn.text}</Link> : <Link href={actionBtn.internalHref ? actionBtn.internalHref : "#"} className={`btn ${btnColorOptions[actionBtn.color]} mr-2`} scroll={false}>{actionBtn.text}</Link>)}
+                            {section.actionBtns.map(actionBtn => actionBtn.isExternal ? <Link key={actionBtn.id} href={actionBtn.externalHref ? convertToURL(actionBtn.externalHref) : "#"} className={`btn ${btnColorOptions[actionBtn.color]} mr-2`} target="_blank">{actionBtn.text}</Link> : <Link key={actionBtn.id} href={actionBtn.internalHref ? actionBtn.internalHref : "#"} className={`btn ${btnColorOptions[actionBtn.color]} mr-2`} scroll={false}>{actionBtn.text}</Link>)}
                         </div>
                     </div>
                 </div>

@@ -156,13 +156,16 @@ export default function ContentTabAboutMe() {
                         cropper={sections[activeSectionInd].avatar.cropper}
                         onCropAreaChange={onAvatarCrop}
                         aspectRatio={3/4}/>
+                    {sections[activeSectionInd].sectionId === "aboutme2" ? <p className="text-sm"><span className="font-bold">Note:</span> The picture in this template <span className="font-bold">can not be cropped!</span></p> : null}
                 </div>
 
                 {/* Status */}
-                <div className="px-3 pt-3 pb-1">
-                    <h4 className="my-0">Status</h4>
-                    <ContentTabBadge content={{text: sections[activeSectionInd].status.text, color: sections[activeSectionInd].status.color}} onChange={onStatusChange}/>
-                </div>
+                {sections[activeSectionInd].sectionId === "aboutme1" ?
+                    <div className="px-3 pt-3 pb-1">
+                        <h4 className="my-0">Status</h4>
+                        <ContentTabBadge content={{text: sections[activeSectionInd].status.text, color: sections[activeSectionInd].status.color}} onChange={onStatusChange}/>
+                    </div>
+                : null}
 
                 {/* Job */}
                 <div className="px-3 py-1">

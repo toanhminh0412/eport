@@ -3,7 +3,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "navbar1",
             sectionType: "navbar",
-            thumbnail: "/img/freelancer-template1-navbar1.png",
+            thumbnail: "/img/freelancer-template1-navbar1-thumbnail.png",
             description: "Template 1 navigation bar 1"
         }
     ],
@@ -11,7 +11,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "header1",
             sectionType: "header",
-            thumbnail: "/img/freelancer-template1-header1.png",
+            thumbnail: "/img/freelancer-template1-header1-thumbnail.png",
             description: "Template 1 header 1"
         }
     ],
@@ -19,7 +19,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "aboutme1",
             sectionType: "aboutme",
-            thumbnail: "/img/freelancer-template1-aboutme1.png",
+            thumbnail: "/img/freelancer-template1-aboutme1-thumbnail.png",
             description: "Template 1 aboutme 1"
         }
     ],
@@ -27,7 +27,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "service1",
             sectionType: "service",
-            thumbnail: "/img/freelancer-template1-service1.png",
+            thumbnail: "/img/freelancer-template1-service1-thumbnail.png",
             description: "Template 1 service 1"
         }
     ],
@@ -35,7 +35,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "portfolio1",
             sectionType: "portfolio",
-            thumbnail: "/img/freelancer-template1-portfolio1.png",
+            thumbnail: "/img/freelancer-template1-portfolio1-thumbnail.png",
             description: "Template 1 portfolio 1"
         }
     ],
@@ -43,7 +43,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "testimonial1",
             sectionType: "testimonial",
-            thumbnail: "/img/freelancer-template1-testimonial1.png",
+            thumbnail: "/img/freelancer-template1-testimonial1-thumbnail.png",
             description: "Template 1 testimonial 1"
         }
     ],
@@ -51,7 +51,7 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "contact1",
             sectionType: "contact",
-            thumbnail: "/img/freelancer-template1-contact1.png",
+            thumbnail: "/img/freelancer-template1-contact1-thumbnail.png",
             description: "Template 1 contact 1"
         }
     ]

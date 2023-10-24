@@ -48,31 +48,34 @@ export function AboutMe1({ section }) {
 export function AboutMe2({ section }) {
     return (
         <section>
-            <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
-                <div className="flex flex-col items-center justify-center">
-                    <div className="mb-8 max-w-[800px] text-center md:mb-12 lg:mb-16">
-                        <h2 className="text-5xl md:text-7xl font-bold">{section.name}</h2>
-                        <p className="mx-auto mt-4 max-w-[528px] text-slate-700 text-2xl max-[479px]:text-xl">{section.job}</p>
+            <div className="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
+                <div className="flex justify-center items-center flex-col gap-8 pb-24">
+                    <div className="relative w-60 h-60 sm:w-80 sm:h-80 flex justify-center items-center">
+                        <Image 
+                            src={section.avatar.src}
+                            fill
+                            alt="Header avatar"
+                            className={`w-full h-full rounded-full border-4 border-solid border-orange-500`}/>
+                        <span className="absolute top-1/2 left-1/2 w-[17rem] h-[17rem] sm:w-[22rem] sm:h-[22rem] -translate-y-1/2 -translate-x-1/2 rotate-0 rounded-full border-4 border-solid border-l-orange-500 border-r-orange-500 border-b-slate-100 border-t-slate-100"></span>
+                        <span className="absolute top-1/2 left-1/2 w-[19rem] h-[19rem] sm:w-[24rem] sm:h-[24rem] -translate-y-1/2 -translate-x-1/2 rotate-0 rounded-full border-4 border-solid border-orange-500"></span>
                     </div>
-                    <div className="mb-8 grid w-10/12 grid-cols-1 md:mb-12 md:grid-cols-3 md:gap-4 lg:mb-16 items-center">
-                        <div href="#" className="relative mb-12 flex h-[1000px] lg:h-[1200px] max-w-full grid-cols-1 flex-col gap-4 overflow-hidden rounded-xl border border-solid border-black bg-white text-black [box-shadow:rgb(0,_0,_0)_9px_9px] [grid-area:1/1/2/2] md:[grid-area:1/1/2/4]">
-                            <div className="absolute bottom-0 left-0 right-0 top-auto z-20 flex w-full max-w-[800px] flex-col items-start justify-start rounded-xl bg-white p-6 md:bottom-2 md:left-2">
-                                {section.status.text ? <div className={`flex grid-cols-2 items-center px-3 py-1 rounded-md ${badgeColorOptions[section.status.color]}`}>
-                                    <div className={`h-2 w-2 min-w-[8px] ${section.status.color === 'slate' ? 'bg-black' : 'bg-white'} rounded-full`}></div>
-                                    <div className="text-sm sm:text-sm ml-2">{section.status.text}</div>
-                                </div> : null}
-                                <div className="flex-col text-slate-600 text-sm sm:text-xl text-justify mt-5" dangerouslySetInnerHTML={{ __html: section.description }}></div>
-                                <AboutMeTabsShowcase section={section}/>
+
+                    <div className="text-center">
+                        <h2 className="text-5xl md:text-7xl font-bold mb-12 text-center mt-5">{section.name}</h2>
+                        <h3 className="text-lg sm:text-2xl font-semibold my-5">{section.job}</h3>
+                        <div className="text-base sm:text-lg mb-10" dangerouslySetInnerHTML={{ __html: section.description }}></div>
+                    </div>
+                    <div className={`grid grid-cols-1 gap-20 ${section.tabs.length === 3 ? "md:grid-cols-3" : section.tabs.length === 2 ? "md:grid-cols-2" : ""} md:gap-8 lg:gap-12`}>
+                        {section.tabs.map(tab => (
+                            <div key={tab.id} className="relative grid gap-4 rounded-[30px] border border-solid border-[#636262] px-8 pb-8 pt-16 md:px-10 md:pt-20">
+                                <div className="absolute -top-8 left-10 flex flex-col items-center justify-center rounded-xl border border-solid border-orange-500 bg-white px-5 py-3 [box-shadow:rgb(0,_0,_0)_4px_4px]">
+                                <p className="text-base font-bold md:text-lg">{tab.tabHeading}</p>
+                                </div>
+                                <ul className="-mt-10">
+                                    {tab.tabContent.map(tabContent => <li key={tabContent.id} className="my-4 text-base  sm:text-lg"><span className="text-orange-500 font-semibold">{tabContent.key}: </span>{tabContent.value}</li>)}
+                                </ul>
                             </div>
-                            <div className="relative w-full h-full overflow-hidden text-center">
-                                <Image 
-                                src={section.avatar.src}
-                                fill
-                                alt="Header avatar"
-                                style={{ transform: section.avatar.style.transform}}
-                                className={`absolute left-0 top-0 origin-top-left`}/>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>

@@ -51,7 +51,7 @@ export function Portfolio1({ section }) {
 export function Portfolio2({ section }) {
     return (
         <section>
-            <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-[1400px] px-5 md:px-10">
+            <div className="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div className="flex-col flex items-stretch gap-20">
                     <div className="flex-col flex gap-5 text-center">
                         <h2 className="font-bold text-5xl md:text-7xl">{section.heading}</h2>

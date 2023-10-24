@@ -53,19 +53,19 @@ export function Header2({ section }) {
             <div className="max-w-[1400px] flex items-center h-auto lg:h-screen flex-wrap mx-auto py-32 lg:py-10">
 	            <div className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-slate-200 mx-6 lg:mx-0">
 		            <div className="p-4 md:p-12 text-center lg:text-left">
-			            <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{backgroundImage: `url(${section.avatar})`}}></div>
+			            <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{backgroundImage: `url(${section.avatar.src})`}}></div>
                         <h1 className="text-3xl md:text-5xl font-bold pt-8 lg:pt-0">{section.heading}</h1>
                         <div className="mx-auto lg:mx-0 w-4/5 pt-5 border-b-4 border-orange-500 opacity-25"></div>
                         <h3 className="text-2xl md:text-3xl mb-3 mt-4 flex items-center justify-center lg:justify-start">{section.slogan}</h3>
                         <div className="pt-8 text-base">{section.description}</div>
                         
-                        <div className="pt-12 pb-8">
+                        <div className="mt-12 mb-8">
                             {section.actionBtns.map(actionBtn => 
-                                <div key={actionBtn.id}>
+                                <div key={actionBtn.id} className="inline-block my-5">
                                     {actionBtn.isExternal ?
-                                        <Link href={convertToURL(actionBtn.externalHref)} target="_blank" className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
+                                        <Link href={convertToURL(actionBtn.externalHref)} target="_blank" className={`py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
                                     :
-                                        <Link href={actionBtn.internalHref} scroll={false} className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
+                                        <Link href={actionBtn.internalHref} scroll={false} className={`py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
                                     }      
                                 </div>
                             )}

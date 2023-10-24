@@ -116,13 +116,13 @@ export function EditableHeader2({ section, sectionInd }) {
                             <h3 className="text-2xl md:text-3xl mb-3 mt-4 flex items-center justify-center lg:justify-start">{section.slogan}</h3>
                             <div className="pt-8 text-base">{section.description}</div>
                             
-                            <div className="pt-12 pb-8">
+                            <div className="mt-12 mb-8">
                                 {section.actionBtns.map(actionBtn => 
-                                    <div key={actionBtn.id}>
+                                    <div key={actionBtn.id} className="inline-block my-5">
                                         {actionBtn.isExternal ?
-                                            <Link href={convertToURL(actionBtn.externalHref)} target="_blank" className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
+                                            <Link href={convertToURL(actionBtn.externalHref)} target="_blank" className={`py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
                                         :
-                                            <Link href={actionBtn.internalHref} scroll={false} className={`inline-block py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
+                                            <Link href={actionBtn.internalHref} scroll={false} className={`py-3 px-4 md:py-4 md:px-[2.5rem] rounded-16 ${btnColorOptions[actionBtn.color]} text-lg md:text-xl font-semibold no-underline mt-2 md:mt-4 mr-4`}>{actionBtn.text}</Link>
                                         }      
                                     </div>
                                 )}

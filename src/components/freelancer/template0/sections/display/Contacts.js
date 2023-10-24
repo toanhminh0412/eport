@@ -34,7 +34,7 @@ export function Contact1({ section, publish=false, ownerEmail=null }) {
 export function Contact2({ section }) {
     return (
         <section>
-            <div className="mx-auto w-full max-w-[1400px] px-5 py-16 md:px-10 md:py-24 lg:py-32">
+            <div className="mx-auto w-full max-w-[1400px] px-5 py-40 md:px-10">
                 <div className="flex flex-row justify-between max-[767px]:flex-col max-[767px]:items-start">
                     <div className="w-full max-w-[560px] max-[991px]:mr-4 max-[991px]:flex-initial max-[767px]:mr-0">
                         <h2 className="text-3xl font-semibold text-black md:text-5xl">{section.slogan}</h2>
@@ -45,8 +45,8 @@ export function Contact2({ section }) {
                     </div>
                     <div className="max-[991px]:ml-4 max-[991px]:flex-none max-[767px]:ml-0 max-[767px]:mt-8">
                         {section.contactInfo.map(contact =>
-                            <div className="mb-4 flex max-w-[272px] items-start justify-start">
-                                <div key={contact.id} className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
+                            <div key={contact.id} className="mb-4 flex max-w-[272px] items-start justify-start">
+                                <div className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
                             </div>
                         )}
                     </div>

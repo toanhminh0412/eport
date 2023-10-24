@@ -103,8 +103,8 @@ export function EditableContact2({ section, sectionInd }) {
                         </div>
                         <div className="max-[991px]:ml-4 max-[991px]:flex-none max-[767px]:ml-0 max-[767px]:mt-8">
                             {section.contactInfo.map(contact =>
-                                <div className="mb-4 flex max-w-[272px] items-start justify-start">
-                                    <div key={contact.id} className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
+                                <div key={contact.id} className="mb-4 flex max-w-[272px] items-start justify-start">
+                                    <div className="text-lg sm:text-2xl mt-5"><i className={`${contact.icon} text-orange-500 mr-3`}></i>{contact.content}</div>
                                 </div>
                             )}
                         </div>

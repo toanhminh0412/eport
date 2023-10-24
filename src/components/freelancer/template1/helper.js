@@ -90,6 +90,18 @@ export function getSectionInitialData(sectionId) {
                 sectionId: "navbar2",
                 ...navBarData
             }
+
+        case "navbar3":
+            return {
+                sectionId: "navbar3",
+                ...navBarData
+            }
+
+        case "navbar4":
+            return {
+                sectionId: "navbar4",
+                ...navBarData
+            }
         
         // Headers
         case "header1":

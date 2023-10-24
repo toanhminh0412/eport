@@ -125,7 +125,7 @@ export default function Template1({project, projectId}) {
     const saveSite = async() => {
         for (let i = 0; i < sections.length; i++) {
             // Upload header1 and aboutme1 avatar
-            if (sections[i].sectionId === "header1") {
+            if (sections[i].sectionType === "header") {
                 let newAvatarURL = '';
                 const fileSrc = sections[i].avatar.src
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -142,7 +142,7 @@ export default function Template1({project, projectId}) {
             }
 
             // Upload header1 background image
-            if (sections[i].sectionId === "header1") {
+            if (sections[i].sectionType === "header") {
                 let newBackgroundImgURL = '';
                 const fileSrc = sections[i].backgroundImage
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -158,7 +158,7 @@ export default function Template1({project, projectId}) {
                 }       
             }
 
-            if (sections[i].sectionId === "aboutme1") {
+            if (sections[i].sectionType === "aboutme") {
                 let newAvatarURL = '';
                 const fileSrc = sections[i].avatar;
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -174,7 +174,7 @@ export default function Template1({project, projectId}) {
                 }
             }
 
-            if (sections[i].sectionId === "portfolio1") {
+            if (sections[i].sectionType === "portfolio") {
                 for (let j = 0; j < sections[i].projects.length; j++) {
                     for (let k = 0; k < sections[i].projects[j].images.length; k++) {
                         let newPortfolioImgURL = '';

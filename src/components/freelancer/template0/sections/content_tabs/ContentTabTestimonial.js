@@ -9,10 +9,18 @@ import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
 import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabFormattedText";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabTestimonial() {
     const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
     const { activeSectionInd, _setActiveSectionInd } = useContext(ActiveContentContext);
+
+    // Change section heading
+    const onHeadingChange = (e) => {
+        const newSections = [...sections];
+        newSections[activeSectionInd].heading = e.target.value;
+        setSections(newSections); 
+    }
 
     // Change section description
     const onDescriptionChange = (e) => {
@@ -91,9 +99,21 @@ export default function ContentTabTestimonial() {
     return (
         <div>
             <div className="prose max-w-none">
-                {/* Section Description */}
+                {/* Section template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>   
+                </div>
+
+                {/* Section Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>
+                    <ContentTabText rows={1} content={sections[activeSectionInd].heading} onChange={onHeadingChange}/>
+                </div>
+
+                {/* Section Description */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Description</h4>
                     <ContentTabText rows={3} content={sections[activeSectionInd].description} onChange={onDescriptionChange}/>
                 </div>
 
@@ -136,10 +156,13 @@ export default function ContentTabTestimonial() {
                 </div>
 
                 {/* Action button */}
-                <div className="px-3 py-1">
-                    <h4 className="my-0">Action buttons</h4>
-                    <ContentTabBtn content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
-                </div>
+                {sections[activeSectionInd].sectionId === "testimonial1" ?
+                    <div className="px-3 py-1">
+                        <h4 className="my-0">Action buttons</h4>
+                        <ContentTabBtn content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
+                    </div>
+                : null}
+
                 <DeleteSectionButton/>
             </div>
         </div>

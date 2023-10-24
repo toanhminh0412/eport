@@ -14,7 +14,7 @@ export default function AboutMeTabsShowcase({section}) {
             {section.tabs.map((tab, tabInd) => 
                 <div key={tab.id} className={`${activeTabAboutMe !== tabInd ? "hidden" : ""}`}>
                     <ul>
-                        {tab.tabContent.map(tabContent => <li key={tabContent.id} className="my-4 text-sm sm:text-xl"><span className="text-orange-500">{tabContent.key}: </span>{tabContent.value}</li>)}
+                        {tab.tabContent.map(tabContent => <li key={tabContent.id} className="my-4 text-sm sm:text-xl"><span className="text-orange-500 font-semibold">{tabContent.key}: </span>{tabContent.value}</li>)}
                     </ul>
                 </div>
             )}

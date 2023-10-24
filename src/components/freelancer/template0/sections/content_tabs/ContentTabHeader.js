@@ -4,12 +4,12 @@ import { useContext } from "react";
 // Local imports
 import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
-import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
-import ContentTabInternalLink from "@/components/ui/content_tab/ContentTabInternalLink";
+import ContentTabInternalBtn from "@/components/ui/content_tab/ContentTabInternalBtn";
 import { DeleteSectionButton } from "./DeleteSectionButton";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabHeader() {
     const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
@@ -101,48 +101,34 @@ export default function ContentTabHeader() {
         setSections(newSections);
     }
 
-    // Change action buttons color
-    const onActionBtnColorChange = (e, actionBtnInd) => {
+    // Chang action buttons
+    const onActionBtnChange = (e, actionBtnInd) => {
         const newSections = [...sections];
         if (e.target.name === "text") {
             newSections[activeSectionInd].actionBtns[actionBtnInd].text = e.target.value;
+        } else if (e.target.name === "internalLink") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].internalHref = e.target.value;
+        } else if (e.target.name === "externalLink") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].externalHref = e.target.value;
+        } else if (e.target.name === "isExternal") {
+            newSections[activeSectionInd].actionBtns[actionBtnInd].isExternal = e.target.checked;
         } else {
             if (e.target.dataset.color) {
                 newSections[activeSectionInd].actionBtns[actionBtnInd].color = e.target.dataset.color;
-            } else {
-                newSections[activeSectionInd].actionBtns[actionBtnInd].href = e.target.value;
             }
         }
         setSections(newSections);
     }
-
-    // Change action buttons text and href
-    const onActionBtnChange = (e, btnInd) => {
-        const newSections = [...sections];
-        if (e.target.name === "text") {
-            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.text = e.target.value;
-        } else if (e.target.name === "internalLink") {
-            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.internalHref = e.target.value;
-        } else if (e.target.name === "externalLink") {
-            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.externalHref = e.target.value;
-        } else {
-            newSections[activeSectionInd].actionBtns[btnInd].hrefLink.isExternal = e.target.checked;
-        }
-        setSections(newSections);
-    }
-
     // Add action buttons
     const addActionBtn = () => {
         const newSections = [...sections];
         const lastActionBtnId = newSections[activeSectionInd].actionBtns.length === 0 ? -1 : parseInt(newSections[activeSectionInd].actionBtns[newSections[activeSectionInd].actionBtns.length - 1].id);
         newSections[activeSectionInd].actionBtns.push({
             id: lastActionBtnId + 1,
-            hrefLink: {
-                text: "Text",
-                internalHref: "#",
-                externalHref: "#",
-                isExternal: false,
-            },
+            text: "Text",
+            internalHref: "#",
+            externalHref: "#",
+            isExternal: false,
             color: "orange"
         });
         setSections(newSections);
@@ -158,6 +144,12 @@ export default function ContentTabHeader() {
     return (
         <div>
             <div className="prose max-w-none">
+                {/* Section template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Background image */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Background Image</h4>
@@ -220,8 +212,7 @@ export default function ContentTabHeader() {
                                 key={btn.id}
                                 heading={`Action button #${btnInd + 1}`}>
                                     <div onClick={() => deleteActionBtn(btnInd)}><i className="fa-solid fa-trash z-[1000] text-slate-300 hover:text-slate-700 duration-100 text-lg absolute top-12 right-4"></i></div>
-                                    <ContentTabInternalLink content={btn.hrefLink} onChange={(e) => onActionBtnChange(e, btnInd)} sections={sections} activeSectionInd={activeSectionInd}/>
-                                    <ContentTabBtn content={btn} onChange={e => onActionBtnColorChange(e, btnInd)}/>
+                                    <ContentTabInternalBtn content={btn} onChange={e => onActionBtnChange(e, btnInd)} onDelete={() => deleteActionBtn(btnInd)} sections={sections} activeSectionInd={activeSectionInd}/>
                             </ContentTabAccordion>
                         )}
                         <div className="cursor-default text-base text-slate-400 hover:text-slate-700 duration-100" onClick={addActionBtn}><i className="fa-solid fa-plus"></i> Add action button</div>

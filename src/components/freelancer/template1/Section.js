@@ -1,14 +1,14 @@
 // Local imports
-import { EditableNavbar1 } from "./sections/editable/EditableNavbars";
-import { EditableHeader1 } from "./sections/editable/EditableHeaders";
+import { EditableNavbar1, EditableNavbar2, EditableNavbar3, EditableNavbar4 } from "./sections/editable/EditableNavbars";
+import { EditableHeader1, EditableHeader2 } from "./sections/editable/EditableHeaders";
 import { EditableAboutMe1 } from "./sections/editable/EditableAboutMes";
 import { EditableService1 } from "./sections/editable/EditableServices";
 import { EditablePortfolio1 } from "./sections/editable/EditablePortfolios";
 import { EditableTestimonial1 } from "./sections/editable/EditableTestimonials";
 import { EditableContact1 } from "./sections/editable/EditableContacts";
 
-import { Navbar1 } from "./sections/display/Navbars";
-import { Header1 } from "./sections/display/Headers";
+import { Navbar1, Navbar2, Navbar3, Navbar4 } from "./sections/display/Navbars";
+import { Header1, Header2 } from "./sections/display/Headers";
 import { AboutMe1 } from "./sections/display/AboutMes";
 import { Service1 } from "./sections/display/Services";
 import { Portfolio1 } from "./sections/display/Portfolios";
@@ -21,10 +21,18 @@ export function EditableSection({ section, sectionInd }) {
         // Navigation bars
         case "navbar1":
             return <EditableNavbar1 section={section} sectionInd={sectionInd}/>
-        
+        case "navbar2":
+            return <EditableNavbar2 section={section} sectionInd={sectionInd}/>
+        case "navbar3":
+            return <EditableNavbar3 section={section} sectionInd={sectionInd}/>
+        case "navbar4":
+            return <EditableNavbar4 section={section} sectionInd={sectionInd}/>
+
         // Headers
         case "header1":
             return <EditableHeader1 section={section} sectionInd={sectionInd}/>
+        case "header2":
+            return <EditableHeader2 section={section} sectionInd={sectionInd}/>
 
         // About me
         case "aboutme1":
@@ -53,10 +61,18 @@ export function Section({ section, publish=false, ownerEmail=null }) {
         // Navigation bars
         case "navbar1":
             return <Navbar1 section={section} publish={publish}/>
+        case "navbar2":
+            return <Navbar2 section={section} publish={publish}/>
+        case "navbar3":
+            return <Navbar3 section={section} publish={publish}/>
+        case "navbar4":
+            return <Navbar4 section={section} publish={publish}/>
         
         // Headers
         case "header1":
             return <Header1 section={section}/>
+        case "header2":
+            return <Header2 section={section}/>
 
         // About me
         case "aboutme1":

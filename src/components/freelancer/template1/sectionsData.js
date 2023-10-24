@@ -5,6 +5,18 @@ const sectionsDataTemplate1 = {
             sectionType: "navbar",
             thumbnail: "/img/freelancer-template1-navbar1.png",
             description: "Template 1 navigation bar 1"
+        },
+        {
+            sectionId: "navbar2",
+            sectionType: "navbar",
+            thumbnail: "/img/freelancer-template0-navbar1.png",
+            description: "Template 1 navigation bar 2"
+        },
+        {
+            sectionId: "navbar3",
+            sectionType: "navbar",
+            thumbnail: "/img/freelancer-template0-navbar1.png",
+            description: "Template 1 navigation bar 3"
         }
     ],
     "Header": [

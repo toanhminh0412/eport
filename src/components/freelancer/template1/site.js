@@ -332,7 +332,7 @@ function Template1Site() {
 
     if (editMode) {
         return (
-            <div style={{zoom: "75%"}} className="w-full relative">
+            <div style={{zoom: "60%"}} className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (

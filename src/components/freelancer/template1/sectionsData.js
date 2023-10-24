@@ -17,6 +17,12 @@ const sectionsDataTemplate1 = {
             sectionType: "navbar",
             thumbnail: "/img/freelancer-template0-navbar1.png",
             description: "Template 1 navigation bar 3"
+        },
+        {
+            sectionId: "navbar4",
+            sectionType: "navbar",
+            thumbnail: "/img/freelancer-template0-navbar1.png",
+            description: "Template 1 navigation bar 4"
         }
     ],
     "Header": [
@@ -25,6 +31,12 @@ const sectionsDataTemplate1 = {
             sectionType: "header",
             thumbnail: "/img/freelancer-template1-header1.png",
             description: "Template 1 header 1"
+        },
+        {
+            sectionId: "header2",
+            sectionType: "header",
+            thumbnail: "/img/freelancer-template1-header1.png",
+            description: "Template 1 header 2"
         }
     ],
     "About me": [

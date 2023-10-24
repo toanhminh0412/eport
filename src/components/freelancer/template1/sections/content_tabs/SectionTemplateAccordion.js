@@ -33,7 +33,7 @@ export function SectionTemplateAccordion() {
                                             height={150}
                                             src={section.thumbnail}
                                             alt={section.description}
-                                            className="w-full h-auto border-2 border-slate-500 hover:border-black mb-2"/>
+                                            className="w-full h-auto border-2 border-slate-500 hover:border-black mb-1"/>
                                     </div>
                                 ))}
                                 </>

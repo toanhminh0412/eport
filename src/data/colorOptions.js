@@ -18,12 +18,20 @@ export const btnColorOptions = {
 }
 
 export const badgeColorOptions = {
-    "green": "bg-green-700 text-white",
-    "blue": "bg-blue-700 text-white",
-    "red": "bg-red-700 text-white",
-    "yellow": "bg-yellow-700 text-white",
-    "purple": "bg-purple-700 text-white",
-    "pink": "bg-pink-700 text-white",
-    "neutral": "bg-neutral text-white",
-    "slate": "bg-slate-100 text-black",
+    "black": "bg-slate-800 text-white",
+    "white": "bg-white text-black",
+    "blue": "bg-blue-600 text-white",
+    "red": "bg-red-500 text-white",
+    "neutral": "bg-neutral-500 text-white",
+    "orange": "bg-orange-500 text-white",
+    "yellow": "bg-yellow-400 text-black",
+    "green": "bg-green-600 text-white",
+    "cyan": "bg-cyan-500 text-white",
+    "purple": "bg-purple-500 text-white",
+    "pink": "bg-pink-500 text-white",
+    "amber": "bg-amber-500 text-white",
+    "lime": "bg-lime-500 text-white",
+    "teal": "bg-teal-500 text-black",
+    "violet": "bg-violet-500 text-white",
+    "rose": "bg-rose-500 text-white"
 }

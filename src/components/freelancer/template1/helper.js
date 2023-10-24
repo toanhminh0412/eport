@@ -3,85 +3,105 @@
  * Returns: section initial data (object)
  */
 export function getSectionInitialData(sectionId) {
+    const navBarData = {
+        sectionType: "navbar",
+        sectionTitle: "Navigation bar",
+        heading: {
+            text: "John Doe",
+            internalHref: "#",
+            externalHref: "#",
+            isExternal: false
+        },
+        navItems: [
+            {
+                id: 0,
+                text: "About me",
+                internalHref: "#",
+                externalHref: "#",
+                isExternal: false
+            },
+            {
+                id: 1,
+                text: "Services",
+                internalHref: "#",
+                externalHref: "#",
+                isExternal: false
+            },
+            {
+                id: 2,
+                text: "Portfolio",
+                internalHref: "#",
+                externalHref: "#",
+                isExternal: false
+            }
+        ],
+        actionBtn: {
+            text: "Contact me",
+            internalHref: "#",
+            externalHref: "#",
+            isExternal: false
+        }
+    }
+
+    const headerData = {
+        sectionType: "header",
+        sectionTitle: "Header",
+        avatar: {
+            src: "/img/freelancer-template1-header-avatar.jpg",
+            cropper: {
+                crop: { x: 0, y: 0 },
+                zoom: 1
+            },
+            style: {}
+        },
+        backgroundImage: "/img/freelancer-template1-header-bg.png",
+        heading: "John Doe - Photographer",
+        slogan: "Need a quick photoshoot session? Let me help you!",
+        actionBtns: [
+            {
+                id: 0,
+                text: "Services",
+                internalHref: "#",
+                externalHref: "#",
+                isExternal: false,
+                color: "yellow"
+            },
+            {
+                id: 1,
+                text: "Contact me",
+                internalHref: "#",
+                externalHref: "#",
+                isExternal: false,
+                color: "yellow"
+            }
+        ]
+    }
+    
     switch (sectionId) {
         // Navigation bars
         case "navbar1":
             return {
                 sectionId: "navbar1",
-                sectionType: "navbar",
-                sectionTitle: "Navigation bar",
-                heading: {
-                    text: "John Doe",
-                    internalHref: "#",
-                    externalHref: "#",
-                    isExternal: false
-                },
-                navItems: [
-                    {
-                        id: 0,
-                        text: "About me",
-                        internalHref: "#",
-                        externalHref: "#",
-                        isExternal: false
-                    },
-                    {
-                        id: 1,
-                        text: "Services",
-                        internalHref: "#",
-                        externalHref: "#",
-                        isExternal: false
-                    },
-                    {
-                        id: 2,
-                        text: "Portfolio",
-                        internalHref: "#",
-                        externalHref: "#",
-                        isExternal: false
-                    }
-                ],
-                actionBtn: {
-                    text: "Contact me",
-                    internalHref: "#",
-                    externalHref: "#",
-                    isExternal: false
-                }
+                ...navBarData
+            }
+
+        case "navbar2":
+            return {
+                sectionId: "navbar2",
+                ...navBarData
             }
         
         // Headers
         case "header1":
             return {
                 sectionId: "header1",
-                sectionType: "header",
-                sectionTitle: "Header",
-                avatar: {
-                    src: "/img/freelancer-template1-header-avatar.jpg",
-                    cropper: {
-                        crop: { x: 0, y: 0 },
-                        zoom: 1
-                    },
-                    style: {}
-                },
-                backgroundImage: "/img/freelancer-template1-header-bg.png",
-                heading: "John Doe - Photographer",
-                slogan: "Need a quick photoshoot session? Let me help you!",
-                actionBtns: [
-                    {
-                        id: 0,
-                        text: "Services",
-                        internalHref: "#",
-                        externalHref: "#",
-                        isExternal: false,
-                        color: "yellow"
-                    },
-                    {
-                        id: 1,
-                        text: "Contact me",
-                        internalHref: "#",
-                        externalHref: "#",
-                        isExternal: false,
-                        color: "yellow"
-                    }
-                ]
+                ...headerData
+            }
+
+        case "header2":
+            return {
+                sectionId: "header2",
+                ...headerData
             }
 
         // About me

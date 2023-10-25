@@ -175,7 +175,7 @@ export function ContactForm2({section, publish=false, ownerEmail=null}) {
             {/* Message */}
             <div className="relative mb-5 md:mb-6 lg:mb-8">
                 <label htmlFor="field" className="mb-1 font-medium">Details</label>
-                <textarea disabled={disabled} ref={details} placeholder="" maxlength="5000" name="field" className="min-h-[186px] w-full rounded-md border border-solid border-black bg-white p-2 text-sm text-[#333333] focus:border-[#3898ec] focus:outline-0" required> </textarea>
+                <textarea disabled={disabled} ref={details} placeholder="" maxLength="5000" name="field" className="min-h-[186px] w-full rounded-md border border-solid border-black bg-white p-2 text-sm text-[#333333] focus:border-[#3898ec] focus:outline-0" required></textarea>
             </div>
             <input type="submit" disabled={loading || disabled || !publish} value={loading ? "Sending..." : section.formBtn.text} className={`${section.formBtn && section.formBtn.color ? btnColorOptions[section.formBtn.color] : btnColorOptions['orange']} shadow-xl shadow-slate-500 hover:shadow-none inline-block w-full cursor-pointer rounded-xl px-8 py-4 text-center font-semibold no-underline`} />
         </form>

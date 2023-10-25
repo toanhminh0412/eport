@@ -122,8 +122,13 @@ export function EditableHeader2({ section, sectionInd }) {
                     </div>
                     {/* Hero Image */}
                     <div className="w-full md:w-1/2">
-                        <div className="w-10/12 max-w-[640px] aspect-[3/4] max-h-full relative">
-                            <Image fill src={section.avatar.src} alt="" />
+                        <div className="w-10/12 max-w-[640px] aspect-[3/4] max-h-full relative overflow-hidden">
+                            <Image 
+                                fill 
+                                src={section.avatar.src} 
+                                alt="" 
+                                style={{ transform: section.avatar.style.transform}}
+                                className={`absolute left-0 top-0 origin-top-left w-full h-full`}/>
                         </div>
                     </div>
                 </div>

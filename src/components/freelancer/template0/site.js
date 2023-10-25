@@ -322,23 +322,25 @@ export default function Template0({project, projectId}) {
     return (
         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
             <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
-                <main>
-                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                        <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
-                        <PublishModal
-                            site={projectTemplate0}
-                            projectId={projectId}
-                            showMessageToast={showMessageToast}
-                            setPublishMessage={setPublishMessage}
-                            publishedSite={publishedSite}
-                            projectType="freelancer"/>
-                        <div className="mt-20">
-                            {successMsg ? <SuccessToast message={successMsg}/>  : null}
-                            {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
-                            <Template0Site/>
+                <ProjectContext.Provider value={setProjectTemplate0}>
+                    <main>
+                        <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                            <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
+                            <PublishModal
+                                site={projectTemplate0}
+                                projectId={projectId}
+                                showMessageToast={showMessageToast}
+                                setPublishMessage={setPublishMessage}
+                                publishedSite={publishedSite}
+                                projectType="freelancer"/>
+                            <div className="mt-20">
+                                {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                                {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                <Template0Site/>
+                            </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </ProjectContext.Provider>
             </EditModeContext.Provider>
         </SectionsContext.Provider>
     )

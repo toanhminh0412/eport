@@ -61,9 +61,9 @@ export function Portfolio2({ section }) {
             <p className="mt-0">{section.tagline}</p>
             <div className="flex flex-col gap-6">
                 {section.projects.map(project => (
-                <div key={project.id} className="w-full shadow-xl border border-slate-300 rounded-2xl flex flex-row gap-8 p-4">
+                <div key={project.id} className="w-full shadow-xl border border-slate-300 rounded-2xl flex flex-col md:flex-row gap-8 p-4">
                     {project.images.length > 0 ? 
-                    <div className="w-1/2 aspect-video not-prose">
+                    <div className="w-full md:w-1/2 aspect-video not-prose">
                         <PortfolioShowcase project={project}/>
                     </div> : null}
                     <div className="grow">

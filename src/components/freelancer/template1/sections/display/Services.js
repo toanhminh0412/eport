@@ -45,8 +45,8 @@ export function Service2({ section }) {
                 {/* Pricing Content  */}
                 <ul className="flex flex-row flex-wrap justify-center w-full gap-8">
                     {section.services.map(service => (
-                    <li key={service.id} className="flex min-w-[300px] md:min-w-[400px] max-w-md flex-col items-start justify-self-center border border-solid border-[#dfdfdf] p-8">
-                        <div className="mb-4 rounded-md bg-[#f2f2f7] px-8 py-4 not-prose mx-auto">
+                    <li key={service.id} className={`flex min-w-[300px] md:min-w-[400px] max-w-md flex-col items-start justify-self-center border border-solid border-[#dfdfdf] p-8 ${service.recommended ? "bg-slate-200" : ""}`}>
+                        <div className={`mb-4 rounded-md ${service.recommended ? "bg-blue-300" : "bg-[#f2f2f7]"} px-8 py-4 not-prose mx-auto`}>
                             <h2 className="text-lg font-bold">{service.name}</h2>
                         </div>
                         <h2 className="mt-4 text-5xl mx-auto">{service.price}</h2>

@@ -73,6 +73,12 @@ const sectionsDataTemplate1 = {
             sectionType: "portfolio",
             thumbnail: "/img/freelancer-template1-portfolio1-thumbnail.png",
             description: "Template 1 portfolio 1"
+        },
+        {
+            sectionId: "portfolio2",
+            sectionType: "portfolio",
+            thumbnail: "/img/freelancer-template1-portfolio1-thumbnail.png",
+            description: "Template 1 portfolio 1"
         }
     ],
     "Testimonial": [

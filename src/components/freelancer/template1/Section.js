@@ -3,7 +3,7 @@ import { EditableNavbar1, EditableNavbar2, EditableNavbar3, EditableNavbar4 } fr
 import { EditableHeader1, EditableHeader2 } from "./sections/editable/EditableHeaders";
 import { EditableAboutMe1, EditableAboutMe2 } from "./sections/editable/EditableAboutMes";
 import { EditableService1, EditableService2 } from "./sections/editable/EditableServices";
-import { EditablePortfolio1 } from "./sections/editable/EditablePortfolios";
+import { EditablePortfolio1, EditablePortfolio2 } from "./sections/editable/EditablePortfolios";
 import { EditableTestimonial1 } from "./sections/editable/EditableTestimonials";
 import { EditableContact1 } from "./sections/editable/EditableContacts";
 
@@ -11,7 +11,7 @@ import { Navbar1, Navbar2, Navbar3, Navbar4 } from "./sections/display/Navbars";
 import { Header1, Header2 } from "./sections/display/Headers";
 import { AboutMe1, AboutMe2 } from "./sections/display/AboutMes";
 import { Service1, Service2 } from "./sections/display/Services";
-import { Portfolio1 } from "./sections/display/Portfolios";
+import { Portfolio1, Portfolio2 } from "./sections/display/Portfolios";
 import { Testimonial1 } from "./sections/display/Testimonials";
 import { Contact1 } from "./sections/display/Contacts";
 
@@ -49,6 +49,8 @@ export function EditableSection({ section, sectionInd }) {
         // Portfolios
         case "portfolio1":
             return <EditablePortfolio1 section={section} sectionInd={sectionInd}/>
+        case "portfolio2":
+            return <EditablePortfolio2 section={section} sectionInd={sectionInd}/>
 
         // Testimonials
         case "testimonial1":
@@ -93,6 +95,8 @@ export function Section({ section, publish=false, ownerEmail=null }) {
         // Portfolios
         case "portfolio1":
             return <Portfolio1 section={section}/>
+        case "portfolio2":
+            return <Portfolio2 section={section}/>
 
         // Testimonials
         case "testimonial1":

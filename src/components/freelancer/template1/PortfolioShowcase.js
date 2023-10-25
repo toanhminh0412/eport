@@ -22,7 +22,7 @@ export default function PortfolioShowcase({project}) {
                 navigation
                 spaceBetween={50}
                 loop={true}>
-                {project.images.map(image => <SwiperSlide key={image.id}><Image width={200} height={200} src={image.src} alt="" className="h-full w-full object-contain brightness-75"/></SwiperSlide>)}
+                {project.images.map(image => <SwiperSlide key={image.id}><Image width={800} height={600} src={image.src} alt="" className="h-full w-full object-contain brightness-75"/></SwiperSlide>)}
             </Swiper>
         </div>
     )

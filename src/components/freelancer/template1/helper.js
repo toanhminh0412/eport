@@ -181,6 +181,44 @@ export function getSectionInitialData(sectionId) {
             }
         ]
     }
+
+    const portfolioData = {
+        sectionType: "portfolio",
+        sectionTitle: "Portfolio",
+        heading: "Portfolio",
+        tagline: "Check out my past works!",
+        projects: [
+            {
+                id: 0,
+                name: "Project 1",
+                company: "Microsoft (2020 - 2021)",
+                projectUrl: {text: "Visit project", href: "microsoft.com"},
+                description: "<p>Make sure you describe the project carefully and vividly to attract readers</p>",
+                images: [
+                    {
+                        id: 0,
+                        src: "/img/eresume-template0.png"
+                    }, 
+                    {
+                        id: 1,
+                        src: "/img/freelancer-template0-thumbnail.png"
+                    }, 
+                    {
+                        id: 2,
+                        src: "/img/freelancer-template1-thumbnail.png"
+                    }
+                ]
+            },
+            {
+                id: 1,
+                name: "Project 2",
+                company: "Paypal (2021 - 2022)",
+                projectUrl: {text: "Visit project", href: ""},
+                description: "<p>Make sure you describe the project carefully and vividly to attract readers</p>",
+                images: []
+            }
+        ]
+    }
     
     switch (sectionId) {
         // Navigation bars
@@ -249,41 +287,12 @@ export function getSectionInitialData(sectionId) {
         case "portfolio1":
             return {
                 sectionId: "portfolio1",
-                sectionType: "portfolio",
-                sectionTitle: "Portfolio",
-                heading: "Portfolio",
-                tagline: "Check out my past works!",
-                projects: [
-                    {
-                        id: 0,
-                        name: "Project 1",
-                        company: "Microsoft (2020 - 2021)",
-                        projectUrl: {text: "Visit project", href: "microsoft.com"},
-                        description: "<p>Make sure you describe the project carefully and vividly to attract readers</p>",
-                        images: [
-                            {
-                                id: 0,
-                                src: "/img/eresume-template0.png"
-                            }, 
-                            {
-                                id: 1,
-                                src: "/img/freelancer-template0-thumbnail.png"
-                            }, 
-                            {
-                                id: 2,
-                                src: "/img/freelancer-template1-thumbnail.png"
-                            }
-                        ]
-                    },
-                    {
-                        id: 1,
-                        name: "Project 2",
-                        company: "Paypal (2021 - 2022)",
-                        projectUrl: {text: "Visit project", link: ""},
-                        description: "<p>Make sure you describe the project carefully and vividly to attract readers</p>",
-                        images: []
-                    }
-                ]
+                ...portfolioData
+            }
+        case "portfolio2":
+            return {
+                sectionId: "portfolio2",
+                ...portfolioData
             }
 
         // Testimonials

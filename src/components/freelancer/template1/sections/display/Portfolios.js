@@ -53,3 +53,28 @@ export function Portfolio1({ section }) {
         </section>
     )
 }
+
+export function Portfolio2({ section }) {
+    return (
+        <section className="block bg-white prose w-full max-w-none p-8 md:p-16">
+            <h1 className="mb-4">{section.heading}</h1>
+            <p className="mt-0">{section.tagline}</p>
+            <div className="flex flex-col gap-6">
+                {section.projects.map(project => (
+                <div key={project.id} className="w-full shadow-xl border border-slate-300 rounded-2xl flex flex-row gap-8 p-4">
+                    {project.images.length > 0 ? 
+                    <div className="w-1/2 aspect-video not-prose">
+                        <PortfolioShowcase project={project}/>
+                    </div> : null}
+                    <div className="grow">
+                        <h2 className="mb-0 mt-2">{project.name}</h2>
+                        <h3 className="mb-0 mt-2">{project.company}</h3>
+                        <div className="text-base font-light text-slate-500" dangerouslySetInnerHTML={{__html: project.description}}></div>
+                        <Link href={project.projectUrl.href ? convertToURL(project.projectUrl.href) : "#"} target="_blank" className="btn bg-blue-700 hover:bg-blue-900 duration-100 text-white w-fit">{project.projectUrl.text}</Link>
+                    </div>
+                </div>
+                ))}
+            </div>
+        </section>
+    )
+}

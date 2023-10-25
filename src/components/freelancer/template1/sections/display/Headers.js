@@ -8,7 +8,7 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Header1({ section }) {
     return (
-        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full min-w-[450px] aspect-video flex flex-row bg-black bg-cover">
+        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full aspect-video flex flex-row bg-black bg-cover">
             <div className="relative w-5/12 h-full brightness-75 overflow-hidden">
                 <Image 
                     src={section.avatar.src}
@@ -34,7 +34,7 @@ export function Header1({ section }) {
 
 export function Header2({ section }) {
     return (
-        <header style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full min-w-[450px] flex flex-row bg-cover">
+        <header style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full flex flex-row bg-cover">
             {/* Hero Container */}
             <div className="mx-auto w-full max-w-screen-2xl px-5 py-16 md:px-10 md:py-24 lg:py-32 flex flex-col md:flex-row gap-8">
             {/* Component */}

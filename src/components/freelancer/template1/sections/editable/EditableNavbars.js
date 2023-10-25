@@ -36,7 +36,7 @@ export function EditableNavbar1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`navbar bg-black/50 z-10 w-full min-w-[450px] border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`navbar bg-black/50 z-10 w-full border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -91,7 +91,7 @@ export function EditableNavbar2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`navbar bg-black/50 z-10 w-full min-w-[450px] border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`navbar bg-black/50 z-10 w-full border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="navbar-start w-fit">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -144,7 +144,7 @@ export function EditableNavbar3({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`navbar bg-white z-10 w-full min-w-[450px] border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`navbar bg-white z-10 w-full border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-neutral">
@@ -199,7 +199,7 @@ export function EditableNavbar4({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`navbar bg-neutral z-10 w-full min-w-[450px] border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`navbar bg-neutral z-10 w-full border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">

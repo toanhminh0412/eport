@@ -36,7 +36,7 @@ export default async function Page({searchParams}) {
         // Return the project page
         if (project.templateId === 0) {
             return (
-                <div className="mb-[-420px] xs:mb-[-360px] min-w-[360px]">
+                <div className="mb-[-420px] xs:mb-[-360px]">
                     <Template0 project={project} projectId={projectId}/>;
                 </div>
             )
@@ -44,7 +44,7 @@ export default async function Page({searchParams}) {
 
         if (project.templateId === 1) {
             return (
-                <div className="mb-[-420px] xs:mb-[-360px] min-w-[360px]">
+                <div className="mb-[-420px] xs:mb-[-360px]">
                     <Template1 project={project} projectId={projectId}/>;
                 </div>
             )

@@ -9,19 +9,19 @@ const sectionsDataTemplate1 = {
         {
             sectionId: "navbar2",
             sectionType: "navbar",
-            thumbnail: "/img/freelancer-template0-navbar1.png",
+            thumbnail: "/img/freelancer-template1-navbar1-thumbnail.png",
             description: "Template 1 navigation bar 2"
         },
         {
             sectionId: "navbar3",
             sectionType: "navbar",
-            thumbnail: "/img/freelancer-template0-navbar1.png",
+            thumbnail: "/img/freelancer-template1-navbar1-thumbnail.png",
             description: "Template 1 navigation bar 3"
         },
         {
             sectionId: "navbar4",
             sectionType: "navbar",
-            thumbnail: "/img/freelancer-template0-navbar1.png",
+            thumbnail: "/img/freelancer-template1-navbar1-thumbnail.png",
             description: "Template 1 navigation bar 4"
         }
     ],

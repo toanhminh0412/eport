@@ -63,7 +63,7 @@ export function EditableAboutMe1({ section, sectionInd }) {
                             </div>
                         </div>
                         <div className="w-full">
-                            <div style={{backgroundImage: `url(${section.avatar})`}} className="max-w-[300px] aspect-square mx-auto overflow-hidden bg-cover bg-center rounded-md"></div>
+                            <div style={{backgroundImage: `url(${section.avatar})`}} className="max-w-[400px] aspect-square mx-auto overflow-hidden bg-cover bg-center rounded-md"></div>
                         </div>
                     </div>
                 </div>

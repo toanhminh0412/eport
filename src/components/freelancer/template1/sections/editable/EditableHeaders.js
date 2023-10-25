@@ -38,7 +38,7 @@ export function EditableHeader1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section style={{backgroundImage: `url(${section.backgroundImage})`}} className={`w-full min-w-[450px] aspect-video flex flex-row bg-black bg-cover box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section style={{backgroundImage: `url(${section.backgroundImage})`}} className={`w-full aspect-video flex flex-row bg-black bg-cover box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="relative w-5/12 h-full brightness-75 overflow-hidden">
                     <Image 
                         src={section.avatar.src}
@@ -90,7 +90,7 @@ export function EditableHeader2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <header style={{backgroundImage: `url(${section.backgroundImage})`}} className={`w-full min-w-[450px] flex flex-row bg-black bg-cover box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <header style={{backgroundImage: `url(${section.backgroundImage})`}} className={`w-full flex flex-row bg-black bg-cover box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 {/* Hero Container */}
                 <div className="mx-auto w-full max-w-screen-2xl px-5 py-16 md:px-10 md:py-24 lg:py-32 flex flex-col md:flex-row gap-8">
                 {/* Component */}

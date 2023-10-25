@@ -50,7 +50,7 @@ const sectionsDataTemplate1 = {
             sectionId: "aboutme2",
             sectionType: "aboutme",
             thumbnail: "/img/freelancer-template1-aboutme1-thumbnail.png",
-            description: "Template 1 aboutme 1"
+            description: "Template 1 aboutme 2"
         }
     ],
     "Services": [
@@ -64,7 +64,7 @@ const sectionsDataTemplate1 = {
             sectionId: "service2",
             sectionType: "service",
             thumbnail: "/img/freelancer-template1-service1-thumbnail.png",
-            description: "Template 1 service 1"
+            description: "Template 1 service 2"
         }
     ],
     "Portfolio": [
@@ -78,7 +78,7 @@ const sectionsDataTemplate1 = {
             sectionId: "portfolio2",
             sectionType: "portfolio",
             thumbnail: "/img/freelancer-template1-portfolio1-thumbnail.png",
-            description: "Template 1 portfolio 1"
+            description: "Template 1 portfolio 2"
         }
     ],
     "Testimonial": [
@@ -87,6 +87,12 @@ const sectionsDataTemplate1 = {
             sectionType: "testimonial",
             thumbnail: "/img/freelancer-template1-testimonial1-thumbnail.png",
             description: "Template 1 testimonial 1"
+        },
+        {
+            sectionId: "testimonial2",
+            sectionType: "testimonial",
+            thumbnail: "/img/freelancer-template1-testimonial1-thumbnail.png",
+            description: "Template 1 testimonial 2"
         }
     ],
     "Contact": [

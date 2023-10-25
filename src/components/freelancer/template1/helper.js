@@ -219,6 +219,38 @@ export function getSectionInitialData(sectionId) {
             }
         ]
     }
+
+    const testimonialData = {
+        sectionType: "testimonial",
+        sectionTitle: "Testimonials",
+        heading: "What our clients are saying",
+        reviews: [
+            {
+                id: 1,
+                reviewUrl: "",
+                rating: 5,
+                review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
+                reviewerName: "Laila Bahar",
+                reviewerJob: "Designer",
+            },
+            {
+                id: 2,
+                reviewUrl: "",
+                rating: 5,
+                review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
+                reviewerName: "Laila Bahar",
+                reviewerJob: "Designer",
+            },
+            {
+                id: 3,
+                reviewUrl: "",
+                rating: 5,
+                review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
+                reviewerName: "Laila Bahar",
+                reviewerJob: "Designer",
+            }
+        ]
+    }
     
     switch (sectionId) {
         // Navigation bars
@@ -299,35 +331,12 @@ export function getSectionInitialData(sectionId) {
         case "testimonial1":
             return {
                 sectionId: "testimonial1",
-                sectionType: "testimonial",
-                sectionTitle: "Testimonials",
-                heading: "What our clients are saying",
-                reviews: [
-                    {
-                        id: 1,
-                        reviewUrl: "",
-                        rating: 5,
-                        review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
-                        reviewerName: "Laila Bahar",
-                        reviewerJob: "Designer",
-                    },
-                    {
-                        id: 2,
-                        reviewUrl: "",
-                        rating: 5,
-                        review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
-                        reviewerName: "Laila Bahar",
-                        reviewerJob: "Designer",
-                    },
-                    {
-                        id: 3,
-                        reviewUrl: "",
-                        rating: 5,
-                        review: "John is a photographic virtuoso. Her diverse skills span weddings, portraits, and landscapes, each image a captivating narrative. An exceptional photographer that masterfully connects with moments and emotions.",
-                        reviewerName: "Laila Bahar",
-                        reviewerJob: "Designer",
-                    }
-                ]
+                ...testimonialData
+            }
+        case "testimonial2":
+            return {
+                sectionId: "testimonial2",
+                ...testimonialData
             }
 
         // Contacts

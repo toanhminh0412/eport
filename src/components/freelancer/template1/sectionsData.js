@@ -101,6 +101,12 @@ const sectionsDataTemplate1 = {
             sectionType: "contact",
             thumbnail: "/img/freelancer-template1-contact1-thumbnail.png",
             description: "Template 1 contact 1"
+        },
+        {
+            sectionId: "contact2",
+            sectionType: "contact",
+            thumbnail: "/img/freelancer-template1-contact1-thumbnail.png",
+            description: "Template 1 contact 2"
         }
     ]
 }

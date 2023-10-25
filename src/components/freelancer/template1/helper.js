@@ -251,6 +251,19 @@ export function getSectionInitialData(sectionId) {
             }
         ]
     }
+
+    const contactData = {
+        sectionType: "contact",
+        sectionTitle: "Contact me",
+        heading: "Let's build something exciting together!",
+        description: "Shoot me an email, describe your need. I'll start making your dream come true right away!",
+        formHeading: "Get a free quote",
+        formTagline: "Please leave as many details as possible. The more details you provide, the better I can understand your need and the more accurate the quote will be.",
+        formBtn: {
+            text: "Get free quote",
+            color: "orange"
+        }
+    }
     
     switch (sectionId) {
         // Navigation bars
@@ -343,16 +356,12 @@ export function getSectionInitialData(sectionId) {
         case "contact1":
             return {
                 sectionId: "contact1",
-                sectionType: "contact",
-                sectionTitle: "Contact me",
-                heading: "Let's build something exciting together!",
-                description: "Shoot me an email, describe your need. I'll start making your dream come true right away!",
-                formHeading: "Get a free quote",
-                formTagline: "Please leave as many details as possible. The more details you provide, the better I can understand your need and the more accurate the quote will be.",
-                formBtn: {
-                    text: "Get free quote",
-                    color: "orange"
-                }
+                ...contactData
+            }
+        case "contact2":
+            return {
+                sectionId: "contact2",
+                ...contactData
             }
 
         default:

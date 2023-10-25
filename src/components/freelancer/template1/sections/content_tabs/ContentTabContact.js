@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { ActiveContentContext, SectionsContext } from "../../site";
 import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
-import ContentTabBadge from "@/components/ui/content_tab/ContentTabBadge";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabContact() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -56,6 +56,12 @@ export default function ContentTabContact() {
     return (
         <div>
             <div className="prose max-w-none py-3">
+                {/* Section Template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>

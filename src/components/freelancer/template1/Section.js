@@ -5,7 +5,7 @@ import { EditableAboutMe1, EditableAboutMe2 } from "./sections/editable/Editable
 import { EditableService1, EditableService2 } from "./sections/editable/EditableServices";
 import { EditablePortfolio1, EditablePortfolio2 } from "./sections/editable/EditablePortfolios";
 import { EditableTestimonial1, EditableTestimonial2 } from "./sections/editable/EditableTestimonials";
-import { EditableContact1 } from "./sections/editable/EditableContacts";
+import { EditableContact1, EditableContact2 } from "./sections/editable/EditableContacts";
 
 import { Navbar1, Navbar2, Navbar3, Navbar4 } from "./sections/display/Navbars";
 import { Header1, Header2 } from "./sections/display/Headers";
@@ -13,7 +13,7 @@ import { AboutMe1, AboutMe2 } from "./sections/display/AboutMes";
 import { Service1, Service2 } from "./sections/display/Services";
 import { Portfolio1, Portfolio2 } from "./sections/display/Portfolios";
 import { Testimonial1, Testimonial2 } from "./sections/display/Testimonials";
-import { Contact1 } from "./sections/display/Contacts";
+import { Contact1, Contact2 } from "./sections/display/Contacts";
 
 
 export function EditableSection({ section, sectionInd }) {
@@ -61,6 +61,8 @@ export function EditableSection({ section, sectionInd }) {
         // Contacts
         case "contact1":
             return <EditableContact1 section={section} sectionInd={sectionInd}/>
+        case "contact2":
+            return <EditableContact2 section={section} sectionInd={sectionInd}/>
     }
 }
 
@@ -109,5 +111,7 @@ export function Section({ section, publish=false, ownerEmail=null }) {
         // Contacts
         case "contact1":
             return <Contact1 section={section} publish={publish} ownerEmail={ownerEmail}/>
+        case "contact2":
+            return <Contact2 section={section} publish={publish} ownerEmail={ownerEmail}/>
     }
 }

@@ -76,6 +76,111 @@ export function getSectionInitialData(sectionId) {
             }
         ]
     }
+
+    const aboutMeData = {
+        sectionType: "aboutme",
+        sectionTitle: "About me",
+        avatar: "/img/freelancer-template1-aboutme1-avatar.jpg",
+        status: {text: "Available for work", color: "green"},
+        heading: "John Doe",
+        bio: "<p>I&apos;m John, a passionate photographer who captures life&apos;s beauty one click at a time. With an eye for detail and a love for storytelling, I specialize in nature photography. Through my lens, I aim to freeze moments in time, creating lasting memories and artistry. Let&apos;s create magic together.</p>",
+        extraInfo: [
+            {
+                id: 0,
+                name: "Email",
+                value: "jdoe@example.org"
+            },
+            {
+                id: 1,
+                name: "Phone number",
+                value: "1234567890"
+            },
+            {
+                id: 2,
+                name: "School",
+                value: "University of Example"
+            },
+            {
+                id: 3,
+                name: "Degree",
+                value: "BSc in Art and Photography"
+            }
+        ]
+    }
+
+    const serviceData = {
+        sectionType: "service",
+        sectionTitle: "Services",
+        heading: "Services",
+        tagline: "You aren't happy with my work? Money back guaranteed",
+        services: [
+            {
+                id: 0,
+                name: "Basic package",
+                price: "20 USD",
+                recommended: false,
+                actionBtn: {
+                    text: "Get started",
+                    internalHref: "#",
+                    externalHref: "#",
+                    isExternal: false,
+                    color: "orange"
+                },
+                pros: [
+                    {
+                        id: 0,
+                        text: "Build you a beautiful album of 10 nature photos"
+                    },
+                    {
+                        id: 1,
+                        text: "Affordable: Suitable for clients on a budget"
+                    }
+                ],
+                cons: [
+                    {
+                        id: 0,
+                        text: "Limited Coverage: May not include advanced editing or additional services like prints"
+                    },
+                    {
+                        id: 1,
+                        text: "Basic Equipment: May use entry-level camera gear"
+                    }
+                ]
+            },
+            {
+                id: 1,
+                name: "Premium package",
+                price: "40 USD",
+                recommended: true,
+                actionBtn: {
+                    text: "Get started",
+                    internalHref: "#",
+                    externalHref: "#",
+                    isExternal: false,
+                    color: "orange"
+                },
+                pros: [
+                    {
+                        id: 0,
+                        text: "Build you a beautiful album of 40 nature photos"
+                    },
+                    {
+                        id: 1,
+                        text: "Professional: Suitable for clients who want the best"
+                    },
+                    {
+                        id: 2,
+                        text: "Full coverage: Include advanced editing and additional services like prints"
+                    },
+                    {
+                        id: 3,
+                        text: "Advanced Equipment: Use professional camera gear"
+                    }
+                ],
+                cons: []
+            }
+        ]
+    }
     
     switch (sectionId) {
         // Navigation bars
@@ -120,111 +225,24 @@ export function getSectionInitialData(sectionId) {
         case "aboutme1":
             return {
                 sectionId: "aboutme1",
-                sectionType: "aboutme",
-                sectionTitle: "About me",
-                avatar: "/img/freelancer-template1-aboutme1-avatar.jpg",
-                status: {text: "Available for work", color: "green"},
-                heading: "John Doe",
-                bio: "<p>I&apos;m John, a passionate photographer who captures life&apos;s beauty one click at a time. With an eye for detail and a love for storytelling, I specialize in nature photography. Through my lens, I aim to freeze moments in time, creating lasting memories and artistry. Let&apos;s create magic together.</p>",
-                extraInfo: [
-                    {
-                        id: 0,
-                        name: "Email",
-                        value: "jdoe@example.org"
-                    },
-                    {
-                        id: 1,
-                        name: "Phone number",
-                        value: "1234567890"
-                    },
-                    {
-                        id: 2,
-                        name: "School",
-                        value: "University of Example"
-                    },
-                    {
-                        id: 3,
-                        name: "Degree",
-                        value: "BSc in Art and Photography"
-                    }
-                ]
+                ...aboutMeData
+            }
+        case "aboutme2":
+            return {
+                sectionId: "aboutme2",
+                ...aboutMeData
             }
 
         // Services
         case "service1":
             return {
                 sectionId: "service1",
-                sectionType: "service",
-                sectionTitle: "Services",
-                heading: "Services",
-                tagline: "You aren't happy with my work? Money back guaranteed",
-                services: [
-                    {
-                        id: 0,
-                        name: "Basic package",
-                        price: "20 USD",
-                        recommended: false,
-                        actionBtn: {
-                            text: "Get started",
-                            internalHref: "#",
-                            externalHref: "#",
-                            isExternal: false,
-                            color: "orange"
-                        },
-                        pros: [
-                            {
-                                id: 0,
-                                text: "Build you a beautiful album of 10 nature photos"
-                            },
-                            {
-                                id: 1,
-                                text: "Affordable: Suitable for clients on a budget"
-                            }
-                        ],
-                        cons: [
-                            {
-                                id: 0,
-                                text: "Limited Coverage: May not include advanced editing or additional services like prints"
-                            },
-                            {
-                                id: 1,
-                                text: "Basic Equipment: May use entry-level camera gear"
-                            }
-                        ]
-                    },
-                    {
-                        id: 1,
-                        name: "Premium package",
-                        price: "40 USD",
-                        recommended: true,
-                        actionBtn: {
-                            text: "Get started",
-                            internalHref: "#",
-                            externalHref: "#",
-                            isExternal: false,
-                            color: "orange"
-                        },
-                        pros: [
-                            {
-                                id: 0,
-                                text: "Build you a beautiful album of 40 nature photos"
-                            },
-                            {
-                                id: 1,
-                                text: "Professional: Suitable for clients who want the best"
-                            },
-                            {
-                                id: 2,
-                                text: "Full coverage: Include advanced editing and additional services like prints"
-                            },
-                            {
-                                id: 3,
-                                text: "Advanced Equipment: Use professional camera gear"
-                            }
-                        ],
-                        cons: []
-                    }
-                ]
+                ...serviceData
+            }
+        case "service2":
+            return {
+                sectionId: "service2",
+                ...serviceData
             }
 
         // Portfolios

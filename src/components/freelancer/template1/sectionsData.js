@@ -45,11 +45,23 @@ const sectionsDataTemplate1 = {
             sectionType: "aboutme",
             thumbnail: "/img/freelancer-template1-aboutme1-thumbnail.png",
             description: "Template 1 aboutme 1"
+        },
+        {
+            sectionId: "aboutme2",
+            sectionType: "aboutme",
+            thumbnail: "/img/freelancer-template1-aboutme1-thumbnail.png",
+            description: "Template 1 aboutme 1"
         }
     ],
     "Services": [
         {
             sectionId: "service1",
+            sectionType: "service",
+            thumbnail: "/img/freelancer-template1-service1-thumbnail.png",
+            description: "Template 1 service 1"
+        },
+        {
+            sectionId: "service2",
             sectionType: "service",
             thumbnail: "/img/freelancer-template1-service1-thumbnail.png",
             description: "Template 1 service 1"

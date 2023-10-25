@@ -1,16 +1,16 @@
 // Local imports
 import { EditableNavbar1, EditableNavbar2, EditableNavbar3, EditableNavbar4 } from "./sections/editable/EditableNavbars";
 import { EditableHeader1, EditableHeader2 } from "./sections/editable/EditableHeaders";
-import { EditableAboutMe1 } from "./sections/editable/EditableAboutMes";
-import { EditableService1 } from "./sections/editable/EditableServices";
+import { EditableAboutMe1, EditableAboutMe2 } from "./sections/editable/EditableAboutMes";
+import { EditableService1, EditableService2 } from "./sections/editable/EditableServices";
 import { EditablePortfolio1 } from "./sections/editable/EditablePortfolios";
 import { EditableTestimonial1 } from "./sections/editable/EditableTestimonials";
 import { EditableContact1 } from "./sections/editable/EditableContacts";
 
 import { Navbar1, Navbar2, Navbar3, Navbar4 } from "./sections/display/Navbars";
 import { Header1, Header2 } from "./sections/display/Headers";
-import { AboutMe1 } from "./sections/display/AboutMes";
-import { Service1 } from "./sections/display/Services";
+import { AboutMe1, AboutMe2 } from "./sections/display/AboutMes";
+import { Service1, Service2 } from "./sections/display/Services";
 import { Portfolio1 } from "./sections/display/Portfolios";
 import { Testimonial1 } from "./sections/display/Testimonials";
 import { Contact1 } from "./sections/display/Contacts";
@@ -37,10 +37,14 @@ export function EditableSection({ section, sectionInd }) {
         // About me
         case "aboutme1":
             return <EditableAboutMe1 section={section} sectionInd={sectionInd}/>
+        case "aboutme2":
+            return <EditableAboutMe2 section={section} sectionInd={sectionInd}/>
 
         // Services
         case "service1":
             return <EditableService1 section={section} sectionInd={sectionInd}/>
+        case "service2":
+            return <EditableService2 section={section} sectionInd={sectionInd}/>
 
         // Portfolios
         case "portfolio1":
@@ -77,10 +81,14 @@ export function Section({ section, publish=false, ownerEmail=null }) {
         // About me
         case "aboutme1":
             return <AboutMe1 section={section}/>
+        case "aboutme2":
+            return <AboutMe2 section={section}/>
 
         // Services
         case "service1":
             return <Service1 section={section}/>
+        case "service2":
+            return <Service2 section={section}/>
 
         // Portfolios
         case "portfolio1":

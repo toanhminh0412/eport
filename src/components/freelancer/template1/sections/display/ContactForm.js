@@ -97,3 +97,87 @@ export function ContactForm1({section, publish=false, ownerEmail=null}) {
         </div>
     )
 }
+
+export function ContactForm2({section, publish=false, ownerEmail=null}) {
+    const name = useRef(null);
+    const email = useRef(null);
+    const details = useRef(null);
+
+    const [successMessage, setSuccessMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+
+    // Send email to website owner when user submits contact form
+    const submitForm = async(e) => {
+        e.preventDefault();
+        if (!publish) return;
+
+        setSuccessMessage('');
+        setErrorMessage('');
+        setLoading(true);
+
+        // Check if site owner has any email quota remaining
+        const response = await fetch(`/api/freelancer/submit_contact_form?ownerEmail=${ownerEmail}`);
+        const data = await response.json();
+        if (data.status !== 200) {
+            setLoading(false);
+            setErrorMessage(data.message);
+            return;
+        }
+
+        const templateParams = {
+            from_name: name.current.value,
+            from_email: email.current.value,
+            details: details.current.value,
+            to_email: ownerEmail
+        };
+
+        emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID, process.env.NEXT_PUBLIC_EMAILJS_FREELANCER_CONTACT_FORM_TEMPLATE_ID, templateParams, process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+        .then((result) => {
+            console.log(result.text);
+            setLoading(false);
+            setDisabled(true);
+            setSuccessMessage('Email sent successfully!');
+        }, (error) => {
+            setLoading(false);
+            setErrorMessage(`Email failed to send: ${error.text}. Please try again or send an email to support@eport.site for support!`);
+        });
+    }
+
+    return (
+        <form onSubmit={submitForm} className="mb-4 rounded-3xl border border-solid border-black bg-white px-4 py-10 [box-shadow:rgb(0,_0,_0)_9px_9px] sm:px-8 sm:py-16 md:px-20">
+            <h3 className="font-bold text-2xl md:text-3xl text-center">{section.formHeading}</h3>
+            <div className="mx-auto mt-4 max-w-[480px] mb-5 md:mb-6 lg:mb-8 text-center">
+                <div className="text-[#636262] text-sm sm:text-sm">{section.formTagline}</div>
+            </div>
+
+            {/* Status messages */}
+            {successMessage ? <div className="alert alert-success">
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{successMessage}</span>
+            </div> : null}
+
+            {errorMessage ? <div className="alert alert-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                <span>{errorMessage}</span>
+            </div> : null}
+            {/* Name */}
+            <div className="relative mb-4">
+                <label className="mb-1">Name</label>
+                <input disabled={disabled} ref={name} type="text" className="block h-9 w-full rounded-md border border-solid border-black bg-white p-2 text-sm text-[#333333] focus:border-[#3898ec] focus:outline-0" required/>
+            </div>
+            {/* Email */}
+            <div className="relative mb-4">
+                <label htmlFor="field" className="mb-1 font-medium">Email</label>
+                <input disabled={disabled} ref={email} type="text" className="block h-9 w-full rounded-md border border-solid border-black bg-white p-2 text-sm text-[#333333] focus:border-[#3898ec] focus:outline-0" name="field" required/>
+            </div>
+            {/* Message */}
+            <div className="relative mb-5 md:mb-6 lg:mb-8">
+                <label htmlFor="field" className="mb-1 font-medium">Details</label>
+                <textarea disabled={disabled} ref={details} placeholder="" maxLength="5000" name="field" className="min-h-[186px] w-full rounded-md border border-solid border-black bg-white p-2 text-sm text-[#333333] focus:border-[#3898ec] focus:outline-0" required></textarea>
+            </div>
+            <input type="submit" disabled={loading || disabled || !publish} value={loading ? "Sending..." : section.formBtn.text} className={`${section.formBtn && section.formBtn.color ? btnColorOptions[section.formBtn.color] : btnColorOptions['orange']} shadow-xl shadow-slate-500 hover:shadow-none inline-block w-full cursor-pointer rounded-xl px-8 py-4 text-center font-semibold no-underline`} />
+        </form>
+    )
+}

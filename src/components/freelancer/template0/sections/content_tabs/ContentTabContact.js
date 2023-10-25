@@ -9,6 +9,7 @@ import ContentTabSocial from "@/components/ui/content_tab/ContentTabSocial";
 import ContentTabBtn from "@/components/ui/content_tab/ContentTabBtn";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabContact() {
     const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
@@ -109,6 +110,12 @@ export default function ContentTabContact() {
     return (
         <div>
             <div className="prose max-w-none">
+                {/* Section Template */}
+                <div className="px-3 py-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Description */}
                 <div className="px-3 py-1">
                     <h4 className="my-0">Description</h4>
@@ -164,10 +171,12 @@ export default function ContentTabContact() {
                 </div>
 
                 {/* Action button */}
-                <div className="px-3 py-1">
-                    <h4 className="my-0">Action buttons</h4>
-                    <ContentTabBtn content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
-                </div>
+                {sections[activeSectionInd].sectionId ===  "contact1" ?
+                    <div className="px-3 py-1">
+                        <h4 className="my-0">Action buttons</h4>
+                        <ContentTabBtn content={sections[activeSectionInd].actionBtn} onChange={onActionBtnChange}/>
+                    </div>
+                : null}
                 <DeleteSectionButton/>
             </div>
         </div>

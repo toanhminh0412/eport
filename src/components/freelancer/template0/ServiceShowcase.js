@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 
 import { EffectCards, Navigation, Pagination } from 'swiper/modules';
 
-export default function ServiceShowcase({section}) {
+export default function Service1Showcase({section}) {
     return (
         <div>
             <Swiper

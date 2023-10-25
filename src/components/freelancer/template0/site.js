@@ -126,8 +126,25 @@ export default function Template0({project, projectId}) {
     // Save site to database
     const saveSite = async() => {
         for (let i = 0; i < sections.length; i++) {
+            // Upload navbar logo
+            if (sections[i].sectionType === "navbar") {
+                let newLogoURL = '';
+                const fileSrc = sections[i].logo
+                if (!fileSrc.includes('firebasestorage.googleapis.com')) {
+                    let newFile = await fetch(fileSrc).then(r => r.blob());
+                    newFile = await compressImageSize(newFile, 0.4);
+                    const logoRef = ref(storage, `projects/${projectId}/image-${new Date().valueOf()}.jpg`);
+                    const logoSnap = await uploadBytes(logoRef, newFile);
+                    newLogoURL = await getDownloadURL(logoSnap.ref);
+
+                    const newSections = [...sections];
+                    newSections[i].logo = newLogoURL;
+                    setSections(newSections);
+                }
+            }
+
             // Upload header1 and aboutme1 avatar
-            if (sections[i].sectionId === "header1") {
+            if (sections[i].sectionType === "header") {
                 let newAvatarURL = '';
                 const fileSrc = sections[i].avatar.src
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -144,7 +161,7 @@ export default function Template0({project, projectId}) {
             }
 
             // Upload header1 background image
-            if (sections[i].sectionId === "header1") {
+            if (sections[i].sectionType === "header") {
                 let newBackgroundImgURL = '';
                 const fileSrc = sections[i].backgroundImage
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -160,7 +177,7 @@ export default function Template0({project, projectId}) {
                 }       
             }
 
-            if (sections[i].sectionId === "aboutme1") {
+            if (sections[i].sectionType === "aboutme") {
                 let newAvatarURL = '';
                 const fileSrc = sections[i].avatar.src
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -176,7 +193,7 @@ export default function Template0({project, projectId}) {
                 }
             }
 
-            if (sections[i].sectionId === "portfolio1") {
+            if (sections[i].sectionType === "portfolio") {
                 for (let j = 0; j < sections[i].portfolios.length; j++) {
                     for (let k = 0; k < sections[i].portfolios[j].images.length; k++) {
                         let newPortfolioImgURL = '';
@@ -305,23 +322,25 @@ export default function Template0({project, projectId}) {
     return (
         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
             <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
-                <main>
-                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                        <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
-                        <PublishModal
-                            site={projectTemplate0}
-                            projectId={projectId}
-                            showMessageToast={showMessageToast}
-                            setPublishMessage={setPublishMessage}
-                            publishedSite={publishedSite}
-                            projectType="freelancer"/>
-                        <div className="mt-20">
-                            {successMsg ? <SuccessToast message={successMsg}/>  : null}
-                            {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
-                            <Template0Site/>
+                <ProjectContext.Provider value={setProjectTemplate0}>
+                    <main>
+                        <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                            <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
+                            <PublishModal
+                                site={projectTemplate0}
+                                projectId={projectId}
+                                showMessageToast={showMessageToast}
+                                setPublishMessage={setPublishMessage}
+                                publishedSite={publishedSite}
+                                projectType="freelancer"/>
+                            <div className="mt-20">
+                                {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                                {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                <Template0Site/>
+                            </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </ProjectContext.Provider>
             </EditModeContext.Provider>
         </SectionsContext.Provider>
     )
@@ -333,7 +352,7 @@ function Template0Site() {
 
     if (editMode) {
         return (
-            <div style={{zoom: "75%"}} className="w-full relative">
+            <div style={{zoom: "60%"}} className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (

@@ -9,6 +9,7 @@ import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabForma
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
 import { DeleteSectionButton } from "./DeleteSectionButton";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabAboutMe() {
     const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
@@ -138,6 +139,12 @@ export default function ContentTabAboutMe() {
     return (
         <div>
             <div className="prose max-w-none">
+                {/* Section Template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>
@@ -149,13 +156,16 @@ export default function ContentTabAboutMe() {
                         cropper={sections[activeSectionInd].avatar.cropper}
                         onCropAreaChange={onAvatarCrop}
                         aspectRatio={3/4}/>
+                    {sections[activeSectionInd].sectionId === "aboutme2" ? <p className="text-sm"><span className="font-bold">Note:</span> The picture in this template <span className="font-bold">can not be cropped!</span></p> : null}
                 </div>
 
                 {/* Status */}
-                <div className="px-3 pt-3 pb-1">
-                    <h4 className="my-0">Status</h4>
-                    <ContentTabBadge content={{text: sections[activeSectionInd].status.text, color: sections[activeSectionInd].status.color}} onChange={onStatusChange}/>
-                </div>
+                {sections[activeSectionInd].sectionId === "aboutme1" ?
+                    <div className="px-3 pt-3 pb-1">
+                        <h4 className="my-0">Status</h4>
+                        <ContentTabBadge content={{text: sections[activeSectionInd].status.text, color: sections[activeSectionInd].status.color}} onChange={onStatusChange}/>
+                    </div>
+                : null}
 
                 {/* Job */}
                 <div className="px-3 py-1">

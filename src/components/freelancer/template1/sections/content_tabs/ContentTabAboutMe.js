@@ -10,6 +10,7 @@ import ContentTabFormattedText from "@/components/ui/content_tab/ContentTabForma
 import ContentTabNameValue from "@/components/ui/content_tab/ContentTabNameValue";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabAboutMe() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -78,6 +79,12 @@ export default function ContentTabAboutMe() {
     return (
         <div>
             <div className="prose max-w-none py-3">
+                {/* Section Template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Avatar */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Avatar</h4>

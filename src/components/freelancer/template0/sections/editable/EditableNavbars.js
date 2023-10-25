@@ -5,6 +5,7 @@ import { useContext } from "react"
 
 // Local immports
 import { ActiveTabContext, ActiveContentContext, SectionsContext } from "../../site"
+import { Navbar2Showcase } from "../../NavbarShowcase";
 
 export function EditableNavbar1({ section, sectionInd }) {
     const { activeTab, setActiveTab } = useContext(ActiveTabContext);
@@ -62,5 +63,48 @@ export function EditableNavbar1({ section, sectionInd }) {
                 </div>
             </div>
         </div>
+    )
+}
+
+export function EditableNavbar2({ section, sectionInd }) {
+    const { activeTab, setActiveTab } = useContext(ActiveTabContext);
+    const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
+    const { _sections, _setSections, deleteSection, _saveSite } = useContext(SectionsContext);
+
+    const openContentTabEditor = () => {
+        setActiveTab("content");
+        setActiveSectionInd(sectionInd);
+    }
+
+    return (
+        <section className="group">
+            <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
+            <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Delete Section!</h3>
+                    <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
+                            <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
+                        </form>
+                    </div>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+            <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                <nav className="sticky top-0 z-10 w-full lg:px-16 px-6 bg-black shadow-md flex flex-wrap items-center lg:py-0 py-2">
+                    <div className="flex-1 flex justify-between items-center">
+                        <div className="relative float-left max-[991px]:mr-auto max-[767px]:pl-0">
+                            <Image src={section.logo} alt="Website logo" className="inline-block max-h-16 max-w-full" width={100} height={100}/>
+                        </div>
+                    </div>
+                    <Navbar2Showcase section={section}/>
+                </nav>
+                </div>
+        </section>
     )
 }

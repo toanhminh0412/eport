@@ -80,7 +80,7 @@ function SectionsTab() {
                                                             height={150} 
                                                             src={section.thumbnail}
                                                             alt={section.description}
-                                                            className="w-full h-auto border-2 border-slate-500 hover:border-black"/>
+                                                            className="w-full h-auto border-2 border-slate-500 hover:border-black mb-4"/>
                                                     </div>
                                                 </div>
                                             )}

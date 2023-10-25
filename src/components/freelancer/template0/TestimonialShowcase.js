@@ -2,11 +2,18 @@
 
 // Next imports
 import { useState } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Local imports
 import { btnColorOptions } from "@/data/colorOptions";
 
-export default function TestimonialShowcase({section}) {
+// Third party imports
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+export function Testimonial1Showcase({section}) {
     const [viewMore, setViewMore] = useState(true);
 
     const toggleViewMoreButton = () => {
@@ -74,6 +81,52 @@ export default function TestimonialShowcase({section}) {
                     }
                 </div>
             : null}
+        </div>
+    )
+}
+
+export function Testimonial2Showcase({ section }) {
+    return (
+        <div>
+            <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                }}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Pagination, Autoplay]}
+                className="w-full h-full"
+            >
+                {section.testimonials.map(testimonial => (
+                    <SwiperSlide key={testimonial.id} className="flex justify-center items-center">
+                        <div className="relative justify-around gap-6 border border-solid border-black bg-white px-6 py-8 max-[767px]:p-8 rounded-2xl mb-16">
+                            <div className="flex mb-5">
+                                {[...Array(testimonial.ratingStars)].map((_, i) =>
+                                    <div key={i} className="inline-block text-yellow-400 max-w-full flex-none mr-1 w-4 text-lg"><i className="fa-solid fa-star"></i></div>
+                                )}
+                                {[...Array(5 - testimonial.ratingStars)].map((_, i) =>
+                                    <div key={i} className="inline-block text-slate-300 max-w-full flex-none mr-1 w-4 text-lg"><i className="fa-solid fa-star"></i></div>
+                                )}
+                            </div>
+
+                            <div className="text-4xl"><i class="fa-solid fa-quote-left"></i></div>
+                            <div className="text-slate-700" dangerouslySetInnerHTML={{ __html: testimonial.content}}></div>
+                            <div className="text-4xl float-right"><i class="fa-solid fa-quote-right"></i></div>
+
+                            <div className="flex-row flex items-start mt-10">
+                                <div className="flex-col flex items-start">
+                                    <h6 className="text-base font-semibold">{testimonial.name}</h6>
+                                    <p className="text-sm text-slate-700">{testimonial.job}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </div>
     )
 }

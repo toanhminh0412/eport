@@ -6,6 +6,7 @@ import { ActiveContentContext, SectionsContext } from "../../site";
 import ContentTabInternalLink from "@/components/ui/content_tab/ContentTabInternalLink";
 import ContentTabImage from "@/components/ui/content_tab/ContentTabImage";
 import { DeleteSectionButton } from "./DeleteSectionButton";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabNavbar() {
     const { sections, setSections, _deleteSection, _saveSite } = useContext(SectionsContext);
@@ -52,6 +53,12 @@ export default function ContentTabNavbar() {
     return (
         <div>
             <div className="prose max-w-none">
+                {/* Section Template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Logo */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Logo</h4>

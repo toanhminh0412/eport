@@ -125,7 +125,7 @@ export default function Template1({project, projectId}) {
     const saveSite = async() => {
         for (let i = 0; i < sections.length; i++) {
             // Upload header1 and aboutme1 avatar
-            if (sections[i].sectionId === "header1") {
+            if (sections[i].sectionType === "header") {
                 let newAvatarURL = '';
                 const fileSrc = sections[i].avatar.src
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -142,7 +142,7 @@ export default function Template1({project, projectId}) {
             }
 
             // Upload header1 background image
-            if (sections[i].sectionId === "header1") {
+            if (sections[i].sectionType === "header") {
                 let newBackgroundImgURL = '';
                 const fileSrc = sections[i].backgroundImage
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -158,7 +158,7 @@ export default function Template1({project, projectId}) {
                 }       
             }
 
-            if (sections[i].sectionId === "aboutme1") {
+            if (sections[i].sectionType === "aboutme") {
                 let newAvatarURL = '';
                 const fileSrc = sections[i].avatar;
                 if (!fileSrc.includes('firebasestorage.googleapis.com')) {
@@ -174,7 +174,7 @@ export default function Template1({project, projectId}) {
                 }
             }
 
-            if (sections[i].sectionId === "portfolio1") {
+            if (sections[i].sectionType === "portfolio") {
                 for (let j = 0; j < sections[i].projects.length; j++) {
                     for (let k = 0; k < sections[i].projects[j].images.length; k++) {
                         let newPortfolioImgURL = '';
@@ -302,25 +302,27 @@ export default function Template1({project, projectId}) {
     }
 
     return (
-        <SectionsContext.Provider value={{sections, setSections, deleteSection}}>
+        <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
             <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
-                <main>
-                    <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                        <PreviewControlNav editMode={editMode} setEditMode={setEditMode}/>
-                        <PublishModal
-                            site={projectTemplate1}
-                            projectId={projectId}
-                            showMessageToast={showMessageToast}
-                            setPublishMessage={setPublishMessage}
-                            publishedSite={publishedSite}
-                            projectType="freelancer"/>
-                        <div className="mt-20">
-                            {successMsg ? <SuccessToast message={successMsg}/>  : null}
-                            {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
-                            <Template1Site/>
+                <ProjectContext.Provider value={setProjectTemplate1}>
+                    <main>
+                        <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
+                            <PreviewControlNav projectDomain={projectTemplate1.domain} type='freelancer'/>
+                            <PublishModal
+                                site={projectTemplate1}
+                                projectId={projectId}
+                                showMessageToast={showMessageToast}
+                                setPublishMessage={setPublishMessage}
+                                publishedSite={publishedSite}
+                                projectType="freelancer"/>
+                            <div className="mt-20">
+                                {successMsg ? <SuccessToast message={successMsg}/>  : null}
+                                {errorMsg ? <ErrorToast message={errorMsg}/>  : null}
+                                <Template1Site/>
+                            </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </ProjectContext.Provider>
             </EditModeContext.Provider>
         </SectionsContext.Provider>
     )
@@ -332,7 +334,7 @@ function Template1Site() {
 
     if (editMode) {
         return (
-            <div style={{zoom: "75%"}} className="w-full relative">
+            <div style={{zoom: "60%"}} className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (

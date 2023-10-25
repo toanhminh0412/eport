@@ -1,5 +1,9 @@
+// Next imports
 import Link from "next/link"
 import Image from "next/image"
+
+// Local imports
+import { Navbar2Showcase } from "../../NavbarShowcase"
 
 export function NavBar1({ section, publish }) {
     return (
@@ -29,5 +33,18 @@ export function NavBar1({ section, publish }) {
                 </div>
             </div>
         </div>
+    )
+}
+
+export function Navbar2({ section, publish }) {
+    return (
+        <nav className={`fixed ${publish ? "top-0" : "top-36"} z-[1000] w-full lg:px-16 px-6 bg-black shadow-md flex flex-wrap items-center lg:py-0 py-2`}>
+            <div className="flex-1 flex justify-between items-center">
+                <div className="relative float-left max-[991px]:mr-auto max-[767px]:pl-0">
+                    <Image src={section.logo} alt="Website logo" className="inline-block max-h-16 max-w-full" width={100} height={100}/>
+                </div>
+            </div>
+            <Navbar2Showcase section={section}/>
+        </nav>
     )
 }

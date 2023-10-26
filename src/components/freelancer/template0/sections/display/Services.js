@@ -4,7 +4,7 @@ import ServiceShowcase from "../../ServiceShowcase"
 export function Services1({ section }) {
     return (
         <section className="">
-            <div className="mx-auto w-full max-w-[1400px] px-5 py-40">
+            <div className="mx-auto w-full max-w-[1400px] px-5 py-20">
                 <div className="flex flex-col items-center">
                     <div className="mb-8 md:mb-12 lg:mb-16">
                         <div className="w-full max-w-[800px] text-center">
@@ -24,7 +24,7 @@ export function Services1({ section }) {
 export function Services2({ section }) {
     return (
         <section>
-            <div className="mx-auto max-w-[1400px] px-5 md:px-10 py-40">
+            <div className="mx-auto max-w-[1400px] px-5 md:px-10 py-20">
                 <div className="mx-auto w-full max-w-3xl text-center">
                     <h2 className="text-5xl md:text-7xl font-semibold">{section.heading}</h2>
                     <div className="mx-auto mb-8 mt-5 max-w-[528px] md:mb-12 lg:mb-16">

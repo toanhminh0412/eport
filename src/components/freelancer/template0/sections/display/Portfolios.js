@@ -12,7 +12,7 @@ export function Portfolio1({ section }) {
         <section className="block">
             <div className="px-5 md:px-10">
                 <div className="mx-auto w-full max-w-[1400px]">
-                    <div className="py-40">
+                    <div className="py-20">
                         <div className="">
                             <div className="text-center">
                                 <h2 className="font-bold text-5xl md:text-7xl mb-10">{section.heading}</h2>
@@ -51,7 +51,7 @@ export function Portfolio1({ section }) {
 export function Portfolio2({ section }) {
     return (
         <section>
-            <div className="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
+            <div className="py-20 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div className="flex-col flex items-stretch gap-20">
                     <div className="flex-col flex gap-5 text-center">
                         <h2 className="font-bold text-5xl md:text-7xl">{section.heading}</h2>

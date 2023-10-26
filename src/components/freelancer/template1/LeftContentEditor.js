@@ -3,6 +3,7 @@
 // Next, React imports
 import { useContext } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // Local imports
 import sectionsDataTemplate1 from "./sectionsData";
@@ -44,16 +45,27 @@ export default function LeftContentEditor() {
 
 function SectionsTab() {
     const { sections, setSections, _deleteSection } = useContext(SectionsContext);
+    const router = useRouter();
 
     const addSection = section => {
         // Navbar has to be the first section
         if (section.sectionType === "navbar") {
             const isNavbarUsed = sections.some(section => section.sectionType === "navbar");
             if (!isNavbarUsed) {
-                setSections([{...getSectionInitialData(section.sectionId), id:nanoid()}, ...sections]);
+                const newSection = {
+                    ...getSectionInitialData(section.sectionId),
+                    id:nanoid()
+                }
+                setSections([newSection, ...sections]);
+                router.push('#' + newSection.id);
             }
         } else {
-            setSections([...sections, {...getSectionInitialData(section.sectionId), id:nanoid()}]);
+            const newSection = {
+                ...getSectionInitialData(section.sectionId),
+                id:nanoid()
+            }
+            setSections([...sections, newSection]);
+            router.push('#' + newSection.id);
         }
     }
 

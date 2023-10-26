@@ -1,5 +1,6 @@
 // Next imports
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 // Local imports
@@ -7,7 +8,7 @@ import { db } from "../../../../../public/libs/firebase";
 import { getUserFromToken } from "@/helpers/authentication";
 
 // 3rd party imports
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 
 // Get all projects for the currently logged in user

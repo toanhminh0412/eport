@@ -11,7 +11,7 @@ export function AboutMe1({ section }) {
         <section className="block">
             <div className="px-5 md:px-10">
                 <div className="mx-auto w-full max-w-[1400px]">
-                    <div className="py-40">
+                    <div className="py-20">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-5">
                             <div className="relative min-h-[400px] w-7/12 lg:w-3/4 overflow-hidden rounded-2xl aspect-[3/4]">
                                 <Image 
@@ -48,16 +48,15 @@ export function AboutMe1({ section }) {
 export function AboutMe2({ section }) {
     return (
         <section>
-            <div className="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
+            <div className="py-20 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div className="flex justify-center items-center flex-col gap-8 pb-24">
-                    <div className="relative w-60 h-60 sm:w-80 sm:h-80 flex justify-center items-center">
+                    <div className="relative w-7/12 lg:w-3/4 max-w-[300px] overflow-hidden rounded-2xl aspect-[3/4]">
                         <Image 
                             src={section.avatar.src}
                             fill
                             alt="Header avatar"
-                            className={`w-full h-full rounded-full border-4 border-solid border-orange-500`}/>
-                        <span className="absolute top-1/2 left-1/2 w-[17rem] h-[17rem] sm:w-[22rem] sm:h-[22rem] -translate-y-1/2 -translate-x-1/2 rotate-0 rounded-full border-4 border-solid border-l-orange-500 border-r-orange-500 border-b-slate-100 border-t-slate-100"></span>
-                        <span className="absolute top-1/2 left-1/2 w-[19rem] h-[19rem] sm:w-[24rem] sm:h-[24rem] -translate-y-1/2 -translate-x-1/2 rotate-0 rounded-full border-4 border-solid border-orange-500"></span>
+                            style={{ transform: section.avatar.style.transform}}
+                            className={`absolute left-0 top-0 origin-top-left w-full h-full`}/>
                     </div>
 
                     <div className="text-center">

@@ -10,7 +10,7 @@ export function Contact1({ section, publish=false, ownerEmail=null }) {
     return ( 
         <section className="prose max-w-none px-5 md:px-10">
             <div className="mx-auto w-full max-w-[1400px]">
-                <div className="pt-40 pb-12">
+                <div className="pt-20 pb-12">
                     <div className="grid items-center max-[991px]:justify-items-start grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                         <div className="flex flex-col items-start max-[991px]:max-w-[720px]">
                             <h2 className="font-bold mb-2 text-3xl md:text-5xl">{section.slogan}</h2>

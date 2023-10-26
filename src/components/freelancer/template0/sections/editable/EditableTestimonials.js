@@ -35,7 +35,7 @@ export function EditableTestimonial1({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`relative block border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
-                <div className="py-16 md:py-24 lg:py-32">
+                <div className="py-40">
                     <div className="px-5 md:px-10">
                         <div className="mx-auto w-full max-w-[1400px]">
                             <div className="mx-auto w-full max-w-3xl">
@@ -85,7 +85,7 @@ export function EditableTestimonial2({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
-                <div class="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-[1400px] px-5 md:px-10">
+                <div class="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                     <div class="grid items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                         <div class="max-[991px]:max-w-[720px]">
                             <h2 class="font-bold text-3xl md:text-5xl mb-5 md:mb-6 lg:mb-4 pb-8">{section.heading}</h2>

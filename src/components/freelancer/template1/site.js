@@ -352,7 +352,7 @@ function Template1Site() {
 
     return (
         <div className={`w-full relative ${isNavbarUsed ? "pt-[72px]" : ""}`}>
-            {sections.map(section => <div key={section.id} id={section.id}><Section section={section}/></div>)}
+            {sections.map(section => <div key={section.id} id={section.id} style={section.sectionType !== "navbar" ? {zoom: "75%"} : {}}><Section section={section}/></div>)}
         </div>
     )
 }

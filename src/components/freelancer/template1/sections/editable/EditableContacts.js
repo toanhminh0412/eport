@@ -38,7 +38,7 @@ export function EditableContact1({ section, sectionInd }) {
             </dialog>
             <section className={`block bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
-                    <div className="grid items-center max-[991px]:justify-items-start grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
+                    <div className="grid items-center max-[991px]:justify-items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                         <div className="max-[991px]:max-w-[720px]">
                             <h2 className="font-bold mb-2 text-3xl md:text-5xl">{section.heading}</h2>
                             <div className="ml-0 mr-0 mt-4 max-w-[528px] mb-5 md:mb-6 lg:mb-8 pb-4">

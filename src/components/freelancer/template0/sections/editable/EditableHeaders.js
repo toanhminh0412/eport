@@ -39,7 +39,7 @@ export function EditableHeader1({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`prose max-w-none bg-no-repeat bg-cover bg-center border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} style={{backgroundImage: `url(${section.backgroundImage})`}} onClick={openContentTabEditor}>
-                <div className="mx-auto w-full max-w-[1400px] px-5 py-12 md:px-10 md:py-16 lg:py-20">
+                <div className="mx-auto w-full max-w-[1400px] px-5 py-12 md:px-10 md:py-16 lg:py-40">
                     <div className="grid grid-cols-1 items-center gap-8 sm:gap-20 lg:grid-cols-2">
                         <div className="max-w-[800px] lg:max-w-lg prose">
                             <h2 className="mb-4 text-3xl font-bold md:text-5xl text-orange-400">{section.heading}</h2>
@@ -107,7 +107,7 @@ export function EditableHeader2({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`text-gray-900 leading-normal tracking-wider bg-cover border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} style={{backgroundImage: `url(${section.backgroundImage})`}} onClick={openContentTabEditor}>
-                <div className="max-w-[1400px] flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-10">
+                <div className="max-w-[1400px] flex items-center h-auto lg:h-screen flex-wrap mx-auto py-32 lg:py-10">
                     <div className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-slate-100 mx-6 lg:mx-0">
                         <div className="p-4 md:p-12 text-center lg:text-left">
                             <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{backgroundImage: `url(${section.avatar.src})`}}></div>

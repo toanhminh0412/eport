@@ -35,7 +35,7 @@ export function EditableService1({ section, sectionInd}) {
                 </form>
             </dialog>
             <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
-                <div className="mx-auto w-full max-w-[1400px] px-5 py-12 md:px-10 md:py-16 lg:py-20">
+                <div className="mx-auto w-full max-w-[1400px] px-5 py-40">
                     <div className="flex flex-col items-center">
                         <div className="mb-8 md:mb-12 lg:mb-16">
                             <div className="w-full max-w-[800px] text-center">
@@ -83,7 +83,7 @@ export function EditableService2({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
-                <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-24 lg:py-32">
+                <div className="mx-auto max-w-[1400px] px-5 py-40 md:px-10">
                     <div className="mx-auto w-full max-w-3xl text-center">
                         <h2 className="text-5xl md:text-7xl font-semibold">{section.heading}</h2>
                         <div className="mx-auto mb-8 mt-5 max-w-[528px] md:mb-12 lg:mb-16">

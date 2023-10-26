@@ -39,7 +39,7 @@ export function EditableContact1({ section, sectionInd }) {
             </dialog>
             <div className={`prose max-w-none px-5 md:px-10 border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 <div className="mx-auto w-full max-w-[1400px]">
-                    <div className="py-16 md:py-24 lg:py-32">
+                    <div className="pt-40 pb-12">
                         <div className="grid items-center max-[991px]:justify-items-start grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                             <div className="flex flex-col items-start max-[991px]:max-w-[720px]">
                                 <h2 className="font-bold mb-2 text-3xl md:text-5xl">{section.slogan}</h2>
@@ -92,7 +92,7 @@ export function EditableContact2({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
-                <div className="mx-auto w-full max-w-[1400px] px-5 py-16 md:px-10 md:py-24 lg:py-32">
+                <div className="mx-auto w-full max-w-[1400px] px-5 py-40 md:px-10">
                     <div className="flex flex-row justify-between max-[767px]:flex-col max-[767px]:items-start">
                         <div className="w-full max-w-[560px] max-[991px]:mr-4 max-[991px]:flex-initial max-[767px]:mr-0">
                             <h2 className="text-3xl font-semibold text-black md:text-5xl">{section.slogan}</h2>

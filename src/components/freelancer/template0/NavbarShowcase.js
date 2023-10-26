@@ -13,9 +13,9 @@ export function Navbar2Showcase({ section }) {
 
     return (
         <>
-            <label class="cursor-pointer lg:hidden block" onClick={toggleMenuButton}>
+            <label className="cursor-pointer lg:hidden block" onClick={toggleMenuButton}>
                 <svg
-                    class="fill-current text-yellow-400"
+                    className="fill-current text-yellow-400"
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"

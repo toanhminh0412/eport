@@ -172,14 +172,17 @@ export default function PublishModal({site, projectId, publishedSite=null, showM
                 <p className="mt-3 text-sm"><strong>Note:</strong> You can change this later</p>
 
                 {/* Display on Eport published sites page input */}
-                <div className="mt-5">Do you want this site to be displayed on Eport&apos;s <Link href="/published_sites" target="_blank" className="link text-blue-500">published sites</Link> page?</div>
-                <div className="form-control flex flex-row mt-2 w-fit">
-                    <input 
-                        type="checkbox" 
-                        className="checkbox dark:checkbox-info" 
-                        checked={displayedOnEport}
-                        onChange={e => setDisplayedOnEport(e.target.checked)}/>
-                    <strong className="ml-2">Yes, I do</strong> 
+                {/* Temporarily hide it for now */}
+                <div className="hidden">
+                    <div className="mt-5">Do you want this site to be displayed on Eport&apos;s <Link href="/published_sites" target="_blank" className="link text-blue-500">published sites</Link> page?</div>
+                    <div className="form-control flex flex-row mt-2 w-fit">
+                        <input 
+                            type="checkbox" 
+                            className="checkbox dark:checkbox-info" 
+                            checked={displayedOnEport}
+                            onChange={e => setDisplayedOnEport(e.target.checked)}/>
+                        <strong className="ml-2">Yes, I do</strong> 
+                    </div>
                 </div>
 
                 <div className="modal-action">

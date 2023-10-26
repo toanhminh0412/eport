@@ -399,7 +399,7 @@ export default function Template0({content, projectId}) {
         return (
         <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
             <div className="bg-slate-100 w-screen h-full pb-10 pt-24 dark:bg-slate-700">
-                <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} type="eresume" projectDomain={site.domain}/>
+                <ControlNav editMode={editMode} setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} type="eresume" projectDomain={site.domain}/>
                 <AskLoginModal/>
                 <ContentEditor 
                 content={site} 
@@ -422,7 +422,7 @@ export default function Template0({content, projectId}) {
         <SetSiteFunctionContext.Provider value={setSite}>
             <main className={`${site.theme === 'dark' ? 'dark' : null}`}>
                 <div className="bg-slate-100 w-screen h-full pt-40 lg:pt-24 pb-32 dark:bg-slate-700">
-                    <ControlNav setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading} theme={site.theme} type="eresume" projectDomain={site.domain}/>
+                    <ControlNav editMode={editMode} setEditMode={(bool) => {setEditMode(bool)}} saveSiteFunc={saveSite} isEqual={isEqual} message={message} messageLoading={msgLoading} theme={site.theme} type="eresume" projectDomain={site.domain}/>
                     <PublishModal 
                         site={site}
                         projectId={projectId}

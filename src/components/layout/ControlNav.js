@@ -9,8 +9,7 @@ const Tour = dynamic(
     { ssr:false }
 )
 
-export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme, type, projectDomain=""}) {
-    const [state, setState] = useState('edit');
+export default function ControlNav({editMode, setEditMode, saveSiteFunc, isEqual, message, messageLoading, theme, type, projectDomain=""}) {
     const [loading, setLoading] = useState(false);
     const [domain, setDomain] = useState('');
     const [run, setRun] = useState(false);
@@ -25,35 +24,33 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
     }, [projectDomain]);
     
     const stateControlFunc = async () => {
-        if (state === 'save') {
+        if (editMode) {
             setLoading(true);
             await saveSiteFunc();
             setLoading(false);
         }
 
-        setEditMode(state==='edit'); 
+        setEditMode(!editMode); 
         setDelay(true);
         setTimeout(() => {
             setDelay(false);
         }, 2000);
-        const newState = state === "edit" ? "save" : "edit";  
-        setState(newState);
     }
 
     return (
         <div className="navbar bg-neutral text-neutral-content py-3 fixed top-18 z-30">
             <div className="navbar-start w-full flex-wrap gap-2">
-                {state === 'edit' ?
+                {!editMode ?
                     <>
                     <button className="btn btn-info btn-sm xs:btn xs:btn-info" onClick={() => setRun(true)}>Show Instructions</button>
                         {run ? <Tour run={run} setRun={setRun} theme={theme}/> : null}
                     </>
                 : null}
-                <ControlBtn state={state} loading={loading} onClick={stateControlFunc} delay={delay}/>
-                {state === 'edit' ?
+                <ControlBtn editMode={editMode} loading={loading} onClick={stateControlFunc} delay={delay}/>
+                {!editMode ?
                     <button className="btn btn-sm xs:btn tour-publishSiteButton" onClick={() => window.publish_modal.showModal()}>Publish site</button>
                 :
-                <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false); setState('edit')}}>Cancel</button>}
+                <button className="btn btn-sm xs:btn" onClick={() => {setEditMode(false)}}>Cancel</button>}
                 {domain !== '' ? <Link href={`/${type}/${domain}`} className="btn btn-sm xs:btn" target="_blank">Visit site</Link> : null}
                 {!isEqual ?
                 <div>
@@ -61,7 +58,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                         <span className="loading loading-spinner md:ml-5"></span>
                     :
                         <div>
-                            {state === "edit" ?
+                            {!editMode ?
                                 <div className="text-red-300 md:ml-5">
                                     <span className="fa-solid fa-x mr-3"></span>
                                     {message}
@@ -76,7 +73,7 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
                         <span className="loading loading-spinner md:ml-5"></span>
                     :
                         <div>
-                            {state === "edit" ?
+                            {!editMode ?
                                 <div className="text-green-300 md:ml-5">
                                     <span className="fa-solid fa-check mr-3"></span>
                                     {message}
@@ -91,22 +88,20 @@ export default function ControlNav({setEditMode, saveSiteFunc, isEqual, message,
     )
 }
 
-function ControlBtn({state, loading, onClick, delay}) {
-    console.log(state)
-    console.log(loading);
-    if (state === 'edit' && !loading) {
+function ControlBtn({editMode, loading, onClick, delay}) {
+    if (!editMode && !loading) {
         return (
             <button className="btn btn-sm xs:btn tour-editSiteButton" onClick={onClick} disabled={delay}>Edit site</button>
         )
     }
-    else if (state === 'edit' && loading) {
+    else if (!editMode && loading) {
         return (
             <button className="btn btn-sm xs:btn">
                 <span className="loading loading-spinner"></span>
                 Editing
             </button>
         )
-    } else if (state === 'save' && !loading) {
+    } else if (editMode && !loading) {
         return (
             <button className="btn btn-sm xs:btn" onClick={onClick} disabled={delay}>Save site</button>
         )

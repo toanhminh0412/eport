@@ -30,7 +30,7 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-40 p-2 shadow bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box w-52">
             <li><Link href="/dashboard" className={`${currentPath === '/dashboard' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Dashboard</Link></li>
             <li><Link href="/features" className={`${currentPath === '/features' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Features</Link></li>
-            <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li>
+            {/* <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li> */}
           </ul>
         </div>
         :
@@ -40,7 +40,7 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
           </label>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gradient-to-r from-cyan-500 to-blue-500 rounded-box w-52">
             <li><Link href="/features" className={`${currentPath === '/features' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Features</Link></li>
-            <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li>
+            {/* <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li> */}
           </ul>
         </div>}
         
@@ -51,12 +51,12 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
         <ul className="menu menu-horizontal px-1">
           <li><Link href="/dashboard" className={`${currentPath === '/dashboard' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Dashboard</Link></li>
           <li><Link href="/features" className={`${currentPath === '/features' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Features</Link></li>
-          <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li>
+          {/* <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li> */}
         </ul>
         : 
         <ul className="menu menu-horizontal px-1">
           <li><Link href="/features" className={`${currentPath === '/features' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Features</Link></li>
-          <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li>
+          {/* <li><Link href="/published_sites" className={`${currentPath === '/published_sites' ? 'font-semibold active' : ''} hover:font-bold duration-75`}>Published sites</Link></li> */}
         </ul>}
         
       </div>
@@ -66,7 +66,7 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
           <label tabIndex={0} className="btn btn-default m-1">My account</label>
           <ul tabIndex={0} className="menu dropdown-content mt-3 z-[1] p-2 shadow text-black bg-white rounded-box w-fit min-w-[10rem]">
             {email ? <div className="p-2 border-b border-slate-300 text-base">Signed in as <strong>{email}</strong></div> : null}
-            <li><Link href="/manage_subscriptions">Manage subscriptions</Link></li>
+            {/* <li><Link href="/manage_subscriptions">Manage subscriptions</Link></li> */}
             <li><label onClick={() => window.change_password_modal.showModal()}>Change password</label></li>
             <li><Link href="/api/authenticate/logout" prefetch={false} onClick={() => {setCurrentPath('/login'); setLoggedIn(false); secureLocalStorage.clear()}}>Logout</Link></li>
           </ul>

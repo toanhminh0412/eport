@@ -21,7 +21,7 @@ export default function Features() {
                     <div className="grid grid-cols-1 items-center justify-items-start gap-8 sm:gap-20 lg:grid-cols-2">
                         <div className="flex flex-col">
                             <h1 className="mb-6 text-4xl font-bold md:text-6xl "><span className="text-orange-500">Eport</span> Website</h1>
-                            <p className="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12">The cheapest way to unlock your creative potential and showcase your journey where your vision meets innovation, and your journey becomes your masterpiece!</p>
+                            <p className="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12">Easily Craft Your Professional Edge: A free, user-friendly website builder for freelancers and job seekers. Your skills showcased, your dream jobs closer.</p>
                             <div className="mb-4 flex items-center md:mb-10 lg:mb-8 not-prose">
                                 <Link href="/" className="mr-6 rounded-md bg-black px-6 py-3 text-center font-semibold text-white lg:mr-8">Get Started</Link>
                             </div>
@@ -67,7 +67,7 @@ export default function Features() {
             {/* Eresume Demo Video */}
             <div id="eresume-demo-video" className="mx-auto w-full max-w-7xl px-5 md:px-10 py-10">
                 <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold md:text-5xl">Demo Video - <span className="text-orange-500">Eresume</span></h2>
-                <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam,purus sit amet luctus magna fringilla urna</p>
+                <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Showcase Your Skills Uniquely: Free, intuitive online resume builder. Your journey to landing dream opportunities begins with a click!</p>
                 
                 {/* Video */}
                 <Image src="/img/freelancer-template0-header2-thumbnail.png" alt="" className="inline-block h-full w-full object-cover" width={500} height={400}/>
@@ -76,7 +76,7 @@ export default function Features() {
             {/* Freelancer Demo Video */}
             <div id="freelancer-demo-video" className="mx-auto w-full max-w-7xl px-5 md:px-10 py-10">
                 <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold md:text-5xl">Demo Video - <span className="text-orange-500">Freelancer</span></h2>
-                <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam,purus sit amet luctus magna fringilla urna</p>
+                <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Empower Your Freelance Journey: Effortless website creation to showcase your services. Your digital footprint crafted in clicks, not code!</p>
                 
                 {/* Video */}
                 <Image src="/img/freelancer-template0-header2-thumbnail.png" alt="" className="inline-block h-full w-full object-cover" width={500} height={400}/>

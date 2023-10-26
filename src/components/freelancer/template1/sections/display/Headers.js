@@ -8,16 +8,16 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Header1({ section }) {
     return (
-        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full min-w-[450px] aspect-video flex flex-row bg-black bg-cover">
-            <div className="relative w-5/12 h-full brightness-75 overflow-hidden">
+        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full aspect-video min-[470px]:max-h-[500px] flex flex-col min-[470px]:flex-row gap-4 min-[470px]:gap-0 pb-12 min-[470px]:py-0 bg-black bg-cover">
+            <div className="relative w-full min-[470px]:w-5/12 aspect-[9/16] mx-auto min-[470px]:h-full brightness-75 overflow-hidden">
                 <Image 
                     src={section.avatar.src}
                     fill
                     alt="Header avatar"
                     style={{ transform: section.avatar.style.transform}}
-                    className={`absolute left-0 top-0 origin-top-left w-full h-full`}/>
+                    className={`absolute left-0 top-0 origin-top-left min-[470px]:w-full min-[470px]:h-full min-[470px]:object-contain`}/>
             </div>
-            <div className="w-7/12 prose max-w-none p-0 flex flex-col justify-center">
+            <div className="w-full min-[470px]:w-7/12 prose max-w-none p-0 flex flex-col justify-center">
                 <div className="w-11/12 md:w-10/12 mx-auto">
                     <h3 className="text-md lg:text-xl mt-0 lg:mt-12">{section.heading}</h3>
                     <h1 className="text-xl lg:text-3xl xl:text-4xl">{section.slogan}</h1>
@@ -34,7 +34,7 @@ export function Header1({ section }) {
 
 export function Header2({ section }) {
     return (
-        <header style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full min-w-[450px] flex flex-row bg-cover">
+        <header style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full flex flex-row bg-cover">
             {/* Hero Container */}
             <div className="mx-auto w-full max-w-screen-2xl px-5 py-16 md:px-10 md:py-24 lg:py-32 flex flex-col md:flex-row gap-8">
             {/* Component */}
@@ -66,8 +66,13 @@ export function Header2({ section }) {
                 </div>
                 {/* Hero Image */}
                 <div className="w-full md:w-1/2">
-                    <div className="w-10/12 max-w-[640px] aspect-[3/4] max-h-full relative">
-                        <Image fill src={section.avatar.src} alt="" />
+                    <div className="w-10/12 max-w-[640px] aspect-[3/4] max-h-full relative overflow-hidden">
+                        <Image 
+                            fill 
+                            src={section.avatar.src} 
+                            alt="" 
+                            style={{ transform: section.avatar.style.transform}}
+                            className={`absolute left-0 top-0 origin-top-left w-full h-full`}/>
                     </div>
                 </div>
             </div>

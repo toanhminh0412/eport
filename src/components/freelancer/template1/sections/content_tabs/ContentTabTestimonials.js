@@ -7,6 +7,7 @@ import { DeleteSectionButton } from "./DeleteSectionButton";
 import ContentTabText from "@/components/ui/content_tab/ContentTabText";
 import ContentTabNumber from "@/components/ui/content_tab/ContentTabNumber";
 import ContentTabAccordion from "@/components/ui/content_tab/ContentTabAccordion";
+import { SectionTemplateAccordion } from "./SectionTemplateAccordion";
 
 export default function ContentTabTestimonial() {
     const { sections, setSections } = useContext(SectionsContext);
@@ -84,6 +85,12 @@ export default function ContentTabTestimonial() {
     return (
         <div>
             <div className="prose max-w-none py-3">
+                {/* Section Template */}
+                <div className="px-3 pt-3 pb-1">
+                    <h4 className="my-0">Change section template</h4>
+                    <SectionTemplateAccordion/>
+                </div>
+
                 {/* Heading */}
                 <div className="px-3 pt-3 pb-1">
                     <h4 className="my-0">Heading</h4>

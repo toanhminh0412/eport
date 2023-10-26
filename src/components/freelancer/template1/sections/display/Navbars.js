@@ -6,7 +6,7 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Navbar1({ section, publish }) {
     return (
-        <div className={`navbar bg-black/50 z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-w-[450px] min-h-[4rem]`}>
+        <div className={`navbar bg-black/50 z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-h-[4rem]`}>
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -32,7 +32,7 @@ export function Navbar1({ section, publish }) {
 
 export function Navbar2({ section, publish }) {
     return (
-        <div className={`navbar bg-black/50 z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-w-[450px] min-h-[4rem]`}>
+        <div className={`navbar bg-black/50 z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-h-[4rem]`}>
             <div className="navbar-start w-fit">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -56,7 +56,7 @@ export function Navbar2({ section, publish }) {
 
 export function Navbar3({ section, publish }) {
     return (
-        <div className={`navbar bg-white z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-w-[450px] min-h-[4rem]`}>
+        <div className={`navbar bg-white z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-h-[4rem]`}>
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden text-neutral">
@@ -82,7 +82,7 @@ export function Navbar3({ section, publish }) {
 
 export function Navbar4({ section, publish }) {
     return (
-        <div className={`navbar bg-neutral z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-w-[450px] min-h-[4rem]`}>
+        <div className={`navbar bg-neutral z-10 fixed ${publish ? "top-0" : "top-36"} left-0 w-full min-h-[4rem]`}>
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">

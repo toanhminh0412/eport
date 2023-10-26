@@ -68,3 +68,69 @@ export function EditableTestimonial1({ section, sectionInd }) {
         </div>
     )
 }
+
+export function EditableTestimonial2({ section, sectionInd }) {
+    const { _activeTab, setActiveTab } = useContext(ActiveTabContext);
+    const { activeSectionInd, setActiveSectionInd } = useContext(ActiveContentContext);
+    const { _sections, _setSections, deleteSection } = useContext(SectionsContext);
+
+    const openContentTabEditor = () => {
+        setActiveTab("content");
+        setActiveSectionInd(sectionInd);
+    }
+    
+    return (
+        <div className="group relative">
+            <button className="btn bg-blue-700 border-none z-40 absolute hover:bg-blue-900 top-[-35px] right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white"></i></button>
+            <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Delete Section!</h3>
+                    <p className="py-4">Are you sure you want to delete this {section.sectionType} section?</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            <button className="btn mr-4 bg-blue-700 hover:bg-blue-900 duration-200 text-white" onClick={() => deleteSection(section)}>Yes</button>
+                            <button className="btn bg-red-700 hover:bg-red-900 duration-200 text-white">No</button>
+                        </form>
+                    </div>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+            <section className={`block bg-[#f7f6f2] box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* Container */}
+                <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
+                    <h2 className="mx-auto mb-8 mt-6 max-w-3xl text-center text-3xl font-extrabold md:mb-16 md:text-5xl">{section.heading}</h2>
+                    {/* Testimonials */}
+                    <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:mb-8">
+                        {/* Reviews */}
+                        {section.reviews.map(review => (
+                        <div key={review.id} className="grid min-h-[280px] grid-cols-1 sm:grid-cols-[1fr_1.75fr] gap-6 rounded-2xl bg-white p-8 md:p-10">
+                            {/* Author */}
+                            <div className="flex flex-col h-full">
+                                <div className="flex flex-row mb-4">
+                                    {[...Array(review.rating)].map((_, i) => (
+                                        <i key={i} className="fa-solid fa-star text-orange-500"></i>
+                                    ))}
+                                </div>
+                                <div className="flex flex-col items-start gap-4 h-full">
+                                    <div className="flex flex-col justify-between h-full">
+                                        <div>
+                                            <h6 className="text-sm font-bold md:text-base">{review.reviewerName}</h6>
+                                            <p className="text-sm text-[#636262]">{review.reviewerJob}</p>
+                                        </div>
+                                        {review.reviewUrl ? <Link href={convertToURL(review.reviewUrl)} target="_blank" className="link">See review</Link> : null}
+                                    </div>
+                                </div>
+                            </div>
+                            <p className="text-[#636262]">&quot;{review.review}&quot;</p>
+                        </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </div>
+    )
+}

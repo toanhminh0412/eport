@@ -47,7 +47,7 @@ export function PortfolioModal({portfolio, portfolioInd}) {
     )
 }
 
-function SwiperGallery({ portfolio }) {
+export function SwiperGallery({ portfolio }) {
     return (
         <div>
             <Swiper
@@ -56,10 +56,10 @@ function SwiperGallery({ portfolio }) {
                     type: 'fraction',
                   }}
                 modules={[Navigation, Pagination]}
-                className="w-[500px] h-[500px] p-[50px]">
+                className="max-w-[500px] max-h-[500px] p-[25px]">
                     {portfolio.images.map(image => (
                         <SwiperSlide key={image.id} className="bg-center">
-                            <Image src={image.src} alt="" width={500} height={500} className="block w-[500px] h-[400px]" style={{objectFit: "contain"}}/>
+                            <Image src={image.src} alt="" width={500} height={500} className="block w-full h-full" style={{objectFit: "contain"}}/>
                         </SwiperSlide>
                     ))}
             </Swiper>

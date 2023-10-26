@@ -8,7 +8,7 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Header1({ section }) {
     return (
-        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full aspect-video min-[470px]:max-h-[500px] flex flex-col min-[470px]:flex-row gap-4 min-[470px]:gap-0 pb-12 min-[470px]:py-0 bg-black bg-cover">
+        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full aspect-video flex flex-col min-[470px]:flex-row gap-4 min-[470px]:gap-0 pb-12 min-[470px]:py-0 bg-black bg-cover">
             <div className="relative w-full min-[470px]:w-5/12 aspect-[9/16] mx-auto min-[470px]:h-full brightness-75 overflow-hidden">
                 <Image 
                     src={section.avatar.src}

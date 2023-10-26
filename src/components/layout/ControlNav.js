@@ -18,6 +18,13 @@ export default function ControlNav({editMode, setEditMode, saveSiteFunc, isEqual
     const [delay, setDelay] = useState(false);
 
     useEffect(() => {
+        setDelay(true);
+        setTimeout(() => {
+            setDelay(false);
+        }, 2000);
+    }, []);
+
+    useEffect(() => {
         if (projectDomain) {
             setDomain(projectDomain);
         };
@@ -31,10 +38,6 @@ export default function ControlNav({editMode, setEditMode, saveSiteFunc, isEqual
         }
 
         setEditMode(!editMode); 
-        setDelay(true);
-        setTimeout(() => {
-            setDelay(false);
-        }, 2000);
     }
 
     return (
@@ -91,7 +94,7 @@ export default function ControlNav({editMode, setEditMode, saveSiteFunc, isEqual
 function ControlBtn({editMode, loading, onClick, delay}) {
     if (!editMode && !loading) {
         return (
-            <button className="btn btn-sm xs:btn tour-editSiteButton" onClick={onClick} disabled={delay}>Edit site</button>
+            <button className="btn btn-sm xs:btn tour-editSiteButton" onClick={onClick}>Edit site</button>
         )
     }
     else if (!editMode && loading) {
@@ -103,7 +106,7 @@ function ControlBtn({editMode, loading, onClick, delay}) {
         )
     } else if (editMode && !loading) {
         return (
-            <button className="btn btn-sm xs:btn" onClick={onClick} disabled={delay}>Save site</button>
+            <button className={`btn btn-sm xs:btn ${delay ? "btn-disabled" : ""}`} onClick={onClick}>Save site</button>
         )
     }
     else {

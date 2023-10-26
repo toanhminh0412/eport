@@ -49,7 +49,7 @@ export function AboutMe2({ section }) {
             {/* Container */}
             <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
                 <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
-                    <div className="w-full max-w-xl aspect-square relative">
+                    <div className="w-full max-w-md lg:max-w-lg aspect-square relative mx-auto">
                         <Image src={section.avatar} fill alt="About me avatar image" className="object-contain rounded-2xl"/>
                     </div>
                     <div className="flex flex-col gap-5 rounded-2xl border border-solid border-black p-10 sm:p-20">

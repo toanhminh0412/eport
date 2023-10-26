@@ -24,7 +24,7 @@ export function EditableAboutMe1({ section, sectionInd }) {
     }
 
     return (
-        <section className="group">
+        <section className="group" style={{zoom: "60%"}}>
             <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
             <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
@@ -91,7 +91,7 @@ export function EditableAboutMe2({ section, sectionInd }) {
     }
 
     return (
-        <section className="group">
+        <section className="group" style={{zoom: "60%"}}>
             <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
             <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">

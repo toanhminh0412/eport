@@ -49,8 +49,8 @@ export function Header1({ section }) {
 
 export function Header2({ section }) {
     return (
-        <section className="text-gray-900 leading-normal tracking-wider bg-cover" style={{backgroundImage: `url(${section.backgroundImage})`}}>
-            <div className="max-w-[1400px] flex items-center h-auto lg:h-screen flex-wrap mx-auto py-20 lg:py-10">
+        <section className="text-gray-900 antialiased leading-normal tracking-wider bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${section.backgroundImage})`}}>
+            <div className="max-w-[1400px] flex items-center h-auto flex-wrap mx-auto py-32 lg:py-40">
 	            <div className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-slate-200 mx-6 lg:mx-0">
 		            <div className="p-4 md:p-12 text-center lg:text-left">
 			            <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{backgroundImage: `url(${section.avatar.src})`}}></div>

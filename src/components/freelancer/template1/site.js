@@ -248,7 +248,7 @@ export default function Template1({project, projectId}) {
                     </div>
                 </dialog> : null}
 
-                <div className="sm:hidden flex flex-col justify-center h-[80vh]">
+                <div className="md:hidden flex flex-col justify-center h-[80vh]">
                     <div className="card w-96 bg-base-100 shadow-xl mx-auto">
                         <div className="card-body">
                             <h2 className="card-title">Screen too small</h2>
@@ -256,7 +256,7 @@ export default function Template1({project, projectId}) {
                         </div>
                     </div>
                 </div>
-                <div className="hidden sm:block">
+                <div className="hidden md:block">
                     <DragDropContext onDragEnd={onDragEnd}>
                         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
@@ -334,7 +334,7 @@ function Template1Site() {
 
     if (editMode) {
         return (
-            <div style={{zoom: "60%"}} className="w-full relative">
+            <div className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (

@@ -8,7 +8,7 @@ const templates = {
     "freelancer": [
         {
             templateId: 0,
-            thumbnail: "/img/freelancer-template0-header1-thumbnail.png"
+            thumbnail: "/img/freelancer-template0-header1-thumbnail.jpg"
         },
         {
             templateId: 1,

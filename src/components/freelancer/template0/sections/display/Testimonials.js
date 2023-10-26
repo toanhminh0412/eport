@@ -4,7 +4,7 @@ import { Testimonial1Showcase, Testimonial2Showcase } from "../../TestimonialSho
 export function Testimonials1({ section }) {
     return (
         <section className="relative block">
-            <div className="py-40">
+            <div className="py-20">
                 <div className="px-5 md:px-10">
                     <div className="mx-auto w-full max-w-[1400px]">
                         <div className="mx-auto w-full max-w-3xl">
@@ -26,7 +26,7 @@ export function Testimonials1({ section }) {
 export function Testimonials2({ section }) {
     return (
         <section>
-            <div class="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
+            <div class="py-20 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div class="grid items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                     <div class="max-[991px]:max-w-[720px]">
                         <h2 class="font-bold text-3xl md:text-5xl mb-5 md:mb-6 lg:mb-4 pb-8">{section.heading}</h2>

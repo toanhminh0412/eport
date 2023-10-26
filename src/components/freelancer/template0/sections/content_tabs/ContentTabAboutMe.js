@@ -156,7 +156,6 @@ export default function ContentTabAboutMe() {
                         cropper={sections[activeSectionInd].avatar.cropper}
                         onCropAreaChange={onAvatarCrop}
                         aspectRatio={3/4}/>
-                    {sections[activeSectionInd].sectionId === "aboutme2" ? <p className="text-sm"><span className="font-bold">Note:</span> The picture in this template <span className="font-bold">can not be cropped!</span></p> : null}
                 </div>
 
                 {/* Status */}

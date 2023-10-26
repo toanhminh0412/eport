@@ -37,7 +37,7 @@ const sectionsDataTemplate0 = {
         {
             sectionId: "aboutme2",
             sectionType: "aboutme",
-            thumbnail: "/img/freelancer-template0-aboutme2-thumbnail.png",
+            thumbnail: "/img/freelancer-template0-aboutme2-thumbnail.jpg",
             description: "Template 0 aboutme 2"
         }
     ],

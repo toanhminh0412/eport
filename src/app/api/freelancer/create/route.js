@@ -7,6 +7,8 @@ import { NextResponse } from 'next/server';
 import { db } from '../../../../../public/libs/firebase';
 import { getTokenFromUser, getUserFromToken } from '@/helpers/authentication';
 import cookieOptions from '@/data/cookieOptions';
+import { getSectionInitialData as getSectionInitialDataTemplate0 } from '@/components/freelancer/template0/helper';
+import { getSectionInitialData as getSectionInitialDataTemplate1 } from '@/components/freelancer/template1/helper';
 
 // 3rd party imports
 import { nanoid } from 'nanoid';
@@ -23,7 +25,7 @@ export async function GET(request) {
     if (!userTokenCookie) {
         redirect('/login');
     }
-
+    
     const userToken = userTokenCookie.value;
     const user = getUserFromToken(userToken);
     // Get template selected
@@ -34,14 +36,60 @@ export async function GET(request) {
     const projectId = nanoid();
     const date = new Date();
 
-    await setDoc(doc(db, "freelancer", projectId), {
-        owner: user.uid,
-        ownerEmail: user.email,
-        templateId: parseInt(templateId),
-        theme: "light",
-        sections: [],
-        lastEdited: date.toISOString(),
-    })
+    if (parseInt(templateId) === 0) {
+        await setDoc(doc(db, "freelancer", projectId), {
+            owner: user.uid,
+            ownerEmail: user.email,
+            templateId: parseInt(templateId),
+            theme: "light",
+            sections: [
+                {
+                    ...getSectionInitialDataTemplate0("navbar1"),
+                    id: nanoid()
+                },
+                {
+                    ...getSectionInitialDataTemplate0("header1"),
+                    id: nanoid()
+                },
+                {
+                    ...getSectionInitialDataTemplate0("service2"),
+                    id: nanoid()
+                },
+                {
+                    ...getSectionInitialDataTemplate0("contact1"),
+                    id: nanoid()
+                },
+            ],
+            lastEdited: date.toISOString(),
+        })
+    } else if (parseInt(templateId) === 1) {
+        await setDoc(doc(db, "freelancer", projectId), {
+            owner: user.uid,
+            ownerEmail: user.email,
+            templateId: parseInt(templateId),
+            theme: "light",
+            sections: [
+                {
+                    ...getSectionInitialDataTemplate1("navbar1"),
+                    id: nanoid()
+                },
+                {
+                    ...getSectionInitialDataTemplate1("header1"),
+                    id: nanoid()
+                },
+                {
+                    ...getSectionInitialDataTemplate1("service1"),
+                    id: nanoid()
+                },
+                {
+                    ...getSectionInitialDataTemplate1("contact2"),
+                    id: nanoid()
+                },
+            ],
+            lastEdited: date.toISOString(),
+        })
+    }
+    
 
     // Update user profile to contain this eresume project
     if (!user.projects) {

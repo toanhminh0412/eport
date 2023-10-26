@@ -46,7 +46,7 @@ export default function TemplatesGallery() {
                     <Image src="/img/freelancer-template0-aboutme1-thumbnail.png" className="block w-full h-full object-fill" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Image src="/img/freelancer-template0-aboutme2-thumbnail.png" className="block w-full h-full object-fill" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-aboutme2-thumbnail.jpg" className="block w-full h-full object-fill" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
                     <Image src="/img/freelancer-template1-header1-thumbnail.png" className="block w-full h-full object-fill" width={700} height={500}/>

@@ -20,7 +20,7 @@ export function EditableHeader1({ section, sectionInd }) {
     }
 
     return (
-        <section className="group">
+        <section className="group" style={{zoom: "60%"}}>
             <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
             <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
@@ -88,7 +88,7 @@ export function EditableHeader2({ section, sectionInd }) {
     }
 
     return (
-        <section className="group">
+        <section className="group" style={{zoom: "60%"}}>
             <button className="btn z-40 bg-blue-700 border-none hover:bg-blue-900 mt-[-30px] absolute right-0 mr-7 hidden group-hover:block" onClick={()=>document.getElementById(`delete_modal_${section.id}`).showModal()}><i className="fa-solid fa-trash text-lg text-white p-0"></i></button>
             <dialog id={`delete_modal_${section.id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
@@ -106,8 +106,8 @@ export function EditableHeader2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`text-gray-900 leading-normal tracking-wider bg-cover border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} style={{backgroundImage: `url(${section.backgroundImage})`}} onClick={openContentTabEditor}>
-                <div className="max-w-[1400px] flex items-center h-auto lg:h-screen flex-wrap mx-auto py-32 lg:py-10">
+            <div className={`text-gray-900 antialiased leading-normal tracking-wider bg-no-repeat bg-cover bg-center border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} style={{backgroundImage: `url(${section.backgroundImage})`}} onClick={openContentTabEditor}>
+                <div className="max-w-[1400px] flex items-center h-auto flex-wrap mx-auto py-32 lg:py-40">
                     <div className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-slate-100 mx-6 lg:mx-0">
                         <div className="p-4 md:p-12 text-center lg:text-left">
                             <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{backgroundImage: `url(${section.avatar.src})`}}></div>
@@ -134,9 +134,6 @@ export function EditableHeader2({ section, sectionInd }) {
 
                         </div>
                     </div>
-                    {/* <div className="w-full lg:w-2/5">
-                        <Image src={section.avatar.src} className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" width={600} height={1500} alt=""/>
-                    </div> */}
                     <div className="relative w-full lg:w-2/5 overflow-hidden aspect-[3/4] not-prose rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
                         <Image 
                             src={section.avatar.src}

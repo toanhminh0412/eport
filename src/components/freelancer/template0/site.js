@@ -266,7 +266,7 @@ export default function Template0({project, projectId}) {
                         <button>close</button>
                     </form>
                 </dialog> : null}
-                <div className="sm:hidden flex flex-col justify-center h-[80vh]">
+                <div className="md:hidden flex flex-col justify-center h-[80vh]">
                     <div className="card w-96 bg-base-100 shadow-xl mx-auto">
                         <div className="card-body">
                             <h2 className="card-title">Screen too small</h2>
@@ -274,7 +274,7 @@ export default function Template0({project, projectId}) {
                         </div>
                     </div>
                 </div>
-                <div className="hidden sm:block">
+                <div className="hidden md:block">
                     <DragDropContext onDragEnd={onDragEnd}>
                         <SectionsContext.Provider value={{sections, setSections, deleteSection, saveSite}}>
                             <EditModeContext.Provider value={{ editMode, setEditMode, isEqual, message, msgLoading }}>
@@ -302,6 +302,9 @@ export default function Template0({project, projectId}) {
                                                                 <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
                                                                     <Template0Site/>
                                                                     {provided.placeholder}
+                                                                    <div className="text-center py-10">
+                                                                        <button className="btn btn-sm bg-blue-700 border-none hover:bg-blue-900 text-white text-xs" onClick={() => setActiveTab("sections")}>Add Sections</button>
+                                                                    </div>
                                                                 </div>
                                                             )}
                                                         </Droppable>
@@ -352,7 +355,7 @@ function Template0Site() {
 
     if (editMode) {
         return (
-            <div style={{zoom: "60%"}} className="w-full relative">
+            <div className="w-full relative">
                 {sections.map((section, sectionInd) => (
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (

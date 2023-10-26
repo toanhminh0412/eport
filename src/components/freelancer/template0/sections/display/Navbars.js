@@ -7,7 +7,7 @@ import { Navbar2Showcase } from "../../NavbarShowcase"
 
 export function NavBar1({ section, publish }) {
     return (
-        <div className={`fixed ${publish ? "top-0" : "top-36"} w-full z-[1000] block bg-slate-900 py-3 lg:block`}>
+        <div className={`fixed ${publish ? "top-0" : "top-36"} w-full z-30 block bg-slate-900 py-3 lg:block`}>
             <div className="px-5 md:px-10">
                 <div className="mx-auto grid w-full max-w-[1400px] auto-cols-auto grid-cols-[auto_max-content] items-center justify-stretch gap-[0px] lg:grid-cols-[176px_auto]">
                     <div className="relative float-left max-[991px]:mr-auto max-[767px]:pl-0">
@@ -38,7 +38,7 @@ export function NavBar1({ section, publish }) {
 
 export function Navbar2({ section, publish }) {
     return (
-        <nav className={`fixed ${publish ? "top-0" : "top-36"} z-[1000] w-full lg:px-16 px-6 bg-black shadow-md flex flex-wrap items-center lg:py-0 py-2`}>
+        <nav className={`fixed ${publish ? "top-0" : "top-36"} z-30 w-full lg:px-16 px-6 bg-black shadow-md flex flex-wrap items-center lg:py-0 py-2`}>
             <div className="flex-1 flex justify-between items-center">
                 <div className="relative float-left max-[991px]:mr-auto max-[767px]:pl-0">
                     <Image src={section.logo} alt="Website logo" className="inline-block max-h-16 max-w-full" width={100} height={100}/>

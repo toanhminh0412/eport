@@ -79,7 +79,7 @@ export function Portfolio2({ section }) {
                                             </div>
                                             <div className="flex-wrap flex float-right gap-3">
                                                 <PortfolioModal portfolio={portfolio} portfolioInd={portfolioInd}/>
-                                                {portfolio.actionBtns[1].text && portfolio.actionBtns[1].href ? <Link href={convertToURL(portfolio.actionBtns[1].href)} target="_blank" className={`py-3 px-3 rounded-lg text-lg font-semibold no-underline mt-4 cursor-pointer ${btnColorOptions[portfolio.actionBtns[1].color]}`}>{portfolio.actionBtns[1].text}<span className="text-lg ml-2"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></Link> : null}
+                                                {portfolio.actionBtns[1].text && portfolio.actionBtns[1].href ? <Link href={convertToURL(portfolio.actionBtns[1].href)} target="_blank" className={`py-3 px-3 rounded-lg text-lg font-semibold no-underline mt-4 cursor-pointer ${btnColorOptions[portfolio.actionBtns[1].color]}`}>{portfolio.actionBtns[1].text}<span className="text-lg ml-2"><i className="fa-solid fa-arrow-up-right-from-square"></i></span></Link> : null}
                                             </div>
                                         </div>
                                     </div>

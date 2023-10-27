@@ -36,7 +36,9 @@ export function EditableService1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`prose max-w-none bg-white py-16 px-8 text-center box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`prose max-w-none bg-white py-16 px-8 text-center relative box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-100px]"></div>
                 <h1 className="mb-4">{section.heading}</h1>
                 <h4 className="mt-0 mb-8">{section.tagline}</h4>
                 <div className="flex flex-row flex-wrap gap-4 justify-center">
@@ -93,7 +95,9 @@ export function EditableService2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`prose max-w-none bg-white py-4 px-8 text-center box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`prose max-w-none relative bg-white py-4 px-8 text-center box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-100px]"></div>
                 {/* Pricing Container */}
                 <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10">
                     {/* Pricing Title  */}

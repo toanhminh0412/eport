@@ -38,7 +38,9 @@ export function EditablePortfolio1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`block bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`block relative bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
                     <div className="">
                     <div className="text-center">
@@ -115,7 +117,9 @@ export function EditablePortfolio2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`block bg-white prose w-full max-w-none p-8 md:p-16 box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`block relative bg-white prose w-full max-w-none p-8 md:p-16 box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <h1 className="mb-4">{section.heading}</h1>
                 <p className="mt-0">{section.tagline}</p>
                 <div className="flex flex-col gap-6">

@@ -8,8 +8,10 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Header1({ section }) {
     return (
-        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full aspect-video flex flex-col min-[470px]:flex-row gap-4 min-[470px]:gap-0 pb-12 min-[470px]:py-0 bg-black bg-cover">
-            <div className="relative w-full min-[470px]:w-5/12 aspect-[9/16] mx-auto min-[470px]:h-full brightness-75 overflow-hidden">
+        <section style={{backgroundImage: `url(${section.backgroundImage})`}} className="relative w-full aspect-video flex flex-col min-[470px]:flex-row gap-4 min-[470px]:gap-0 pb-12 min-[470px]:py-0 bg-black bg-cover">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
+            <div className="relative w-full min-[470px]:w-5/12 aspect-[9/16] mx-auto min-[470px]:h-full overflow-hidden">
                 <Image 
                     src={section.avatar.src}
                     fill
@@ -34,7 +36,9 @@ export function Header1({ section }) {
 
 export function Header2({ section }) {
     return (
-        <header style={{backgroundImage: `url(${section.backgroundImage})`}} className="w-full flex flex-row bg-cover">
+        <header style={{backgroundImage: `url(${section.backgroundImage})`}} className="relative w-full flex flex-row bg-cover">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             {/* Hero Container */}
             <div className="mx-auto w-full max-w-screen-2xl px-5 py-16 md:px-10 md:py-24 lg:py-32 flex flex-col md:flex-row gap-8">
             {/* Component */}

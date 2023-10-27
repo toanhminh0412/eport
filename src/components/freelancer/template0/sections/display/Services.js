@@ -3,7 +3,9 @@ import ServiceShowcase from "../../ServiceShowcase"
 
 export function Services1({ section }) {
     return (
-        <section className="">
+        <section className="relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="mx-auto w-full max-w-[1400px] px-5 py-20">
                 <div className="flex flex-col items-center">
                     <div className="mb-8 md:mb-12 lg:mb-16">
@@ -23,7 +25,9 @@ export function Services1({ section }) {
 
 export function Services2({ section }) {
     return (
-        <section>
+        <section className="relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="mx-auto max-w-[1400px] px-5 md:px-10 py-20">
                 <div className="mx-auto w-full max-w-3xl text-center">
                     <h2 className="text-5xl md:text-7xl font-semibold">{section.heading}</h2>

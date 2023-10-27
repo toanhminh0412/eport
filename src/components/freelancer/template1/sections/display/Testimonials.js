@@ -6,7 +6,9 @@ import { convertToURL } from "@/helpers/helpers";
 
 export function Testimonial1({section}) {
     return (
-        <section className="block bg-white">
+        <section className="block relative bg-white">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
                 <div className="mx-auto flex-col flex max-w-3xl items-center text-center">
                     <h2 className="font-bold text-3xl md:text-5xl mb-8 md:mb-12 lg:mb-16">{section.heading}</h2>
@@ -41,7 +43,9 @@ export function Testimonial1({section}) {
 
 export function Testimonial2({section}) {
     return (
-        <section className="block bg-[#f7f6f2]">
+        <section className="block relative bg-[#f7f6f2]">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             {/* Container */}
             <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
                 <h2 className="mx-auto mb-8 mt-6 max-w-3xl text-center text-3xl font-extrabold md:mb-16 md:text-5xl">{section.heading}</h2>

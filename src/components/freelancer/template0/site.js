@@ -328,7 +328,7 @@ export default function Template0({project, projectId}) {
                 <ProjectContext.Provider value={setProjectTemplate0}>
                     <main>
                         <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                            <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
+                            <PreviewControlNav projectDomain={projectTemplate0.domain} type='freelancer'/>
                             <PublishModal
                                 site={projectTemplate0}
                                 projectId={projectId}
@@ -360,7 +360,7 @@ function Template0Site() {
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <div id={section.id}><EditableSection section={section} sectionInd={sectionInd}/></div>
+                                <EditableSection section={section} sectionInd={sectionInd}/>
                             </div>
                         )}
                     </Draggable>
@@ -373,7 +373,7 @@ function Template0Site() {
 
     return (
         <div className={`w-full relative ${isNavbarUsed ? "pt-[72px]" : ""}`}>
-            {sections.map(section => <div key={section.id} id={section.id} style={section.sectionType !== "navbar" ? {zoom: "75%"} : {}}><Section section={section}/></div>)}
+            {sections.map(section => <div key={section.id} style={section.sectionType !== "navbar" ? {zoom: "75%"} : {}}><Section section={section}/></div>)}
         </div>
     )
 }

@@ -4,7 +4,9 @@ import { ContactForm1, ContactForm2 } from "./ContactForm"
 
 export function Contact1({ section, publish, ownerEmail }) {
     return (
-        <section className="block bg-white">
+        <section className="block relative bg-white">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
                 <div className="grid items-center max-[991px]:justify-items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                     <div className="max-[991px]:max-w-[720px]">
@@ -23,6 +25,8 @@ export function Contact1({ section, publish, ownerEmail }) {
 export function Contact2({ section, publish, ownerEmail }) {
     return (
         <section className="block bg-white relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             {/* Container */}
             <div className="py-16 md:py-24 lg:py-32">
                 {/* Component */}

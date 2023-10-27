@@ -38,7 +38,9 @@ export function EditablePortfolio1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`block border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`block relative border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="px-5 md:px-10">
                     <div className="mx-auto w-full max-w-[1400px]">
                         <div className="py-40">
@@ -105,7 +107,9 @@ export function EditablePortfolio2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`relative border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                     <div className="flex-col flex items-stretch gap-20">
                         <div className="flex-col flex gap-5 text-center">

@@ -36,7 +36,9 @@ export function EditableContact1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`block bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`block relative bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
                     <div className="grid items-center max-[991px]:justify-items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                         <div className="max-[991px]:max-w-[720px]">
@@ -84,6 +86,8 @@ export function EditableContact2({ section, sectionInd }) {
                 </form>
             </dialog>
             <section className={`block bg-white relative box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 {/* Container */}
                 <div className="py-16 md:py-24 lg:py-32">
                     {/* Component */}

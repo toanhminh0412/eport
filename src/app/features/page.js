@@ -59,7 +59,7 @@ export default function Features() {
                                 </div>
                             </div>
                         </div>
-                        <Image src="/img/featuretest3.png" alt="" className="inline-block h-full w-full max-w-[640px]" width={1000} height={1000}/>
+                        <Image src="/img/featurepage.png" alt="" className="inline-block h-full w-full max-w-[640px]" width={1000} height={1000}/>
                     </div>
                 </div>
             </div>

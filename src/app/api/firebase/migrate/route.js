@@ -24,12 +24,12 @@ export async function GET(request) {
             const siteDoc = sourceQuerySnapshot.docs[i];
             const siteData = siteDoc.data();
             const owner = siteData.owner;
-            await setDoc(doc(db, "users", owner), { projects: ["eresume", siteDoc.id] }, {merge: true});
+            await setDoc(doc(db, "users", owner), { projects: {"eresume": [siteDoc.id]} }, {merge: true});
         }
     }
 
     const migrate = async() => {
-        // await copyCollection('sites', 'eresume');
+        // await copyCollection('publishedSites', 'published_eresume');
         // await attachEresumesToOwners();
     }
 

@@ -284,6 +284,9 @@ export default function Template1({project, projectId}) {
                                                                 <div ref={provided.innerRef} {...provided.droppableProps} className="h-fit pb-[400px]">
                                                                     <Template1Site/>
                                                                     {provided.placeholder}
+                                                                    <div className="text-center py-10">
+                                                                        <button className="btn btn-sm bg-blue-700 border-none hover:bg-blue-900 text-white text-xs" onClick={() => setActiveTab("sections")}>Add Sections</button>
+                                                                    </div>
                                                                 </div>
                                                             )}
                                                         </Droppable>

@@ -310,7 +310,7 @@ export default function Template1({project, projectId}) {
                 <ProjectContext.Provider value={setProjectTemplate1}>
                     <main>
                         <div className="bg-slate-100 w-screen min-h-screen h-full dark:bg-slate-700">
-                            <PreviewControlNav projectDomain={project.domain} type='freelancer'/>
+                            <PreviewControlNav projectDomain={projectTemplate1.domain} type='freelancer'/>
                             <PublishModal
                                 site={projectTemplate1}
                                 projectId={projectId}

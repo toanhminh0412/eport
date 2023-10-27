@@ -8,7 +8,9 @@ import { ContactForm1 } from "./ContactForm"
 
 export function Contact1({ section, publish=false, ownerEmail=null }) {
     return ( 
-        <section className="prose max-w-none px-5 md:px-10">
+        <section className="prose relative max-w-none px-5 md:px-10">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="mx-auto w-full max-w-[1400px]">
                 <div className="pt-20 pb-12">
                     <div className="grid items-center max-[991px]:justify-items-start grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
@@ -33,7 +35,9 @@ export function Contact1({ section, publish=false, ownerEmail=null }) {
 
 export function Contact2({ section }) {
     return (
-        <section>
+        <section className="relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="mx-auto w-full max-w-[1400px] px-5 py-40 md:px-10">
                 <div className="flex flex-row justify-between max-[767px]:flex-col max-[767px]:items-start">
                     <div className="w-full max-w-[560px] max-[991px]:mr-4 max-[991px]:flex-initial max-[767px]:mr-0">

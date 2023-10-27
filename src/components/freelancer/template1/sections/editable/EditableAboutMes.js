@@ -35,7 +35,9 @@ export function EditableAboutMe1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`block bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`relative bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="py-12 md:py-16 lg:py-20 mx-auto w-full max-w-7xl px-5 md:px-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12">
                         <div className="flex-col flex items-start gap-2">
@@ -104,7 +106,9 @@ export function EditableAboutMe2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <section className={`block bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <section className={`relative bg-white box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 {/* Container */}
                 <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
                     <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">

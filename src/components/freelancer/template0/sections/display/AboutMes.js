@@ -8,7 +8,9 @@ import AboutMeTabsShowcase from "../../AboutMeTabsShowcase";
 export function AboutMe1({ section }) {
 
     return (
-        <section className="block">
+        <section className="block relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="px-5 md:px-10">
                 <div className="mx-auto w-full max-w-[1400px]">
                     <div className="py-20">
@@ -47,7 +49,9 @@ export function AboutMe1({ section }) {
 
 export function AboutMe2({ section }) {
     return (
-        <section>
+        <section className="relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="py-20 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div className="flex justify-center items-center flex-col gap-8 pb-24">
                     <div className="relative w-7/12 lg:w-3/4 max-w-[300px] overflow-hidden rounded-2xl aspect-[3/4]">

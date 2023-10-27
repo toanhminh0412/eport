@@ -8,7 +8,9 @@ import PortfolioShowcase from "../../PortfolioShowcase"
 
 export function Portfolio1({ section }) {
     return (
-        <section className="block bg-white">
+        <section className="block relative bg-white">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="py-16 md:py-24 lg:py-32 mx-auto w-full max-w-7xl px-5 md:px-10">
                 <div className="">
                 <div className="text-center">
@@ -56,7 +58,9 @@ export function Portfolio1({ section }) {
 
 export function Portfolio2({ section }) {
     return (
-        <section className="block bg-white prose w-full max-w-none p-8 md:p-16">
+        <section className="block relative bg-white prose w-full max-w-none p-8 md:p-16">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <h1 className="mb-4">{section.heading}</h1>
             <p className="mt-0">{section.tagline}</p>
             <div className="flex flex-col gap-6">

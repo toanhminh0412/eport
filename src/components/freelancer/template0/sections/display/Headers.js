@@ -9,7 +9,9 @@ import { convertToURL } from "@/helpers/helpers"
 
 export function Header1({ section }) {
     return (
-        <section className="prose max-w-none bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${section.backgroundImage})`}}>
+        <section className="prose relative max-w-none bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${section.backgroundImage})`}}>
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16">
                 <div className="grid grid-cols-1 items-center gap-8 sm:gap-20 lg:grid-cols-2">
                     <div className="max-w-[720px] lg:max-w-lg">
@@ -49,7 +51,9 @@ export function Header1({ section }) {
 
 export function Header2({ section }) {
     return (
-        <section className="text-gray-900 antialiased leading-normal tracking-wider bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${section.backgroundImage})`}}>
+        <section className="relative text-gray-900 antialiased leading-normal tracking-wider bg-no-repeat bg-cover bg-center" style={{backgroundImage: `url(${section.backgroundImage})`}}>
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="max-w-[1400px] flex items-center h-auto flex-wrap mx-auto py-32 lg:py-40">
 	            <div className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-slate-200 mx-6 lg:mx-0">
 		            <div className="p-4 md:p-12 text-center lg:text-left">

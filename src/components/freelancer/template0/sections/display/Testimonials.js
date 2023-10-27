@@ -4,6 +4,8 @@ import { Testimonial1Showcase, Testimonial2Showcase } from "../../TestimonialSho
 export function Testimonials1({ section }) {
     return (
         <section className="relative block">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="py-20">
                 <div className="px-5 md:px-10">
                     <div className="mx-auto w-full max-w-[1400px]">
@@ -25,7 +27,9 @@ export function Testimonials1({ section }) {
 
 export function Testimonials2({ section }) {
     return (
-        <section>
+        <section className="relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div class="py-20 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div class="grid items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                     <div class="max-[991px]:max-w-[720px]">

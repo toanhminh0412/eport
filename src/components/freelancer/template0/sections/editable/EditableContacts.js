@@ -37,7 +37,9 @@ export function EditableContact1({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`prose max-w-none px-5 md:px-10 border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`prose relative max-w-none px-5 md:px-10 border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="mx-auto w-full max-w-[1400px]">
                     <div className="pt-40 pb-12">
                         <div className="grid items-center max-[991px]:justify-items-start grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
@@ -91,7 +93,9 @@ export function EditableContact2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`relative border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="mx-auto w-full max-w-[1400px] px-5 py-40 md:px-10">
                     <div className="flex flex-row justify-between max-[767px]:flex-col max-[767px]:items-start">
                         <div className="w-full max-w-[560px] max-[991px]:mr-4 max-[991px]:flex-initial max-[767px]:mr-0">

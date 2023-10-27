@@ -9,7 +9,9 @@ import { PortfolioModal } from "@/components/ui/PortfolioModal";
 
 export function Portfolio1({ section }) {
     return ( 
-        <section className="block">
+        <section className="block relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="px-5 md:px-10">
                 <div className="mx-auto w-full max-w-[1400px]">
                     <div className="py-20">
@@ -50,7 +52,9 @@ export function Portfolio1({ section }) {
 
 export function Portfolio2({ section }) {
     return (
-        <section>
+        <section className="relative">
+            {/* This div allows scrolling to this section put the section in the middle of the page */}
+            <div id={section.id} className="absolute top-[-250px]"></div>
             <div className="py-20 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                 <div className="flex-col flex items-stretch gap-20">
                     <div className="flex-col flex gap-5 text-center">

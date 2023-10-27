@@ -34,7 +34,9 @@ export function EditableService1({ section, sectionInd}) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`relative border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="mx-auto w-full max-w-[1400px] px-5 py-40">
                     <div className="flex flex-col items-center">
                         <div className="mb-8 md:mb-12 lg:mb-16">
@@ -82,7 +84,9 @@ export function EditableService2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`relative border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="mx-auto max-w-[1400px] px-5 py-40 md:px-10">
                     <div className="mx-auto w-full max-w-3xl text-center">
                         <h2 className="text-5xl md:text-7xl font-semibold">{section.heading}</h2>

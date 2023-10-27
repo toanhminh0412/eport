@@ -35,6 +35,8 @@ export function EditableTestimonial1({ section, sectionInd }) {
                 </form>
             </dialog>
             <div className={`relative block border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div className="py-40">
                     <div className="px-5 md:px-10">
                         <div className="mx-auto w-full max-w-[1400px]">
@@ -84,7 +86,9 @@ export function EditableTestimonial2({ section, sectionInd }) {
                     <button>close</button>
                 </form>
             </dialog>
-            <div className={`border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+            <div className={`relative border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} group-hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
+                {/* This div allows scrolling to this section put the section in the middle of the page */}
+                <div id={section.id} className="absolute top-[-250px]"></div>
                 <div class="py-40 mx-auto w-full max-w-[1400px] px-5 md:px-10">
                     <div class="grid items-center grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-20">
                         <div class="max-[991px]:max-w-[720px]">

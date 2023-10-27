@@ -342,7 +342,7 @@ function Template1Site() {
                     <Draggable key={section.id} draggableId={`site-block-${section.id}`} index={sectionInd}>
                         {(provided) => (
                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                <div id={section.id}><EditableSection section={section} sectionInd={sectionInd}/></div>
+                                <EditableSection section={section} sectionInd={sectionInd}/>
                             </div>
                         )}
                     </Draggable>
@@ -355,7 +355,7 @@ function Template1Site() {
 
     return (
         <div className={`w-full relative ${isNavbarUsed ? "pt-[72px]" : ""}`}>
-            {sections.map(section => <div key={section.id} id={section.id} style={section.sectionType !== "navbar" ? {zoom: "75%"} : {}}><Section section={section}/></div>)}
+            {sections.map(section => <div key={section.id} style={section.sectionType !== "navbar" ? {zoom: "75%"} : {}}><Section section={section}/></div>)}
         </div>
     )
 }

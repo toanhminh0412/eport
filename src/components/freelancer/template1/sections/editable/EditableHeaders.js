@@ -41,7 +41,7 @@ export function EditableHeader1({ section, sectionInd }) {
             <section style={{backgroundImage: `url(${section.backgroundImage})`}} className={`relative w-full aspect-video flex flex-row bg-black bg-cover box-border border-4 ${activeSectionInd === sectionInd ? "border-blue-700" : "border-transparent"} hover:border-blue-700 duration-200`} onClick={openContentTabEditor}>
                 {/* This div allows scrolling to this section put the section in the middle of the page */}
                 <div id={section.id} className="absolute top-[-250px]"></div>
-                <div className="relative w-5/12 h-full brightness-75 overflow-hidden">
+                <div className="relative w-5/12 h-full overflow-hidden">
                     <Image 
                         src={section.avatar.src}
                         fill

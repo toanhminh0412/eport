@@ -167,9 +167,9 @@ export function FreelancerThumbnail({ content, templateId }) {
                                     <p className="text-xs text-[#636262]"> {headerSection.slogan} </p>
                                     <div className="flex flex-row flex-wrap gap-2">
                                         {headerSection.actionBtns.map(actionBtn => 
-                                            <div key={actionBtn.id} className={`flex flex-row ${badgeColorOptions[actionBtn.color]} px-1 font-semibold transition shadow-xl shadow-slate-500 hover:shadow-none`}>
-                                                <p className="mr-2 font-bold text-[8px]">{actionBtn.text}</p>
-                                                <svg fill="currentColor" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" className="h-2 w-2 flex-none translate-y-[12px]">
+                                            <div key={actionBtn.id} className={`flex flex-row ${badgeColorOptions[actionBtn.color]} px-1 font-semibold transition shadow-xl shadow-slate-500 h-5 hover:shadow-none`}>
+                                                <p className="mr-2 font-bold text-[8px] my-0.5">{actionBtn.text}</p>
+                                                <svg fill="currentColor" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" className="h-2 w-2 flex-none translate-y-[6px]">
                                                 <title>Arrow Right</title>
                                                 <polygon points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9"></polygon>
                                                 </svg>

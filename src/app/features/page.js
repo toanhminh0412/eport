@@ -26,13 +26,13 @@ export default function Features() {
                                 <Link href="/" className="mr-6 rounded-md bg-black px-6 py-3 text-center font-semibold text-white lg:mr-8">Get Started</Link>
                             </div>
                             <div className="mb-4 flex items-center md:mb-10 lg:mb-8 not-prose">
-                                <Link href="#eresume-demo-video" className="flex items-center justify-center rounded-md border border-solid border-black px-6 py-3 font-bold text-black mr-5">
-                                    <i className="fa-solid fa-arrow-up-right-from-square text-xl mr-2"></i>
-                                    <p className="text-sm text-black sm:text-base">Eresume Demo Video</p>
-                                </Link>
-                                <Link href="#freelancer-demo-video" className="flex items-center justify-center rounded-md border border-solid border-black px-6 py-3 font-bold text-black">
+                                <Link href="#freelancer-demo-video" className="flex items-center justify-center rounded-md border border-solid border-black px-6 py-3 font-bold text-black mr-5">
                                     <i className="fa-solid fa-arrow-up-right-from-square text-xl mr-2"></i>
                                     <p className="text-sm text-black sm:text-base">Freelancer Demo Video</p>
+                                </Link>
+                                <Link href="#eresume-demo-video" className="flex items-center justify-center rounded-md border border-solid border-black px-6 py-3 font-bold text-black">
+                                    <i className="fa-solid fa-arrow-up-right-from-square text-xl mr-2"></i>
+                                    <p className="text-sm text-black sm:text-base">Eresume Demo Video</p>
                                 </Link>
                             </div>
                             <div className="flex items-center not-prose">
@@ -63,23 +63,27 @@ export default function Features() {
                     </div>
                 </div>
             </div>
-            
-            {/* Eresume Demo Video */}
-            <div id="eresume-demo-video" className="mx-auto w-full max-w-7xl px-5 md:px-10 py-10">
-                <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold md:text-5xl">Demo Video - <span className="text-orange-500">Eresume</span></h2>
-                <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Showcase Your Skills Uniquely: Free, intuitive online resume builder. Your journey to landing dream opportunities begins with a click!</p>
-                
-                {/* Video */}
-                <Image src="/img/freelancer-template0-header2-thumbnail.png" alt="" className="inline-block h-full w-full object-cover" width={500} height={400}/>
-            </div>
 
             {/* Freelancer Demo Video */}
-            <div id="freelancer-demo-video" className="mx-auto w-full max-w-7xl px-5 md:px-10 py-10">
+            <div id="freelancer-demo-video" className="mx-auto w-full max-w-7xl px-5 md:px-10 pt-10 pb-20">
                 <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold md:text-5xl">Demo Video - <span className="text-orange-500">Freelancer</span></h2>
                 <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Empower Your Freelance Journey: Effortless website creation to showcase your services. Your digital footprint crafted in clicks, not code!</p>
                 
                 {/* Video */}
-                <Image src="/img/freelancer-template0-header2-thumbnail.png" alt="" className="inline-block h-full w-full object-cover" width={500} height={400}/>
+                <div className="relative overflow-hidden w-full pt-[56.25%]">
+                    <iframe src="https://www.youtube.com/embed/6xItzgh8OAs?si=WHcXfsd0SZ64Sjxf" className="text-center absolute top-0 left-0 bottom-0 right-0 w-full h-full" title="Freelancer Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                </div>
+            </div>
+
+            {/* Eresume Demo Video */}
+            <div id="eresume-demo-video" className="mx-auto w-full max-w-7xl px-5 md:px-10 pt-10 pb-20">
+                <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold md:text-5xl">Demo Video - <span className="text-orange-500">Eresume</span></h2>
+                <p className="mx-auto mb-5 -mt-4 max-w-lg text-center text-sm text-[#636262] md:text-base">Showcase Your Skills Uniquely: Free, intuitive online resume builder. Your journey to landing dream opportunities begins with a click!</p>
+                
+                {/* Video */}
+                <div className="relative overflow-hidden w-full pt-[56.25%]">
+                    <iframe src="https://www.youtube.com/embed/SrcIhDXRMCc?si=GcvpotiHcD6xrsih" className="text-center absolute top-0 left-0 bottom-0 right-0 w-full h-full" title="Eresume Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                </div>
             </div>
 
             {/* Image Gallery */}

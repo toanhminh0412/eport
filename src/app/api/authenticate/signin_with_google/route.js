@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { db } from "../../../../../public/libs/firebase";
 import cookieOptions from "@/data/cookieOptions";
 import { getTokenFromUser } from "@/helpers/authentication";
-import siteData from "@/data/demo1/newSite";
+import siteData from "@/data/eresume/template0";
 
 // 3rd party imports
 import { collection, doc, query, setDoc, getDocs, where } from 'firebase/firestore';
@@ -24,7 +24,6 @@ export async function GET(request) {
     let responseUid = '';
     let responseEmail = email;
     let responseSignInMethod = 'Google';
-    let responseDomain = '';
 
     const usersCollection = collection(db, 'users');
     const usersEmail = query(usersCollection, where ("email", "==", email))
@@ -39,8 +38,8 @@ export async function GET(request) {
             password: null,
             signInMethod: 'Google',
             emailVerified: true,
-            domain: '',
             stripeCustomerId: '',
+            emailQuota: 20
         }
         
         // Save user in 'users' collection in Firestore
@@ -63,7 +62,6 @@ export async function GET(request) {
             responseUid = user.uid;
             responseEmail = user.email;
             responseSignInMethod = user.signInMethod;
-            responseDomain = user.domain;
             
             user.stripeCustomerId = user.stripeCustomerId ? user.stripeCustomerId : '';
 
@@ -114,7 +112,6 @@ export async function GET(request) {
         uid: responseUid,
         email: responseEmail,
         signInMethod: responseSignInMethod,
-        domain: responseDomain,
         success: success,
         message: message
     })

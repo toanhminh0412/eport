@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import siteData from "@/data/demo1/newSite";
+import siteData from "@/data/eresume/template0";
 import cookieOptions from "@/data/cookieOptions";
 
 export async function POST(request) {

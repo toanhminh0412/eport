@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@hello-pangea/dnd": "^16.3.0",
     "@tinymce/tinymce-react": "^4.3.0",
     "@vercel/analytics": "^1.0.2",
     "autoprefixer": "10.4.14",
@@ -24,9 +25,11 @@
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-easy-crop": "^5.0.2",
     "react-joyride": "^2.5.5",
     "react-secure-storage": "^1.2.2",
     "stripe": "^13.4.0",
+    "swiper": "^10.3.1",
     "tailwindcss": "3.3.2"
   },
   "devDependencies": {

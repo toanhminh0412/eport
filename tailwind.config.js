@@ -6,6 +6,7 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/data/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -24,13 +25,22 @@ module.exports = {
         '16': '4rem',
       },
       boxShadow: {
-        'blue-btn': '0 0 1rem rgb(59, 130, 246)'
+        'blue-btn': '0 0 1rem rgb(59, 130, 246)',
+        'orange-btn': '0 0 1rem rgb(249, 115, 22)'
       },
       gridTemplateColumns: {
         'priceTable': 'repeat(auto, minmax(250px, 1fr))',
       },
+      width: {
+        '128': '32rem',
+      },
       height: {
         '128': '32rem',
+      },
+      minHeight: {
+        '128': '32rem',
+        '140': '35rem',
+        '200': '50rem',
       }
     },
     screens: {

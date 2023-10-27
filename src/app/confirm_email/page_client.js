@@ -44,7 +44,7 @@ export default function ConfirmEmail() {
             const userId = secureLocalStorage.getItem('eport-uid');
             const user = (await getDoc(doc(db, 'users', userId))).data();
             if (user.emailVerified) {
-                router.push('/');
+                router.push('/dashboard');
                 return true;
             }
             return false;
@@ -69,7 +69,7 @@ export default function ConfirmEmail() {
             await updateDoc(userRef, {emailVerified: true});
 
             // Redirect to dashboard
-            router.push('/');
+            router.push('/dashboard');
         }
     }
 

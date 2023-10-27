@@ -23,7 +23,7 @@ export function ProjectModal({project, index}) {
                     <div className="w-full lg:w-1/2 text-justify lg:max-h-96 lg:pb-6 lg:overflow-auto mb-6">
                         <h2 className="mt-2 lg:mt-0">{project.title}</h2>
                         <article dangerouslySetInnerHTML={{ __html: project.description }}></article>
-                        <div className="flex flex-row flex-wrap gap-3">
+                        <div className="flex flex-row flex-wrap gap-3 mt-5">
                             {project.tags.map((tag, tagIndex) => (
                             <div key={`${tag}-${tagIndex}`} className="py-1 px-2 rounded-xl bg-slate-100 hover:bg-slate-400 duration-300 shadow-lg cursor-default">
                                 {tag}

@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { db } from '../../../../../public/libs/firebase';
 import cookieOptions from '@/data/cookieOptions';
 import { getTokenFromUser } from '@/helpers/authentication';
-import siteData from '@/data/demo1/newSite';
+import siteData from '@/data/eresume/template0';
 
 import { getDocs, collection, setDoc, doc } from 'firebase/firestore';
 import bcrypt from 'bcrypt';
@@ -23,7 +23,6 @@ export async function GET(request) {
     let message = '';
     let responseUid = '';
     let responseEmail = '';
-    let responseDomain = '';
 
     // Get user by email and password from Firestore
     const userDoc = await getDocs(collection(db, 'users'));
@@ -41,7 +40,6 @@ export async function GET(request) {
                     message = 'Login successfully!';
                     responseUid = userData.uid;
                     responseEmail = userData.email;
-                    responseDomain = userData.domain;
 
                     userData.stripeCustomerId = userData.stripeCustomerId ? userData.stripeCustomerId : '';
 
@@ -94,7 +92,6 @@ export async function GET(request) {
     return NextResponse.json({
         uid: responseUid,
         email: responseEmail,
-        domain: responseDomain,
         success: success,
         message: message
     })

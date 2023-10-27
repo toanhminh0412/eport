@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import cookieOptions from "@/data/cookieOptions";
 
 // Local imports
-import siteData from "@/data/demo1/newSite";
+import siteData from "@/data/eresume/template0";
 
 export async function GET(request) {
     // Split up sections into a single section and store it in the cookies

@@ -135,7 +135,7 @@ export default function ContentTabPortfolio() {
                             key={project.id}
                             heading={project.name}>
                                 <div>
-                                <span className="text-slate-300 hover:text-slate-700 duration-100 absolute top-15 right-4 cursor-default text-sm"><i className="fa-solid fa-trash text-lg mr-1" onClick={() => deleteProject(projectInd)}></i>Delete project</span>
+                                <span className="text-slate-300 hover:text-slate-700 duration-100 absolute top-15 right-4 cursor-default text-sm" onClick={() => deleteProject(projectInd)}><i className="fa-solid fa-trash text-lg mr-1"></i>Delete project</span>
                                     {/* Images */}
                                     <label className="text-sm">Project images</label>
                                     <ContentTabAddDeleteImage content={project} addImage={e => addProjectImages(e, projectInd)} deleteImage={(e, imageInd) => deleteProjectImages(e, projectInd, imageInd)}/>

@@ -194,7 +194,7 @@ export default function ContentTabService() {
                             key={service.id}
                             heading={service.name}>
                                 <div>
-                                    <span className="text-slate-300 hover:text-slate-700 duration-100 absolute top-15 right-4 cursor-default text-sm"><i className="fa-solid fa-trash text-lg mr-1" onClick={() => deleteService(serviceInd)}></i>Delete service</span>
+                                    <span className="text-slate-300 hover:text-slate-700 duration-100 absolute top-15 right-4 cursor-default text-sm" onClick={() => deleteService(serviceInd)}><i className="fa-solid fa-trash text-lg mr-1"></i>Delete service</span>
                                     {/* Name */}
                                     <label className="text-sm">Service name</label>
                                     <ContentTabText content={service.name} onChange={e => onServiceNameChange(e, serviceInd)}/>

@@ -58,7 +58,7 @@ export function ContactForm1({section, publish=false, ownerEmail=null}) {
     }
 
     return (
-        <div className="mx-auto max-w-[608px] bg-slate-200 px-8 max-[991px]:ml-0 max-[991px]:mr-0 pt-[2em] pb-8">
+        <div className="mx-auto min-w-[360px] sm:min-w-[500px] max-w-[608px] bg-slate-200 px-8 max-[991px]:ml-0 max-[991px]:mr-0 pt-[2em] pb-8">
             <div className="text-center">
             <h1 className="font-bold text-3xl md:text-5xl">Contact <span className="text-orange-500">Us</span></h1>
                 <div className="mx-auto mt-4 max-w-[480px] mb-5 md:mb-6 lg:mb-8">

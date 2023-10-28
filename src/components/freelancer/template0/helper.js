@@ -217,7 +217,7 @@ export function getSectionInitialData(sectionId) {
                     },
                     {
                         id: 1,
-                        src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                        src: "/img/freelancer-template1-portfolio1-photo1.JPG"
                     },
                     {
                         id: 2,
@@ -251,7 +251,7 @@ export function getSectionInitialData(sectionId) {
                     },
                     {
                         id: 1,
-                        src: "/img/freelancer-template1-portfolio1-photo1.jpg"
+                        src: "/img/freelancer-template1-portfolio1-photo1.JPG"
                     },
                     {
                         id: 2,

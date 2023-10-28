@@ -117,9 +117,9 @@ export function EditablePortfolio2({ section, sectionInd }) {
                             <p className="text-xl max-[479px]:text-lg">{section.sectionDescription}</p>
                         </div>
                         <div>
-                            <div className="[column-count:2] max-[991px]:gap-x-8 max-[767px]:[column-count:1] grid-cols-1 md:grid-cols-2">
+                            <div className="flex flex-row flex-wrap gap-6 justify-center">
                                 {section.portfolios.map((portfolio, portfolioInd) => 
-                                    <div key={portfolio.id} className="inline-block border border-solid border-slate-300 shadow-md mb-12 md:mb-8 lg:mb-10">
+                                    <div key={portfolio.id} className="max-w-[500px] inline-block border border-solid border-slate-300 shadow-md mb-12 md:mb-8 lg:mb-10">
                                         <div className="flex-col flex h-full text-black">
                                             <div className="w-full">
                                                 <Image src={portfolio.images[0].src} alt="First portfolio image" className="inline-block w-full" width={500} height={500}/>

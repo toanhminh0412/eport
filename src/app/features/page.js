@@ -82,7 +82,7 @@ export default function Features() {
                 
                 {/* Video */}
                 <div className="relative overflow-hidden w-full pt-[56.25%]">
-                    <iframe src="https://www.youtube.com/embed/SrcIhDXRMCc?si=GcvpotiHcD6xrsih" className="text-center absolute top-0 left-0 bottom-0 right-0 w-full h-full" title="Eresume Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/Gd6sDn0TJYk?si=6pdr_e72apP9_cyX" className="text-center absolute top-0 left-0 bottom-0 right-0 w-full h-full" title="Eresume Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
             </div>
 

@@ -21,7 +21,7 @@ export default function Features() {
                     <div className="grid grid-cols-1 items-center justify-items-start gap-8 sm:gap-20 lg:grid-cols-2">
                         <div className="flex flex-col">
                             <h1 className="mb-6 text-4xl font-bold md:text-6xl "><span className="text-orange-500">Eport</span> Website</h1>
-                            <p className="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12">Easily Craft Your Professional Edge: A free, user-friendly website builder for freelancers and job seekers. Your skills showcased, your dream jobs closer.</p>
+                            <p className="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12">Easily Craft Your Professional Edge: A free, user-friendly website builder for freelancers and job seekers. Your skills showcased, your dream jobs closer. And the best thing of all, it is <strong className="text-2xl">ABSOLUTELY FREE!</strong></p>
                             <div className="mb-4 flex items-center md:mb-10 lg:mb-8 not-prose">
                                 <Link href="/" className="mr-6 rounded-md bg-black px-6 py-3 text-center font-semibold text-white lg:mr-8">Get Started</Link>
                             </div>

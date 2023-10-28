@@ -4,6 +4,9 @@
 import { useState } from "react";
 import Link from "next/link";
 
+// Local imports
+import { convertToURL } from "@/helpers/helpers";
+
 export function Navbar2Showcase({ section }) {
     const [showMenu, setShowMenu] = useState(false);
 

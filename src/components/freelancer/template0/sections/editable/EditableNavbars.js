@@ -6,6 +6,7 @@ import { useContext } from "react"
 // Local immports
 import { ActiveTabContext, ActiveContentContext, SectionsContext } from "../../site"
 import { Navbar2Showcase } from "../../NavbarShowcase";
+import { convertToURL } from "@/helpers/helpers";
 
 export function EditableNavbar1({ section, sectionInd }) {
     const { activeTab, setActiveTab } = useContext(ActiveTabContext);

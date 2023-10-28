@@ -113,7 +113,7 @@ export function EditableService2({ section, sectionInd }) {
                             <h2 className="mt-4 text-5xl mx-auto">{service.price}</h2>
                             {service.actionBtn.isExternal ? 
                             <Link href={service.actionBtn.externalHref ? convertToURL(service.actionBtn.externalHref) : "#"} target="_blank" className={`${btnColorOptions[service.actionBtn.color]} no-underline text-lg mb-5 flex w-10/12 mx-auto grid-cols-2 flex-row items-center justify-center border-2 border-solid border-black px-8 py-4 text-center font-semibold text-black transition [box-shadow:rgb(0,_0,_0)_-8px_8px] hover:[box-shadow:rgb(0,_0,_0)_0px_0px] md:mb-6 lg:mb-8`}>
-                                <div className="mr-6 font-bold whitespace-nowrap">Get Started</div>
+                                <div className="mr-6 font-bold whitespace-nowrap">{service.actionBtn.text}</div>
                                 <div className="h-4 w-4">
                                     <svg fill="currentColor" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
                                     <title>Arrow Right</title>
@@ -123,7 +123,7 @@ export function EditableService2({ section, sectionInd }) {
                             </Link>
                             :
                             <Link href={service.actionBtn.internalHref ? service.actionBtn.internalHref : "#"} className={`${btnColorOptions[service.actionBtn.color]} no-underline text-lg mb-5 flex w-10/12 mx-auto grid-cols-2 flex-row items-center justify-center border-2 border-solid border-black px-8 py-4 text-center font-semibold text-black transition [box-shadow:rgb(0,_0,_0)_-8px_8px] hover:[box-shadow:rgb(0,_0,_0)_0px_0px] md:mb-6 lg:mb-8`}>
-                                <div className="mr-6 font-bold whitespace-nowrap">Get Started</div>
+                                <div className="mr-6 font-bold whitespace-nowrap">{service.actionBtn.text}</div>
                                 <div className="h-4 w-4">
                                     <svg fill="currentColor" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg">
                                     <title>Arrow Right</title>

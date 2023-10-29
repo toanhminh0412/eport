@@ -9,5 +9,7 @@ export default async function Dashboard() {
     // Redirect to dashboard if user is logged in
     if (cookieStore.get('eport-token')) {
         redirect('/dashboard');
+    } else {
+        redirect('/features');
     }
 }

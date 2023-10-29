@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
     /*** Authentication ***/
-    const PROTECTED_PATHS = ['/', '/confirm_email', '/demo/demo1', '/manage_subscriptions', '/dashboard'];
+    const PROTECTED_PATHS = ['/confirm_email', '/demo/demo1', '/manage_subscriptions', '/dashboard'];
 
     let user = null;
 

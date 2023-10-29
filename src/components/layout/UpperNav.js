@@ -44,7 +44,7 @@ export default function UpperNav({isLoggedIn = true, email=null}) {
           </ul>
         </div>}
         
-        <Link href='/dashboard' className="btn btn-ghost normal-case text-xl">Eport</Link>
+        <Link href='/' className="btn btn-ghost normal-case text-xl">Eport</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         {loggedIn ? 

@@ -19,6 +19,15 @@ const nextConfig = {
                 hostname: 'localhost:3000',
             }
         ],
+    },
+    async redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/features',
+                permanent: true,
+            }
+        ]
     }
 }
 

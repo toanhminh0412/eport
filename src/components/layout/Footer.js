@@ -25,7 +25,8 @@ export default function Footer({isLoggedIn = true}) {
                         <h3 className="text-xl text-white relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:bg-red-500 before:h-[2px] before:box-border before:w-[50px]">About</h3>
                         <ul className="list-none px-0 py-8">
                             <li className="mb-2"><Link href="/features" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Our Feature</Link></li>
-                            <li className="mb-2"><Link href="/features#pricing" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Pricing</Link></li>
+                            {/* <li className="mb-2"><Link href="/features#pricing" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Pricing</Link></li> */}
+                            <li className="mb-2"><Link href="/report_problems" className="text-lg text-slate-200 no-underline block duration-300 hover:pl-[10px] hover:text-white">Report</Link></li>
                         </ul>
                     </div>
                     
@@ -47,7 +48,7 @@ export default function Footer({isLoggedIn = true}) {
                         </div>
                     </div>
                 </div>
-                <div className="text-center mx-2">
+                {/* <div className="text-center mx-2">
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-visa"></i></div>
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-mastercard"></i></div>
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-amex"></i></div>
@@ -55,7 +56,7 @@ export default function Footer({isLoggedIn = true}) {
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-diners-club"></i></div>
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-cc-jcb"></i></div>
                     <div className="inline-block text-3xl mt-0 mr-6 mb-2 ml-0 text-white"><i className="fa-brands fa-google-pay"></i></div>
-                </div>
+                </div> */}
                 <div className="text-white text-lg mb-3 text-center">© Copyright Eport (2023)</div>
             </div>
         </footer>

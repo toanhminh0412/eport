@@ -31,49 +31,49 @@ export default function TemplatesGallery() {
                 className="w-auto h-[300px] sm:h-[400px] md:h-[500px] lg:h-[400px]"
             >
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template0-header1-thumbnail.jpg" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-header1-thumbnail.jpg" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-header1-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-header1-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/eresume-template0.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/eresume-template0.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template0-header2-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-header2-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/eresume-template0-lighttheme.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/eresume-template0-lighttheme.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template0-aboutme1-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-aboutme1-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-service1-new-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-service1-new-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template0-aboutme2-thumbnail.jpg" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-aboutme2-thumbnail.jpg" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-header2-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-header2-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-portfolio2-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-portfolio2-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-aboutme1-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-aboutme1-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-testimonial1-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-testimonial1-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template0-portfolio2-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-portfolio2-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template0-testimonial1-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template0-testimonial1-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
                 <SwiperSlide className="flex justify-center items-center">
-                    <Image src="/img/freelancer-template1-aboutme2-thumbnail.png" className="block w-full h-full object-contain" width={700} height={500}/>
+                    <Image src="/img/freelancer-template1-aboutme2-thumbnail.png" alt='Website Templates' className="block w-full h-full object-contain" width={700} height={500}/>
                 </SwiperSlide>
             </Swiper>
         </>

@@ -59,7 +59,7 @@ export default function Features() {
                                 </div>
                             </div>
                         </div>
-                        <Image src="/img/featurepage.png" alt="" className="inline-block h-full w-full max-w-[640px]" width={1000} height={1000}/>
+                        <Image src="/img/featurepage.png" alt="Features site image" className="inline-block h-full w-full max-w-[640px]" width={1000} height={1000}/>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ export default function Features() {
                 
                 {/* Video */}
                 <div className="relative overflow-hidden w-full pt-[56.25%]">
-                    <iframe src="https://www.youtube.com/embed/Gd6sDn0TJYk?si=6pdr_e72apP9_cyX" className="text-center absolute top-0 left-0 bottom-0 right-0 w-full h-full" title="Eresume Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/Gd6sDn0TJYk?si=6pdr_e72apP9_cyX" className="text-center absolute top-0 left-0 bottom-0 right-0 w-full h-full" title="Eresume Demo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
             </div>
 

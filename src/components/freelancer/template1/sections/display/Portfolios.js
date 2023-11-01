@@ -41,7 +41,7 @@ export function Portfolio1({ section }) {
 
                         {/* Project container */}
                         <label htmlFor={`project_modal_${project.id}`} className="relative flex max-w-full flex-col items-center justify-center text-black h-64 w-96 lg:w-128 box-border border-2 border-transparent hover:border-blue-500 duration-200">
-                            <Image width={200} height={200} src={project.images.length > 0 ? project.images[0].src : "https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a942fd2e6cfa2_Rectangle%201%20(2).svg"} alt="" className="inline-block h-full w-full object-cover brightness-75"/>
+                            <Image width={200} height={200} src={project.images.length > 0 ? project.images[0].src : "https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a942fd2e6cfa2_Rectangle%201%20(2).svg"} alt="" className="inline-block h-full w-full object-cover"/>
                             <div className="absolute flex flex-col items-center justify-center bg-white px-8 py-4 text-center rounded-sm">
                                 <p className="font-medium text-sm sm:text-xl">{project.name}</p>
                                 <p className="max-[479px]:text-sm mt-2 font-light">{project.company}</p>
